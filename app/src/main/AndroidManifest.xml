@@ -8,13 +8,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SplashActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".video.VideoActivity" />
+        <activity android:name=".singerinfo.SingerInfoActivity" />
+        <activity android:name=".mypage.MyPageActivity" />
+        <activity android:name=".reservationmgm.ReservationMgmActivity" />
+        <activity android:name=".review.ReviewActivity" />
+        <activity android:name=".chatting.ChattingActivity" />
+        <activity android:name=".qna.QnAActivity" />
+        <activity android:name=".alarm.AlarmActivity" />
+        <activity android:name=".schedulemgm.ScheduleMgmActivity" />
+        <activity android:name=".community.CommunityActivity"></activity>
     </application>
 
 </manifest>
