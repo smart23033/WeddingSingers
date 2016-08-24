@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main;
+package com.weddingsingers.wsapp.search;
 
 
 import android.os.Bundle;
