@@ -1,13 +1,95 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.weddingsingers.wsapp.login.SignUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/sign_up_text_email"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/login_et_horizontal_margin"
+        android:layout_marginRight="@dimen/login_et_horizontal_margin"
+        android:layout_marginTop="@dimen/login_et_margin_top">
+        <EditText
+            android:id="@+id/sign_up_et_email"
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"/>
+    </android.support.design.widget.TextInputLayout>
 
-</FrameLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/sign_up_text_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sign_up_text_email"
+        android:layout_alignLeft="@+id/sign_up_text_email"
+        android:layout_alignStart="@+id/sign_up_text_email"
+        android:layout_alignRight="@+id/sign_up_text_email"
+        android:layout_alignEnd="@+id/sign_up_text_email">
+        <EditText
+            android:id="@+id/sign_up_et_password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/sign_up_text_password_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sign_up_text_email"
+        android:layout_alignLeft="@+id/sign_up_text_email"
+        android:layout_alignStart="@+id/sign_up_text_email"
+        android:layout_alignRight="@+id/sign_up_text_email"
+        android:layout_alignEnd="@+id/sign_up_text_email">
+        <EditText
+            android:id="@+id/sign_up_edit_password_confirm"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="sign up"
+        android:id="@+id/sign_up_btn_sign_up"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/sign_up_chk_clause"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="facebook sign up"
+        android:id="@+id/sign_up_btn_facebook_sign_up"
+        android:layout_below="@+id/sign_up_btn_sign_up"
+        android:layout_centerHorizontal="true" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_up_chk_clause"
+        android:layout_below="@+id/sign_up_text_password"
+        android:layout_alignLeft="@+id/sign_up_text_password"
+        android:layout_alignStart="@+id/sign_up_text_password" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sign_up_tv_clause"
+        android:layout_below="@+id/sign_up_text_password"
+        android:layout_alignBaseline="@+id/sign_up_chk_clause"
+        android:text="clause and policy"
+        android:layout_toRightOf="@+id/sign_up_chk_clause"/>
+
+</RelativeLayout>

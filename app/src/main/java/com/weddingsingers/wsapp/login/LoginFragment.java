@@ -14,11 +14,18 @@ import com.weddingsingers.wsapp.R;
  */
 public class LoginFragment extends Fragment {
 
+    private static LoginFragment instance;
 
     public LoginFragment() {
         // Required empty public constructor
     }
 
+    public static LoginFragment getInstance(){
+        if(instance == null){
+            instance = new LoginFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

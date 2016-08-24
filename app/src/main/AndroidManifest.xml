@@ -15,8 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".login.LoginActivity" />
+
+        <activity android:name=".SplashActivity" android:exported="true"
+            android:theme="@style/AppTheme.NoActionBarFullScreen"
+            />
+
+        <activity android:name=".login.LoginActivity" android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity android:name=".video.VideoActivity" />
         <activity android:name=".singerinfo.SingerInfoActivity" />
         <activity android:name=".mypage.MyPageActivity" />
