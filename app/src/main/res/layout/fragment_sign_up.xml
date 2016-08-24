@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="@dimen/login_et_horizontal_margin"
         android:layout_marginRight="@dimen/login_et_horizontal_margin"
-        android:layout_marginTop="@dimen/login_et_margin_top">
+        android:layout_marginTop="@dimen/sign_up_et_margin_top">
         <EditText
             android:id="@+id/sign_up_et_email"
             android:inputType="textEmailAddress"
@@ -44,11 +44,11 @@
         android:id="@+id/sign_up_text_password_confirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/sign_up_text_email"
-        android:layout_alignLeft="@+id/sign_up_text_email"
-        android:layout_alignStart="@+id/sign_up_text_email"
-        android:layout_alignRight="@+id/sign_up_text_email"
-        android:layout_alignEnd="@+id/sign_up_text_email">
+        android:layout_below="@id/sign_up_text_password"
+        android:layout_alignLeft="@+id/sign_up_text_password"
+        android:layout_alignStart="@+id/sign_up_text_password"
+        android:layout_alignRight="@+id/sign_up_text_password"
+        android:layout_alignEnd="@+id/sign_up_text_password">
         <EditText
             android:id="@+id/sign_up_edit_password_confirm"
             android:inputType="textPassword"
@@ -79,9 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/sign_up_chk_clause"
-        android:layout_below="@+id/sign_up_text_password"
-        android:layout_alignLeft="@+id/sign_up_text_password"
-        android:layout_alignStart="@+id/sign_up_text_password" />
+        android:layout_below="@+id/sign_up_text_password_confirm"
+        android:layout_alignLeft="@+id/sign_up_text_password_confirm"
+        android:layout_alignStart="@+id/sign_up_text_password_confirm" />
 
     <TextView
         android:layout_width="wrap_content"

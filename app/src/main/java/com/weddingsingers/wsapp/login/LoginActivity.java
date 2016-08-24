@@ -1,7 +1,9 @@
 package com.weddingsingers.wsapp.login;
 
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     TabLayout tabs;
+    ViewPager pager;
+    LoginPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,32 +24,16 @@ public class LoginActivity extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.login_toolbar);
         tabs = (TabLayout)findViewById(R.id.login_tabs);
+        pager = (ViewPager)findViewById(R.id.login_pager);
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+        tabs.addTab(tabs.newTab().setText("Login"));
+        tabs.addTab(tabs.newTab().setText("Sign Up"));
 
-            }
+        mAdapter = new LoginPagerAdapter(getSupportFragmentManager(),tabs.getTabCount());
+        pager.setAdapter(mAdapter);
+        tabs.setupWithViewPager(pager);
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-
-        FragmentTransaction ft = getSupportFragmentManager()
-                .beginTransaction();
-
-        SignUpFragment f = new SignUpFragment();
-
-        ft.add(R.id.login_tabs_container,f);
-        ft.commit();
     }
 
 }
