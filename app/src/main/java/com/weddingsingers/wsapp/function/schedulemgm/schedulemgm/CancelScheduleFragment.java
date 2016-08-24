@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.review;
+package com.weddingsingers.wsapp.function.schedulemgm.schedulemgm;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WriteReviewFragment extends Fragment {
+public class CancelScheduleFragment extends Fragment {
 
 
-    public WriteReviewFragment() {
+    public CancelScheduleFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class WriteReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_write_review, container, false);
+        return inflater.inflate(R.layout.fragment_cancel_schedule, container, false);
     }
 
 }

@@ -30,7 +30,7 @@
         <activity
             android:name=".function.search.search.SearchActivity"
             android:exported="true" />
-        <activity android:name=".main.review.ReviewActivity" />
+        <activity android:name=".function.review.writereview.ReviewActivity" />
         <activity android:name=".login.FacebookSignUpActivity" />
         <activity android:name=".login.FacebookLoginActivity" />
         <activity android:name=".function.video.reservation.ReservationActivity" />

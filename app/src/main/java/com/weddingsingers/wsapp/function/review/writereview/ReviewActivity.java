@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.review;
+package com.weddingsingers.wsapp.function.review.writereview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

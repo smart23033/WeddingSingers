@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TabLayout tabs;
-    MyPagerAdapter mAdapter;
     ViewPager pager;
     DrawerLayout drawer;
     NavigationView naviView;
@@ -40,10 +39,6 @@ public class MainActivity extends AppCompatActivity
         tabs.addTab(tabs.newTab().setText("TAB2").setTag("tab2"));
         tabs.addTab(tabs.newTab().setText("TAB3").setTag("tab3"));
 
-        mAdapter = new MyPagerAdapter(getSupportFragmentManager(),tabs.getTabCount());
-
-        pager.setAdapter(mAdapter);
-        tabs.setupWithViewPager(pager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_icon);
