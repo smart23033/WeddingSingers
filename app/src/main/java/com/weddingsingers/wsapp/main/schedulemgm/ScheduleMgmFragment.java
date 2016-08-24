@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.schdulemgm;
+package com.weddingsingers.wsapp.main.schedulemgm;
 
 
 import android.os.Bundle;
@@ -17,6 +17,15 @@ public class ScheduleMgmFragment extends Fragment {
 
     public ScheduleMgmFragment() {
         // Required empty public constructor
+    }
+
+    private static ScheduleMgmFragment instance;
+
+    public static ScheduleMgmFragment getInstance(){
+        if(instance == null){
+            instance = new ScheduleMgmFragment();
+        }
+        return instance;
     }
 
 

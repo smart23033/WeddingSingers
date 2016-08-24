@@ -19,6 +19,15 @@ public class ReservationListFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static ReservationListFragment instance;
+
+    public static ReservationListFragment getInstance(){
+        if(instance == null){
+            instance = new ReservationListFragment();
+        }
+        return instance;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

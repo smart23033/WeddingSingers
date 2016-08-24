@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.chatting;
+package com.weddingsingers.wsapp.main.qna;
 
 
 import android.os.Bundle;
@@ -12,18 +12,18 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChattingListFragment extends Fragment {
+public class QNAFragment extends Fragment {
 
 
-    public ChattingListFragment() {
+    public QNAFragment() {
         // Required empty public constructor
     }
 
-    private static ChattingListFragment instance;
+    private static QNAFragment instance;
 
-    public static ChattingListFragment getInstance(){
+    public static QNAFragment getInstance(){
         if(instance == null){
-            instance = new ChattingListFragment();
+            instance = new QNAFragment();
         }
         return instance;
     }
@@ -33,7 +33,7 @@ public class ChattingListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chatting_list, container, false);
+        return inflater.inflate(R.layout.fragment_qna, container, false);
     }
 
 }

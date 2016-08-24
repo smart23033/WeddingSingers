@@ -19,6 +19,15 @@ public class PostListFragment extends Fragment {
         // Required empty public constructor
     }
 
+    private static PostListFragment instance;
+
+    public static PostListFragment getInstance(){
+        if(instance == null){
+            instance = new PostListFragment();
+        }
+        return instance;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

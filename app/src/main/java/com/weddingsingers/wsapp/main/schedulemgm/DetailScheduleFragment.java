@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.schdulemgm;
+package com.weddingsingers.wsapp.main.schedulemgm;
 
 
 import android.os.Bundle;
