@@ -23,7 +23,7 @@
 
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/search_ib_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right|center_vertical"
@@ -34,26 +34,15 @@
 
     </FrameLayout>
 
-    <!--차일드프래그먼트에 들어가야됨-->
-    <TextView
-        android:id="@+id/search_tv_recent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_fl_container"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/search_fl_keyword"
         android:layout_alignStart="@+id/search_fl_keyword"
-        android:layout_below="@+id/search_fl_keyword"
-        android:text="recent" />
-
-
-    <Button
-        android:id="@+id/search_btn_recent"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/search_tv_recent"
-        android:layout_alignStart="@+id/search_tv_recent"
-        android:layout_below="@+id/search_tv_recent"
-        android:text="recent keyword" />
-
+        android:layout_alignRight="@+id/search_fl_keyword"
+        android:layout_alignEnd="@+id/search_fl_keyword"
+        android:layout_below="@+id/search_fl_keyword" />
 
 </RelativeLayout>

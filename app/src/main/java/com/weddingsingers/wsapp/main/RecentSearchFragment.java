@@ -13,13 +13,18 @@ import com.weddingsingers.wsapp.R;
  * A simple {@link Fragment} subclass.
  */
 public class RecentSearchFragment extends Fragment {
-
+    private static RecentSearchFragment instance;
 
     public RecentSearchFragment() {
         // Required empty public constructor
     }
 
-
+    public static RecentSearchFragment getInstance(){
+        if(instance == null){
+            instance = new RecentSearchFragment();
+        }
+        return instance;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

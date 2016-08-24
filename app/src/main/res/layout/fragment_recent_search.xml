@@ -1,13 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.weddingsingers.wsapp.main.RecentSearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/search_tv_recent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/search_fl_keyword"
+        android:layout_alignStart="@+id/search_fl_keyword"
+        android:layout_below="@+id/search_fl_keyword"
+        android:text="recent" />
 
-</FrameLayout>
+
+    <Button
+        android:id="@+id/search_btn_recent"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/search_tv_recent"
+        android:layout_alignStart="@+id/search_tv_recent"
+        android:layout_below="@+id/search_tv_recent"
+        android:text="recent keyword" />
+
+</RelativeLayout>
