@@ -8,13 +8,18 @@
     tools:context="com.weddingsingers.wsapp.main.MainActivity"
     android:id="@+id/drawer">
 
+    <include android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_content"
+        ></include>
+
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navi_menu"
         android:layout_gravity="left|start"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer">
+        app:headerLayout="@layout/menu_header"
+        app:menu="@menu/navi_menu">
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
