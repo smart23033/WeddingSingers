@@ -1,13 +1,59 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.weddingsingers.wsapp.main.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/search_fl_keyword"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/search_et_horizontal_margin"
+        android:layout_marginRight="@dimen/search_et_horizontal_margin"
+        android:layout_marginTop="@dimen/search_et_margin_top">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/search_et_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/search_ic_filter"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="@dimen/search_id_filter_margin_right"
+            android:layout_marginBottom="@dimen/search_ic_filer_margin_bottom" />
+
+    </FrameLayout>
+
+    <!--차일드프래그먼트에 들어가야됨-->
+    <TextView
+        android:id="@+id/search_tv_recent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/search_fl_keyword"
+        android:layout_alignStart="@+id/search_fl_keyword"
+        android:layout_below="@+id/search_fl_keyword"
+        android:text="recent" />
+
+
+    <Button
+        android:id="@+id/search_btn_recent"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/search_tv_recent"
+        android:layout_alignStart="@+id/search_tv_recent"
+        android:layout_below="@+id/search_tv_recent"
+        android:text="recent keyword" />
+
+
+</RelativeLayout>
