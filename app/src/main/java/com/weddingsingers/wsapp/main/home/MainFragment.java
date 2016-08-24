@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.mypage;
+package com.weddingsingers.wsapp.main.home;
 
 
 import android.os.Bundle;
@@ -12,18 +12,18 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyPageFragment extends Fragment {
+public class MainFragment extends Fragment {
 
 
-    public MyPageFragment() {
+    public MainFragment() {
         // Required empty public constructor
     }
 
-    private static MyPageFragment instance;
+    private static MainFragment instance;
 
-    public static MyPageFragment getInstance(){
+    public static MainFragment getInstance(){
         if(instance == null){
-            instance = new MyPageFragment();
+            instance = new MainFragment();
         }
         return instance;
     }
@@ -33,7 +33,7 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
 }

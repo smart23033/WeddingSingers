@@ -19,7 +19,7 @@
         android:id="@+id/navi_menu"
         android:layout_gravity="left|start"
         app:headerLayout="@layout/menu_header"
-        app:menu="@menu/navi_menu">
+        app:menu="@menu/activity_main_drawer_customer">
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
