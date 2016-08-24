@@ -6,7 +6,7 @@ import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.home.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
