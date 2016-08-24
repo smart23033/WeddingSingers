@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.search.search.SearchFragment">
+    tools:context=".function.search.search.DetailSearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <FrameLayout
@@ -37,7 +37,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/search_fl_container"
+        android:id="@+id/detail_search_fl_container"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/search_fl_keyword"
         android:layout_alignStart="@+id/search_fl_keyword"
