@@ -15,14 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SplashActivity" android:exported="true"
-            android:theme="@style/AppTheme.NoActionBarFullScreen"
-            />
-
-        <activity android:name=".login.LoginActivity" android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBarFullScreen" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".video.VideoActivity" />
         <activity android:name=".singerinfo.SingerInfoActivity" />
         <activity android:name=".mypage.MyPageActivity" />
@@ -32,7 +32,8 @@
         <activity android:name=".qna.QnAActivity" />
         <activity android:name=".alarm.AlarmActivity" />
         <activity android:name=".schedulemgm.ScheduleMgmActivity" />
-        <activity android:name=".community.CommunityActivity"></activity>
+        <activity android:name=".community.CommunityActivity" />
+        <activity android:name=".search.SearchActivity" android:exported="true"></activity>
     </application>
 
 </manifest>
