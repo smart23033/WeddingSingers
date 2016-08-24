@@ -1,5 +1,6 @@
 package com.weddingsingers.wsapp.function.search.search;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,12 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        FragmentTransaction ft = getSupportFragmentManager()
+                .beginTransaction();
+        DetailSearchFragment f = DetailSearchFragment.getInstance();
+        ft.add(R.id.act_search_fl_container,f);
+        ft.commit();
 
     }
 }

@@ -6,30 +6,46 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.weddingsingers.wsapp.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RecentSearchFragment extends Fragment {
-//    private static RecentSearchFragment instance;
+    private static RecentSearchFragment instance;
 
     public RecentSearchFragment() {
         // Required empty public constructor
     }
 
-//    public static RecentSearchFragment getInstance(){
-//        if(instance == null){
-//            instance = new RecentSearchFragment();
-//        }
-//        return instance;
-//    }
+    public static RecentSearchFragment getInstance(){
+        if(instance == null){
+            instance = new RecentSearchFragment();
+        }
+        return instance;
+    }
+
+    @BindView(R.id.search_tv_recent)
+    TextView recentTextView;
+
+    @BindView(R.id.search_btn_recent)
+    Button recentBtn;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recent_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_recent_search, container, false);
+
+        ButterKnife.bind(this,view);
+
+        return view;
     }
 
 }

@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".function.search.search.RecentSearchFragment">
+
     <TextView
         android:id="@+id/search_tv_recent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/search_fl_keyword"
-        android:layout_alignStart="@+id/search_fl_keyword"
-        android:layout_below="@+id/search_fl_keyword"
         android:text="recent" />
 
 
