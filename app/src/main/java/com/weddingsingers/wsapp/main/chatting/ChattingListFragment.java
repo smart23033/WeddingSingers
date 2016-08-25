@@ -19,16 +19,6 @@ public class ChattingListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static ChattingListFragment instance;
-
-    public static ChattingListFragment getInstance(){
-        if(instance == null){
-            instance = new ChattingListFragment();
-        }
-        return instance;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

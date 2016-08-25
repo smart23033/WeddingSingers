@@ -56,7 +56,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case NEW_FRAGMENT:
                 return VideoListFragment.newInstance("b");
             case EVENT_FRAGMENT:
-                return VideoListFragment.newInstance("c");
+                return EventListFragment.newInstance("c");
             default:
                 return null;
         }
