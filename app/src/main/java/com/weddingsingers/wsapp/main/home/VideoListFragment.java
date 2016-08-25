@@ -27,7 +27,7 @@ public class VideoListFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static VideoListFragment getInstance(String message) {
+    public static VideoListFragment newInstance(String message) {
         VideoListFragment fragment = new VideoListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_MESSAGE, message);

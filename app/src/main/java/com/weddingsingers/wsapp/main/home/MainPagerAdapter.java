@@ -52,11 +52,11 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case POPULAR_FRAGMENT:
-                return VideoListFragment.getInstance("a");
+                return VideoListFragment.newInstance("a");
             case NEW_FRAGMENT:
-                return VideoListFragment.getInstance("b");
+                return VideoListFragment.newInstance("b");
             case EVENT_FRAGMENT:
-                return VideoListFragment.getInstance("c");
+                return VideoListFragment.newInstance("c");
             default:
                 return null;
         }
