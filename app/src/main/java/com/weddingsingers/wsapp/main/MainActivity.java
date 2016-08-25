@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,7 +60,10 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.navi_ic_search);
+
 
         drawer = (DrawerLayout)findViewById(R.id.drawer);
         naviView = (NavigationView)findViewById(R.id.navi_menu);
@@ -136,15 +140,26 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        int id = item.getItemId();
+
+        if(id == android.R.id.home){
             if(drawer.isDrawerOpen(GravityCompat.START)){
                 drawer.closeDrawer(GravityCompat.START);
             }else{
                 drawer.openDrawer(GravityCompat.START);
             }
             return true;
+        } else if (id == R.id.action_search) {
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
