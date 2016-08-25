@@ -19,16 +19,6 @@ public class MyPageFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static MyPageFragment instance;
-
-    public static MyPageFragment getInstance(){
-        if(instance == null){
-            instance = new MyPageFragment();
-        }
-        return instance;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -40,7 +40,7 @@ public class VideoListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
-        listView = (RecyclerView)view.findViewById(R.id.rv_list);
+        listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
         mAdapter = new MainAdapter();
         listView.setAdapter(mAdapter);
 

@@ -19,16 +19,6 @@ public class QNAFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static QNAFragment instance;
-
-    public static QNAFragment getInstance(){
-        if(instance == null){
-            instance = new QNAFragment();
-        }
-        return instance;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

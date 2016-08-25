@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_fl_container, MainFragment.getInstance())
+                    .add(R.id.main_fl_container, new MainFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         }
@@ -89,42 +89,42 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, MainFragment.getInstance())
+                    .replace(R.id.main_fl_container, new MainFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         } else if (id == R.id.nav_mypage) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, MyPageFragment.getInstance())
+                    .replace(R.id.main_fl_container, new MyPageFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_mypage));
         } else if (id == R.id.nav_reservation_mgm) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, ReservationListFragment.getInstance())
+                    .replace(R.id.main_fl_container, new ReservationListFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
         } else if (id == R.id.nav_review) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, ReviewFragment.getInstance())
+                    .replace(R.id.main_fl_container, new ReviewFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_review));
         } else if (id == R.id.nav_chat) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, ChattingListFragment.getInstance())
+                    .replace(R.id.main_fl_container, new ChattingListFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_chat));
         } else if (id == R.id.nav_community) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, PostListFragment.getInstance())
+                    .replace(R.id.main_fl_container, new PostListFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_community));
         } else if (id == R.id.nav_qna) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, QNAFragment.getInstance())
+                    .replace(R.id.main_fl_container, new QNAFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_qna));
         } else if (id == R.id.nav_schedule_mgm) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, ScheduleMgmFragment.getInstance())
+                    .replace(R.id.main_fl_container, new ScheduleMgmFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
         }

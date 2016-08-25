@@ -19,16 +19,6 @@ public class ScheduleMgmFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static ScheduleMgmFragment instance;
-
-    public static ScheduleMgmFragment getInstance(){
-        if(instance == null){
-            instance = new ScheduleMgmFragment();
-        }
-        return instance;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

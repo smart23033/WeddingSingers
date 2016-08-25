@@ -25,15 +25,6 @@ public class MainFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static MainFragment instance;
-
-    public static MainFragment getInstance(){
-        if(instance == null){
-            instance = new MainFragment();
-        }
-        return instance;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,7 +38,7 @@ public class MainFragment extends Fragment {
         tabs.addTab(tabs.newTab().setText("TAB2").setTag("tab2"));
         tabs.addTab(tabs.newTab().setText("TAB3").setTag("tab3"));
 
-        mAdapter = new MainPagerAdapter(getFragmentManager() ,tabs.getTabCount());
+        mAdapter = new MainPagerAdapter(getChildFragmentManager() ,tabs.getTabCount());
 
         pager.setAdapter(mAdapter);
         tabs.setupWithViewPager(pager);

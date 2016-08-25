@@ -19,16 +19,6 @@ public class ReviewFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static ReviewFragment instance;
-
-    public static ReviewFragment getInstance(){
-        if(instance == null){
-            instance = new ReviewFragment();
-        }
-        return instance;
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
