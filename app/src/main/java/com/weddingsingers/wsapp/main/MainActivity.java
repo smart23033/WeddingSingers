@@ -1,5 +1,6 @@
 package com.weddingsingers.wsapp.main;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
 import com.weddingsingers.wsapp.main.community.PostListFragment;
 import com.weddingsingers.wsapp.main.home.MainFragment;
@@ -60,14 +62,13 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setLogo(R.drawable.navi_ic_search);
-
-
         drawer = (DrawerLayout)findViewById(R.id.drawer);
         naviView = (NavigationView)findViewById(R.id.navi_menu);
         naviView.setNavigationItemSelectedListener(this);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        toolbar.setLogo(R.drawable.navi_ic_search);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
@@ -157,6 +158,7 @@ public class MainActivity extends AppCompatActivity
             }
             return true;
         } else if (id == R.id.action_search) {
+            startActivity(new Intent(MainActivity.this, SearchActivity.class));
             return true;
         }
 
