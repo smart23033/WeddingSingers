@@ -1,9 +1,11 @@
 package com.weddingsingers.wsapp.function.search.search;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +29,7 @@ public class SearchActivity extends AppCompatActivity {
 
     @BindView(R.id.search_toolbar)
     Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,16 +67,34 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-            Toast.makeText(SearchActivity.this,"SearchActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
-            finish();
-            return true;
-        }
+        switch (item.getItemId()){
+            case android.R.id.home: {
+                Toast.makeText(SearchActivity.this,"SearchActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            }
+             case R.id.main_menu_search: {
+//                 FragmentTransaction ft = getSupportFragmentManager()
+//                         .beginTransaction();
+//                 SearchResultFragment searchResultFragment = new SearchResultFragment();
+//                 ft.replace(R.id.act_search_fl_container, searchResultFragment);
+//                 ft.commit();
+                 Toast.makeText(SearchActivity.this,"SearchActivity's Search Button Clicked", Toast.LENGTH_SHORT).show();
+                 return true;
+             }
+         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+
 }

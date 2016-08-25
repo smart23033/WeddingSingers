@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
             }
             return true;
-        } else if (id == R.id.action_search) {
+        } else if (id == R.id.main_menu_search) {
             startActivity(new Intent(MainActivity.this, SearchActivity.class));
             return true;
         }
