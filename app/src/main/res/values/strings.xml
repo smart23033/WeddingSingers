@@ -8,7 +8,12 @@
 
     <string name="action_search">검색</string>
 
-    <!-- 메뉴 한글 이름 -->
+    <!-- 메인 탭 이름 -->
+    <string name="main_tab_popular">인기 동영상</string>
+    <string name="main_tab_new">신규 싱어 영상</string>
+    <string name="main_tab_event">이벤트/프로모션</string>
+
+    <!-- 메뉴 이름 -->
     <string name="nav_home">홈</string>
     <string name="nav_mypage">마이 페이지</string>
     <string name="nav_reservation_mgm">예약 관리</string>
