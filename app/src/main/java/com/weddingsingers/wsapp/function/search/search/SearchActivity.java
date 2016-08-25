@@ -25,6 +25,8 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.search_toggle_filter)
     ToggleButton filterBtn;
 
+    @BindView(R.id.search_toolbar)
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,6 @@ public class SearchActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.search_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -43,23 +44,27 @@ public class SearchActivity extends AppCompatActivity {
         ft.add(R.id.act_search_fl_container,f);
         ft.commit();
 
+//        두번째 클릭 부터 반응??
         filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction ft = getSupportFragmentManager()
-                        .beginTransaction();
-
-                    if(!filterBtn.isChecked()) {
-                        FilterFragment filterFragment = new FilterFragment();
-                        ft.replace(R.id.act_search_fl_container, filterFragment);
-                        ft.commit();
-                    }else{
-                       RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-                        ft.replace(R.id.act_search_fl_container, recentSearchFragment);
-                        ft.commit();
-                    }
+                if(!filterBtn.isChecked()) {
+                    FragmentTransaction ft = getSupportFragmentManager()
+                            .beginTransaction();
+                    FilterFragment filterFragment = new FilterFragment();
+                    ft.replace(R.id.act_search_fl_container, filterFragment);
+                    ft.commit();
+                }else{
+                    FragmentTransaction ft = getSupportFragmentManager()
+                            .beginTransaction();
+                    RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+                    ft.replace(R.id.act_search_fl_container, recentSearchFragment);
+                    ft.commit();
+                }
             }
         });
+
+
     }
 
     @Override

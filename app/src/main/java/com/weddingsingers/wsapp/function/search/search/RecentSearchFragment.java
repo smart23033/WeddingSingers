@@ -22,7 +22,6 @@ public class RecentSearchFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @BindView(R.id.search_tv_recent)
     TextView recentTextView;
 
