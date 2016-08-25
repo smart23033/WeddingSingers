@@ -28,7 +28,7 @@
         <activity android:name=".function.video.singerinfo.SingerInfoActivity" />
         <activity android:name=".function.chatting.chatting.ChattingActivity" />
         <activity
-            android:name=".function.search.search.SearchActivity"
+            android:name=".function.search.search.SearchActivity" android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".function.review.writereview.ReviewActivity" />
         <activity android:name=".login.FacebookSignUpActivity" />

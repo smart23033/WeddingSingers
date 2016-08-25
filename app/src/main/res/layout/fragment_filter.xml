@@ -1,13 +1,76 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".function.search.search.FilterFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout">
+
+        <Spinner
+        android:id="@+id/filter_spinner_location"
+        android:layout_width="0dp"
+            android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/filter_spinner_location_margin_top"
+            android:spinnerMode="dialog" />
+
+        <!--보류-->
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/filter_spinner_calendar"
+            android:scaleType="centerCrop"
+            android:id="@+id/filter_spinner_calendar" />
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filter_spinner_composition"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="@dimen/filter_spinner_margin_top"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filter_spinner_theme"
+        android:layout_below="@+id/filter_spinner_composition"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="@dimen/filter_spinner_margin_top"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filter_spinner_price"
+        android:layout_below="@+id/filter_spinner_theme"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="@dimen/filter_spinner_margin_top"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="search"
+        android:id="@+id/filter_btn_search"
+        android:layout_below="@+id/filter_spinner_price"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+
+</RelativeLayout>

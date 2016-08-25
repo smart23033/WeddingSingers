@@ -3,6 +3,7 @@ package com.weddingsingers.wsapp.function.search.search;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,23 @@ public class DetailSearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail_search, container, false);
 
         ButterKnife.bind(this,view);
+
+        FragmentTransaction ft = getChildFragmentManager()
+                .beginTransaction();
+        RecentSearchFragment recentSearchFragment = RecentSearchFragment.getInstance();
+        ft.add(R.id.detail_search_fl_container,recentSearchFragment);
+        ft.commit();
+
+        imageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FilterFragment filterFragment = new FilterFragment();
+                FragmentTransaction ft = getChildFragmentManager()
+                        .beginTransaction();
+                ft.replace(R.id.detail_search_fl_container,filterFragment);
+                ft.commit();
+            }
+        });
 
         return view;
     }
