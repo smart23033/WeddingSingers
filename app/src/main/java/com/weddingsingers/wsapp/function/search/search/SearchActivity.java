@@ -39,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        RecentSearchFragment f = RecentSearchFragment.getInstance();
+        RecentSearchFragment f = new RecentSearchFragment();
         ft.add(R.id.act_search_fl_container,f);
         ft.commit();
 
@@ -50,11 +50,11 @@ public class SearchActivity extends AppCompatActivity {
                         .beginTransaction();
 
                     if(!filterBtn.isChecked()) {
-                        FilterFragment filterFragment = FilterFragment.getInstance();
+                        FilterFragment filterFragment = new FilterFragment();
                         ft.replace(R.id.act_search_fl_container, filterFragment);
                         ft.commit();
                     }else{
-                       RecentSearchFragment recentSearchFragment = RecentSearchFragment.getInstance();
+                       RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
                         ft.replace(R.id.act_search_fl_container, recentSearchFragment);
                         ft.commit();
                     }

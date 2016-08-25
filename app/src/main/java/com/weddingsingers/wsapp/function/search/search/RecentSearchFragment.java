@@ -18,18 +18,10 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class RecentSearchFragment extends Fragment {
-    private static RecentSearchFragment instance;
-
     public RecentSearchFragment() {
         // Required empty public constructor
     }
 
-    public static RecentSearchFragment getInstance(){
-        if(instance == null){
-            instance = new RecentSearchFragment();
-        }
-        return instance;
-    }
 
     @BindView(R.id.search_tv_recent)
     TextView recentTextView;

@@ -21,20 +21,10 @@ import butterknife.OnItemSelected;
  * A simple {@link Fragment} subclass.
  */
 public class FilterFragment extends Fragment {
-    private static FilterFragment instance;
 
     public FilterFragment() {
         // Required empty public constructor
     }
-
-    public static FilterFragment getInstance(){
-        if(instance == null){
-            instance = new FilterFragment();
-        }
-        return instance;
-    }
-
-
 
     @BindView(R.id.filter_spinner_location)
     Spinner locationSpinner;
