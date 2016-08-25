@@ -9,7 +9,7 @@
     <dimen name="sign_up_et_margin_top">50dp</dimen>
 
     <!--네비게이션 드로워-->
-    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
 
     <!--서치 액티비티, 프래그먼트 -->
