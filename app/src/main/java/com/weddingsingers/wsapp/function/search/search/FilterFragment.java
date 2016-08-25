@@ -37,10 +37,16 @@ public class FilterFragment extends Fragment {
 
 
     @BindView(R.id.filter_spinner_location)
-    Spinner loactionSpinner;
+    Spinner locationSpinner;
 
     @BindView(R.id.filter_spinner_composition)
     Spinner compositionSpinner;
+
+    @BindView(R.id.filter_spinner_theme)
+    Spinner themeSpinner;
+
+    @BindView(R.id.filter_spinner_price)
+    Spinner priceSpinner;
 
     FilterSpinnerAdapter mAdapter;
 
@@ -52,11 +58,13 @@ public class FilterFragment extends Fragment {
         ButterKnife.bind(this,view);
 
         mAdapter = new FilterSpinnerAdapter();
-        loactionSpinner.setAdapter(mAdapter);
+        locationSpinner.setAdapter(mAdapter);
         compositionSpinner.setAdapter(mAdapter);
+        priceSpinner.setAdapter(mAdapter);
+        themeSpinner.setAdapter(mAdapter);
 
 
-        loactionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 Toast.makeText(getContext(),"item : " + mAdapter.getItem(position),Toast.LENGTH_SHORT).show();

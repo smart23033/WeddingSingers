@@ -14,10 +14,14 @@
 
     <!--서치 액티비티, 프래그먼트 -->
     <dimen name="search_et_margin_top">20dp</dimen>
-    <dimen name="search_et_horizontal_margin">20dp</dimen>
-    <dimen name="search_ic_filer_margin_bottom">4dp</dimen>
-    <dimen name="search_id_filter_margin_right">10dp</dimen>
+    <dimen name="search_et_search_margin_left">50dp</dimen>
+    <dimen name="search_et_search_margin_right">50dp</dimen>
+    <dimen name="search_btn_search_margin_right">20dp</dimen>
+    <dimen name="search_btn_filter_width">25dp</dimen>
+    <dimen name="search_btn_filter_height">25dp</dimen>
+    <dimen name="search_btn_filter_margin_bottom">2dp</dimen>
+    <dimen name="search_btn_filter_margin_right">60dp</dimen>
     <dimen name="filter_spinner_location_margin_top">20dp</dimen>
-    <dimen name="filter_spinner_margin_top">40dp</dimen>
+    <dimen name="filter_spinner_margin_top">30dp</dimen>
 
 </resources>
