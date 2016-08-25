@@ -78,12 +78,14 @@ public class SearchActivity extends AppCompatActivity {
                 return true;
             }
              case R.id.main_menu_search: {
-//                 FragmentTransaction ft = getSupportFragmentManager()
-//                         .beginTransaction();
-//                 SearchResultFragment searchResultFragment = new SearchResultFragment();
-//                 ft.replace(R.id.act_search_fl_container, searchResultFragment);
-//                 ft.commit();
                  Toast.makeText(SearchActivity.this,"SearchActivity's Search Button Clicked", Toast.LENGTH_SHORT).show();
+
+                 FragmentTransaction ft = getSupportFragmentManager()
+                         .beginTransaction();
+                 SearchResultFragment searchResultFragment = new SearchResultFragment();
+                 ft.replace(R.id.act_search_fl_container, searchResultFragment);
+                 ft.commit();
+
                  return true;
              }
          }
