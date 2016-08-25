@@ -26,15 +26,6 @@ public class SignUpFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private static SignUpFragment instance;
-
-    public static SignUpFragment getInstance(){
-        if(instance == null){
-            instance = new SignUpFragment();
-        }
-        return instance;
-    }
-
     @BindView(R.id.sign_up_et_email)
     EditText emailView;
 
