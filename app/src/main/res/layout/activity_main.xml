@@ -8,17 +8,17 @@
     tools:context=".main.MainActivity"
     android:id="@+id/drawer">
 
-    <include android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/activity_content"
-        ></include>
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navi_menu"
         android:layout_gravity="left|start"
-        app:headerLayout="@layout/menu_header"
+        app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer_customer">
     </android.support.design.widget.NavigationView>
 

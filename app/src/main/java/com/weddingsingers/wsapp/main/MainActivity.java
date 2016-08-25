@@ -1,17 +1,16 @@
 package com.weddingsingers.wsapp.main;
 
-import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +30,27 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
+    public static final int TIMEOUT_TIME = 2000;
     DrawerLayout drawer;
     NavigationView naviView;
 
     @BindView(R.id.text_toolbar_title)
     TextView titleTextView;
+
+    boolean isBackPressed = false;
+
+    Handler mHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MESSAGE_BACK_KEY_TIMEOUT:
+                    isBackPressed = false;
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,10 +151,23 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        /*if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if(!isBackPressed && !drawer.isDrawerOpen(GravityCompat.START)) {
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
+            isBackPressed = true;
+            mHandler.sendEmptyMessageDelayed(MESSAGE_BACK_KEY_TIMEOUT, TIMEOUT_TIME);
         } else {
-            super.onBackPressed();
+            mHandler.removeMessages(MESSAGE_BACK_KEY_TIMEOUT);
+            finish();
+        }*/
+        if(!isBackPressed) {
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
+            isBackPressed = true;
+            mHandler.sendEmptyMessageDelayed(MESSAGE_BACK_KEY_TIMEOUT, TIMEOUT_TIME);
+        } else {
+            mHandler.removeMessages(MESSAGE_BACK_KEY_TIMEOUT);
+            finish();
         }
     }
 }
