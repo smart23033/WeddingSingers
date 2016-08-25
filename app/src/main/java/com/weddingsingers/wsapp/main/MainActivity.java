@@ -70,11 +70,23 @@ public class MainActivity extends AppCompatActivity
         naviView = (NavigationView)findViewById(R.id.navi_menu);
         naviView.setNavigationItemSelectedListener(this);
 
+        naviView.getMenu().clear();
+        naviView.inflateMenu(R.menu.activity_main_drawer_singer);
+        View headerView = naviView.inflateHeaderView(R.layout.nav_header_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
+
+        /*ImageButton imgBtn = (ImageButton)headerView.findViewById(R.id.nav_header_bell);
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "asdf", Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

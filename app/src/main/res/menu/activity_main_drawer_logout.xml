@@ -30,6 +30,12 @@
             android:id="@+id/nav_qna"
             android:icon="@android:drawable/ic_menu_manage"
             android:title="@string/nav_qna" />
+        <item
+            android:id="@+id/nav_schedule_mgm"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/nav_schedule_mgm" />
+
+
     </group>
 
 

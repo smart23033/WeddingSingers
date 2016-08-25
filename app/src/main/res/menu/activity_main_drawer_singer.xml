@@ -15,9 +15,9 @@
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="@string/nav_reservation_mgm" />
         <item
-            android:id="@+id/nav_review"
+            android:id="@+id/nav_schedule_mgm"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="@string/nav_review" />
+            android:title="@string/nav_schedule_mgm" />
         <item
             android:id="@+id/nav_chat"
             android:icon="@android:drawable/ic_menu_camera"
@@ -30,6 +30,8 @@
             android:id="@+id/nav_qna"
             android:icon="@android:drawable/ic_menu_manage"
             android:title="@string/nav_qna" />
+
+
     </group>
 
 
