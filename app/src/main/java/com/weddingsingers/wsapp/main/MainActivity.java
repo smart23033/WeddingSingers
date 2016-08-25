@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         naviView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_icon);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
