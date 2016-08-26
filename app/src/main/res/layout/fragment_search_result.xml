@@ -10,21 +10,21 @@
         android:id="@+id/search_result_rl_radio"
       >
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/search_result_iv_filter_width"
+            android:layout_height="@dimen/search_result_iv_filter_height"
             android:id="@+id/search_result_iv_filter"
             android:src="@drawable/search_ic_filter_off"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/search_result_iv_filter_margin_top"
+            android:layout_marginLeft="@dimen/search_result_iv_filter_margin_left"
             android:layout_gravity="center_vertical"
             />
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="@dimen/search_result_rg_radio_height"
             android:orientation="horizontal"
             android:id="@+id/search_result_rg_radio"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/search_result_iv_filter_margin_top"
             android:layout_toRightOf="@+id/search_result_iv_filter">
             <RadioButton
                 android:layout_width="wrap_content"

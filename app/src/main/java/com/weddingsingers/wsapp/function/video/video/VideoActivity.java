@@ -15,11 +15,7 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        Intent intent = getIntent();
 
-        SearchResult searchResult = (SearchResult)intent.getSerializableExtra(EXTRA_SEARCH_RESULT);
-        String text = searchResult.getTitle();
 
-        Toast.makeText(VideoActivity.this,text,Toast.LENGTH_SHORT).show();
     }
 }

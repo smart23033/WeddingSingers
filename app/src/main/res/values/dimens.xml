@@ -15,7 +15,7 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="nav_header_below">180dp</dimen>
 
-    <!--서치 액티비티, 프래그먼트 -->
+    <!--서치 액티비티, 프래그먼트 나눠야됨 나중에 -->
     <dimen name="search_et_margin_top">20dp</dimen>
     <dimen name="search_et_search_margin_left">50dp</dimen>
     <dimen name="search_et_search_margin_right">50dp</dimen>
@@ -30,6 +30,13 @@
     <dimen name="search_tv_search_margin_right">50dp</dimen>
     <dimen name="search_tv_keyword_text_size">18sp</dimen>
 
+    <!--fragment_search_result-->
+    <dimen name="search_result_iv_filter_width">30dp</dimen>
+    <dimen name="search_result_iv_filter_height">30dp</dimen>
+    <dimen name="search_result_iv_filter_margin_top">10dp</dimen>
+    <dimen name="search_result_iv_filter_margin_left">10dp</dimen>
+    <dimen name="search_result_rg_radio_height">50dp</dimen>
+
     <!--view_singer.xml-->
     <dimen name="view_search_result_iv_thumbnail_width">140dp</dimen>
     <dimen name="view_search_result_iv_thumbnail_height">120dp</dimen>
@@ -43,5 +50,7 @@
     <dimen name="view_search_result_iv_favorite_height">16dp</dimen>
     <dimen name="view_search_result_iv_hit_width">16dp</dimen>
     <dimen name="view_search_result_iv_hit_height">16dp</dimen>
+
+
 
 </resources>
