@@ -6,8 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.SearchResult;
 import com.weddingsingers.wsapp.data.Singer;
-import com.weddingsingers.wsapp.data.viewholder.SingerViewHolder;
+import com.weddingsingers.wsapp.data.viewholder.SearchResultViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,24 +16,27 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class SearchResultAdapter extends RecyclerView.Adapter<SingerViewHolder>{
-    List<Singer> items = new ArrayList<>();
+public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultViewHolder>
+        implements SearchResultViewHolder.OnSearchResultItemClickListener{
+    List<SearchResult> items = new ArrayList<>();
 
-    public void add(Singer singer){
-        items.add(singer);
+    public void add(SearchResult searchResult) {
+        items.add(searchResult);
         notifyDataSetChanged();
     }
 
     @Override
-    public SingerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_search_result_recycler,parent,false);
+    public SearchResultViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_search_result,parent,false);
+        SearchResultViewHolder holder = new SearchResultViewHolder(view);
+        holder.setOnSearchResultItemClickListener(this);
 
-        return new SingerViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(SingerViewHolder holder, int position) {
-        holder.setSinger(items.get(position));
+    public void onBindViewHolder(SearchResultViewHolder holder, int position) {
+        holder.setSearchResult(items.get(position));
     }
 
     @Override
@@ -41,5 +45,19 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SingerViewHolder>{
     }
 
 
+    public interface OnAdapterItemClickListener{
+        public void onAdapterItemClick(View view, SearchResult searchResult, int position);
+    }
 
+    OnAdapterItemClickListener listener;
+    public void setOnAdapterItemClickListener(OnAdapterItemClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onSearchResultItemClick(View view, SearchResult searchResult, int position) {
+        if(listener != null){
+            listener.onAdapterItemClick(view,searchResult,position);
+        }
+    }
 }
