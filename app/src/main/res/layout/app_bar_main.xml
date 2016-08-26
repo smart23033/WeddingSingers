@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/main_appbar"
         android:orientation="vertical"
+        android:theme="@style/AppTheme.NoActionBar"
         >
 
         <android.support.v7.widget.Toolbar
