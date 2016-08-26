@@ -8,8 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.weddingsingers.wsapp.R;
+
+import butterknife.BindView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +23,9 @@ public class VideoListFragment extends Fragment {
     private String message;
     private static VideoListFragment instance;
 
+    @BindView(R.id.rv_video_list)
     RecyclerView listView;
+
     VideoListAdapter mAdapter;
 
     public VideoListFragment() {
@@ -40,7 +45,7 @@ public class VideoListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
-        listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
+        //listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
         mAdapter = new VideoListAdapter();
         listView.setAdapter(mAdapter);
 
@@ -52,9 +57,13 @@ public class VideoListFragment extends Fragment {
         return view;
     }
 
-    private void initData(){
-        String item = "item 1";
-        mAdapter.add(item);
+    private void initData() {
+        for (int i = 0; i < 10; i++) {
+            mAdapter.add("item " + i);
+        }
+
+        /*String item = "item 1";
+        mAdapter.add(item);*/
     }
 
 }

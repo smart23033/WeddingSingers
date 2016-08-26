@@ -7,14 +7,14 @@ import android.widget.TextView;
 import com.weddingsingers.wsapp.R;
 
 /**
- * Created by SJSJ on 2016-07-28.
+ * Created by overboy00 on 2016-08-26.
  */
-public class VideoListViewHolder extends RecyclerView.ViewHolder{
+public class EventListViewHolder extends RecyclerView.ViewHolder{
     TextView textView;
 
-    public VideoListViewHolder(View itemView) {
+    public EventListViewHolder(View itemView) {
         super(itemView);
-        textView = (TextView)itemView.findViewById(R.id.video_list_tv_name);
+        textView = (TextView)itemView.findViewById(R.id.event_list_tv_name);
     }
 
     public void setText(String text) {

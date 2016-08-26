@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by SJSJ on 2016-07-28.
  */
-public class VideoListAdapter extends RecyclerView.Adapter<VideoListViewHolder> {
+public class EventListAdapter extends RecyclerView.Adapter<EventListViewHolder> {
     List<String> items = new ArrayList<>();
 
     public void clear() {
@@ -27,13 +27,13 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListViewHolder> 
     }
 
     @Override
-    public VideoListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_list_view, parent, false);
-        return new VideoListViewHolder(view);
+    public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_view, parent, false);
+        return new EventListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(VideoListViewHolder holder, int position) {
+    public void onBindViewHolder(EventListViewHolder holder, int position) {
         holder.setText(items.get(position));
     }
 
