@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.MyApplication;
@@ -32,6 +33,9 @@ public class SearchResultFragment extends Fragment {
 
     @BindView(R.id.search_result_rv_list)
     RecyclerView recyclerView;
+
+    @BindView(R.id.search_result_rg_radio)
+    RadioGroup radioGroup;
 
     SearchResultAdapter mAdapter;
 
