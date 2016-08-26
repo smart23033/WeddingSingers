@@ -20,7 +20,7 @@
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:id="@+id/search_tv_keyword"
-         android:textSize="18sp"
+         android:textSize="@dimen/search_tv_keyword_text_size"
          android:gravity="left|center_vertical"
          android:layout_marginLeft="@dimen/search_tv_search_margin_left"
          android:layout_marginRight="@dimen/search_tv_search_margin_right"

@@ -27,7 +27,7 @@
         android:layout_marginTop="@dimen/filter_spinner_location_margin_top"
             android:spinnerMode="dialog" />
 
-        <!--보류-->
+        <!--캘린더 보류-->
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"

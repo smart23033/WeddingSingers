@@ -27,5 +27,20 @@
     <dimen name="filter_spinner_margin_top">30dp</dimen>
     <dimen name="search_tv_search_margin_left">54dp</dimen>
     <dimen name="search_tv_search_margin_right">50dp</dimen>
+    <dimen name="search_tv_keyword_text_size">18sp</dimen>
+
+    <!--view_singer-->
+    <dimen name="view_singer_iv_thumbnail_width">140dp</dimen>
+    <dimen name="view_singer_iv_thumbnail_height">120dp</dimen>
+    <dimen name="view_singer_iv_thumbnail_margin_right">20dp</dimen>
+    <dimen name="view_singer_tv_margin_top">10dp</dimen>
+    <dimen name="view_singer_tv_divider_horizontal_margin">15dp</dimen>
+    <dimen name="view_singer_tv_num_of_favorite_margin_left">5dp</dimen>
+    <dimen name="view_singer_iv_hit_margin_left">15dp</dimen>
+    <dimen name="view_singer_tv_hit_margin_left">5dp</dimen>
+    <dimen name="view_singer_iv_favorite_width">16dp</dimen>
+    <dimen name="view_singer_iv_favorite_height">16dp</dimen>
+    <dimen name="view_singer_iv_hit_width">16dp</dimen>
+    <dimen name="view_singer_iv_hit_height">16dp</dimen>
 
 </resources>
