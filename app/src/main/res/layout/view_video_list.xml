@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/view_video_list_iv_thumbnail"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@android:drawable/sym_def_app_icon" />
+
+    <TextView
+        android:id="@+id/view_video_list_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/view_video_list_iv_thumbnail"
+        android:layout_toRightOf="@+id/view_video_list_iv_thumbnail"
+        android:text="Title"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/view_video_list_tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_video_list_tv_title"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/view_video_list_iv_thumbnail"
+        android:layout_toRightOf="@+id/view_video_list_iv_thumbnail"
+        android:text="Small Text"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageView
+        android:id="@+id/view_video_list_iv_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_video_list_tv_date"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/view_video_list_iv_thumbnail"
+        android:layout_toRightOf="@+id/view_video_list_iv_thumbnail"
+        android:src="@drawable/search_ic_num_of_favorite" />
+
+    <TextView
+        android:id="@+id/view_video_list_tv_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_video_list_tv_date"
+        android:layout_margin="5dp"
+        android:layout_toEndOf="@+id/view_video_list_iv_favorite"
+        android:layout_toRightOf="@+id/view_video_list_iv_favorite"
+        android:text="123"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <ImageView
+        android:id="@+id/view_video_list_iv_hit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_video_list_tv_date"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/view_video_list_tv_favorite"
+        android:layout_toRightOf="@+id/view_video_list_tv_favorite"
+        android:src="@drawable/search_ic_hit" />
+
+    <TextView
+        android:id="@+id/view_video_list_tv_hit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/view_video_list_iv_hit"
+        android:layout_toEndOf="@+id/view_video_list_iv_hit"
+        android:layout_toRightOf="@+id/view_video_list_iv_hit"
+        android:text="123"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
