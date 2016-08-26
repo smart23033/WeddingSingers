@@ -9,10 +9,10 @@ import com.weddingsingers.wsapp.R;
 /**
  * Created by SJSJ on 2016-07-28.
  */
-public class TextViewHolder extends RecyclerView.ViewHolder{
+public class VideoListViewHolder extends RecyclerView.ViewHolder{
     TextView textView;
 
-    public TextViewHolder(View itemView) {
+    public VideoListViewHolder(View itemView) {
         super(itemView);
         textView = (TextView)itemView.findViewById(R.id.cv_text_message);
     }

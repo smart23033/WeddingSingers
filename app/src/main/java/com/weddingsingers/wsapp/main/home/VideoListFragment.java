@@ -21,7 +21,7 @@ public class VideoListFragment extends Fragment {
     private static VideoListFragment instance;
 
     RecyclerView listView;
-    MainAdapter mAdapter;
+    VideoListAdapter mAdapter;
 
     public VideoListFragment() {
         // Required empty public constructor
@@ -41,7 +41,7 @@ public class VideoListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
         listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
-        mAdapter = new MainAdapter();
+        mAdapter = new VideoListAdapter();
         listView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());

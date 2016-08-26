@@ -13,6 +13,7 @@
     <!--네비게이션 드로워-->
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+    <dimen name="nav_header_below">180dp</dimen>
 
     <!--서치 액티비티, 프래그먼트 -->
     <dimen name="search_et_margin_top">20dp</dimen>

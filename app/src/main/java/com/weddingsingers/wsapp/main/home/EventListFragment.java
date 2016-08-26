@@ -21,7 +21,7 @@ public class EventListFragment extends Fragment {
     private static VideoListFragment instance;
 
     RecyclerView listView;
-    MainAdapter mAdapter;
+    VideoListAdapter mAdapter;
 
     public EventListFragment() {
         // Required empty public constructor
@@ -41,7 +41,7 @@ public class EventListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_list, container, false);
         listView = (RecyclerView)view.findViewById(R.id.rv_event_list);
-        mAdapter = new MainAdapter();
+        mAdapter = new VideoListAdapter();
         listView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());

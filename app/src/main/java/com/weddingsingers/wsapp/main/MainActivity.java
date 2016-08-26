@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,13 +15,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
+import com.weddingsingers.wsapp.login.LoginActivity;
+import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
 import com.weddingsingers.wsapp.main.community.PostListFragment;
 import com.weddingsingers.wsapp.main.home.MainFragment;
@@ -32,7 +38,6 @@ import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -71,22 +76,53 @@ public class MainActivity extends AppCompatActivity
         naviView.setNavigationItemSelectedListener(this);
 
         naviView.getMenu().clear();
-        naviView.inflateMenu(R.menu.activity_main_drawer_singer);
         View headerView = naviView.inflateHeaderView(R.layout.nav_header_main);
+
+        ImageButton alarmBtn = (ImageButton)headerView.findViewById(R.id.nav_header_bell);
+        ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
+        TextView nameTextView = (TextView) headerView.findViewById(R.id.nav_header_name);
+        TextView emailTextView = (TextView) headerView.findViewById(R.id.nav_header_email);
+
+        RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
+
+        if(true) { // 로그인
+
+            navLayoutLogout.setVisibility(View.GONE);
+
+            naviView.inflateMenu(R.menu.activity_main_drawer_singer);
+
+            alarmBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_fl_container, new AlarmFragment())
+                            .commit();
+                    drawer.closeDrawer(GravityCompat.START);
+                }
+            });
+
+        } else { // 로그아웃
+
+            Button navLoginBtn = (Button) findViewById(R.id.nav_login_btn);
+            navLoginBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                }
+            });
+
+            alarmBtn.setVisibility(View.INVISIBLE);
+            pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
+            nameTextView.setVisibility(View.INVISIBLE);
+            emailTextView.setVisibility(View.INVISIBLE);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
-
-        /*ImageButton imgBtn = (ImageButton)headerView.findViewById(R.id.nav_header_bell);
-        imgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "asdf", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -99,7 +135,8 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+        drawer = (DrawerLayout) findViewById(R.id.drawer);
+
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
@@ -144,7 +181,6 @@ public class MainActivity extends AppCompatActivity
             titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

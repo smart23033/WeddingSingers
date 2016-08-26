@@ -20,6 +20,23 @@
         android:layout_gravity="left|start">
         <!--app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer_customer"-->
+
+        <RelativeLayout
+            android:id="@+id/nav_layout_logout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/nav_login_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_do_login"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/nav_header_below"
+                />
+        </RelativeLayout>
+
     </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
