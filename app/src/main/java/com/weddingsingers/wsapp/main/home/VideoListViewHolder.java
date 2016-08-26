@@ -2,22 +2,66 @@ package com.weddingsingers.wsapp.main.home;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.VideoList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by SJSJ on 2016-07-28.
  */
-public class VideoListViewHolder extends RecyclerView.ViewHolder{
-    TextView textView;
+public class VideoListViewHolder extends RecyclerView.ViewHolder {
+
+    @BindView(R.id.view_video_list_iv_thumbnail)
+    ImageView thumbnailImageView;
+
+    @BindView(R.id.view_video_list_tv_title)
+    TextView titleTextView;
+
+    @BindView(R.id.view_video_list_tv_date)
+    TextView dateTextView;
+
+    @BindView(R.id.view_video_list_tv_hit)
+    TextView hitTextView;
+
+    @BindView(R.id.view_video_list_tv_favorite)
+    TextView favoriteTextView;
+
+    public interface OnVideoListItemClickListener {
+        public void onVideoListItemClick(View view, VideoList videoList, int position);
+    }
+
+    OnVideoListItemClickListener listener;
+    public void setOnVideoListItemClickListener(OnVideoListItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public VideoListViewHolder(View itemView) {
         super(itemView);
-        textView = (TextView)itemView.findViewById(R.id.video_list_tv_name);
+        ButterKnife.bind(this, itemView);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.onVideoListItemClick(view, videoList, getAdapterPosition());
+                }
+            }
+        });
     }
 
-    public void setText(String text) {
-        textView.setText(text);
+    VideoList videoList;
+
+    public void setVideoList(VideoList videoList) {
+        this.videoList = videoList;
+        thumbnailImageView.setImageDrawable(videoList.getThumbnail());
+        titleTextView.setText(videoList.getTitle());
+        dateTextView.setText(videoList.getDate());
+        hitTextView.setText("" + videoList.getHit());
+        favoriteTextView.setText("" + videoList.getFavorite());
     }
 }

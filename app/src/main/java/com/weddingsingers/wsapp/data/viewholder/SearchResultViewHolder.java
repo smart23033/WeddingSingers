@@ -71,7 +71,4 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
         hitTextView.setText("" + searchResult.getHit());
         favoriteTextView.setText("" + searchResult.getFavorite());
     }
-
-
-
 }
