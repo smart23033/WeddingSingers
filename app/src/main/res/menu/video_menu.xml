@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/video_menu_favorite"
+        android:orderInCategory="100"
+        android:title="@string/video_menu_favorite"
+        android:icon="@drawable/search_ic_favorite_off"
+        app:showAsAction="always"
+        android:checkable="true"
+        android:checked="false"/>
+
+</menu>

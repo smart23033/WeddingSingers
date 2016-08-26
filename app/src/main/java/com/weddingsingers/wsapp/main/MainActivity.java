@@ -47,7 +47,10 @@ public class MainActivity extends AppCompatActivity
     DrawerLayout drawer;
     NavigationView naviView;
 
-    @BindView(R.id.text_toolbar_title)
+    @BindView(R.id.main_toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.main_tv_toolbar)
     TextView titleTextView;
 
     boolean isBackPressed = false;
@@ -70,6 +73,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
+
 
         drawer = (DrawerLayout)findViewById(R.id.drawer);
         naviView = (NavigationView)findViewById(R.id.navi_menu);
@@ -117,12 +126,6 @@ public class MainActivity extends AppCompatActivity
             nameTextView.setVisibility(View.INVISIBLE);
             emailTextView.setVisibility(View.INVISIBLE);
         }
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()

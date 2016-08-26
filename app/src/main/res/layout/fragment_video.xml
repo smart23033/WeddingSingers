@@ -4,19 +4,4 @@
     android:layout_height="match_parent"
     tools:context="com.weddingsingers.wsapp.function.video.video.VideoFragment">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/video_fl_toolbar">
-
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/video_toolbar"
-        android:title=""/>
-
-
-
-    </FrameLayout>
-
 </RelativeLayout>

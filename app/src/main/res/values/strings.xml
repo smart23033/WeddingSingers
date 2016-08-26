@@ -26,4 +26,7 @@
     <string name="nav_community">커뮤니티</string>
     <string name="nav_qna">QnA</string>
 
+    <!--video_menu.xml-->
+    <string name="video_menu_favorite">좋아요</string>
+    <string name="video_menu_cancel_favorite">좋아요 해제</string>
 </resources>

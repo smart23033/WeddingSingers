@@ -33,7 +33,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListViewHolder>
 
     @Override
     public VideoListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout. view_video_list, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_video_list, parent,false);
         VideoListViewHolder holder = new VideoListViewHolder(view);
         holder.setOnVideoListItemClickListener(this);
 

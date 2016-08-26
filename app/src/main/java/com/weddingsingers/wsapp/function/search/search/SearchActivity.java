@@ -3,8 +3,10 @@ package com.weddingsingers.wsapp.function.search.search;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,9 +35,6 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.search_tv_keyword)
     TextView keywordTextView;
 
-    @BindView(R.id.search_toggle_filter)
-    ToggleButton filterBtn;
-
     @BindView(R.id.search_toolbar)
     Toolbar toolbar;
 
@@ -56,26 +55,6 @@ public class SearchActivity extends AppCompatActivity {
         ft.add(R.id.act_search_fl_container,recentSearchFragment, RECENT_SEARCH_FRAGMENT);
         ft.commit();
 
-//        두번째 클릭 부터 반응??
-        filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!filterBtn.isChecked()) {
-                    FragmentTransaction ft = getSupportFragmentManager()
-                            .beginTransaction();
-                    FilterFragment filterFragment = new FilterFragment();
-                    ft.replace(R.id.act_search_fl_container, filterFragment, FILTER_FRAGMENT);
-                    ft.commit();
-                }else{
-                    FragmentTransaction ft = getSupportFragmentManager()
-                            .beginTransaction();
-                    RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-                    ft.replace(R.id.act_search_fl_container, recentSearchFragment, RECENT_SEARCH_FRAGMENT);
-                    ft.commit();
-                }
-            }
-        });
-
     }
 
     @Override
@@ -92,13 +71,12 @@ public class SearchActivity extends AppCompatActivity {
                  Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_search_fl_container);
 
                 if(currentFragment.getTag() != SEARCH_RESULT_FRAGMENT) {
-//               searchResultFragment가 아닌 프레그먼트에서 search버튼 누를 때
+//               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
                     keywordTextView.setText(keywordView.getText());
                     keywordTextView.setVisibility(View.VISIBLE);
-
                     keywordView.setText("");
                     keywordView.setVisibility(View.GONE);
-                    filterBtn.setVisibility(View.GONE);
+                    filterMenuItem.setVisible(false);
 
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
@@ -109,9 +87,8 @@ public class SearchActivity extends AppCompatActivity {
 //               searchResultFragment에서 search버튼 누를 때
                     keywordTextView.setText("");
                     keywordTextView.setVisibility(View.GONE);
-
                     keywordView.setVisibility(View.VISIBLE);
-                    filterBtn.setVisibility(View.VISIBLE);
+                    filterMenuItem.setVisible(true);
 
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
@@ -121,15 +98,44 @@ public class SearchActivity extends AppCompatActivity {
                 }
                  return true;
              }
+            case R.id.search_menu_filter:{
+                if(!item.isChecked()){
+                    item.setChecked(true);
+                    item.setIcon(R.drawable.search_ic_filter_on);
+
+                    FragmentTransaction ft = getSupportFragmentManager()
+                            .beginTransaction();
+                      FilterFragment filterFragment = new FilterFragment();
+                    ft.replace(R.id.act_search_fl_container, filterFragment, RECENT_SEARCH_FRAGMENT);
+                    ft.commit();
+
+                }else{
+                    item.setChecked(false);
+                    item.setIcon(R.drawable.search_ic_filter_off);
+
+                    FragmentTransaction ft = getSupportFragmentManager()
+                            .beginTransaction();
+                    RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+                    ft.replace(R.id.act_search_fl_container, recentSearchFragment, RECENT_SEARCH_FRAGMENT);
+                    ft.commit();
+                }
+                return true;
+            }
          }
         return super.onOptionsItemSelected(item);
     }
 
+    MenuItem filterMenuItem;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
+        filterMenuItem = menu.findItem(R.id.search_menu_filter);
+        filterMenuItem.setVisible(true);
+//        서치뷰 넣을지 생각좀 해보라
         return true;
     }
+
+
 
 
 }
