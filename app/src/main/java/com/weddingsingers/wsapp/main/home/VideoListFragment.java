@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.weddingsingers.wsapp.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,6 +46,8 @@ public class VideoListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
+
+        ButterKnife.bind(this, view);
         //listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
         mAdapter = new VideoListAdapter();
         listView.setAdapter(mAdapter);

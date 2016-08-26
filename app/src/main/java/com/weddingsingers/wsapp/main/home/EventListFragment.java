@@ -18,10 +18,10 @@ public class EventListFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
     private String message;
-    private static VideoListFragment instance;
+    private static EventListFragment instance;
 
     RecyclerView listView;
-    VideoListAdapter mAdapter;
+    EventListAdapter mAdapter;
 
     public EventListFragment() {
         // Required empty public constructor
@@ -41,7 +41,7 @@ public class EventListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_list, container, false);
         listView = (RecyclerView)view.findViewById(R.id.rv_event_list);
-        mAdapter = new VideoListAdapter();
+        mAdapter = new EventListAdapter();
         listView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
