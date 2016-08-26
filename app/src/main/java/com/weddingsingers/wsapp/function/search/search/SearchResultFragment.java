@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.function.search.search;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 
 import java.util.Random;
 
@@ -26,6 +28,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class SearchResultFragment extends Fragment {
+
+    private static final int RC_VIDEO = 0;
 
     public SearchResultFragment() {
         // Required empty public constructor
@@ -59,6 +63,10 @@ public class SearchResultFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, SearchResult searchResult, int position) {
                 Toast.makeText(getContext(),"SearchResult : " + searchResult.getTitle(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), VideoActivity.class);
+                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT,searchResult);
+
+                startActivity(intent);
             }
         });
 
@@ -74,11 +82,8 @@ public class SearchResultFragment extends Fragment {
     }
 
     private void initData(){
-        Random r = new Random();
-
         for(int i=0;i<20;i++){
             SearchResult searchResult = new SearchResult();
-            searchResult.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
             searchResult.setTitle("title " + i);
             searchResult.setSingerName("singerName "  + i);
             searchResult.setHit(i);

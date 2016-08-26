@@ -2,19 +2,21 @@ package com.weddingsingers.wsapp.data;
 
 import android.graphics.drawable.Drawable;
 
-public class SearchResult {
-    private Drawable thumbnail;
+import java.io.Serializable;
+
+public class SearchResult implements Serializable{
+    private String thumbnail;
     private String title;
     private String singerName;
     private String date;
     private int hit;
     private int favorite;
 
-    public Drawable getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(Drawable thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 

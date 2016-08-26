@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
 
+import java.io.Serializable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -62,7 +64,7 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
 
     public void setSearchResult(SearchResult searchResult){
         this.searchResult = searchResult;
-        thumbnailImageView.setImageDrawable(searchResult.getThumbnail());
+//        thumbnailImageView.setImageDrawable();
         titleTextView.setText(searchResult.getTitle());
         singerNameTextView.setText(searchResult.getSingerName());
         dateTextView.setText(searchResult.getDate());
