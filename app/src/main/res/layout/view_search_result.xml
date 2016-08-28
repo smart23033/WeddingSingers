@@ -63,7 +63,7 @@
         android:layout_alignStart="@id/view_search_result_tv_date"
         android:layout_alignLeft="@id/view_search_result_tv_date"
         android:layout_below="@id/view_search_result_tv_date"
-        android:layout_marginTop="@dimen/view_search_result_tv_margin_top"
+        android:layout_marginTop="@dimen/view_search_result_iv_margin_top"
         />
 
     <TextView
@@ -83,7 +83,7 @@
         android:src="@drawable/search_ic_hit"
         android:layout_marginLeft="@dimen/view_search_result_iv_hit_margin_left"
         android:layout_below="@id/view_search_result_tv_date"
-        android:layout_marginTop="@dimen/view_search_result_tv_margin_top"
+        android:layout_marginTop="@dimen/view_search_result_iv_margin_top"
         android:layout_toRightOf="@id/view_search_result_tv_num_of_favorite"
         />
 

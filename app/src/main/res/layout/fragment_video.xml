@@ -2,11 +2,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context="com.weddingsingers.wsapp.function.video.video.VideoFragment">
 
+
     <VideoView
-        android:layout_width="match_parent"
-        android:layout_height="240dp"
         android:id="@+id/video_vv_video"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/video_vv_video_height" />
+
+    <RelativeLayout
+        android:id="@+id/video_rl_video_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_vv_video"
+        android:layout_marginLeft="@dimen/video_rl_video_info_horizontal_margin"
+        android:layout_marginRight="@dimen/video_rl_video_info_horizontal_margin">
+
+        <TextView
+            android:id="@+id/video_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:text="title" />
+
+        <TextView
+            android:id="@+id/video_tv_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/video_tv_divider_horizontal_margin"
+            android:layout_marginRight="@dimen/video_tv_divider_horizontal_margin"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:layout_toRightOf="@id/video_tv_title"
+            android:text="|" />
+
+        <TextView
+            android:id="@+id/video_tv_singer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:layout_toRightOf="@id/video_tv_divider"
+            android:text="singer name" />
+
+        <TextView
+            android:id="@+id/video_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/video_tv_title"
+            android:layout_alignStart="@+id/video_tv_title"
+            android:layout_below="@id/video_tv_title"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:text="2016. 05. 24" />
+
+        <ImageView
+            android:id="@+id/video_iv_favorite"
+            android:layout_width="@dimen/video_iv_favorite_width"
+            android:layout_height="@dimen/video_iv_favorite_height"
+            android:layout_alignLeft="@id/video_tv_date"
+            android:layout_alignStart="@id/video_tv_date"
+            android:layout_below="@id/video_tv_date"
+            android:layout_marginTop="@dimen/video_iv_margin_top"
+            android:src="@drawable/search_ic_num_of_favorite" />
+
+        <TextView
+            android:id="@+id/video_tv_num_of_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/video_tv_date"
+            android:layout_marginLeft="@dimen/video_tv_num_of_favorite_margin_left"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:layout_toRightOf="@id/video_iv_favorite"
+            android:text="112" />
+
+        <ImageView
+            android:id="@+id/video_iv_hit"
+            android:layout_width="@dimen/video_iv_hit_width"
+            android:layout_height="@dimen/video_iv_hit_height"
+            android:layout_below="@id/video_tv_date"
+            android:layout_marginLeft="@dimen/video_iv_hit_margin_left"
+            android:layout_marginTop="@dimen/video_iv_margin_top"
+            android:layout_toRightOf="@id/video_tv_num_of_favorite"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/video_tv_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/video_tv_date"
+            android:layout_marginLeft="@dimen/video_tv_hit_margin_left"
+            android:layout_marginTop="@dimen/video_tv_margin_top"
+            android:layout_toRightOf="@+id/video_iv_hit"
+            android:text="350" />
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

@@ -8,7 +8,7 @@
     <dimen name="view_horizontal_margin">4dp</dimen>
     <dimen name="view_vertical_margin">4dp</dimen>
 
-    <!--로그인 액티비티, 프래그먼트 -->
+    <!--activity_login.xml -->
     <dimen name="login_et_horizontal_margin">50dp</dimen>
     <dimen name="login_et_margin_top">100dp</dimen>
     <dimen name="sign_up_et_margin_top">50dp</dimen>
@@ -18,7 +18,7 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="nav_header_below">180dp</dimen>
 
-    <!--서치 액티비티, 프래그먼트 나눠야됨 나중에 -->
+    <!--activity_search.xml과 그 하위 프래그먼트 통합. 나중에 나눠야됨 -->
     <dimen name="search_et_margin_top">20dp</dimen>
     <dimen name="search_et_search_margin_left">50dp</dimen>
     <dimen name="search_et_search_margin_right">90dp</dimen>
@@ -44,7 +44,7 @@
     <dimen name="search_result_rg_radio_height">40dp</dimen>
 
 
-    <!--view_singer.xml-->
+    <!--view_search_result.xml-->
     <dimen name="view_search_result_iv_thumbnail_width">100dp</dimen>
     <dimen name="view_search_result_iv_thumbnail_height">80dp</dimen>
     <dimen name="view_search_result_iv_thumbnail_margin_right">20dp</dimen>
@@ -53,10 +53,11 @@
     <dimen name="view_search_result_tv_num_of_favorite_margin_left">5dp</dimen>
     <dimen name="view_search_result_iv_hit_margin_left">15dp</dimen>
     <dimen name="view_search_result_tv_hit_margin_left">5dp</dimen>
-    <dimen name="view_search_result_iv_favorite_width">16dp</dimen>
-    <dimen name="view_search_result_iv_favorite_height">16dp</dimen>
-    <dimen name="view_search_result_iv_hit_width">16dp</dimen>
-    <dimen name="view_search_result_iv_hit_height">16dp</dimen>
+    <dimen name="view_search_result_iv_favorite_width">14dp</dimen>
+    <dimen name="view_search_result_iv_favorite_height">14dp</dimen>
+    <dimen name="view_search_result_iv_hit_width">14dp</dimen>
+    <dimen name="view_search_result_iv_hit_height">14dp</dimen>
+    <dimen name="view_search_result_iv_margin_top">8dp</dimen>
 
 
     <!--view_video_list-->
@@ -68,4 +69,19 @@
     <dimen name="view_video_list_iv_hit_margin_left">10dp</dimen>
     <dimen name="view_video_list_iv_hit_margin_right">5dp</dimen>
     <dimen name="view_video_list_iv_hit_margin_top">5dp</dimen>
+
+    <!--activity_video.xml-->
+    <dimen name="video_vv_video_height">240dp</dimen>
+    <dimen name="video_rl_video_info_horizontal_margin">10dp</dimen>
+    <dimen name="video_tv_margin_top">5dp</dimen>
+    <dimen name="video_tv_divider_horizontal_margin">15dp</dimen>
+    <dimen name="video_tv_num_of_favorite_margin_left">5dp</dimen>
+    <dimen name="video_iv_hit_margin_left">15dp</dimen>
+    <dimen name="video_tv_hit_margin_left">5dp</dimen>
+    <dimen name="video_iv_favorite_width">14dp</dimen>
+    <dimen name="video_iv_favorite_height">14dp</dimen>
+    <dimen name="video_iv_hit_width">14dp</dimen>
+    <dimen name="video_iv_hit_height">14dp</dimen>
+    <dimen name="video_iv_margin_top">6dp</dimen>
+
 </resources>
