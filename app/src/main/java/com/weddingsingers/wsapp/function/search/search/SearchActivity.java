@@ -1,21 +1,16 @@
 package com.weddingsingers.wsapp.function.search.search;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.weddingsingers.wsapp.R;
 
@@ -30,10 +25,10 @@ public class SearchActivity extends AppCompatActivity {
 
 
     @BindView(R.id.search_et_keyword)
-    EditText keywordView;
+    EditText keywordInput;
 
     @BindView(R.id.search_tv_keyword)
-    TextView keywordTextView;
+    TextView keywordView;
 
     @BindView(R.id.search_toolbar)
     Toolbar toolbar;
@@ -72,10 +67,10 @@ public class SearchActivity extends AppCompatActivity {
 
                 if(currentFragment.getTag() != SEARCH_RESULT_FRAGMENT) {
 //               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
-                    keywordTextView.setText(keywordView.getText());
-                    keywordTextView.setVisibility(View.VISIBLE);
-                    keywordView.setText("");
-                    keywordView.setVisibility(View.GONE);
+                    keywordView.setText(keywordInput.getText());
+                    keywordView.setVisibility(View.VISIBLE);
+                    keywordInput.setText("");
+                    keywordInput.setVisibility(View.GONE);
                     filterMenuItem.setVisible(false);
 
                     FragmentTransaction ft = getSupportFragmentManager()
@@ -85,9 +80,9 @@ public class SearchActivity extends AppCompatActivity {
                     ft.commit();
                 }else {
 //               searchResultFragment에서 search버튼 누를 때
-                    keywordTextView.setText("");
-                    keywordTextView.setVisibility(View.GONE);
-                    keywordView.setVisibility(View.VISIBLE);
+                    keywordView.setText("");
+                    keywordView.setVisibility(View.GONE);
+                    keywordInput.setVisibility(View.VISIBLE);
                     filterMenuItem.setVisible(true);
 
                     FragmentTransaction ft = getSupportFragmentManager()

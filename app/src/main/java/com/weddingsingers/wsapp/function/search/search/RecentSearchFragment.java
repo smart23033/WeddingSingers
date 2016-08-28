@@ -23,7 +23,7 @@ public class RecentSearchFragment extends Fragment {
     }
 
     @BindView(R.id.search_tv_recent)
-    TextView recentTextView;
+    TextView recentView;
 
     @BindView(R.id.search_btn_recent)
     Button recentBtn;

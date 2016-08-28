@@ -35,10 +35,10 @@ public class ProfileView extends FrameLayout{
     RoundedImageView imageView = new RoundedImageView(getContext());
 
     @BindView(R.id.view_profile_tv_singer_name)
-    TextView singerNameTextView;
+    TextView singerNameView;
 
     @BindView(R.id.view_profile_tv_comment)
-    TextView commentTextView;
+    TextView commentView;
 
 
     Button reservationBtn;

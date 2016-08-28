@@ -20,16 +20,16 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
     ImageView thumbnailImageView;
 
     @BindView(R.id.view_video_list_tv_title)
-    TextView titleTextView;
+    TextView titleView;
 
     @BindView(R.id.view_video_list_tv_date)
-    TextView dateTextView;
+    TextView dateView;
 
     @BindView(R.id.view_video_list_tv_hit)
-    TextView hitTextView;
+    TextView hitView;
 
     @BindView(R.id.view_video_list_tv_favorite)
-    TextView favoriteTextView;
+    TextView favoriteView;
 
     public interface OnVideoListItemClickListener {
         public void onVideoListItemClick(View view, VideoList videoList, int position);
@@ -59,9 +59,9 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
     public void setVideoList(VideoList videoList) {
         this.videoList = videoList;
         thumbnailImageView.setImageDrawable(videoList.getThumbnail());
-        titleTextView.setText(videoList.getTitle());
-        dateTextView.setText(videoList.getDate());
-        hitTextView.setText("" + videoList.getHit());
-        favoriteTextView.setText("" + videoList.getFavorite());
+        titleView.setText(videoList.getTitle());
+        dateView.setText(videoList.getDate());
+        hitView.setText("" + videoList.getHit());
+        favoriteView.setText("" + videoList.getFavorite());
     }
 }

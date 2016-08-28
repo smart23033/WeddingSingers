@@ -8,8 +8,6 @@ import android.widget.TextView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
 
-import java.io.Serializable;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,19 +20,19 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     ImageView thumbnailImageView;
 
     @BindView(R.id.view_search_result_tv_title)
-    TextView titleTextView;
+    TextView titleView;
 
     @BindView(R.id.view_search_result_tv_singer_name)
-    TextView singerNameTextView;
+    TextView singerNameView;
 
     @BindView(R.id.view_search_result_tv_date)
-    TextView dateTextView;
+    TextView dateView;
 
     @BindView(R.id.view_search_result_tv_hit)
-    TextView hitTextView;
+    TextView hitView;
 
     @BindView(R.id.view_search_result_tv_num_of_favorite)
-    TextView favoriteTextView;
+    TextView favoriteView;
 
 
     public interface OnSearchResultItemClickListener{
@@ -65,10 +63,10 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     public void setSearchResult(SearchResult searchResult){
         this.searchResult = searchResult;
 //        thumbnailImageView.setImageDrawable();
-        titleTextView.setText(searchResult.getTitle());
-        singerNameTextView.setText(searchResult.getSingerName());
-        dateTextView.setText(searchResult.getDate());
-        hitTextView.setText("" + searchResult.getHit());
-        favoriteTextView.setText("" + searchResult.getFavorite());
+        titleView.setText(searchResult.getTitle());
+        singerNameView.setText(searchResult.getSingerName());
+        dateView.setText(searchResult.getDate());
+        hitView.setText("" + searchResult.getHit());
+        favoriteView.setText("" + searchResult.getFavorite());
     }
 }

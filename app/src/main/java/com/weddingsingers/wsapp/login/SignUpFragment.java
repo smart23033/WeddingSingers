@@ -27,13 +27,13 @@ public class SignUpFragment extends Fragment {
     }
 
     @BindView(R.id.sign_up_et_email)
-    EditText emailView;
+    EditText emailInput;
 
     @BindView(R.id.sign_up_et_password)
-    EditText passwordView;
+    EditText passwordInput;
 
     @BindView(R.id.sign_up_edit_password_confirm)
-    EditText passwordConfirmView;
+    EditText passwordConfirmInput;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
