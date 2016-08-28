@@ -16,22 +16,22 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/view_profile_riv_profile"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:paddingTop="5dp"
+            android:layout_width="@dimen/view_profile_riv_profile_width"
+            android:layout_height="@dimen/view_profile_riv_profile_height"
+            android:layout_marginRight="@dimen/view_profile_riv_profile_margin_right"
+            android:layout_marginTop="@dimen/view_profile_riv_profile_vertical_margin"
+            android:layout_marginBottom="@dimen/view_profile_riv_profile_vertical_margin"
+            android:paddingTop="@dimen/view_profile_riv_profile_padding_top"
             android:scaleType="fitCenter"
             android:src="@drawable/view_profile_ic_person"
-            app:riv_corner_radius="30dp"
+            app:riv_corner_radius="@dimen/view_profile_riv_profile_corner_radius"
             app:riv_tile_mode="clamp" />
 
         <TextView
             android:id="@+id/view_profile_tv_singer_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:layout_toRightOf="@id/view_profile_riv_profile"
             android:text="singer name" />
 
@@ -44,7 +44,7 @@
             android:layout_below="@id/view_profile_tv_singer_name"
             android:layout_toRightOf="@id/view_profile_riv_profile"
             android:maxLines="2"
-            android:maxWidth="180dp"
+            android:maxWidth="@dimen/view_profile_tv_comment_max_width"
             android:text="default comment default comment default comment default comment
         default comment default comment default comment default comment default comment "
             android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -57,8 +57,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/view_profile_btn_reserve_margin_left"
         android:text="reserve"
-        android:textSize="8sp" />
+        android:textSize="@dimen/view_profile_btn_reserve_text_size" />
 
 </LinearLayout>

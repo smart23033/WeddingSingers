@@ -196,10 +196,12 @@
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:numStars="5"
             android:id="@+id/video_rb_rating"
             android:layout_below="@id/video_tv_rating"
             android:layout_alignStart="@id/video_tv_rating"
-            android:layout_alignLeft="@id/video_tv_rating"/>
+            android:layout_alignLeft="@id/video_tv_rating"
+             />
 
     </RelativeLayout>
 
