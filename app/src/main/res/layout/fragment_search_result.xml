@@ -2,13 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginLeft="@dimen/fragment_vertical_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     tools:context=".function.search.search.SearchResultFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_result_rl_radio"
+        android:layout_marginBottom="@dimen/search_result_rl_radio_margin_bottom"
       >
+
         <ImageView
             android:layout_width="@dimen/search_result_iv_filter_width"
             android:layout_height="@dimen/search_result_iv_filter_height"
