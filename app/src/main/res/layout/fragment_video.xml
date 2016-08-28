@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_price_info"
             android:text="price info"
-            android:layout_marginRight="18dp"
+            android:layout_marginRight="35dp"
             />
 
         <TextView
@@ -133,7 +133,15 @@
             android:id="@+id/video_tv_standard"
             android:layout_toRightOf="@id/video_tv_price_info"
             android:text="standard"
-            android:textColor="@color/colorLightPink"/>
+            android:textColor="@color/colorLightPink"
+            android:layout_marginRight="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_tv_standard_price"
+            android:text="100,000 won"
+            android:layout_toRightOf="@id/video_tv_standard"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -143,7 +151,55 @@
             android:layout_toRightOf="@id/video_tv_price_info"
             android:text="special"
             android:textColor="@color/colorLightPink"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_tv_special_price"
+            android:text="300,000 won"
+            android:layout_toRightOf="@id/video_tv_special"
+            android:layout_below="@id/video_tv_standard_price"
+            android:layout_marginTop="5dp"
+            android:layout_alignStart="@id/video_tv_standard_price"
+            android:layout_alignLeft="@id/video_tv_standard_price"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/video_rl_review"
+        android:layout_below="@id/video_rl_price_info"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_tv_review"
+            android:text="singer review"
+            android:layout_marginRight="14dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_tv_rating"
+            android:text="rating"
+            android:textSize="12sp"
+            android:layout_toRightOf="@id/video_tv_review"
+            android:layout_marginTop="2dp"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_rb_rating"
+            android:layout_below="@id/video_tv_rating"
+            android:layout_alignStart="@id/video_tv_rating"
+            android:layout_alignLeft="@id/video_tv_rating"/>
 
     </RelativeLayout>
 
