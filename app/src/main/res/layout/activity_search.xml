@@ -36,20 +36,6 @@
         android:layout_marginRight="@dimen/search_et_search_margin_right"
         />
 
-        <!--<ToggleButton-->
-            <!--android:id="@+id/search_toggle_filter"-->
-            <!--android:layout_width="@dimen/search_btn_filter_width"-->
-            <!--android:layout_height="@dimen/search_btn_filter_height"-->
-            <!--android:layout_gravity="right|center_vertical"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:textOn=""-->
-            <!--android:textOff=""-->
-            <!--android:checked="false"-->
-            <!--android:background="@drawable/search_selector"-->
-            <!--android:layout_marginRight="@dimen/search_btn_filter_margin_right"-->
-            <!--android:layout_marginBottom="@dimen/search_btn_filter_margin_bottom"-->
-       <!--/>-->
-
     </FrameLayout>
 
     <FrameLayout

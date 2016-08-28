@@ -34,7 +34,9 @@ public class VideoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_video, container, false);
+
         ButterKnife.bind(this,view);
+
 
         videoView.setVideoPath("https://www.youtube.com/watch?v=zQhZUGNR6l4");
 

@@ -16,6 +16,7 @@
             android:src="@drawable/search_ic_filter_off"
             android:layout_marginTop="@dimen/search_result_iv_filter_margin_top"
             android:layout_marginLeft="@dimen/search_result_iv_filter_margin_left"
+            android:layout_marginRight="@dimen/search_result_iv_filter_margin_right"
             android:layout_gravity="center_vertical"
             />
 
@@ -24,7 +25,7 @@
             android:layout_height="@dimen/search_result_rg_radio_height"
             android:orientation="horizontal"
             android:id="@+id/search_result_rg_radio"
-            android:layout_marginTop="@dimen/search_result_iv_filter_margin_top"
+            android:layout_marginTop="@dimen/search_result_rg_filter_margin_top"
             android:layout_toRightOf="@+id/search_result_iv_filter">
             <RadioButton
                 android:layout_width="wrap_content"
