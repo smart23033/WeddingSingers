@@ -45,7 +45,6 @@ public class MainFragment extends Fragment {
 
         carouselView.setImageListener(imageListener);
 
-
         pager = (ViewPager)view.findViewById(R.id.pager);
         tabs = (TabLayout)view.findViewById(R.id.tabs);
 

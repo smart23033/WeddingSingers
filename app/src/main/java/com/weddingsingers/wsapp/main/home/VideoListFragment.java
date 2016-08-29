@@ -54,6 +54,7 @@ public class VideoListFragment extends Fragment {
         mAdapter = new VideoListAdapter();
         recyclerView.setAdapter(mAdapter);
 
+
         mAdapter.setOnAdapterItemClickListener(new VideoListAdapter.OnAdapterItemClickListener() {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {

@@ -33,7 +33,6 @@ import com.weddingsingers.wsapp.main.home.MainFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationListFragment;
-import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity
 
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
-
     DrawerLayout drawer;
     NavigationView naviView;
 
@@ -96,9 +94,6 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
 
-
-
-
         if(true) { // 로그인
 
             navLayoutLogout.setVisibility(View.GONE);
@@ -138,9 +133,6 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         }
-
-
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -162,7 +154,7 @@ public class MainActivity extends AppCompatActivity
             titleTextView.setText(getResources().getString(R.string.nav_mypage));
         } else if (id == R.id.nav_reservation_mgm) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new ReservationMgmFragment())
+                    .replace(R.id.main_fl_container, new ReservationListFragment())
                     .commit();
             titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
         } else if (id == R.id.nav_review) {
