@@ -70,7 +70,7 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/reservation_list_rv_reservation_list"
+        android:id="@+id/reservation_list_rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reservation_list_rl_color_info" />
