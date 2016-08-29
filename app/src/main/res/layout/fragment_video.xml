@@ -198,10 +198,34 @@
             android:layout_height="wrap_content"
             android:numStars="5"
             android:id="@+id/video_rb_rating"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:layout_below="@id/video_tv_rating"
             android:layout_alignStart="@id/video_tv_rating"
             android:layout_alignLeft="@id/video_tv_rating"
+            style="?android:attr/ratingBarStyleSmall"
              />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:id="@+id/video_iv_num_of_person"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/video_tv_rating"
+            android:layout_toRightOf="@id/video_rb_rating"
+            android:src="@drawable/video_ic_num_of_person"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/video_tv_num_of_person"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/video_tv_rating"
+            android:layout_toRightOf="@id/video_iv_num_of_person"
+            android:text="20,110"
+            />
 
     </RelativeLayout>
 

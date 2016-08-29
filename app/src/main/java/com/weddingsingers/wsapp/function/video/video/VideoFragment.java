@@ -31,6 +31,8 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_vv_video)
     VideoView videoView;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
