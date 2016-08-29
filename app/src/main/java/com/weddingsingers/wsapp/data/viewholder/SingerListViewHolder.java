@@ -1,14 +1,13 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.SingerList;
-import com.weddingsingers.wsapp.data.VideoList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +46,10 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
 
         ButterKnife.bind(this, itemView);
+
+        singerImageView.mutateBackground(true);
+        singerImageView.setOval(true);
+        singerImageView.setBackgroundColor(Color.LTGRAY);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override

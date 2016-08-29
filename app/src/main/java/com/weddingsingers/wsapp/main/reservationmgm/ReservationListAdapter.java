@@ -1,14 +1,13 @@
 package com.weddingsingers.wsapp.main.reservationmgm;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.SearchResult;
 import com.weddingsingers.wsapp.data.SingerList;
-import com.weddingsingers.wsapp.data.viewholder.SearchResultViewHolder;
 import com.weddingsingers.wsapp.data.viewholder.SingerListViewHolder;
 
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
     public SingerListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserved_singer,parent,false);
         SingerListViewHolder holder = new SingerListViewHolder(view);
+
         holder.setOnPayBtnClickListener(this);
         return holder;
     }
@@ -37,6 +37,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
     @Override
     public void onBindViewHolder(SingerListViewHolder holder, int position) {
         holder.setSingerList(items.get(position));
+
     }
 
     @Override

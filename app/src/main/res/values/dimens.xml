@@ -159,7 +159,7 @@
     <dimen name="view_reserved_singer_riv_profile_height">55dp</dimen>
     <dimen name="view_reserved_singer_riv_profile_margin_right">16dp</dimen>
     <dimen name="view_reserved_singer_riv_profile_margin_bottom">5dp</dimen>
-    <dimen name="view_reserved_singer_riv_profile_margin_top">15dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_margin_top">10dp</dimen>
     <dimen name="view_reserved_singer_riv_profile_padding_top">5dp</dimen>
     <dimen name="view_reserved_singer_riv_profile_corner_radius">30dp</dimen>
     <dimen name="view_reserved_singer_iv_color_width">10dp</dimen>
