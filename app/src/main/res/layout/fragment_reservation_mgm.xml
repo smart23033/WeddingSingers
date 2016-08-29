@@ -15,7 +15,6 @@
         android:id="@+id/reservation_mgm_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout_bel
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </FrameLayout>
