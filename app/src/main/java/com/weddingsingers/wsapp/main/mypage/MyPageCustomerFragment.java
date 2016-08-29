@@ -12,10 +12,10 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyPageFragment extends Fragment {
+public class MyPageCustomerFragment extends Fragment {
 
 
-    public MyPageFragment() {
+    public MyPageCustomerFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class MyPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false);
+        return inflater.inflate(R.layout.fragment_my_page_customer, container, false);
     }
 
 }

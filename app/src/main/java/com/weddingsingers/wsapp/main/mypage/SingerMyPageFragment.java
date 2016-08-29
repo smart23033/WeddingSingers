@@ -12,16 +12,16 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SingerProfileFragment extends Fragment {
+public class SingerMyPageFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
 
-    public SingerProfileFragment() {
+    public SingerMyPageFragment() {
         // Required empty public constructor
     }
 
-    public static SingerProfileFragment newInstance(String message) {
-        SingerProfileFragment fragment = new SingerProfileFragment();
+    public static SingerMyPageFragment newInstance(String message) {
+        SingerMyPageFragment fragment = new SingerMyPageFragment();
         Bundle args = new Bundle();
         args.putString(ARG_MESSAGE, message);
         fragment.setArguments(args);
@@ -32,7 +32,7 @@ public class SingerProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_singer_profile, container, false);
+        return inflater.inflate(R.layout.fragment_singer_my_page, container, false);
     }
 
 }

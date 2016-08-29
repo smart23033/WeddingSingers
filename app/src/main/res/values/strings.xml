@@ -13,6 +13,10 @@
     <string name="main_tab_new">신규 싱어 영상</string>
     <string name="main_tab_event">이벤트/프로모션</string>
 
+    <!-- 싱어 마이페이지 탭 이름 -->
+    <string name="my_page_singer_tab_mypage">마이 페이지</string>
+    <string name="my_page_singer_tab_profile">프로필 관리</string>
+
     <!-- NavigationDrawer 로그인 하세요 -->
     <string name="nav_do_login">로그인하세요</string>
 

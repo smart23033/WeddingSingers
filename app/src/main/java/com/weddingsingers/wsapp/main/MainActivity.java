@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +29,9 @@ import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
 import com.weddingsingers.wsapp.main.community.PostListFragment;
 import com.weddingsingers.wsapp.main.home.MainFragment;
-import com.weddingsingers.wsapp.main.mypage.MyPageFragment;
+import com.weddingsingers.wsapp.main.mypage.MyPageCustomerFragment;
+import com.weddingsingers.wsapp.main.mypage.MyPageSingerFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
-import com.weddingsingers.wsapp.main.reservationmgm.ReservationListFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
@@ -152,9 +151,15 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         } else if (id == R.id.nav_mypage) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new MyPageFragment())
-                    .commit();
+            if (false) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_fl_container, new MyPageCustomerFragment())
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.main_fl_container, new MyPageSingerFragment())
+                        .commit();
+            }
             titleTextView.setText(getResources().getString(R.string.nav_mypage));
         } else if (id == R.id.nav_reservation_mgm) {
             getSupportFragmentManager().beginTransaction()
