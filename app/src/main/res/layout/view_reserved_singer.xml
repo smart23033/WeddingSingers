@@ -10,16 +10,16 @@
 
     <ImageView
         android:id="@+id/view_reserved_singer_iv_color"
-        android:layout_width="10dp"
-        android:layout_height="90dp"
+        android:layout_width="@dimen/view_reserved_singer_iv_color_width"
+        android:layout_height="@dimen/view_reserved_singer_iv_color_height"
         android:background="@android:color/holo_green_dark" />
 
     <RelativeLayout
         android:id="@+id/view_reserved_singer_rl_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/view_reserved_singer_rl_profile_margin_left"
+        android:layout_marginRight="@dimen/view_reserved_singer_rl_profile_margin_right"
         android:layout_toRightOf="@+id/view_reserved_singer_iv_color">
 
         <com.makeramen.roundedimageview.RoundedImageView
@@ -52,7 +52,8 @@
         android:id="@+id/view_reserved_singer_rl_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/view_reserved_singer_rl_info_margin_right"
+        android:layout_marginTop="@dimen/view_reserved_singer_rl_info_margin_top"
         android:layout_toRightOf="@+id/view_reserved_singer_rl_profile">
 
         <TextView
@@ -60,39 +61,102 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="location"
-            android:textSize="12sp"/>
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
 
         <TextView
             android:id="@+id/view_reserved_singer_tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="date"
             android:layout_below="@+id/view_reserved_singer_tv_location"
-            android:layout_marginTop="2dp"
-            android:textSize="12sp"
-            />
+            android:layout_marginTop="@dimen/view_reserved_singer_tv__margin_top"
+            android:text="date"
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
 
         <TextView
             android:id="@+id/view_reserved_singer_tv_songs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="songs"
             android:layout_below="@id/view_reserved_singer_tv_date"
-            android:layout_marginTop="2dp"
-            android:textSize="12sp"
-            />
+            android:layout_marginTop="@dimen/view_reserved_singer_tv__margin_top"
+            android:text="songs"
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/view_reserved_singer_rl_detail"
+        android:id="@+id/view_reserved_singer_rl_detail_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/view_reserved_singer_rl_detail_info_margin_top"
         android:layout_toRightOf="@+id/view_reserved_singer_rl_info">
 
+        <TextView
+            android:id="@+id/view_reserved_singer_tv_detail_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="seoul"
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
 
+        <TextView
+            android:id="@+id/view_reserved_singer_tv_detail_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_reserved_singer_tv_detail_location"
+            android:layout_marginTop="@dimen/view_reserved_singer_tv__margin_top"
+            android:text="2016. 4. 29"
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
 
+        <TextView
+            android:id="@+id/view_reserved_singer_tv_detail_songs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_reserved_singer_tv_detail_date"
+            android:layout_marginTop="@dimen/view_reserved_singer_tv__margin_top"
+            android:text="Lose yourself - Eminem"
+            android:textSize="@dimen/view_reserved_singer_tv_text_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_reserved_singer_rl_btn_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/view_reserved_singer_rl_detail_info"
+        android:layout_alignStart="@id/view_reserved_singer_rl_detail_info"
+        android:layout_below="@id/view_reserved_singer_rl_detail_info"
+        android:layout_marginLeft="@dimen/view_reserved_singer_rl_btn_group_margin_left"
+        android:layout_marginTop="@dimen/view_reserved_singer_rl_btn_group_margin_top">
+
+        <Button
+            android:id="@+id/view_reserved_singer_btn_cancel"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/view_reserved_singer_btn_width"
+            android:layout_height="@dimen/view_reserved_singer_btn_height"
+            android:padding="@dimen/view_reserved_singer_btn_padding"
+            android:text="cancel"
+            android:textSize="@dimen/view_reserved_singer_btn_text_size" />
+
+        <Button
+            android:id="@+id/view_reserved_singer_btn_chat"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/view_reserved_singer_btn_width"
+            android:layout_height="@dimen/view_reserved_singer_btn_height"
+            android:layout_marginLeft="@dimen/view_reserved_singer_btn_margin_left"
+            android:layout_toRightOf="@id/view_reserved_singer_btn_cancel"
+            android:padding="@dimen/view_reserved_singer_btn_padding"
+            android:text="chat"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/view_reserved_singer_btn_pay"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/view_reserved_singer_btn_width"
+            android:layout_height="@dimen/view_reserved_singer_btn_height"
+            android:layout_marginLeft="@dimen/view_reserved_singer_btn_margin_left"
+            android:layout_toRightOf="@id/view_reserved_singer_btn_chat"
+            android:padding="@dimen/view_reserved_singer_btn_padding"
+            android:text="pay"
+            android:textSize="@dimen/view_reserved_singer_btn_text_size" />
     </RelativeLayout>
 
 </RelativeLayout>
