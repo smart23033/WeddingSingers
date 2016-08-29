@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class ReservationListPagerAdapter extends FragmentPagerAdapter {
+public class ReservationMgmPagerAdapter extends FragmentPagerAdapter {
     List<String> items = new ArrayList<>();
     int numOfTabs;
 
@@ -39,7 +39,7 @@ public class ReservationListPagerAdapter extends FragmentPagerAdapter {
         notifyDataSetChanged();
     }
 
-    public ReservationListPagerAdapter(FragmentManager fm) {
+    public ReservationMgmPagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
     }

@@ -1,21 +1,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     tools:context=".main.reservationmgm.ReservationListFragment">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/reservation_list_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/reservation_list_tabs"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+    <!--리싸이클러-->
 </FrameLayout>
