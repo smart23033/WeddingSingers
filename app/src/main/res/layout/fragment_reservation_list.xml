@@ -1,12 +1,77 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     android:layout_marginLeft="@dimen/fragment_horizontal_margin"
     android:layout_marginRight="@dimen/fragment_horizontal_margin"
     android:layout_marginTop="@dimen/fragment_vertical_margin"
-    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     tools:context=".main.reservationmgm.ReservationListFragment">
 
     <!--리싸이클러-->
-</FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/reservation_list_rl_color_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/reservation_list_rl_color_info_margin"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/reservation_list_iv_accept"
+            android:layout_width="@dimen/reservation_list_iv_width"
+            android:layout_height="@dimen/reservation_list_iv_height"
+            android:background="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/reservation_list_tv_accept"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reservation_list_tv_margin_left"
+            android:layout_marginRight="@dimen/reservation_list_tv_margin_right"
+            android:layout_toRightOf="@id/reservation_list_iv_accept"
+            android:text="accept" />
+
+        <ImageView
+            android:id="@+id/reservation_list_iv_wait"
+            android:layout_width="@dimen/reservation_list_iv_width"
+            android:layout_height="@dimen/reservation_list_iv_height"
+            android:layout_toRightOf="@id/reservation_list_tv_accept"
+            android:background="@android:color/holo_orange_light" />
+
+        <TextView
+            android:id="@+id/reservation_list_tv_wait"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reservation_list_tv_margin_left"
+            android:layout_marginRight="@dimen/reservation_list_tv_margin_right"
+            android:layout_toRightOf="@id/reservation_list_iv_wait"
+            android:text="wait" />
+
+        <ImageView
+            android:id="@+id/reservation_list_iv_reject"
+            android:layout_width="@dimen/reservation_list_iv_width"
+            android:layout_height="@dimen/reservation_list_iv_height"
+            android:layout_toRightOf="@id/reservation_list_tv_wait"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/reservation_list_tv_reject"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reservation_list_tv_margin_left"
+            android:layout_toRightOf="@id/reservation_list_iv_reject"
+            android:text="reject" />
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reservation_list_rv_reservation_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reservation_list_rl_color_info" />
+</RelativeLayout>
