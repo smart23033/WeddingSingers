@@ -4,6 +4,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 
@@ -33,5 +36,23 @@ public class ReservationActivity extends AppCompatActivity {
         ReservationFragment reservationFragment = new ReservationFragment();
         ft.add(R.id.act_reservation_fl_container,reservationFragment);
         ft.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{
+                Toast.makeText(ReservationActivity.this,"ReservationActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
     }
 }

@@ -60,6 +60,5 @@ public class VideoFragment extends Fragment {
 
     void moveReservationActivity(){
         startActivity(new Intent(getContext(), ReservationActivity.class));
-        getActivity().finish();
     }
 }
