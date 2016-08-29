@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         } else if (id == R.id.nav_mypage) {
-            if (false) {
+            if (true) {
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.main_fl_container, new MyPageCustomerFragment())
                         .commit();

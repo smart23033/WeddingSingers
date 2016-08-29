@@ -1,12 +1,172 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.mypage.SingerMyPageFragment">
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/singer_my_page_rl_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment_singer_my_page" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/video_rl_video_info"
+        android:layout_marginBottom="@dimen/view_vertical_margin"
+        android:layout_marginLeft="@dimen/view_profile_margin_left"
+        android:layout_marginRight="@dimen/view_profile_margin_right"
+        android:layout_marginTop="@dimen/view_vertical_margin">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/singer_my_page_riv_picture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/video_ic_num_of_person"
+            app:riv_corner_radius="30dp"
+            app:riv_tile_mode="clamp" />
+
+        <TextView
+            android:id="@+id/singer_my_page_riv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_my_page_riv_picture"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+            android:text="name" />
+
+        <TextView
+            android:id="@+id/singer_my_page_riv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_my_page_riv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+            android:text="email@didimdolc.o.kr" />
+
+        <TextView
+            android:id="@+id/singer_my_page_riv_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_my_page_riv_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+            android:text="마이 페널티 300" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:id="@+id/my_page_customer_img_btn_modify"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/my_page_btn_modify"
+            android:background="@android:color/transparent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_my_page_rl_inquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_my_page_rl_profile"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/singer_my_page_inquiry_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/singer_my_page_inquiry_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/singer_my_page_inquiry_ic"
+            android:text="1:1문의 답변" />
+
+        <ImageView
+            android:id="@+id/singer_my_page_inquiry_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_my_page_rl_statistic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_my_page_rl_inquiry"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/singer_my_page_statistic_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/singer_my_page_statistic_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/singer_my_page_statistic_ic"
+            android:text="찜한 목록" />
+
+        <ImageView
+            android:id="@+id/singer_my_page_statistic_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_my_page_rl_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_my_page_rl_statistic"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/singer_my_page_account_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/singer_my_page_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/singer_my_page_account_ic"
+            android:text="환불계좌 관리" />
+
+        <ImageView
+            android:id="@+id/singer_my_page_account_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

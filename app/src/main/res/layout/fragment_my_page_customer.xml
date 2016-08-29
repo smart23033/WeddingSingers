@@ -10,7 +10,7 @@
     tools:context=".main.mypage.MyPageCustomerFragment">
 
     <RelativeLayout
-        android:id="@+id/view_profile_rl_profile"
+        android:id="@+id/my_page_customer_rl_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_rl_video_info"
@@ -21,13 +21,11 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/my_page_customer_riv_picture"
-            android:layout_width="@dimen/view_profile_riv_profile_width"
-            android:layout_height="@dimen/view_profile_riv_profile_height"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:paddingTop="@dimen/view_profile_riv_profile_padding_top"
-            android:scaleType="fitCenter"
-            android:src="@drawable/view_profile_ic_person"
-            app:riv_corner_radius="@dimen/view_profile_riv_profile_corner_radius"
+            android:src="@drawable/video_ic_num_of_person"
+            app:riv_corner_radius="30dp"
             app:riv_tile_mode="clamp" />
 
         <TextView
@@ -39,7 +37,6 @@
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:text="name" />
 
-
         <TextView
             android:id="@+id/my_page_customer_riv_email"
             android:layout_width="wrap_content"
@@ -49,18 +46,164 @@
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:text="email@didimdolc.o.kr" />
 
-        <Button
-            android:id="@+id/view_profile_btn_reserve"
-            style="?android:attr/buttonStyleSmall"
+        <TextView
+            android:id="@+id/my_page_customer_riv_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/my_page_customer_riv_name"
-            android:layout_alignEnd="@+id/my_page_customer_riv_picture"
-            android:layout_alignRight="@+id/my_page_customer_riv_picture"
-            android:text="reserve"
-            android:textSize="@dimen/view_profile_btn_reserve_text_size" />
+            android:layout_below="@+id/my_page_customer_riv_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+            android:text="마이포인트 300" />
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:id="@+id/my_page_customer_img_btn_modify"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/my_page_btn_modify"
+            android:background="@android:color/transparent" />
 
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_inquiry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_profile"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        android:onClick="moveMyInquiry">
+
+        <ImageView
+            android:id="@+id/my_page_customer_inquiry_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/my_page_customer_inquiry_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/my_page_customer_inquiry_ic"
+            android:text="1:1문의 답변" />
+
+        <ImageView
+            android:id="@+id/my_page_customer_inquiry_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_favor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_inquiry"
+        android:layout_marginTop="20dp"
+        android:onClick="moveFavoriteVideo"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/my_page_customer_favor_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/my_page_customer_favor_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/my_page_customer_favor_ic"
+            android:text="찜한 목록" />
+
+        <ImageView
+            android:id="@+id/my_page_customer_favor_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_favor"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/my_page_customer_account_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/my_page_customer_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/my_page_customer_account_ic"
+            android:text="환불계좌 관리" />
+
+        <ImageView
+            android:id="@+id/my_page_customer_account_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_account"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/my_page_customer_point_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/my_page_customer_point_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/my_page_customer_point_ic"
+            android:text="포인트 상점" />
+
+        <ImageView
+            android:id="@+id/my_page_customer_point_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
