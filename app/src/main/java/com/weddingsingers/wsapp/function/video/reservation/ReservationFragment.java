@@ -1,6 +1,9 @@
 package com.weddingsingers.wsapp.function.video.reservation;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.CompoundButtonCompat;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.main.MainActivity;
 
 import org.w3c.dom.Text;
 
@@ -84,6 +88,28 @@ public class ReservationFragment extends Fragment {
         return view;
     }
 
+    @OnClick(R.id.reservation_btn_reserve)
+    void onReserveBtnClicked(){
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Reservation Complete")
+                .setMessage("Reservation complete,\ncould you go to confirm?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        moveReservationMgmActivity();                    }
+                });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                     Toast.makeText(getContext(),"dialog canceled",Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+    }
+
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
     void onRadioBtnClicked(RadioButton radioButton){
         boolean checked = radioButton.isChecked();
@@ -118,5 +144,9 @@ public class ReservationFragment extends Fragment {
         mAdapter.addAll(items);
     }
 
+    private void moveReservationMgmActivity(){
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
+    }
 
 }
