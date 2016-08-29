@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class ReservedSingerViewHolder extends RecyclerView.ViewHolder {
+public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.view_reserved_singer_riv_profile)
     RoundedImageView singerImageView;
@@ -43,10 +43,7 @@ public class ReservedSingerViewHolder extends RecyclerView.ViewHolder {
         this.listener = listener;
     }
 
-
-
-
-    public ReservedSingerViewHolder(View itemView) {
+    public SingerListViewHolder(View itemView) {
         super(itemView);
 
         ButterKnife.bind(this, itemView);

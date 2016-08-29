@@ -1,14 +1,22 @@
 package com.weddingsingers.wsapp.main.reservationmgm;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.SearchResult;
+import com.weddingsingers.wsapp.data.SingerList;
+import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,12 +37,20 @@ public class ReservationListFragment extends Fragment {
     @BindView(R.id.reservation_list_rv_list)
     RecyclerView recyclerView;
 
+    ReservationListAdapter mAdapter;
+
     public static ReservationListFragment newInstance(String message) {
         ReservationListFragment fragment = new ReservationListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_MESSAGE, message);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mAdapter = new ReservationListAdapter();
     }
 
     @Override
@@ -45,9 +61,36 @@ public class ReservationListFragment extends Fragment {
 
         ButterKnife.bind(this,view);
 
+        recyclerView.setAdapter(mAdapter);
 
+        mAdapter.setOnAdapterPayBtnClickListener(new ReservationListAdapter.OnAdapterPayBtnClickListener() {
+            @Override
+            public void onAdapterPayBtnClick(View view, SingerList singerList, int position) {
+                Toast.makeText(getContext(),"SingerList : " + singerList.getSingerName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        LinearLayoutManager manager =
+                new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+
+        recyclerView.setLayoutManager(manager);
+
+        initData();
 
         return view;
+    }
+
+    private void initData() {
+        for (int i = 0; i < 20; i++) {
+            SingerList singerList = new SingerList();
+            singerList.setLocation("Seoul");
+            singerList.setDate("2016. 4. 26");
+            singerList.setSingerName("singer name");
+            singerList.setSongs("Clarity - Zedd");
+            mAdapter.add(singerList);
+        }
     }
 
 }
