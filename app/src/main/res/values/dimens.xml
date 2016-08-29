@@ -145,5 +145,22 @@
     <dimen name="reservation_et_special_min_width">10dp</dimen>
     <dimen name="reservation_btn_reserve_margin_top">20dp</dimen>
 
-    
+    <!--fragment_reservation_list.xml-->
+    <dimen name="reservation_list_rl_color_info_margin">15dp</dimen>
+    <dimen name="reservation_list_iv_width">20dp</dimen>
+    <dimen name="reservation_list_iv_height">20dp</dimen>
+    <dimen name="reservation_list_tv_margin_left">10dp</dimen>
+    <dimen name="reservation_list_tv_margin_right">50dp</dimen>
+
+    <!--view_reserved_singer.xml-->
+    <dimen name="view_reserved_singer_margin_left">10dp</dimen>
+    <dimen name="view_reserved_singer_margin_right">4dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_width">55dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_height">55dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_margin_right">16dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_margin_bottom">5dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_margin_top">10dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_padding_top">5dp</dimen>
+    <dimen name="view_reserved_singer_riv_profile_corner_radius">30dp</dimen>
+
 </resources>
