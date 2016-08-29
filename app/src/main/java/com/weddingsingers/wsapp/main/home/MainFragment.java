@@ -1,15 +1,18 @@
 package com.weddingsingers.wsapp.main.home;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 import com.weddingsingers.wsapp.R;
 
 /**
@@ -20,6 +23,9 @@ public class MainFragment extends Fragment {
     TabLayout tabs;
     MainPagerAdapter mAdapter;
     ViewPager pager;
+    CarouselView carouselView;
+
+    int[] bannerImages = {R.drawable.banner1, R.drawable.banner1, R.drawable.banner1, R.drawable.banner1, R.drawable.banner1};
 
     public MainFragment() {
         // Required empty public constructor
@@ -30,6 +36,14 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        carouselView = (CarouselView) view.findViewById(R.id.main_cv_carousel);
+        carouselView.setPageCount(bannerImages.length);
+        carouselView.setIndicatorMarginVertical(50);
+        carouselView.setIndicatorMarginHorizontal(100);
+        carouselView.setIndicatorGravity(Gravity.BOTTOM | Gravity.RIGHT);
+
+        carouselView.setImageListener(imageListener);
 
         pager = (ViewPager)view.findViewById(R.id.pager);
         tabs = (TabLayout)view.findViewById(R.id.tabs);
@@ -45,5 +59,12 @@ public class MainFragment extends Fragment {
 
         return view;
     }
+
+    ImageListener imageListener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(bannerImages[position]);
+        }
+    };
 
 }

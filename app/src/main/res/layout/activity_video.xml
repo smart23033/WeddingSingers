@@ -6,15 +6,15 @@
     tools:context=".function.video.video.VideoActivity">
 
     <FrameLayout
+        android:id="@+id/video_fl_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/video_fl_toolbar">
+        android:layout_height="?attr/actionBarSize">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/video_toolbar"
-        android:title=""/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/video_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:title="" />
 
         <TextView
             android:layout_width="match_parent"
@@ -26,13 +26,11 @@
 
 
     <FrameLayout
+        android:id="@+id/act_video_fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/video_fl_toolbar"
-        android:id="@+id/act_video_fl_container"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        />
-
+        android:layout_below="@+id/video_fl_toolbar" />
 
 </RelativeLayout>
