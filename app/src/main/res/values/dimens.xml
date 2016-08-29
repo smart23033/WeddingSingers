@@ -98,5 +98,26 @@
     <dimen name="view_profile_btn_reserve_margin_left">20dp</dimen>
     <dimen name="view_profile_btn_reserve_text_size">8sp</dimen>
 
+    <!--fragment_video.xml-->
+    <dimen name="video_rl_price_info_margin_top">5dp</dimen>
+    <dimen name="video_rl_price_info_margin_bottom">10dp</dimen>
+    <dimen name="video_tv_price_info_margin_right">35dp</dimen>
+    <dimen name="video_tv_standard_margin_right">10dp</dimen>
+    <dimen name="video_tv_special_margin_top">5dp</dimen>
+    <dimen name="video_tv_special_price_margin_top">5dp</dimen>
+    <dimen name="video_rl_review_margin_top">5dp</dimen>
+    <dimen name="video_rl_review_margin_bottom">5dp</dimen>
+    <dimen name="video_rl_review_margin_left">10dp</dimen>
+    <dimen name="video_tv_review_margin_right">14dp</dimen>
+    <dimen name="video_tv_rating_text_size">12sp</dimen>
+    <dimen name="video_tv_rating_margin_top">2dp</dimen>
+    <dimen name="video_rb_rating_margin_top">10dp</dimen>
+    <dimen name="video_rb_rating_margin_right">20dp</dimen>
+    <dimen name="video_iv_num_of_person_width">16dp</dimen>
+    <dimen name="video_iv_num_of_person_height">16dp</dimen>
+    <dimen name="video_iv_num_of_person_margin_top">10dp</dimen>
+    <dimen name="video_iv_num_of_person_margin_right">10dp</dimen>
+    <dimen name="video_tv_num_of_person_margin_top">8dp</dimen>
+
 
 </resources>

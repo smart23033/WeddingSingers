@@ -29,24 +29,6 @@
             android:layout_marginTop="@dimen/video_tv_margin_top"
             android:text="title" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/video_tv_divider"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="@dimen/video_tv_divider_horizontal_margin"-->
-            <!--android:layout_marginRight="@dimen/video_tv_divider_horizontal_margin"-->
-            <!--android:layout_marginTop="@dimen/video_tv_margin_top"-->
-            <!--android:layout_toRightOf="@id/video_tv_title"-->
-            <!--android:text="|" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/video_tv_singer_name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="@dimen/video_tv_margin_top"-->
-            <!--android:layout_toRightOf="@id/video_tv_divider"-->
-            <!--android:text="singer name" />-->
-
         <TextView
             android:id="@+id/video_tv_date"
             android:layout_width="wrap_content"
@@ -116,6 +98,7 @@
         android:id="@+id/video_rl_price_info"
         android:layout_below="@id/video_pv_profile"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="@dimen/video_rl_video_info_horizontal_margin"
         >
 
@@ -174,6 +157,7 @@
         android:id="@+id/video_rl_review"
         android:layout_below="@id/video_rl_price_info"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         >
 
