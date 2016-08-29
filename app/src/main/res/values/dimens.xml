@@ -97,6 +97,7 @@
     <dimen name="view_profile_tv_singer_name_margin_top">6dp</dimen>
     <dimen name="view_profile_tv_comment_max_width">180dp</dimen>
     <dimen name="view_profile_btn_reserve_margin_left">20dp</dimen>
+    <dimen name="view_profile_btn_reserve_margin_top">10dp</dimen>
     <dimen name="view_profile_btn_reserve_text_size">8sp</dimen>
 
     <!--fragment_video.xml-->
