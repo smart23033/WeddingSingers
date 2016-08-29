@@ -14,34 +14,34 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp" />
+        android:layout_marginLeft="@dimen/reservation_pv_profile_margin_left"
+        android:layout_marginTop="@dimen/reservation_pv_profile_margin_top" />
 
     <LinearLayout
         android:id="@+id/reservation_ll_options"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/reservation_pv_profile"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/reservation_ll_options_margin_top"
         android:orientation="horizontal">
 
         <Spinner
             android:id="@+id/reservation_spinner_date"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/reservation_spinner_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/reservation_spinner_date_margin_bottom"
+            android:layout_marginLeft="@dimen/reservation_spinner_date_margin_left"
+            android:layout_marginRight="@dimen/reservation_spinner_date_margin_right"
+            android:layout_marginTop="@dimen/reservation_spinner_date_margin_top"
             android:layout_weight="1"
             android:spinnerMode="dialog" />
 
         <Spinner
             android:id="@+id/reservation_spinner_time"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/reservation_spinner_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/reservation_spinner_time_margin_bottom"
+            android:layout_marginTop="@dimen/reservation_spinner_time_margin_top"
             android:layout_toRightOf="@id/reservation_spinner_date"
             android:layout_weight="1"
             android:spinnerMode="dialog" />
@@ -53,29 +53,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reservation_ll_options"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/reservation_tv_type_margin_left"
+        android:layout_marginTop="@dimen/reservation_tv_type_margin_top"
         android:text="TYPE" />
 
     <RadioGroup
         android:id="@+id/reservation_rg_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
         android:layout_below="@id/reservation_tv_type"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/reservation_rg_type_margin_left"
+        android:layout_marginTop="@dimen/reservation_rg_type_margin_top"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/reservation_rb_standard"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/reservation_rb_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="standard" />
 
         <RadioButton
             android:id="@+id/reservation_rb_special"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/reservation_rb_width"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="special" />
@@ -86,8 +86,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/reservation_rg_type"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/reservation_tv_type_selected_margin_left"
+        android:layout_marginTop="@dimen/reservation_tv_type_selected_margin_top"
         android:text="STANDARD" />
 
     <FrameLayout
@@ -95,8 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/reservation_tv_type_selected"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="@dimen/reservation_fl_type_selected_margin_left"
+        android:layout_marginTop="@dimen/reservation_fl_type_selected_margin_top">
 
         <Spinner
             android:id="@+id/reservation_spinner_standard"
@@ -111,11 +111,10 @@
             android:gravity="top|left"
             android:inputType="textMultiLine"
             android:lines="5"
-            android:maxWidth="5dp"
-            android:minWidth="10dp"
+            android:maxWidth="@dimen/reservation_et_special_max_width"
+            android:minWidth="@dimen/reservation_et_special_min_width"
             android:scrollHorizontally="false"
-            android:visibility="gone"
-         />
+            android:visibility="gone" />
     </FrameLayout>
 
     <Button
@@ -124,6 +123,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/reservation_fl_type_selected"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/reservation_btn_reserve_margin_top"
         android:text="reserve" />
 </RelativeLayout>

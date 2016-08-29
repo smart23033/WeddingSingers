@@ -121,5 +121,29 @@
     <dimen name="video_iv_num_of_person_margin_right">10dp</dimen>
     <dimen name="video_tv_num_of_person_margin_top">8dp</dimen>
 
+    <!--fragment_reservation.xml-->
+    <dimen name="reservation_pv_profile_margin_left">0dp</dimen>
+    <dimen name="reservation_pv_profile_margin_top">0dp</dimen>
+    <dimen name="reservation_ll_options_margin_top">40dp</dimen>
+    <dimen name="reservation_spinner_width">0dp</dimen>
+    <dimen name="reservation_spinner_date_margin_bottom">10dp</dimen>
+    <dimen name="reservation_spinner_date_margin_left">10dp</dimen>
+    <dimen name="reservation_spinner_date_margin_right">20dp</dimen>
+    <dimen name="reservation_spinner_date_margin_top">10dp</dimen>
+    <dimen name="reservation_spinner_time_margin_bottom">10dp</dimen>
+    <dimen name="reservation_spinner_time_margin_top">10dp</dimen>
+    <dimen name="reservation_tv_type_margin_left">20dp</dimen>
+    <dimen name="reservation_tv_type_margin_top">20dp</dimen>
+    <dimen name="reservation_rg_type_margin_left">15dp</dimen>
+    <dimen name="reservation_rg_type_margin_top">10dp</dimen>
+    <dimen name="reservation_rb_width">0dp</dimen>
+    <dimen name="reservation_tv_type_selected_margin_left">20dp</dimen>
+    <dimen name="reservation_tv_type_selected_margin_top">20dp</dimen>
+    <dimen name="reservation_fl_type_selected_margin_left">10dp</dimen>
+    <dimen name="reservation_fl_type_selected_margin_top">10dp</dimen>
+    <dimen name="reservation_et_special_max_width">5dp</dimen>
+    <dimen name="reservation_et_special_min_width">10dp</dimen>
+    <dimen name="reservation_btn_reserve_margin_top">20dp</dimen>
 
+    
 </resources>

@@ -97,13 +97,13 @@ public class ReservationFragment extends Fragment {
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservationMgmActivity();                    }
+                        moveReservationListFragment();                    }
                 });
 
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                     Toast.makeText(getContext(),"dialog canceled",Toast.LENGTH_SHORT).show();
+                        moveMainActivity();
             }
         });
         dialog = builder.create();
@@ -144,7 +144,12 @@ public class ReservationFragment extends Fragment {
         mAdapter.addAll(items);
     }
 
-    private void moveReservationMgmActivity(){
+    private void moveReservationListFragment(){
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
+    }
+
+    private void moveMainActivity(){
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();
     }

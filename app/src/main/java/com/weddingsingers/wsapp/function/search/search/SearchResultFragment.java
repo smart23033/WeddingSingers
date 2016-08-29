@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -41,6 +42,9 @@ public class SearchResultFragment extends Fragment {
     @BindView(R.id.search_result_rg_radio)
     RadioGroup radioGroup;
 
+    @BindView(R.id.search_result_rb_popular)
+    RadioButton popularBtn;
+
     SearchResultAdapter mAdapter;
 
     @Override
@@ -58,6 +62,8 @@ public class SearchResultFragment extends Fragment {
         ButterKnife.bind(this,view);
 
         recyclerView.setAdapter(mAdapter);
+
+        popularBtn.setChecked(true);
 
         mAdapter.setOnAdapterItemClickListener(new SearchResultAdapter.OnAdapterItemClickListener() {
             @Override
