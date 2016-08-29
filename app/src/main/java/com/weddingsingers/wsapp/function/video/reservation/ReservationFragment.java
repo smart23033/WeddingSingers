@@ -2,10 +2,13 @@ package com.weddingsingers.wsapp.function.video.reservation;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.CompoundButtonCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,11 +38,11 @@ import butterknife.OnItemSelected;
  */
 public class ReservationFragment extends Fragment {
 
+    final static String FRAG_RESERVATION = "ReservationFragment";
 
     public ReservationFragment() {
         // Required empty public constructor
     }
-
 
     @BindView(R.id.view_profile_btn_reserve)
     Button reserveBtn;
@@ -64,6 +67,23 @@ public class ReservationFragment extends Fragment {
     RadioButton standardRadioBtn;
 
     PriceFilterSpinnerAdapter mAdapter;
+
+    private static final String ARG_MESSAGE = "param1";
+    private String message;
+    private static ReservationFragment instance;
+
+    public static ReservationFragment newInstance(String message) {
+        ReservationFragment fragment = new ReservationFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_MESSAGE, message);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -145,11 +165,14 @@ public class ReservationFragment extends Fragment {
     }
 
     private void moveReservationListFragment(){
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra("fragmentName", FRAG_RESERVATION);
+        startActivity(intent);
         getActivity().finish();
     }
 
     private void moveMainActivity(){
+
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();
     }

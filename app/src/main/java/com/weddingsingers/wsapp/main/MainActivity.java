@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
+
     DrawerLayout drawer;
     NavigationView naviView;
 
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
 
+
+
+
         if(true) { // 로그인
 
             navLayoutLogout.setVisibility(View.GONE);
@@ -133,6 +137,9 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             titleTextView.setText(getResources().getString(R.string.app_name));
         }
+
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -29,4 +29,9 @@
     <!--video_menu.xml-->
     <string name="video_menu_favorite">좋아요</string>
     <string name="video_menu_cancel_favorite">좋아요 해제</string>
+
+    <!--ReservationListFragment.xml-->
+    <string name="reservation_list">예약 현황</string>
+    <string name="reserved_one">예약 완료</string>
+
 </resources>
