@@ -97,8 +97,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/video_rl_price_info"
         android:layout_below="@id/video_pv_profile"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="@dimen/video_rl_price_info_margin_top"
+        android:layout_marginBottom="@dimen/video_rl_price_info_margin_bottom"
         android:layout_marginLeft="@dimen/video_rl_video_info_horizontal_margin"
         >
 
@@ -107,17 +107,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_price_info"
             android:text="price info"
-            android:layout_marginRight="35dp"
+            android:layout_marginRight="@dimen/video_tv_price_info_margin_right"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_standard"
-            android:layout_toRightOf="@id/video_tv_price_info"
             android:text="standard"
+            android:layout_toRightOf="@id/video_tv_price_info"
             android:textColor="@color/colorLightPink"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
             android:layout_toRightOf="@id/video_tv_price_info"
             android:text="special"
             android:textColor="@color/colorLightPink"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/video_tv_special_margin_top"
             />
 
         <TextView
@@ -144,7 +144,7 @@
             android:text="300,000 won"
             android:layout_toRightOf="@id/video_tv_special"
             android:layout_below="@id/video_tv_standard_price"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/video_tv_special_price_margin_top"
             android:layout_alignStart="@id/video_tv_standard_price"
             android:layout_alignLeft="@id/video_tv_standard_price"
             />
@@ -156,9 +156,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/video_rl_review"
         android:layout_below="@id/video_rl_price_info"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/video_rl_review_margin_top"
+        android:layout_marginBottom="@dimen/video_rl_review_margin_bottom"
+        android:layout_marginLeft="@dimen/video_rl_review_margin_left"
         >
 
         <TextView
@@ -166,24 +166,24 @@
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_review"
             android:text="singer review"
-            android:layout_marginRight="14dp"/>
+            android:layout_marginRight="@dimen/video_tv_review_margin_right"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_rating"
             android:text="rating"
-            android:textSize="12sp"
+            android:textSize="@dimen/video_tv_rating_text_size"
             android:layout_toRightOf="@id/video_tv_review"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="@dimen/video_tv_rating_margin_top"/>
 
         <RatingBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
             android:id="@+id/video_rb_rating"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginTop="@dimen/video_rb_rating_margin_top"
+            android:layout_marginRight="@dimen/video_rb_rating_margin_right"
             android:layout_below="@id/video_tv_rating"
             android:layout_alignStart="@id/video_tv_rating"
             android:layout_alignLeft="@id/video_tv_rating"
@@ -191,11 +191,11 @@
              />
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="@dimen/video_iv_num_of_person_width"
+            android:layout_height="@dimen/video_iv_num_of_person_height"
             android:id="@+id/video_iv_num_of_person"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginTop="@dimen/video_iv_num_of_person_margin_top"
+            android:layout_marginRight="@dimen/video_iv_num_of_person_margin_right"
             android:layout_below="@+id/video_tv_rating"
             android:layout_toRightOf="@id/video_rb_rating"
             android:src="@drawable/video_ic_num_of_person"
@@ -205,7 +205,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/video_tv_num_of_person"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/video_tv_num_of_person_margin_top"
             android:layout_below="@id/video_tv_rating"
             android:layout_toRightOf="@id/video_iv_num_of_person"
             android:text="20,110"
