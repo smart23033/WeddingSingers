@@ -4,13 +4,12 @@ package com.weddingsingers.wsapp.main.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.VideoList;
@@ -18,7 +17,6 @@ import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,8 +27,8 @@ public class VideoListFragment extends Fragment {
     private String message;
     private static VideoListFragment instance;
 
-    @BindView(R.id.rv_video_list)
-    RecyclerView listView;
+    @BindView(R.id.video_list_rv_list)
+    RecyclerView recyclerView;
 
     VideoListAdapter mAdapter;
 
@@ -53,12 +51,21 @@ public class VideoListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
 
         ButterKnife.bind(this, view);
-        //listView = (RecyclerView)view.findViewById(R.id.rv_video_list);
         mAdapter = new VideoListAdapter();
-        listView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnAdapterItemClickListener(new VideoListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemClick(View view, VideoList videoList, int position) {
+                Intent intent = new Intent(getContext(), VideoActivity.class);
+                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, videoList);
+
+                startActivity(intent);
+            }
+        });
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        listView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(manager);
 
         initData();
 
@@ -68,17 +75,12 @@ public class VideoListFragment extends Fragment {
     private void initData() {
         for(int i = 0; i < 20; i++){
             VideoList videoList = new VideoList();
-            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-            videoList.setTitle("title " + i);
+            //videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+            videoList.setTitle("video title " + i);
             videoList.setDate("2016. 4. 24");
             videoList.setHit(123);
             videoList.setFavorite(4123);
             mAdapter.add(videoList);
         }
-        /*String item = "item 1";
-        mAdapter.add(item);*/
     }
-
-
 }
-

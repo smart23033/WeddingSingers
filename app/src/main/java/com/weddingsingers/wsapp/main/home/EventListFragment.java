@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.main.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,8 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.EventList;
+import com.weddingsingers.wsapp.function.event.event.EventActivity;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +28,9 @@ public class EventListFragment extends Fragment {
     private String message;
     private static EventListFragment instance;
 
-    RecyclerView listView;
+    @BindView(R.id.event_list_rv_list)
+    RecyclerView recyclerView;
+
     EventListAdapter mAdapter;
 
     public EventListFragment() {
@@ -40,12 +50,23 @@ public class EventListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event_list, container, false);
-        listView = (RecyclerView)view.findViewById(R.id.rv_event_list);
+
+        ButterKnife.bind(this, view);
         mAdapter = new EventListAdapter();
-        listView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnAdapterItemClickListener(new EventListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemClick(View view, EventList eventList, int position) {
+                Intent intent = new Intent(getContext(), EventActivity.class);
+                //intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, eventList);
+
+                startActivity(intent);
+            }
+        });
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
-        listView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(manager);
 
         initData();
 
@@ -53,9 +74,12 @@ public class EventListFragment extends Fragment {
     }
 
     private void initData(){
-        String item = "event 1";
-        mAdapter.add(item);
+        for(int i = 0; i < 20; i++){
+            EventList eventList = new EventList();
+            //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+            eventList.setTitle("Event title " + i);
+            eventList.setDate("2016. 4. 24");
+            mAdapter.add(eventList);
+        }
     }
-
 }
-

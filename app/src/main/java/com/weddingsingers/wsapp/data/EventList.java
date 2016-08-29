@@ -3,12 +3,10 @@ package com.weddingsingers.wsapp.data;
 
 import java.io.Serializable;
 
-public class VideoList implements Serializable {
+public class EventList implements Serializable {
     private String thumbnail;
     private String title;
     private String date;
-    private int hit;
-    private int favorite;
 
     public String getThumbnail() {
         return thumbnail;
@@ -34,19 +32,4 @@ public class VideoList implements Serializable {
         this.date = date;
     }
 
-    public int getHit() {
-        return hit;
-    }
-
-    public void setHit(int hit) {
-        this.hit = hit;
-    }
-
-    public int getFavorite() {
-        return favorite;
-    }
-
-    public void setFavorite(int favorite) {
-        this.favorite = favorite;
-    }
 }

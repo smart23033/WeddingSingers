@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.home;
+package com.weddingsingers.wsapp.data.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -58,7 +58,7 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
 
     public void setVideoList(VideoList videoList) {
         this.videoList = videoList;
-        thumbnailImageView.setImageDrawable(videoList.getThumbnail());
+        //thumbnailImageView.setImageBitmap(videoList.getThumbnail());
         titleView.setText(videoList.getTitle());
         dateView.setText(videoList.getDate());
         hitView.setText("" + videoList.getHit());
