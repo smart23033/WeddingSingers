@@ -30,7 +30,6 @@
             android:layout_marginBottom="@dimen/view_reserved_singer_riv_profile_margin_bottom"
             android:layout_marginRight="@dimen/view_reserved_singer_riv_profile_margin_right"
             android:layout_marginTop="@dimen/view_reserved_singer_riv_profile_margin_top"
-            android:background="@android:color/darker_gray"
             android:paddingTop="@dimen/view_reserved_singer_riv_profile_padding_top"
             android:scaleType="fitCenter"
             android:src="@drawable/view_profile_ic_person"
