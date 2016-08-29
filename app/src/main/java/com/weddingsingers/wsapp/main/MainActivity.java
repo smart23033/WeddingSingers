@@ -95,7 +95,10 @@ public class MainActivity extends AppCompatActivity
 
         RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
 
-        if(true) { // 로그인
+        Intent intent = getIntent();
+        boolean isLogin = intent.getBooleanExtra("login", false);
+
+        if(isLogin) { // 로그인
 
             navLayoutLogout.setVisibility(View.GONE);
 
