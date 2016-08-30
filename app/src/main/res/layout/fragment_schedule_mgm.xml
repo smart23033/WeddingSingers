@@ -1,13 +1,77 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.schedulemgm.ScheduleMgmFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/schedule_mgm_rl_color_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="schedule frag" />
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/schedule_mgm_rl_color_info_margin"
+        android:gravity="center">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/schedule_mgm_iv_none"
+            android:layout_width="@dimen/schedule_mgm_iv_width"
+            android:layout_height="@dimen/schedule_mgm_iv_height"
+            android:background="@android:color/white" />
+
+        <TextView
+            android:id="@+id/schedule_mgm_tv_none"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
+            android:layout_marginRight="@dimen/schedule_mgm_tv_margin_right"
+            android:layout_toRightOf="@id/schedule_mgm_iv_none"
+            android:text="accept" />
+
+        <ImageView
+            android:id="@+id/schedule_mgm_iv_reserved"
+            android:layout_width="@dimen/schedule_mgm_iv_width"
+            android:layout_height="@dimen/schedule_mgm_iv_height"
+            android:layout_toRightOf="@id/schedule_mgm_tv_none"
+            android:background="@color/colorPrimaryPink" />
+
+        <TextView
+            android:id="@+id/schedule_mgm_tv_reserved"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
+            android:layout_marginRight="@dimen/schedule_mgm_tv_margin_right"
+            android:layout_toRightOf="@id/schedule_mgm_iv_reserved"
+            android:text="wait" />
+
+        <ImageView
+            android:id="@+id/schedule_mgm_iv_holiday"
+            android:layout_width="@dimen/schedule_mgm_iv_width"
+            android:layout_height="@dimen/schedule_mgm_iv_height"
+            android:layout_toRightOf="@id/schedule_mgm_tv_reserved"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/schedule_mgm_tv_holiday"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
+            android:layout_toRightOf="@id/schedule_mgm_iv_holiday"
+            android:text="reject" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/schedule_mgm_rv_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/schedule_mgm_rl_color_info"
+        />
+
+</RelativeLayout>
