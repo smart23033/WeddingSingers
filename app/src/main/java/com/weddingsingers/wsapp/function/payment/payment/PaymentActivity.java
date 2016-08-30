@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity {
-
+    public final static String RESULT_MESSAGE = "fragmentName";
 
     @BindView(R.id.payment_toolbar)
     Toolbar toolbar;

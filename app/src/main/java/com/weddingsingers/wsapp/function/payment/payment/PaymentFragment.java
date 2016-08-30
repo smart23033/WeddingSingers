@@ -4,7 +4,6 @@ package com.weddingsingers.wsapp.function.payment.payment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,11 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.data.Payment;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,7 +23,6 @@ import butterknife.OnClick;
 public class PaymentFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
-    private static final String FRAG_RESERVED_ONE = "ReservedOneFragment";
 
     private String message;
     private static PaymentFragment instance;
@@ -95,6 +91,9 @@ public class PaymentFragment extends Fragment {
     }
 
     private void moveReservedOneFragment(){
+        Intent intent = new Intent();
+        intent.putExtra(PaymentActivity.RESULT_MESSAGE,"ReservedOneFragment");
+        getActivity().setResult(PaymentActivity.RESULT_OK, intent);
         getActivity().finish();
     }
 
