@@ -32,7 +32,7 @@ public class PaymentActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         PaymentFragment paymentFragment = new PaymentFragment();
-        ft.add(R.id.act_cancel_reservation_fl_container,paymentFragment);
+        ft.add(R.id.act_payment_fl_container,paymentFragment);
         ft.commit();
     }
 }

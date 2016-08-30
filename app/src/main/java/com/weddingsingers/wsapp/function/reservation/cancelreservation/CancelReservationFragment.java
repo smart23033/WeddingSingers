@@ -29,7 +29,6 @@ public class CancelReservationFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @BindView(R.id.cancel_reservation_riv_profile)
     RoundedImageView singerImageView;
 

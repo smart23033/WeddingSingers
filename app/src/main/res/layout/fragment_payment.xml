@@ -1,20 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     android:layout_marginLeft="@dimen/fragment_horizontal_margin"
     android:layout_marginRight="@dimen/fragment_horizontal_margin"
     android:layout_marginTop="@dimen/fragment_vertical_margin"
-    android:layout_marginBottom="@dimen/fragment_vertical_margin"
     tools:context=".function.payment.payment.PaymentFragment">
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_statement"
+        android:id="@+id/payment_rl_statement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_statement"
+            android:id="@+id/payment_tv_statement"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,210 +25,216 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_profile"
+        android:id="@+id/payment_rl_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel_reservation_rl_statement"
-        android:layout_marginLeft="@dimen/cancel_reservation_rl_profile_margin_left"
-        android:layout_marginRight="@dimen/cancel_reservation_rl_profile_margin_right"
-        android:layout_marginTop="@dimen/cancel_reservation_rl_profile_margin_top">
+        android:layout_below="@+id/payment_rl_statement"
+        android:layout_marginLeft="@dimen/payment_rl_profile_margin_left"
+        android:layout_marginRight="@dimen/payment_rl_profile_margin_right"
+        android:layout_marginTop="@dimen/payment_rl_profile_margin_top">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cancel_reservation_riv_profile"
-            android:layout_width="@dimen/cancel_reservation_riv_profile_width"
-            android:layout_height="@dimen/cancel_reservation_riv_profile_height"
+            android:id="@+id/payment_riv_profile"
+            android:layout_width="@dimen/payment_riv_profile_width"
+            android:layout_height="@dimen/payment_riv_profile_height"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/cancel_reservation_riv_profile_margin_bottom"
-            android:layout_marginRight="@dimen/cancel_reservation_riv_profile_margin_right"
-            android:layout_marginTop="@dimen/cancel_reservation_riv_profile_margin_top"
-            android:paddingTop="@dimen/cancel_reservation_riv_profile_padding_top"
+            android:layout_marginBottom="@dimen/payment_riv_profile_margin_bottom"
+            android:layout_marginRight="@dimen/payment_riv_profile_margin_right"
+            android:layout_marginTop="@dimen/payment_riv_profile_margin_top"
+            android:paddingTop="@dimen/payment_riv_profile_padding_top"
             android:scaleType="fitCenter"
             android:src="@drawable/view_profile_ic_person"
-            app:riv_corner_radius="@dimen/cancel_reservation_riv_profile_corner_radius"
+            app:riv_corner_radius="@dimen/payment_riv_profile_corner_radius"
             app:riv_tile_mode="clamp" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_singer_name"
+            android:id="@+id/payment_tv_singer_name"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancel_reservation_riv_profile"
+            android:layout_below="@+id/payment_riv_profile"
             android:layout_centerHorizontal="true"
             android:text="singer name" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_info"
+        android:id="@+id/payment_rl_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel_reservation_rl_statement"
-        android:layout_marginRight="@dimen/cancel_reservation_rl_info_margin_right"
-        android:layout_marginTop="@dimen/cancel_reservation_rl_info_margin_top"
-        android:layout_toRightOf="@+id/cancel_reservation_rl_profile">
+        android:layout_below="@+id/payment_rl_statement"
+        android:layout_marginRight="@dimen/payment_rl_info_margin_right"
+        android:layout_marginTop="@dimen/payment_rl_info_margin_top"
+        android:layout_toRightOf="@+id/payment_rl_profile">
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_location"
+            android:id="@+id/payment_tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="location"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_date"
+            android:id="@+id/payment_tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancel_reservation_tv_location"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
+            android:layout_below="@+id/payment_tv_location"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
             android:text="date"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_songs"
+            android:id="@+id/payment_tv_songs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cancel_reservation_tv_date"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
+            android:layout_below="@id/payment_tv_date"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
             android:text="songs"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_detail_info"
+        android:id="@+id/payment_rl_detail_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel_reservation_rl_statement"
-        android:layout_marginTop="@dimen/cancel_reservation_rl_detail_info_margin_top"
-        android:layout_toRightOf="@+id/cancel_reservation_rl_info">
+        android:layout_below="@+id/payment_rl_statement"
+        android:layout_marginTop="@dimen/payment_rl_detail_info_margin_top"
+        android:layout_toRightOf="@+id/payment_rl_info">
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_detail_location"
+            android:id="@+id/payment_tv_detail_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="seoul"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_detail_date"
+            android:id="@+id/payment_tv_detail_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancel_reservation_tv_detail_location"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
+            android:layout_below="@+id/payment_tv_detail_location"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
             android:text="2016. 4. 29"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_detail_songs"
+            android:id="@+id/payment_tv_detail_songs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cancel_reservation_tv_detail_date"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
+            android:layout_below="@id/payment_tv_detail_date"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
             android:text="Lose yourself - Eminem"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_special"
+        android:id="@+id/payment_rl_special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/cancel_reservation_rl_info"
-        android:layout_alignStart="@+id/cancel_reservation_rl_info"
-        android:layout_below="@+id/cancel_reservation_rl_info"
-        android:layout_marginTop="@dimen/cancel_reservation_rl_special_margin_top">
+        android:layout_alignLeft="@+id/payment_rl_info"
+        android:layout_alignStart="@+id/payment_rl_info"
+        android:layout_below="@+id/payment_rl_info"
+        android:layout_marginTop="@dimen/payment_rl_special_margin_top">
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_type"
+            android:id="@+id/payment_tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="special"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_standard"
+            android:id="@+id/payment_tv_standard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancel_reservation_tv_type"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
-            android:textSize="@dimen/cancel_reservation_tv_text_size"
+            android:layout_below="@+id/payment_tv_type"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
+            android:textSize="@dimen/payment_tv_text_size"
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_special"
+            android:id="@+id/payment_tv_special"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cancel_reservation_tv_type"
-            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
+            android:layout_below="@+id/payment_tv_type"
+            android:layout_marginTop="@dimen/payment_tv__margin_top"
             android:lines="5"
-            android:maxWidth="@dimen/cancel_reservation_tv_special_max_width"
-            android:minWidth="@dimen/cancel_reservation_tv_special_min_width"
+            android:maxWidth="@dimen/payment_tv_special_max_width"
+            android:minWidth="@dimen/payment_tv_special_min_width"
             android:scrollHorizontally="false"
             android:text="special request"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
     </RelativeLayout>
 
     <View
-        android:id="@+id/cancel_reservation_divider"
+        android:id="@+id/payment_divider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/cancel_reservation_divider_height"
-        android:layout_below="@id/cancel_reservation_rl_special"
-        android:layout_marginBottom="@dimen/cancel_reservation_divider_vertical_margin"
-        android:layout_marginTop="@dimen/cancel_reservation_divider_vertical_margin"
+        android:layout_height="@dimen/payment_divider_height"
+        android:layout_below="@id/payment_rl_special"
+        android:layout_marginBottom="@dimen/payment_divider_vertical_margin"
+        android:layout_marginTop="@dimen/payment_divider_vertical_margin"
         android:background="@color/colorPrimaryPink" />
 
     <RelativeLayout
-        android:id="@+id/cancel_reservation_rl_refund"
+        android:id="@+id/payment_rl_charge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel_reservation_divider">
+        android:layout_below="@+id/payment_divider">
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_refund"
+            android:id="@+id/payment_tv_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="charge"
             android:textColor="@color/colorPrimaryPink"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_detail_refund"
+            android:id="@+id/payment_tv_detail_charge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="\ 24,000"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
         <TextView
-            android:id="@+id/cancel_reservation_tv_account"
+            android:id="@+id/payment_tv_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/cancel_reservation_tv_detail_refund"
+            android:layout_below="@id/payment_tv_detail_charge"
             android:text="Account (NH) 000-1111-222312"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
+            android:textSize="@dimen/payment_tv_text_size" />
 
-        <TextView
-            android:id="@+id/cancel_reservation_tv_caution"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/cancel_reservation_tv_account"
-            android:layout_marginTop="@dimen/cancel_reservation_tv_caution_margin_top"
-            android:text="* refund except for commission"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="@dimen/cancel_reservation_tv_text_size" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/cancel_reservation_btn_cancel"
+    <RelativeLayout
+        android:id="@+id/payment_rl_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/cancel_reservation_rl_refund"
+        android:layout_below="@id/payment_rl_charge"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/cancel_reservation_btn_cancel_margin_top"
-        android:text="CANCEL" />
+        android:layout_marginTop="@dimen/payment_rl_btn_group_margin_top">
+
+        <Button
+            android:id="@+id/payment_btn_remittance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/payment_btn_remittance_margin_right"
+            android:text="Remittance" />
+
+        <Button
+            android:id="@+id/payment_btn_kakao_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/payment_btn_remittance"
+            android:text="kakao pay" />
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

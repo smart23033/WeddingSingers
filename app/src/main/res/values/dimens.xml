@@ -225,4 +225,29 @@
     <dimen name="cancel_reservation_tv_special_min_width">10dp</dimen>
     <dimen name="cancel_reservation_tv_caution_margin_top">10dp</dimen>
     <dimen name="cancel_reservation_btn_cancel_margin_top">40dp</dimen>
+
+    <!--fragment_payment.xml-->
+    <dimen name="payment_tv_text_size">12sp</dimen>
+    <dimen name="payment_rl_profile_margin_left">10dp</dimen>
+    <dimen name="payment_rl_profile_margin_right">10dp</dimen>
+    <dimen name="payment_riv_profile_width">55dp</dimen>
+    <dimen name="payment_riv_profile_height">55dp</dimen>
+    <dimen name="payment_riv_profile_margin_bottom">5dp</dimen>
+    <dimen name="payment_riv_profile_margin_right">16dp</dimen>
+    <dimen name="payment_riv_profile_margin_top">10dp</dimen>
+    <dimen name="payment_riv_profile_padding_top">5dp</dimen>
+    <dimen name="payment_riv_profile_corner_radius">30dp</dimen>
+    <dimen name="payment_rl_info_margin_right">10dp</dimen>
+    <dimen name="payment_rl_info_margin_top">10dp</dimen>
+    <dimen name="payment_tv__margin_top">2dp</dimen>
+    <dimen name="payment_rl_detail_info_margin_top">10dp</dimen>
+    <dimen name="payment_rl_profile_margin_top">10dp</dimen>
+    <dimen name="payment_divider_vertical_margin">10dp</dimen>
+    <dimen name="payment_divider_height">1dp</dimen>
+    <dimen name="payment_rl_special_margin_top">2dp</dimen>
+    <dimen name="payment_tv_special_max_width">180dp</dimen>
+    <dimen name="payment_tv_special_min_width">10dp</dimen>
+    <dimen name="payment_tv_caution_margin_top">10dp</dimen>
+    <dimen name="payment_rl_btn_group_margin_top">40dp</dimen>
+    <dimen name="payment_btn_remittance_margin_right">20dp</dimen>
 </resources>
