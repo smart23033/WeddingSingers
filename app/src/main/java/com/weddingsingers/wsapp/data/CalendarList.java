@@ -6,13 +6,13 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-30.
  */
 public class CalendarList implements Serializable {
-    private String month;
+    private int month;
 
-    public String getMonth() {
+    public int getMonth() {
         return month;
     }
 
-    public void setMonth(String month) {
+    public void setMonth(int month) {
         this.month = month;
     }
 }

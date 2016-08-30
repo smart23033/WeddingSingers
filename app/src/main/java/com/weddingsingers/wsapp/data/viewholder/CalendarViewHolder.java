@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
 import com.weddingsingers.wsapp.data.EventList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -14,6 +16,7 @@ import butterknife.ButterKnife;
  */
 public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
+    @BindView(R.id.view_calendar_tv_month)
     TextView monthView;
 
     public interface OnCalendarListItemClickListener {
@@ -21,7 +24,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder {
     }
 
     OnCalendarListItemClickListener listener;
-    public void setOnEventListItemClickListener(OnCalendarListItemClickListener listener) {
+    public void setOnCalendarListItemClickListener(OnCalendarListItemClickListener listener) {
         this.listener = listener;
     }
 
@@ -43,7 +46,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder {
 
     public void setCalendarList(CalendarList calendarList) {
         this.calendarList = calendarList;
-        monthView.setText(calendarList.getMonth());
+        monthView.setText("" + calendarList.getMonth());
     }
 
 }

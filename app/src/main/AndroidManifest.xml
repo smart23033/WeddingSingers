@@ -56,7 +56,9 @@
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
         <activity android:name=".function.mypage.mypage.UserInfoActivity" />
-        <activity android:name=".function.mypage.mypoint.MyPointActivity"></activity>
+        <activity android:name=".function.mypage.mypoint.MyPointActivity" />
+        <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
+        <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity"></activity>
     </application>
 
 </manifest>
