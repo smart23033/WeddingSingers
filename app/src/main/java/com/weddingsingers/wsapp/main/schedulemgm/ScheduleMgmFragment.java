@@ -1,18 +1,19 @@
 package com.weddingsingers.wsapp.main.schedulemgm;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 
 import java.util.Calendar;
 
@@ -46,7 +47,7 @@ public class ScheduleMgmFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new CalendarListAdapter.OnAdapterItemClickListener() {
             @Override
             public void onAdapterItemClick(View view, CalendarList calendarList, int position) {
-
+                startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
             }
         });
 
