@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity
 
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
+
     DrawerLayout drawer;
+
     NavigationView naviView;
 
     @BindView(R.id.main_toolbar)
@@ -144,63 +146,60 @@ public class MainActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer);
 
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new MainFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.app_name));
-        } else if (id == R.id.nav_mypage) {
-            if (true) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_fl_container, new MyPageCustomerFragment())
-                        .commit();
-            } else {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_fl_container, new MyPageSingerFragment())
-                        .commit();
+        switch (item.getItemId()){
+            case R.id.nav_home: {
+                changeNavMenu(new MainFragment());
+                titleTextView.setText(getResources().getString(R.string.app_name));
+                return true;
             }
-            titleTextView.setText(getResources().getString(R.string.nav_mypage));
-        } else if (id == R.id.nav_reservation_mgm) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new ReservationMgmFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
-        } else if (id == R.id.nav_review) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new ReviewFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_review));
-        } else if (id == R.id.nav_chat) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new ChattingListFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_chat));
-        } else if (id == R.id.nav_community) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new PostListFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_community));
-        } else if (id == R.id.nav_qna) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new QNAFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_qna));
-        } else if (id == R.id.nav_schedule_mgm) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main_fl_container, new ScheduleMgmFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
+            case R.id.nav_mypage : {
+                if (true) {
+                    changeNavMenu(new MyPageCustomerFragment());
+                } else {
+                    changeNavMenu(new MyPageSingerFragment());
+                }
+                titleTextView.setText(getResources().getString(R.string.nav_mypage));
+                return true;
+            }
+            case R.id.nav_reservation_mgm : {
+                changeNavMenu(new ReservationMgmFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
+                return true;
+            }
+            case R.id.nav_review : {
+                changeNavMenu(new ReviewFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_review));
+                return true;
+            }
+            case R.id.nav_chat : {
+                changeNavMenu(new ChattingListFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_chat));
+                return true;
+            }
+            case R.id.nav_community : {
+                changeNavMenu(new PostListFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_community));
+                return  true;
+            }
+            case R.id.nav_qna : {
+                changeNavMenu(new QNAFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_qna));
+                return true;
+            }
+            case R.id.nav_schedule_mgm : {
+                changeNavMenu(new ScheduleMgmFragment());
+                titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
+                return true;
+            }
         }
-
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    private void changeFragment(Fragment f) {
+    private void changeNavMenu(Fragment f) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_fl_container, f)
                 .commit();
+        drawer.closeDrawer(GravityCompat.START);
     }
 
     @Override
