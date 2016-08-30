@@ -53,8 +53,16 @@ public class MainActivity extends AppCompatActivity
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
-    public static final String FRAG_RESERVATION_MGM = "ReservationMgmFragment";
-    public static final String FRAG_RESERVED_ONE = "ReservedOneFragment";
+    public static final int FRAG_MAIN = 100;
+    public static final int FRAG_MY_PAGE = 200;
+    public static final int FRAG_RESERVATION_MGM = 300;
+    public static final int FRAG_SCHEDULE_MGM = 400;
+    public static final int FRAG_REVIEW = 500;
+    public static final int FRAG_CHATTING = 600;
+    public static final int FRAG_COMMUNITY = 700;
+    public static final int FRAG_QNA = 800;
+
+    public static final int ERROR_CODE = -1;
 
     @BindView(R.id.drawer)
     DrawerLayout drawer;
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        String fragmentName = intent.getStringExtra("fragmentName");
+        int fragmentName = intent.getIntExtra("fragmentName", ERROR_CODE);
         changeFragmentFromAnotherActivity(fragmentName);
 
         boolean isLogin = intent.getBooleanExtra("login", false);
@@ -110,8 +118,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     //다른 액티비티안의 프레그먼트에서 메인액티비티의 프레그먼트를 변경하도록 요청할 때
-    private void changeFragmentFromAnotherActivity(String fragmentName) {
-        if (!TextUtils.isEmpty(fragmentName)) {
+    private void changeFragmentFromAnotherActivity(int fragmentName) {
+        if (fragmentName != ERROR_CODE) {
             switch (fragmentName) {
                 case FRAG_RESERVATION_MGM: {
                     changeFragment(new ReservationMgmFragment());

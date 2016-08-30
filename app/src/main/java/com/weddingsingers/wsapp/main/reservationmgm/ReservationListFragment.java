@@ -19,6 +19,7 @@ import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,8 +70,8 @@ public class ReservationListFragment extends Fragment {
             @Override
             public void onAdapterPayBtnClick(View view, SingerList singerList, int position) {
                 Toast.makeText(getContext(),"SingerList : " + singerList.getSingerName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getContext(), PaymentActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getParentFragment().getContext(), PaymentActivity.class);
+                startActivityForResult(intent, ReservationMgmFragment.FRAG_RESERVED_ONE);
             }
         });
 

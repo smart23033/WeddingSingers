@@ -24,6 +24,9 @@ import butterknife.ButterKnife;
  */
 public class ReservationMgmFragment extends Fragment {
 
+    public static final int FRAG_RESERVATION_LIST = 310;
+    public static final int FRAG_RESERVED_ONE = 320;
+
     @BindView(R.id.reservation_mgm_tabs)
     TabLayout tabs;
 

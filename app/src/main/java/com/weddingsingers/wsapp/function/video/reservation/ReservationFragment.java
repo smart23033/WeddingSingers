@@ -30,7 +30,7 @@ import butterknife.OnItemSelected;
  */
 public class ReservationFragment extends Fragment {
 
-    final static String FRAG_RESERVATION_MGM = "ReservationMgmFragment";
+    final static int FRAG_RESERVATION_MGM = 300;
 
     public ReservationFragment() {
         // Required empty public constructor
