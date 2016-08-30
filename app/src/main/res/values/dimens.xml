@@ -202,4 +202,23 @@
     <dimen name="reserved_one_rl_btn_group_margin_bottom">10dp</dimen>
     <dimen name="reserved_one_rl_btn_group_margin_right">5dp</dimen>
 
+    <!--fragment_cancel_reservation.xml-->
+    <dimen name="cancel_reservation_tv_text_size">12sp</dimen>
+    <dimen name="cancel_reservation_rl_profile_margin_left">10dp</dimen>
+    <dimen name="cancel_reservation_rl_profile_margin_right">10dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_width">55dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_height">55dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_margin_bottom">5dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_margin_right">16dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_margin_top">10dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_padding_top">5dp</dimen>
+    <dimen name="cancel_reservation_riv_profile_corner_radius">30dp</dimen>
+    <dimen name="cancel_reservation_rl_info_margin_right">10dp</dimen>
+    <dimen name="cancel_reservation_rl_info_margin_top">10dp</dimen>
+    <dimen name="cancel_reservation_tv__margin_top">2dp</dimen>
+    <dimen name="cancel_reservation_rl_detail_info_margin_top">10dp</dimen>
+    <dimen name="cancel_reservation_rl_profile_margin_top">10dp</dimen>
+    <dimen name="cancel_reservation_divider_vertical_margin">10dp</dimen>
+    <dimen name="cancel_reservation_divider_height">1dp</dimen>
+
 </resources>
