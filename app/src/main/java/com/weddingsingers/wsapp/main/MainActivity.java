@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ import com.weddingsingers.wsapp.main.mypage.MyPageCustomerFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageSingerFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneFragment;
 import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
@@ -52,6 +54,7 @@ public class MainActivity extends AppCompatActivity
     public static final int TIMEOUT_TIME = 2000;
 
     public static final String FRAG_RESERVATION_MGM = "ReservationMgmFragment";
+    public static final String FRAG_RESERVED_ONE = "ReservedOneFragment";
 
     @BindView(R.id.drawer)
     DrawerLayout drawer;
@@ -98,16 +101,27 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        if (intent.getStringExtra("fragmentName") != null) {
-            changeFragment(new ReservationMgmFragment());
-            titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
-        }else{
-            Log.i("MainActivity","인텐트 안넘어옴");
-        }
+        String fragmentName = intent.getStringExtra("fragmentName");
+        changeFragmentFromAnotherActivity(fragmentName);
 
         boolean isLogin = intent.getBooleanExtra("login", false);
         checkLogin(isLogin);
 
+    }
+
+    //다른 액티비티안의 프레그먼트에서 메인액티비티의 프레그먼트를 변경하도록 요청할 때
+    private void changeFragmentFromAnotherActivity(String fragmentName) {
+        if (!TextUtils.isEmpty(fragmentName)) {
+            switch (fragmentName) {
+                case FRAG_RESERVATION_MGM: {
+                    changeFragment(new ReservationMgmFragment());
+                    titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
     }
 
     //로그인 체크 후 네비게이션 드로워 변경

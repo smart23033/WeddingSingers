@@ -159,6 +159,7 @@ public class ReservationFragment extends Fragment {
     private void moveReservationMgmFragment(){
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra("fragmentName", FRAG_RESERVATION_MGM);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
     }
