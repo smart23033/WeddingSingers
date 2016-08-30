@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         drawer = (DrawerLayout) findViewById(R.id.drawer);
 
-        int id = item.getItemId();
         switch (item.getItemId()){
             case R.id.nav_home: {
                 changeNavMenu(new MainFragment());
@@ -210,20 +209,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == android.R.id.home){
-            if(drawer.isDrawerOpen(GravityCompat.START)){
-                drawer.closeDrawer(GravityCompat.START);
-            }else{
-                drawer.openDrawer(GravityCompat.START);
+        switch (item.getItemId()){
+            case android.R.id.home: {
+                if(drawer.isDrawerOpen(GravityCompat.START)){
+                    drawer.closeDrawer(GravityCompat.START);
+                }else{
+                    drawer.openDrawer(GravityCompat.START);
+                }
+                return true;
             }
-            return true;
-        } else if (id == R.id.main_menu_search) {
-            startActivity(new Intent(MainActivity.this, SearchActivity.class));
-            return true;
+            case R.id.main_menu_search : {
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+                return true;
+            }
         }
-
         return super.onOptionsItemSelected(item);
     }
 
