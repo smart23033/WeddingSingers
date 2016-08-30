@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.mypage.accountmgm.AccountMgmActivity">
+    tools:context=".function.mypage.mypoint.MyPointActivity">
 
     <FrameLayout
-        android:id="@+id/account_mgm_fl_toolbar"
+        android:id="@+id/my_point_fl_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/account_mgm_toolbar"
+            android:id="@+id/my_point_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:title="" />
@@ -20,16 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="계좌 관리" />
+            android:text="포인트 관리" />
 
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/act_account_mgm_fl_container"
+        android:id="@+id/act_my_point_fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/account_mgm_fl_toolbar" />
+        android:layout_below="@+id/my_point_fl_toolbar" />
 
 </RelativeLayout>

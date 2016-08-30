@@ -17,6 +17,7 @@ import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
 import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
+import com.weddingsingers.wsapp.function.mypage.mypoint.MyPointActivity;
 import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
 
 import butterknife.BindView;
@@ -63,6 +64,11 @@ public class MyPageCustomerFragment extends Fragment {
     @OnClick(R.id.my_page_customer_rl_point)
     void onPointStoreClick() {
         getContext().startActivity(new Intent(getActivity(), PointStoreActivity.class));
+    }
+
+    @OnClick(R.id.my_page_customer_rl_my_point)
+    void onMyPointStoreClick() {
+        getContext().startActivity(new Intent(getActivity(), MyPointActivity.class));
     }
 
 

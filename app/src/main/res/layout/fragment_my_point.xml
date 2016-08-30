@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.mypage.statistic.StatisticFragment">
+    tools:context="com.weddingsingers.wsapp.function.mypage.mypoint.MyPointFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Statistic" />
+        android:text="my point" />
 
 </FrameLayout>

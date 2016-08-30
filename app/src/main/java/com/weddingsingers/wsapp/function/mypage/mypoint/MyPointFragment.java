@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.function.mypage.singervideomgm;
+package com.weddingsingers.wsapp.function.mypage.mypoint;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import com.weddingsingers.wsapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SingerVideoMgmFragment extends Fragment {
+public class MyPointFragment extends Fragment {
 
 
-    public SingerVideoMgmFragment() {
+    public MyPointFragment() {
         // Required empty public constructor
     }
 
@@ -23,8 +23,7 @@ public class SingerVideoMgmFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_singer_video_mgm, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_point, container, false);
 
 
 

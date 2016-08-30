@@ -100,7 +100,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
@@ -134,7 +134,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
@@ -185,7 +185,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/btn_detail_arrow" />
+            android:src="@drawable/search_ic_hit" />
 
         <TextView
             android:id="@+id/my_page_customer_point_title"
@@ -203,6 +203,67 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/btn_detail_arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_my_point"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_point"
+        android:layout_marginTop="20dp"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/singer_my_page_my_point_ic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/search_ic_hit" />
+
+        <TextView
+            android:id="@+id/singer_my_page_my_point_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/singer_my_page_my_point_ic"
+            android:text="포인트 관리" />
+
+        <ImageView
+            android:id="@+id/singer_my_page_my_point_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_detail_arrow" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_page_customer_rl_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/my_page_customer_rl_my_point"
+        android:layout_marginTop="20dp"
+        android:clickable="true">
+
+        <Button
+            android:id="@+id/my_page_customer_btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="로그아웃" />
+
+        <Button
+            android:id="@+id/my_page_customer_btn_leave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/my_page_customer_btn_logout"
+            android:text="회원 탈퇴" />
 
     </RelativeLayout>
 

@@ -99,12 +99,39 @@
             android:textColor="@color/colorLightPink" />
 
         <TextView
-            android:id="@+id/singer_profile_price_tv_content"
+            android:id="@+id/singer_profile_price_tv_special"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_toRightOf="@id/singer_profile_price_tv_title"
+            android:text="special" />
+
+        <TextView
+            android:id="@+id/singer_profile_price_tv_special_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_profile_price_tv_special"
+            android:text="￦ 300,000" />
+
+        <TextView
+            android:id="@+id/singer_profile_price_tv_std"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_below="@+id/singer_profile_price_tv_special"
+            android:layout_toRightOf="@id/singer_profile_price_tv_title"
             android:text="standard" />
+
+        <TextView
+            android:id="@+id/singer_profile_price_tv_std_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_below="@+id/singer_profile_price_tv_special_price"
+            android:layout_toRightOf="@id/singer_profile_price_tv_std"
+            android:text="￦ 100,000" />
+
 
     </RelativeLayout>
 
@@ -128,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_toRightOf="@id/singer_profile_song_tv_title"
-            android:text="standard" />
+            android:text="she's gone\nsay good bye \nfarewell taxi" />
 
     </RelativeLayout>
 

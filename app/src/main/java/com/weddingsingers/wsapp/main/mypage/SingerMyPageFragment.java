@@ -14,6 +14,7 @@ import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActiv
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
 import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
+import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -59,7 +60,7 @@ public class SingerMyPageFragment extends Fragment {
 
     @OnClick(R.id.singer_my_page_rl_statistic)
     void onFavoriteVideoClick() {
-        getContext().startActivity(new Intent(getActivity(), FavoriteVideoActivity.class));
+        getContext().startActivity(new Intent(getActivity(), StatisticActivity.class));
     }
 
     @OnClick(R.id.singer_my_page_rl_account)

@@ -56,7 +56,7 @@
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
         <activity android:name=".function.mypage.mypage.UserInfoActivity" />
-        <activity android:name=".function.mypage.myreview.MyReviewActivity"></activity>
+        <activity android:name=".function.mypage.mypoint.MyPointActivity"></activity>
     </application>
 
 </manifest>
