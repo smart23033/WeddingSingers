@@ -77,6 +77,7 @@ public class ReservationMgmFragment extends Fragment {
             if(resultCode == Activity.RESULT_OK){
                 String fragmentName = data.getStringExtra(PaymentActivity.RESULT_MESSAGE);
                 Log.i("ReservationMgmFragment","FragmentName 받았다! : " + fragmentName);
+               pager.setCurrentItem(1);
             }else{
                 Log.i("ReservationMgmFragment","FragmentName 못받았다");
             }
