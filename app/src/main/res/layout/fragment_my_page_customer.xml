@@ -76,9 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/my_page_customer_rl_profile"
         android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:onClick="moveMyInquiry"
-        tools:context=".main.home.mypage.SingerMyPageFragment">
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/my_page_customer_inquiry_ic"
@@ -112,8 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/my_page_customer_rl_inquiry"
         android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:onClick="moveFavoriteVideo">
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/my_page_customer_favor_ic"
@@ -147,16 +144,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/my_page_customer_rl_favor"
         android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:onClick="moveAccountMgm">
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/my_page_customer_account_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:clickable="true"
-            android:onClick="moveAccountMgm"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
@@ -184,16 +178,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/my_page_customer_rl_account"
         android:layout_marginTop="20dp"
-        android:clickable="true"
-        android:onClick="movePointStore">
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/my_page_customer_point_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:clickable="true"
-            android:onClick="movePointStore"
             android:src="@drawable/search_ic_hit" />
 
         <TextView

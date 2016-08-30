@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_mypage: {
-                if (false) {
+                if (true) {
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());
@@ -263,24 +263,4 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // 마이페이지에서 액티비티 이동
-    public void moveMyInquiry(View v) {
-        startActivity(new Intent(MainActivity.this, MyInquiryActivity.class));
-    }
-
-    public void moveFavoriteVideo(View v) {
-        startActivity(new Intent(MainActivity.this, FavoriteVideoActivity.class));
-    }
-
-    public void moveAccountMgm(View v) {
-        startActivity(new Intent(MainActivity.this, AccountMgmActivity.class));
-    }
-
-    public void movePointStore(View v) {
-        startActivity(new Intent(MainActivity.this, PointStoreActivity.class));
-    }
-
-    public void moveStatistic(View v) {
-        startActivity(new Intent(MainActivity.this, StatisticActivity.class));
-    }
 }
