@@ -34,6 +34,9 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
         SingerListViewHolder holder = new SingerListViewHolder(view);
 
         holder.setOnPayBtnClickListener(this);
+        holder.setOnCancelBtnClickListener(this);
+        holder.setOnChatBtnClickListener(this);
+
         return holder;
     }
 
