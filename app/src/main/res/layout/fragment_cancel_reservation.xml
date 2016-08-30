@@ -136,7 +136,7 @@
         android:layout_alignLeft="@+id/cancel_reservation_rl_info"
         android:layout_alignStart="@+id/cancel_reservation_rl_info"
         android:layout_below="@+id/cancel_reservation_rl_info"
-        android:layout_marginTop="2dp">
+        android:layout_marginTop="@dimen/cancel_reservation_rl_special_margin_top">
 
         <TextView
             android:id="@+id/cancel_reservation_tv_type"
@@ -150,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cancel_reservation_tv_type"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
             android:textSize="@dimen/cancel_reservation_tv_text_size"
             android:visibility="gone" />
 
@@ -159,10 +159,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cancel_reservation_tv_type"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="@dimen/cancel_reservation_tv__margin_top"
             android:lines="5"
-            android:maxWidth="5dp"
-            android:minWidth="10dp"
+            android:maxWidth="@dimen/cancel_reservation_tv_special_max_width"
+            android:minWidth="@dimen/cancel_reservation_tv_special_min_width"
             android:scrollHorizontally="false"
             android:text="special request"
             android:textSize="@dimen/cancel_reservation_tv_text_size" />
@@ -215,7 +215,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/cancel_reservation_tv_account"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/cancel_reservation_tv_caution_margin_top"
             android:text="* refund except for commission"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/cancel_reservation_tv_text_size" />
@@ -227,7 +227,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cancel_reservation_rl_refund"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/cancel_reservation_btn_cancel_margin_top"
         android:text="CANCEL" />
 
 </RelativeLayout>

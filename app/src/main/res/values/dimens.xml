@@ -141,7 +141,7 @@
     <dimen name="reservation_tv_type_selected_margin_top">20dp</dimen>
     <dimen name="reservation_fl_type_selected_margin_left">10dp</dimen>
     <dimen name="reservation_fl_type_selected_margin_top">10dp</dimen>
-    <dimen name="reservation_et_special_max_width">5dp</dimen>
+    <dimen name="reservation_et_special_max_width">180dp</dimen>
     <dimen name="reservation_et_special_min_width">10dp</dimen>
     <dimen name="reservation_btn_reserve_margin_top">20dp</dimen>
 
@@ -220,5 +220,9 @@
     <dimen name="cancel_reservation_rl_profile_margin_top">10dp</dimen>
     <dimen name="cancel_reservation_divider_vertical_margin">10dp</dimen>
     <dimen name="cancel_reservation_divider_height">1dp</dimen>
-
+    <dimen name="cancel_reservation_rl_special_margin_top">2dp</dimen>
+    <dimen name="cancel_reservation_tv_special_max_width">180dp</dimen>
+    <dimen name="cancel_reservation_tv_special_min_width">10dp</dimen>
+    <dimen name="cancel_reservation_tv_caution_margin_top">10dp</dimen>
+    <dimen name="cancel_reservation_btn_cancel_margin_top">40dp</dimen>
 </resources>
