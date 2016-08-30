@@ -24,7 +24,6 @@
 
     </FrameLayout>
 
-
     <FrameLayout
         android:id="@+id/act_event_fl_container"
         android:layout_width="match_parent"
@@ -32,6 +31,5 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/event_fl_toolbar" />
-
 
 </RelativeLayout>

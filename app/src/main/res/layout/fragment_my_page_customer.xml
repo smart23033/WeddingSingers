@@ -168,7 +168,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
@@ -185,7 +185,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
         <TextView
             android:id="@+id/my_page_customer_point_title"
@@ -202,7 +202,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 

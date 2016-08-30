@@ -55,7 +55,8 @@
         <activity android:name=".function.community.writepost.WritePostActivity" />
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
-        <activity android:name=".function.mypage.mypage.UserInfoActivity"></activity>
+        <activity android:name=".function.mypage.mypage.UserInfoActivity" />
+        <activity android:name=".function.mypage.myreview.MyReviewActivity"></activity>
     </application>
 
 </manifest>

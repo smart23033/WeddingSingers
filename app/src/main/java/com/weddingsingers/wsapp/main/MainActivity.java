@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_mypage: {
-                if (true) {
+                if (false) {
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());

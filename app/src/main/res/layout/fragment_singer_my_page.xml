@@ -100,7 +100,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
@@ -134,7 +134,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
@@ -168,7 +168,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/search_ic_hit" />
+            android:src="@drawable/btn_detail_arrow" />
 
     </RelativeLayout>
 
