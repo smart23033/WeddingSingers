@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity
 
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
+
+    public static final String FRAG_RESERVATION_MGM = "ReservationMgmFragment";
 
     @BindView(R.id.drawer)
     DrawerLayout drawer;
@@ -84,28 +87,35 @@ public class MainActivity extends AppCompatActivity
 
         naviView.setNavigationItemSelectedListener(this);
 
-        checkLogin();
-
         if (savedInstanceState == null) {
             changeFragment(new MainFragment());
             titleTextView.setText(getResources().getString(R.string.app_name));
         }
+
+        Intent intent = getIntent();
+        if (intent.getStringExtra("fragmentName") != null) {
+            changeFragment(new ReservationMgmFragment());
+            titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
+        }else{
+            Log.i("MainActivity","인텐트 안넘어옴");
+        }
+
+        boolean isLogin = intent.getBooleanExtra("login", false);
+        checkLogin(isLogin);
+
     }
 
     //로그인 체크 후 네비게이션 드로워 변경
-    private void checkLogin(){
+    private void checkLogin(boolean isLogin) {
         naviView.getMenu().clear();
         View headerView = naviView.inflateHeaderView(R.layout.nav_header_main);
-        ImageButton alarmBtn = (ImageButton)headerView.findViewById(R.id.nav_header_bell);
+        ImageButton alarmBtn = (ImageButton) headerView.findViewById(R.id.nav_header_bell);
         ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
         TextView nameTextView = (TextView) headerView.findViewById(R.id.nav_header_name);
         TextView emailTextView = (TextView) headerView.findViewById(R.id.nav_header_email);
-
         RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
 
-        Intent intent = getIntent();
-        boolean isLogin = intent.getBooleanExtra("login", false);
-        if(isLogin) { // 로그인
+        if (isLogin) { // 로그인
 
             navLayoutLogout.setVisibility(View.GONE);
 
@@ -141,13 +151,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         drawer = (DrawerLayout) findViewById(R.id.drawer);
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home: {
                 changeNavMenu(new MainFragment());
                 titleTextView.setText(getResources().getString(R.string.app_name));
+                searchMenuItem.setVisible(true);
                 return true;
             }
-            case R.id.nav_mypage : {
+            case R.id.nav_mypage: {
                 if (true) {
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
@@ -156,32 +167,32 @@ public class MainActivity extends AppCompatActivity
                 titleTextView.setText(getResources().getString(R.string.nav_mypage));
                 return true;
             }
-            case R.id.nav_reservation_mgm : {
+            case R.id.nav_reservation_mgm: {
                 changeNavMenu(new ReservationMgmFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                 return true;
             }
-            case R.id.nav_review : {
+            case R.id.nav_review: {
                 changeNavMenu(new ReviewFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_review));
                 return true;
             }
-            case R.id.nav_chat : {
+            case R.id.nav_chat: {
                 changeNavMenu(new ChattingListFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_chat));
                 return true;
             }
-            case R.id.nav_community : {
+            case R.id.nav_community: {
                 changeNavMenu(new PostListFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_community));
-                return  true;
+                return true;
             }
-            case R.id.nav_qna : {
+            case R.id.nav_qna: {
                 changeNavMenu(new QNAFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_qna));
                 return true;
             }
-            case R.id.nav_schedule_mgm : {
+            case R.id.nav_schedule_mgm: {
                 changeNavMenu(new ScheduleMgmFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
                 return true;
@@ -195,6 +206,8 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.main_fl_container, f)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
+        searchMenuItem.setVisible(false);
+
     }
 
     private void changeFragment(Fragment f) {
@@ -203,24 +216,27 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
+    MenuItem searchMenuItem;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        searchMenuItem = menu.findItem(R.id.main_menu_search);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home: {
-                if(drawer.isDrawerOpen(GravityCompat.START)){
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
-                }else{
+                } else {
                     drawer.openDrawer(GravityCompat.START);
                 }
                 return true;
             }
-            case R.id.main_menu_search : {
+            case R.id.main_menu_search: {
                 startActivity(new Intent(MainActivity.this, SearchActivity.class));
                 return true;
             }
@@ -232,7 +248,7 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if(!isBackPressed && !drawer.isDrawerOpen(GravityCompat.START)) {
+        } else if (!isBackPressed && !drawer.isDrawerOpen(GravityCompat.START)) {
             Toast.makeText(MainActivity.this, getResources().getString(R.string.back_pressed), Toast.LENGTH_SHORT).show();
             isBackPressed = true;
             mHandler.sendEmptyMessageDelayed(MESSAGE_BACK_KEY_TIMEOUT, TIMEOUT_TIME);

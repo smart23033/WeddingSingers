@@ -7,17 +7,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.CompoundButtonCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,11 +20,8 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.main.MainActivity;
 
-import org.w3c.dom.Text;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
@@ -38,7 +30,7 @@ import butterknife.OnItemSelected;
  */
 public class ReservationFragment extends Fragment {
 
-    final static String FRAG_RESERVATION = "ReservationFragment";
+    final static String FRAG_RESERVATION_MGM = "ReservationMgmFragment";
 
     public ReservationFragment() {
         // Required empty public constructor
@@ -117,7 +109,7 @@ public class ReservationFragment extends Fragment {
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservationListFragment();                    }
+                        moveReservationMgmFragment();                    }
                 });
 
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
@@ -164,15 +156,14 @@ public class ReservationFragment extends Fragment {
         mAdapter.addAll(items);
     }
 
-    private void moveReservationListFragment(){
+    private void moveReservationMgmFragment(){
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.putExtra("fragmentName", FRAG_RESERVATION);
+        intent.putExtra("fragmentName", FRAG_RESERVATION_MGM);
         startActivity(intent);
         getActivity().finish();
     }
 
     private void moveMainActivity(){
-
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();
     }
