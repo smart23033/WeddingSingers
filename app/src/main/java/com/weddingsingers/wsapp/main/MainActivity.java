@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
+    @BindView(R.id.drawer)
     DrawerLayout drawer;
 
+    @BindView(R.id.navi_menu)
     NavigationView naviView;
 
     @BindView(R.id.main_toolbar)
@@ -77,18 +79,23 @@ public class MainActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
 
-
-        drawer = (DrawerLayout)findViewById(R.id.drawer);
-        naviView = (NavigationView)findViewById(R.id.navi_menu);
         naviView.setNavigationItemSelectedListener(this);
 
+        checkLogin();
+
+        if (savedInstanceState == null) {
+            changeFragment(new MainFragment());
+            titleTextView.setText(getResources().getString(R.string.app_name));
+        }
+    }
+
+    //로그인 체크 후 네비게이션 드로워 변경
+    private void checkLogin(){
         naviView.getMenu().clear();
         View headerView = naviView.inflateHeaderView(R.layout.nav_header_main);
-
         ImageButton alarmBtn = (ImageButton)headerView.findViewById(R.id.nav_header_bell);
         ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
         TextView nameTextView = (TextView) headerView.findViewById(R.id.nav_header_name);
@@ -98,7 +105,6 @@ public class MainActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         boolean isLogin = intent.getBooleanExtra("login", false);
-
         if(isLogin) { // 로그인
 
             navLayoutLogout.setVisibility(View.GONE);
@@ -108,10 +114,7 @@ public class MainActivity extends AppCompatActivity
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main_fl_container, new AlarmFragment())
-                            .commit();
-                    drawer.closeDrawer(GravityCompat.START);
+                    changeNavMenu(new AlarmFragment());
                 }
             });
 
@@ -130,13 +133,6 @@ public class MainActivity extends AppCompatActivity
             pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
             nameTextView.setVisibility(View.INVISIBLE);
             emailTextView.setVisibility(View.INVISIBLE);
-        }
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_fl_container, new MainFragment())
-                    .commit();
-            titleTextView.setText(getResources().getString(R.string.app_name));
         }
     }
 
@@ -201,6 +197,12 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
+    private void changeFragment(Fragment f) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main_fl_container, f)
+                .commit();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -228,7 +230,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if(!isBackPressed && !drawer.isDrawerOpen(GravityCompat.START)) {
