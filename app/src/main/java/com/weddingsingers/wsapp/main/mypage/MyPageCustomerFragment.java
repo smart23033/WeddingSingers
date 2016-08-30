@@ -48,20 +48,4 @@ public class MyPageCustomerFragment extends Fragment {
         return view;
     }
 
-    public void moveMyInquiry(View v) {
-        getContext().startActivity(new Intent(getContext(), MyInquiryActivity.class));
-    }
-
-    public void moveFavoriteVideo(View v) {
-        getContext().startActivity(new Intent(getContext(), FavoriteVideoActivity.class));
-    }
-
-    public void moveAccountMgm(View v) {
-        getContext().startActivity(new Intent(getContext(), AccountMgmActivity.class));
-    }
-
-    public void movePointStore(View v) {
-        getContext().startActivity(new Intent(getContext(), PointStoreActivity.class));
-    }
-
 }

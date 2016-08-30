@@ -24,6 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
+import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
+import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
+import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
+import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
@@ -159,7 +164,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_mypage: {
-                if (true) {
+                if (false) {
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());
@@ -256,5 +261,26 @@ public class MainActivity extends AppCompatActivity
             mHandler.removeMessages(MESSAGE_BACK_KEY_TIMEOUT);
             finish();
         }
+    }
+
+    // 마이페이지에서 액티비티 이동
+    public void moveMyInquiry(View v) {
+        startActivity(new Intent(MainActivity.this, MyInquiryActivity.class));
+    }
+
+    public void moveFavoriteVideo(View v) {
+        startActivity(new Intent(MainActivity.this, FavoriteVideoActivity.class));
+    }
+
+    public void moveAccountMgm(View v) {
+        startActivity(new Intent(MainActivity.this, AccountMgmActivity.class));
+    }
+
+    public void movePointStore(View v) {
+        startActivity(new Intent(MainActivity.this, PointStoreActivity.class));
+    }
+
+    public void moveStatistic(View v) {
+        startActivity(new Intent(MainActivity.this, StatisticActivity.class));
     }
 }
