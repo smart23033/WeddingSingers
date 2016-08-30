@@ -13,9 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.mypage.myreview.MyReviewActivity;
 import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerVideoMgmActivity;
-import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,11 +75,6 @@ public class SingerProfileFragment extends Fragment {
     @OnClick(R.id.singer_profile_rl_my_video)
     void onMyVideoClick() {
         getContext().startActivity(new Intent(getActivity(), SingerVideoMgmActivity.class));
-    }
-
-    @OnClick(R.id.singer_profile_rl_review)
-    void onReviewClick() {
-        getContext().startActivity(new Intent(getActivity(), MyReviewActivity.class));
     }
 
     @OnItemSelected(R.id.singer_profile_sp_location)

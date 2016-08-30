@@ -156,29 +156,4 @@
             android:src="@drawable/btn_detail_arrow" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/singer_profile_rl_review"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_my_video"
-        android:clickable="true">
-
-        <TextView
-            android:id="@+id/singer_profile_review_tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="리뷰"
-            android:textColor="@color/colorLightPink" />
-
-        <ImageButton
-            android:id="@+id/singer_profile_review_iv_more"
-            android:layout_width="20dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/btn_detail_arrow" />
-
-    </RelativeLayout>
-
 </RelativeLayout>
