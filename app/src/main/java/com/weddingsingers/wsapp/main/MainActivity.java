@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_mypage: {
-                if (true) { // 수요자 true /공급자 false
+                if (false) { // 수요자 true /공급자 false
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());
