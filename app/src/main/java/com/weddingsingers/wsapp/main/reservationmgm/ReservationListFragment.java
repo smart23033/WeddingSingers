@@ -69,9 +69,11 @@ public class ReservationListFragment extends Fragment {
         mAdapter.setOnAdapterPayBtnClickListener(new ReservationListAdapter.OnAdapterPayBtnClickListener() {
             @Override
             public void onAdapterPayBtnClick(View view, SingerList singerList, int position) {
-                Toast.makeText(getContext(),"SingerList : " + singerList.getSingerName(),Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getParentFragment().getContext(), PaymentActivity.class);
-                startActivityForResult(intent, ReservationMgmFragment.FRAG_RESERVED_ONE);
+//                Toast.makeText(getContext(),"SingerList : " + singerList.getSingerName(),Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getParentFragment().getContext(), PaymentActivity.class);
+//                intent.putExtra("fragmentName","ReservedOneFragment");
+//                startActivityForResult(intent, ReservationMgmFragment.FRAG_NAME);
+                ((ReservationMgmFragment)getParentFragment()).startPaymentActivity();
             }
         });
 

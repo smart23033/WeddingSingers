@@ -33,10 +33,11 @@ public class PaymentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Intent intent = getIntent();
+        String fragmentName = intent.getStringExtra("fragmentName");
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        PaymentFragment paymentFragment = new PaymentFragment();
+        PaymentFragment paymentFragment = PaymentFragment.newInstance(fragmentName);
         ft.add(R.id.act_payment_fl_container,paymentFragment);
         ft.commit();
     }
