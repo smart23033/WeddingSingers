@@ -9,154 +9,18 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.reservationmgm.ReservedOneFragment">
 
-    <RelativeLayout
-        android:id="@+id/reserved_one_rl_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/reserved_one_rl_profile_margin_left"
-        android:layout_marginRight="@dimen/reserved_one_rl_profile_margin_right">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/reserved_one_riv_profile"
-            android:layout_width="@dimen/reserved_one_riv_profile_width"
-            android:layout_height="@dimen/reserved_one_riv_profile_height"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/reserved_one_riv_profile_margin_bottom"
-            android:layout_marginRight="@dimen/reserved_one_riv_profile_margin_right"
-            android:layout_marginTop="@dimen/reserved_one_riv_profile_margin_top"
-            android:paddingTop="@dimen/reserved_one_riv_profile_padding_top"
-            android:scaleType="fitCenter"
-            android:src="@drawable/view_profile_ic_person"
-            app:riv_corner_radius="@dimen/reserved_one_riv_profile_corner_radius"
-            app:riv_tile_mode="clamp" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_singer_name"
-            style="?android:attr/textAppearanceSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reserved_one_riv_profile"
-            android:layout_centerHorizontal="true"
-            android:text="singer name" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/reserved_one_rl_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/reserved_one_rl_info_margin_right"
-        android:layout_marginTop="@dimen/reserved_one_rl_info_margin_top"
-        android:layout_toRightOf="@+id/reserved_one_rl_profile">
-
-        <TextView
-            android:id="@+id/reserved_one_tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="location"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reserved_one_tv_location"
-            android:layout_marginTop="@dimen/reserved_one_tv__margin_top"
-            android:text="date"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_songs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/reserved_one_tv_date"
-            android:layout_marginTop="@dimen/reserved_one_tv__margin_top"
-            android:text="songs"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/reserved_one_rl_detail_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/reserved_one_rl_detail_info_margin_top"
-        android:layout_toRightOf="@+id/reserved_one_rl_info">
-
-        <TextView
-            android:id="@+id/reserved_one_tv_detail_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="seoul"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_detail_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reserved_one_tv_detail_location"
-            android:layout_marginTop="@dimen/reserved_one_tv__margin_top"
-            android:text="2016. 4. 29"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_detail_songs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/reserved_one_tv_detail_date"
-            android:layout_marginTop="@dimen/reserved_one_tv__margin_top"
-            android:text="Lose yourself - Eminem"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/reserved_one_rl_special"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/reserved_one_rl_info"
-        android:layout_alignStart="@+id/reserved_one_rl_info"
-        android:layout_below="@+id/reserved_one_rl_info"
-        android:layout_marginTop="2dp">
-
-        <TextView
-            android:id="@+id/reserved_one_tv_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="special"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_standard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reserved_one_tv_type"
-            android:layout_marginTop="2dp"
-            android:textSize="@dimen/reserved_one_tv_text_size"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/reserved_one_tv_special"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/reserved_one_tv_type"
-            android:layout_marginTop="2dp"
-            android:lines="5"
-            android:maxWidth="5dp"
-            android:minWidth="10dp"
-            android:scrollHorizontally="false"
-            android:text="special request"
-            android:textSize="@dimen/reserved_one_tv_text_size" />
-
-    </RelativeLayout>
+    <com.weddingsingers.wsapp.data.view.LargeProfileView
+        android:id="@+id/reserved_one_lpv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
         android:id="@+id/reserved_one_rl_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/reserved_one_rl_special"
-        android:layout_alignRight="@+id/reserved_one_rl_special"
-        android:layout_below="@+id/reserved_one_rl_special"
+        android:layout_alignEnd="@+id/reserved_one_lpv_profile"
+        android:layout_alignRight="@+id/reserved_one_lpv_profile"
+        android:layout_below="@+id/reserved_one_lpv_profile"
         android:layout_marginBottom="@dimen/reserved_one_rl_btn_group_margin_bottom"
         android:layout_marginRight="@dimen/reserved_one_rl_btn_group_margin_right">
 

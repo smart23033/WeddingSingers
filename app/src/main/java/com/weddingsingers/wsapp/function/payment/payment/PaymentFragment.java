@@ -30,10 +30,6 @@ public class PaymentFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.payment_riv_profile)
-    RoundedImageView singerImageView;
-
-
     public static PaymentFragment newInstance(String message) {
         PaymentFragment fragment = new PaymentFragment();
         Bundle args = new Bundle();
@@ -49,10 +45,6 @@ public class PaymentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_payment, container, false);
 
         ButterKnife.bind(this, view);
-
-        singerImageView.mutateBackground(true);
-        singerImageView.setOval(true);
-        singerImageView.setBackgroundColor(Color.LTGRAY);
 
         return view;
     }
@@ -92,5 +84,6 @@ public class PaymentFragment extends Fragment {
     private void moveReservedOneFragment(){
         getActivity().finish();
     }
+
 
 }

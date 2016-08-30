@@ -34,7 +34,7 @@
     <dimen name="search_tv_search_margin_right">90dp</dimen>
     <dimen name="search_tv_keyword_text_size">18sp</dimen>
 
-    <!--fragment_search_result-->
+    <!--fragment_search_result.xml-->
     <dimen name="search_result_rl_radio_margin_bottom">5dp</dimen>
     <dimen name="search_result_iv_filter_width">20dp</dimen>
     <dimen name="search_result_iv_filter_height">20dp</dimen>
@@ -180,20 +180,6 @@
     <dimen name="view_reserved_singer_btn_margin_left">5dp</dimen>
 
     <!--fragment_reserved_one.xml-->
-    <dimen name="reserved_one_rl_profile_margin_left">10dp</dimen>
-    <dimen name="reserved_one_rl_profile_margin_right">10dp</dimen>
-    <dimen name="reserved_one_riv_profile_width">55dp</dimen>
-    <dimen name="reserved_one_riv_profile_height">55dp</dimen>
-    <dimen name="reserved_one_riv_profile_margin_bottom">5dp</dimen>
-    <dimen name="reserved_one_riv_profile_margin_right">16dp</dimen>
-    <dimen name="reserved_one_riv_profile_margin_top">10dp</dimen>
-    <dimen name="reserved_one_riv_profile_padding_top">5dp</dimen>
-    <dimen name="reserved_one_riv_profile_corner_radius">30dp</dimen>
-    <dimen name="reserved_one_rl_info_margin_right">10dp</dimen>
-    <dimen name="reserved_one_rl_info_margin_top">10dp</dimen>
-    <dimen name="reserved_one_tv_text_size">12sp</dimen>
-    <dimen name="reserved_one_tv__margin_top">2dp</dimen>
-    <dimen name="reserved_one_rl_detail_info_margin_top">10dp</dimen>
     <dimen name="reserved_one_btn_width">60dp</dimen>
     <dimen name="reserved_one_btn_height">30dp</dimen>
     <dimen name="reserved_one_btn_margin_left">5dp</dimen>
@@ -204,20 +190,6 @@
 
     <!--fragment_cancel_reservation.xml-->
     <dimen name="cancel_reservation_tv_text_size">12sp</dimen>
-    <dimen name="cancel_reservation_rl_profile_margin_left">10dp</dimen>
-    <dimen name="cancel_reservation_rl_profile_margin_right">10dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_width">55dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_height">55dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_margin_bottom">5dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_margin_right">16dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_margin_top">10dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_padding_top">5dp</dimen>
-    <dimen name="cancel_reservation_riv_profile_corner_radius">30dp</dimen>
-    <dimen name="cancel_reservation_rl_info_margin_right">10dp</dimen>
-    <dimen name="cancel_reservation_rl_info_margin_top">10dp</dimen>
-    <dimen name="cancel_reservation_tv__margin_top">2dp</dimen>
-    <dimen name="cancel_reservation_rl_detail_info_margin_top">10dp</dimen>
-    <dimen name="cancel_reservation_rl_profile_margin_top">10dp</dimen>
     <dimen name="cancel_reservation_divider_vertical_margin">10dp</dimen>
     <dimen name="cancel_reservation_divider_height">1dp</dimen>
     <dimen name="cancel_reservation_rl_special_margin_top">2dp</dimen>
@@ -228,19 +200,6 @@
 
     <!--fragment_payment.xml-->
     <dimen name="payment_tv_text_size">12sp</dimen>
-    <dimen name="payment_rl_profile_margin_left">10dp</dimen>
-    <dimen name="payment_rl_profile_margin_right">10dp</dimen>
-    <dimen name="payment_riv_profile_width">55dp</dimen>
-    <dimen name="payment_riv_profile_height">55dp</dimen>
-    <dimen name="payment_riv_profile_margin_bottom">5dp</dimen>
-    <dimen name="payment_riv_profile_margin_right">16dp</dimen>
-    <dimen name="payment_riv_profile_margin_top">10dp</dimen>
-    <dimen name="payment_riv_profile_padding_top">5dp</dimen>
-    <dimen name="payment_riv_profile_corner_radius">30dp</dimen>
-    <dimen name="payment_rl_info_margin_right">10dp</dimen>
-    <dimen name="payment_rl_info_margin_top">10dp</dimen>
-    <dimen name="payment_tv__margin_top">2dp</dimen>
-    <dimen name="payment_rl_detail_info_margin_top">10dp</dimen>
     <dimen name="payment_rl_profile_margin_top">10dp</dimen>
     <dimen name="payment_divider_vertical_margin">10dp</dimen>
     <dimen name="payment_divider_height">1dp</dimen>
@@ -250,4 +209,22 @@
     <dimen name="payment_tv_caution_margin_top">10dp</dimen>
     <dimen name="payment_rl_btn_group_margin_top">40dp</dimen>
     <dimen name="payment_btn_remittance_margin_right">20dp</dimen>
+
+    <!--view_large_profile.xml-->
+    <dimen name="view_large_profile_rl_profile_margin_left">10dp</dimen>
+    <dimen name="view_large_profile_rl_profile_margin_right">10dp</dimen>
+    <dimen name="view_large_profile_riv_profile_width">55dp</dimen>
+    <dimen name="view_large_profile_riv_profile_height">55dp</dimen>
+    <dimen name="view_large_profile_riv_profile_margin_bottom">5dp</dimen>
+    <dimen name="view_large_profile_riv_profile_margin_right">16dp</dimen>
+    <dimen name="view_large_profile_riv_profile_margin_top">10dp</dimen>
+    <dimen name="view_large_profile_riv_profile_padding_top">5dp</dimen>
+    <dimen name="view_large_profile_riv_profile_corner_radius">30dp</dimen>
+    <dimen name="view_large_profile_rl_info_margin_right">10dp</dimen>
+    <dimen name="view_large_profile_rl_info_margin_top">10dp</dimen>
+    <dimen name="view_large_profile_tv_text_size">12sp</dimen>
+    <dimen name="view_large_profile_tv__margin_top">2dp</dimen>
+    <dimen name="view_large_profile_rl_detail_info_margin_top">10dp</dimen>
+
 </resources>
+

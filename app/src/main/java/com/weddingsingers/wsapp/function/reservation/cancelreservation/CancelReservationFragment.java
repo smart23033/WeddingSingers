@@ -29,10 +29,6 @@ public class CancelReservationFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.cancel_reservation_riv_profile)
-    RoundedImageView singerImageView;
-
-
     public static CancelReservationFragment newInstance(String message) {
         CancelReservationFragment fragment = new CancelReservationFragment();
         Bundle args = new Bundle();
@@ -48,10 +44,6 @@ public class CancelReservationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cancel_reservation, container, false);
 
         ButterKnife.bind(this, view);
-
-        singerImageView.mutateBackground(true);
-        singerImageView.setOval(true);
-        singerImageView.setBackgroundColor(Color.LTGRAY);
 
         return view;
     }

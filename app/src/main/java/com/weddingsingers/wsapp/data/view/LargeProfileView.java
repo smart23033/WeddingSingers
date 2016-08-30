@@ -4,9 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -16,33 +14,42 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by SJSJ on 2016-08-28.
+ * Created by Tacademy on 2016-08-30.
  */
-
-//Compound Widget
-public class ProfileView extends FrameLayout{
-
-    public ProfileView(Context context) {
-       this(context, null);
+public class LargeProfileView extends FrameLayout {
+    public LargeProfileView(Context context) {
+        this(context, null);
     }
 
-    public ProfileView(Context context, AttributeSet attrs) {
+    public LargeProfileView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    @BindView(R.id.view_profile_riv_profile)
+    @BindView(R.id.view_large_profile_riv_profile)
     RoundedImageView imageView = new RoundedImageView(getContext());
 
-    @BindView(R.id.view_profile_tv_singer_name)
+    @BindView(R.id.view_large_profile_tv_singer_name)
     TextView singerNameView;
 
-    @BindView(R.id.view_profile_tv_comment)
-    TextView commentView;
+    @BindView(R.id.view_large_profile_tv_detail_date)
+    TextView dateView;
+
+    @BindView(R.id.view_large_profile_tv_detail_location)
+    TextView locationView;
+
+    @BindView(R.id.view_large_profile_tv_detail_songs)
+    TextView songsView;
+
+    @BindView(R.id.view_large_profile_tv_standard)
+    TextView standardView;
+
+    @BindView(R.id.view_large_profile_tv_special)
+    TextView specialView;
 
     private void init(){
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.view_profile,this);
+        inflater.inflate(R.layout.view_large_profile,this);
 
         ButterKnife.bind(this);
 
@@ -50,5 +57,7 @@ public class ProfileView extends FrameLayout{
         imageView.setOval(true);
         imageView.setBackgroundColor(Color.LTGRAY);
     }
+
+
 
 }

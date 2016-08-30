@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.view.LargeProfileView;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 
@@ -31,8 +32,8 @@ public class ReservedOneFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.reserved_one_riv_profile)
-    RoundedImageView singerImageView;
+    @BindView(R.id.reserved_one_lpv_profile)
+    LargeProfileView singerView;
 
     public static ReservedOneFragment newInstance(String message) {
         ReservedOneFragment fragment = new ReservedOneFragment();
@@ -49,10 +50,6 @@ public class ReservedOneFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reserved_one, container, false);
 
         ButterKnife.bind(this,view);
-
-        singerImageView.mutateBackground(true);
-        singerImageView.setOval(true);
-        singerImageView.setBackgroundColor(Color.LTGRAY);
 
         return view;
     }
