@@ -5,4 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".function.payment.payment.PaymentActivity">
 
+    <FrameLayout
+        android:id="@+id/payment_fl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/payment_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:title="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="WeddingSingers" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/act_payment_fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/payment_fl_toolbar" />
+
 </RelativeLayout>
