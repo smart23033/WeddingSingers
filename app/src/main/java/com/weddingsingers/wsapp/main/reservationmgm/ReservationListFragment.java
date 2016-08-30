@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
 import com.weddingsingers.wsapp.data.SingerList;
+import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
+import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 
 import butterknife.BindView;
@@ -68,6 +70,22 @@ public class ReservationListFragment extends Fragment {
             public void onAdapterPayBtnClick(View view, SingerList singerList, int position) {
                 Toast.makeText(getContext(),"SingerList : " + singerList.getSingerName(),Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), PaymentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mAdapter.setOnAdapterChatBtnClickListener(new ReservationListAdapter.OnAdapterChatBtnClickListener() {
+            @Override
+            public void onAdapterChatBtnClick(View view, SingerList singerList, int position) {
+                Intent intent = new Intent(getContext(), ChattingActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mAdapter.setOnAdapterCancelBtnClickListener(new ReservationListAdapter.OnAdapterCancelBtnClickListener() {
+            @Override
+            public void onAdapterCancelBtnClick(View view, SingerList singerList, int position) {
+                Intent intent = new Intent(getContext(), CancelReservationActivity.class);
                 startActivity(intent);
             }
         });

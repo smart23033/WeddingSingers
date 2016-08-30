@@ -48,4 +48,5 @@ public class MyPageCustomerFragment extends Fragment {
         return view;
     }
 
+
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 
 import butterknife.BindView;
@@ -59,6 +60,12 @@ public class ReservedOneFragment extends Fragment {
     @OnClick(R.id.reserved_one_btn_cancel)
     void onCancelBtnClicked(){
         startActivity(new Intent(getActivity(),CancelReservationActivity.class));
+    }
+
+    @OnClick(R.id.view_reserved_singer_btn_chat)
+    void onChatBtnClicked(){
+        startActivity(new Intent(getActivity(), ChattingActivity.class));
+        getActivity().finish();
     }
 
 }

@@ -37,15 +37,42 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.view_reserved_singer_btn_pay)
     Button payBtn;
 
+    @BindView(R.id.view_reserved_singer_btn_cancel)
+    Button cancelBtn;
+
+    @BindView(R.id.view_reserved_singer_btn_chat)
+    Button chatBtn;
+
     public interface OnPayBtnClickListener {
         public void onPayBtnClick(View view, SingerList singerList, int position);
     }
 
-
-    OnPayBtnClickListener listener;
-    public void setOnPayBtnClickListener(OnPayBtnClickListener listener) {
-        this.listener = listener;
+    OnPayBtnClickListener payBtnListener;
+    public void setOnPayBtnClickListener(OnPayBtnClickListener payBtnListener) {
+        this.payBtnListener = payBtnListener;
     }
+
+
+
+    public interface OnChatBtnClickListener {
+        public void onChatBtnClick(View view, SingerList singerList, int position);
+    }
+
+    OnChatBtnClickListener chatBtnListener;
+    public void setOnChatBtnClickListener(OnChatBtnClickListener chatBtnListener) {
+        this.chatBtnListener = chatBtnListener;
+    }
+
+
+    public interface OnCancelBtnClickListener {
+        public void onCancelBtnClick(View view, SingerList singerList, int position);
+    }
+
+    OnCancelBtnClickListener cancelBtnListener;
+    public void setOnCancelBtnClickListener(OnCancelBtnClickListener cancelBtnListener) {
+        this.cancelBtnListener = cancelBtnListener;
+    }
+
 
     public SingerListViewHolder(View itemView) {
         super(itemView);
@@ -59,11 +86,31 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (listener != null) {
-                    listener.onPayBtnClick(view, singerList, getAdapterPosition());
+                if (payBtnListener != null) {
+                    payBtnListener.onPayBtnClick(view, singerList, getAdapterPosition());
                 }
             }
         });
+
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (chatBtnListener != null) {
+                    chatBtnListener.onChatBtnClick(view, singerList, getAdapterPosition());
+                }
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cancelBtnListener != null) {
+                    cancelBtnListener.onCancelBtnClick(view, singerList, getAdapterPosition());
+                }
+            }
+        });
+
+
     }
 
 

@@ -16,8 +16,11 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewHolder>
-    implements SingerListViewHolder.OnPayBtnClickListener{
+public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewHolder> implements
+        SingerListViewHolder.OnPayBtnClickListener ,
+        SingerListViewHolder.OnCancelBtnClickListener,
+        SingerListViewHolder.OnChatBtnClickListener{
+
     List<SingerList> items = new ArrayList<>();
 
     public void add(SingerList singerList) {
@@ -46,20 +49,54 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
     }
 
 
+
     public interface OnAdapterPayBtnClickListener{
         public void onAdapterPayBtnClick(View view, SingerList singerList, int position);
     }
 
-    OnAdapterPayBtnClickListener listener;
-    public void setOnAdapterPayBtnClickListener(OnAdapterPayBtnClickListener listener){
-        this.listener = listener;
+    OnAdapterPayBtnClickListener payBtnListener;
+    public void setOnAdapterPayBtnClickListener(OnAdapterPayBtnClickListener payBtnListener){
+        this.payBtnListener = payBtnListener;
+    }
+
+
+    public interface OnAdapterChatBtnClickListener{
+        public void onAdapterChatBtnClick(View view, SingerList singerList, int position);
+    }
+
+    OnAdapterChatBtnClickListener chatBtnListener;
+    public void setOnAdapterChatBtnClickListener(OnAdapterChatBtnClickListener chatBtnListener){
+        this.chatBtnListener = chatBtnListener;
+    }
+
+
+    public interface OnAdapterCancelBtnClickListener{
+        public void onAdapterCancelBtnClick(View view, SingerList singerList, int position);
+    }
+
+    OnAdapterCancelBtnClickListener cancelBtnListener;
+    public void setOnAdapterCancelBtnClickListener(OnAdapterCancelBtnClickListener cancelBtnListener){
+        this.cancelBtnListener = cancelBtnListener;
     }
 
     @Override
     public void onPayBtnClick(View view, SingerList singerList, int position) {
-        if(listener != null){
-            listener.onAdapterPayBtnClick(view,singerList,position);
+        if(payBtnListener != null){
+            payBtnListener.onAdapterPayBtnClick(view,singerList,position);
         }
+    }
 
+    @Override
+    public void onCancelBtnClick(View view, SingerList singerList, int position) {
+        if(cancelBtnListener != null){
+            cancelBtnListener.onAdapterCancelBtnClick(view,singerList,position);
+        }
+    }
+
+    @Override
+    public void onChatBtnClick(View view, SingerList singerList, int position) {
+        if(chatBtnListener != null){
+            chatBtnListener.onAdapterChatBtnClick(view,singerList,position);
+        }
     }
 }
