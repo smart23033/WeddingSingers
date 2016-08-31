@@ -10,7 +10,7 @@
         android:id="@+id/view_reserved_customer_ev_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="@dimen/view_reserved_customer_ev_profile_margin_top" />
 
 
     <Button
@@ -33,7 +33,7 @@
         android:layout_marginLeft="@dimen/view_reserved_customer_btn_margin_left"
         android:padding="@dimen/view_reserved_customer_btn_padding"
         android:text="response"
-        android:textSize="@dimen/view_reserved_customer_btn_text_size" />
+        android:textSize="8sp" />
 
 
 </RelativeLayout>

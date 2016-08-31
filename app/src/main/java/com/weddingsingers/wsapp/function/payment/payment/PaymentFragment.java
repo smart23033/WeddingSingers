@@ -16,7 +16,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.Payment;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
+import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -72,7 +73,11 @@ public class PaymentFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservedOneFragment();
+                        if(message.equals("DetailScheduleFragment")){
+                            moveDetailScheduleFragment();
+                        }else {
+                            moveReservedOneFragment();
+                        }
                     }
                 });
         dialog = builder.create();
@@ -88,11 +93,20 @@ public class PaymentFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservedOneFragment();
+                        if(message.equals("DetailScheduleFragment")){
+                            moveDetailScheduleFragment();
+                        }else {
+                            moveReservedOneFragment();
+                        }
                     }
                 });
         dialog = builder.create();
         dialog.show();
+    }
+
+//    프레그먼트 이동 + 액티비티 하나 띄워줘야 함.
+    private void moveDetailScheduleFragment(){
+        getActivity().startActivity(new Intent(getContext(),DetailScheduleActivity.class));
     }
 
     private void moveReservedOneFragment(){

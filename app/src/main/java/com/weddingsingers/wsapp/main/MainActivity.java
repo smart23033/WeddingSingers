@@ -38,6 +38,7 @@ import com.weddingsingers.wsapp.main.community.PostListFragment;
 import com.weddingsingers.wsapp.main.home.MainFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageCustomerFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageSingerFragment;
+import com.weddingsingers.wsapp.main.mypage.SingerMyPageFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
@@ -127,6 +128,11 @@ public class MainActivity extends AppCompatActivity
                     titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                     break;
                 }
+                case FRAG_MY_PAGE: {
+                    changeFragment(new SingerMyPageFragment());
+                    titleTextView.setText(getResources().getString(R.string.nav_mypage));
+                    break;
+                }
                 default:
                     break;
             }
@@ -194,8 +200,8 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_reservation_mgm: {
-                changeNavMenu(new ReservationMgmFragment());
-//                changeNavMenu(new ReservedCustomerFragment());
+//                changeNavMenu(new ReservationMgmFragment());
+                changeNavMenu(new ReservedCustomerFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                 return true;
             }

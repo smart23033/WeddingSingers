@@ -1,6 +1,8 @@
 package com.weddingsingers.wsapp.main.reservationmgm;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,8 @@ import android.view.ViewGroup;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
+import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +25,9 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class ReservedCustomerFragment extends Fragment {
+
+    public static final int FRAG_RESERVED_CUSTOMER = 320;
+
 
     @BindView(R.id.reserved_customer_rv_list)
     RecyclerView recyclerView;
@@ -53,7 +60,24 @@ public class ReservedCustomerFragment extends Fragment {
         mAdapter.setOnAdapterResponseBtnClickListener(new ReservedCustomerListAdapter.OnAdapterResponseBtnClickListener() {
             @Override
             public void onAdapterResponseBtnClick(View view, Estimate profile, int position) {
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Response")
+                        .setMessage("Will you accept customer's request?")
+                        .setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                movePaymentActivity();                }
+                        });
 
+                builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        moveMainActivity();
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -79,4 +103,17 @@ public class ReservedCustomerFragment extends Fragment {
             mAdapter.add(estimate);
         }
     }
+
+
+    private void moveMainActivity(){
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
+    }
+
+    private void movePaymentActivity(){
+        Intent intent = new Intent(getActivity(), PaymentActivity.class);
+        intent.putExtra("fragmentName", "DetailScheduleFragment");
+        startActivityForResult(intent,FRAG_RESERVED_CUSTOMER);
+    }
+
 }

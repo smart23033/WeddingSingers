@@ -246,6 +246,17 @@
     <dimen name="view_reserved_customer_btn_margin_left">5dp</dimen>
     <dimen name="view_reserved_customer_btn_padding">0dp</dimen>
     <dimen name="view_reserved_customer_btn_text_size">10sp</dimen>
+    <dimen name="view_reserved_customer_ev_profile_margin_top">10dp</dimen>
 
+
+    <!--fragment_cancel_schedule.xml-->
+    <dimen name="cancel_schedule_tv_text_size">12sp</dimen>
+    <dimen name="cancel_schedule_divider_vertical_margin">10dp</dimen>
+    <dimen name="cancel_schedule_divider_height">1dp</dimen>
+    <dimen name="cancel_schedule_rl_special_margin_top">2dp</dimen>
+    <dimen name="cancel_schedule_tv_special_max_width">180dp</dimen>
+    <dimen name="cancel_schedule_tv_special_min_width">10dp</dimen>
+    <dimen name="cancel_schedule_tv_caution_margin_top">10dp</dimen>
+    <dimen name="cancel_schedule_btn_cancel_margin_top">40dp</dimen>
 </resources>
 

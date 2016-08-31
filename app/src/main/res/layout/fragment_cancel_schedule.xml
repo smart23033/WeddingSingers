@@ -1,13 +1,119 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".function.schedulemgm.schedulemgm.CancelScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:id="@+id/cancel_schedule_rl_statement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/cancel_schedule_tv_statement"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="detail schedule info"
+            android:textColor="@color/colorPrimaryPink" />
+
+    </RelativeLayout>
+
+    <com.weddingsingers.wsapp.data.view.EstimateView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancel_schedule_ev_profile"
+        android:layout_below="@id/cancel_schedule_rl_statement"
+        />
+
+    <View
+    android:id="@+id/cancel_schedule_divider"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cancel_schedule_divider_height"
+    android:layout_below="@id/cancel_schedule_ev_profile"
+    android:layout_marginBottom="@dimen/cancel_schedule_divider_vertical_margin"
+    android:layout_marginTop="@dimen/cancel_schedule_divider_vertical_margin"
+    android:background="@color/colorPrimaryPink" />
+
+    <RelativeLayout
+        android:id="@+id/cancel_schedule_rl_deposit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cancel_schedule_divider"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/cancel_schedule_tv_deposit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="charge"
+            android:textColor="@color/colorPrimaryPink"
+            android:textSize="@dimen/cancel_schedule_tv_text_size" />
+
+        <TextView
+            android:id="@+id/cancel_schedule_tv_detail_deposit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="\ 24,000"
+            android:textSize="@dimen/cancel_schedule_tv_text_size" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/cancel_schedule_second_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cancel_schedule_divider_height"
+        android:layout_below="@id/cancel_schedule_rl_deposit"
+        android:layout_marginBottom="@dimen/cancel_schedule_divider_vertical_margin"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryPink" />
+
+    <RelativeLayout
+        android:id="@+id/cancel_schedule_rl_refund"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cancel_schedule_second_divider"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/cancel_schedule_tv_refund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="charge"
+            android:textColor="@color/colorPrimaryPink"
+            android:textSize="@dimen/cancel_schedule_tv_text_size" />
+
+        <TextView
+            android:id="@+id/cancel_schedule_tv_detail_refund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="\ 0"
+            android:textSize="@dimen/cancel_schedule_tv_text_size" />
+
+        <TextView
+            android:id="@+id/cancel_schedule_tv_caution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/cancel_schedule_tv_detail_refund"
+            android:layout_marginTop="@dimen/cancel_schedule_tv_caution_margin_top"
+            android:text="* no refund, and get penalty"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/cancel_schedule_tv_text_size" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/cancel_schedule_btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cancel_schedule_rl_refund"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/cancel_schedule_btn_cancel_margin_top"
+        android:text="CANCEL" />
+</RelativeLayout>
