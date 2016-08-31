@@ -52,8 +52,6 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         this.payBtnListener = payBtnListener;
     }
 
-
-
     public interface OnChatBtnClickListener {
         public void onChatBtnClick(View view, SingerList singerList, int position);
     }
