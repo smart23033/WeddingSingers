@@ -41,7 +41,7 @@
         android:layout_height="@dimen/view_detail_schedule_btn_height"
         android:layout_below="@+id/view_detail_schedule_lpv_profile"
         android:layout_marginLeft="@dimen/view_detail_schedule_btn_margin_left"
-        android:layout_toLeftOf="@id/view_detail_schedule_btn_chat"
+        android:layout_toLeftOf="@+id/view_detail_schedule_btn_chat"
         android:padding="@dimen/view_detail_schedule_btn_padding"
         android:text="cancel"
         android:textSize="@dimen/view_detail_schedule_btn_text_size" />

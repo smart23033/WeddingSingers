@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.ScheduleList;
+import com.weddingsingers.wsapp.data.LargeProfile;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 
 import butterknife.BindView;
@@ -53,7 +53,7 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterCancelBtnClickListener(new ScheduleListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
-            public void onAdapterCancelBtnClick(View view, ScheduleList singerList, int position) {
+            public void onAdapterCancelBtnClick(View view, LargeProfile profile, int position) {
                 Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
                 startActivity(intent);
             }
@@ -61,12 +61,11 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterChatBtnClickListener(new ScheduleListAdapter.OnAdapterChatBtnClickListener() {
             @Override
-            public void onAdapterChatBtnClick(View view, ScheduleList scheduleList, int position) {
+            public void onAdapterChatBtnClick(View view, LargeProfile profile, int position) {
                 Intent intent = new Intent(getContext(), ChattingActivity.class);
                 startActivity(intent);
             }
         });
-
 
         LinearLayoutManager manager =
                 new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
@@ -94,13 +93,13 @@ public class DetailScheduleFragment extends Fragment {
 
     private void initData() {
         for (int i = 0; i < 20; i++) {
-            ScheduleList scheduleList = new ScheduleList();
-            scheduleList.setLocation("Seoul");
-            scheduleList.setDate("2016. 4. 26");
-            scheduleList.setCustomerName("customer name");
-            scheduleList.setSongs("Thriller - Michael Jackson");
-            scheduleList.setSpecial("special Request");
-            mAdapter.add(scheduleList);
+            LargeProfile profile = new LargeProfile();
+            profile.setLocation("Seoul");
+            profile.setDate("2016. 4. 26");
+            profile.setUserName("customer name");
+            profile.setSongs("Thriller - Michael Jackson");
+            profile.setSpecial("special Request");
+            mAdapter.add(profile);
         }
     }
 

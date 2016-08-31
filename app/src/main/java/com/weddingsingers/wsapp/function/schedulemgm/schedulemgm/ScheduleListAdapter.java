@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.ScheduleList;
+import com.weddingsingers.wsapp.data.LargeProfile;
 import com.weddingsingers.wsapp.data.viewholder.ScheduleListViewHolder;
 
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         ScheduleListViewHolder.OnCancelBtnClickListener,
         ScheduleListViewHolder.OnChatBtnClickListener
 {
-    List<ScheduleList> items = new ArrayList<>();
+    List<LargeProfile> items = new ArrayList<>();
 
-    public void add(ScheduleList s){
-        items.add(s);
+    public void add(LargeProfile p){
+        items.add(p);
         notifyDataSetChanged();
     }
 
@@ -33,6 +33,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         ScheduleListViewHolder holder = new ScheduleListViewHolder(view);
         holder.setOnCancelBtnClickListener(this);
         holder.setOnChatBtnClickListener(this);
+
         return holder;
     }
 
@@ -47,7 +48,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
     }
 
     public interface OnAdapterChatBtnClickListener {
-        public void onAdapterChatBtnClick(View view, ScheduleList scheduleList, int position);
+        public void onAdapterChatBtnClick(View view, LargeProfile profile, int position);
     }
 
 
@@ -58,7 +59,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
 
     public interface OnAdapterCancelBtnClickListener{
-        public void onAdapterCancelBtnClick(View view, ScheduleList singerList, int position);
+        public void onAdapterCancelBtnClick(View view, LargeProfile profile, int position);
     }
 
     OnAdapterCancelBtnClickListener cancelBtnListener;
@@ -67,16 +68,16 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
     }
 
     @Override
-    public void onCancelBtnClick(View view, ScheduleList scheduleList, int position) {
+    public void onCancelBtnClick(View view,LargeProfile profile, int position) {
         if(cancelBtnListener != null){
-            cancelBtnListener.onAdapterCancelBtnClick(view,scheduleList,position);
+            cancelBtnListener.onAdapterCancelBtnClick(view,profile,position);
         }
     }
 
     @Override
-    public void onChatBtnClick(View view, ScheduleList scheduleList, int position) {
+    public void onChatBtnClick(View view, LargeProfile profile, int position) {
         if(chatBtnListener != null){
-            chatBtnListener.onAdapterChatBtnClick(view,scheduleList,position);
+            chatBtnListener.onAdapterChatBtnClick(view,profile,position);
         }
     }
 

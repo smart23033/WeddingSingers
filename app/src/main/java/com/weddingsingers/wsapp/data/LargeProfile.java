@@ -5,23 +5,22 @@ import java.io.Serializable;
 /**
  * Created by Tacademy on 2016-08-31.
  */
-
-//DetailScheduleFragment를 위한 Data
-public class ScheduleList implements Serializable {
-    private String customerImage;
+//씨발 일정관리랑 공급자 예약관리 리싸이클러 뷰 같이쓰는것 떄매 사용
+public class LargeProfile implements Serializable {
+    private String userImage;
     private String location;
     private String date;
     private String songs;
-    private String customerName;
-    private String standard;
+    private String userName;
     private String special;
+    private String standard;
 
-    public String getCustomerImage() {
-        return customerImage;
+    public String getUserImage() {
+        return userImage;
     }
 
-    public void setCustomerImage(String customerImage) {
-        this.customerImage = customerImage;
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public String getLocation() {
@@ -48,20 +47,12 @@ public class ScheduleList implements Serializable {
         this.songs = songs;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getStandard() {
-        return standard;
-    }
-
-    public void setStandard(String standard) {
-        this.standard = standard;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getSpecial() {
@@ -70,5 +61,13 @@ public class ScheduleList implements Serializable {
 
     public void setSpecial(String special) {
         this.special = special;
+    }
+
+    public String getStandard() {
+        return standard;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
     }
 }

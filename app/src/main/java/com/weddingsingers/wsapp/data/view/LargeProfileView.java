@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.LargeProfile;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +28,7 @@ public class LargeProfileView extends FrameLayout {
     }
 
     @BindView(R.id.view_large_profile_riv_profile)
-    RoundedImageView imageView = new RoundedImageView(getContext());
+    RoundedImageView userImageView = new RoundedImageView(getContext());
 
     @BindView(R.id.view_large_profile_tv_user_name)
     TextView userNameView;
@@ -53,11 +54,21 @@ public class LargeProfileView extends FrameLayout {
 
         ButterKnife.bind(this);
 
-        imageView.mutateBackground(true);
-        imageView.setOval(true);
-        imageView.setBackgroundColor(Color.LTGRAY);
+        userImageView.mutateBackground(true);
+        userImageView.setOval(true);
+        userImageView.setBackgroundColor(Color.LTGRAY);
     }
 
+    LargeProfile profile;
 
+    public void setLargeProfile(LargeProfile profile){
+        this.profile = profile;
 
+//        userImageView
+        userNameView.setText(profile.getUserName());
+        dateView.setText(profile.getDate());
+        locationView.setText(profile.getLocation());
+        standardView.setText(profile.getStandard());
+        specialView.setText(profile.getSpecial());
+    }
 }
