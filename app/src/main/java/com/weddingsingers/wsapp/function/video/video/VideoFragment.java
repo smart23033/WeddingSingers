@@ -1,16 +1,21 @@
 package com.weddingsingers.wsapp.function.video.video;
 
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.media.session.MediaControllerCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.weddingsingers.wsapp.R;
@@ -36,13 +41,18 @@ public class VideoFragment extends Fragment {
     VideoView videoView;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_video, container, false);
 
         ButterKnife.bind(this,view);
-
 
         videoView.setVideoPath("https://www.youtube.com/watch?v=zQhZUGNR6l4");
         final MediaController mediaController = new MediaController(getContext());
@@ -60,5 +70,34 @@ public class VideoFragment extends Fragment {
 
     void moveReservationActivity(){
         startActivity(new Intent(getContext(), ReservationActivity.class));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                Toast.makeText(getContext(), "VideoActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
+                return true;
+            }
+            case R.id.video_menu_favorite: {
+                if(!item.isChecked()){
+                    item.setChecked(true);
+                    item.setIcon(R.drawable.search_ic_favorite_on);
+                }else{
+                    item.setChecked(false);
+                    item.setIcon(R.drawable.search_ic_favorite_off);
+                }
+                return true;
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.video_menu,menu);
     }
 }

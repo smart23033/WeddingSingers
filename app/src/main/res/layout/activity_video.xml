@@ -24,13 +24,12 @@
 
     </FrameLayout>
 
-
     <FrameLayout
         android:id="@+id/act_video_fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/video_fl_toolbar" />
+        android:layout_below="@id/video_fl_toolbar" />
 
 </RelativeLayout>

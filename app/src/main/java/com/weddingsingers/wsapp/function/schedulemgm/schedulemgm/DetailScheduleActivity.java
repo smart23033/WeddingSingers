@@ -53,12 +53,9 @@ public class DetailScheduleActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    MenuItem searchMenuItem;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu,menu);
-        searchMenuItem = menu.findItem(R.id.main_menu_search);
-        searchMenuItem.setVisible(false);
         return true;
     }
 
