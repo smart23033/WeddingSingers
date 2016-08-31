@@ -3,6 +3,7 @@ package com.weddingsingers.wsapp.main.schedulemgm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.HolidayMgmActivity;
 import com.weddingsingers.wsapp.main.MainActivity;
 
 import java.util.Calendar;
@@ -32,6 +34,12 @@ public class ScheduleMgmFragment extends Fragment {
     RecyclerView recyclerView;
 
     CalendarListAdapter mAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     public ScheduleMgmFragment() {
         // Required empty public constructor
@@ -67,12 +75,14 @@ public class ScheduleMgmFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.schedule_menu_plus){
+            getActivity().startActivity(new Intent(getActivity(), HolidayMgmActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.schedule_menu,menu);
     }
 
     private void initData(){

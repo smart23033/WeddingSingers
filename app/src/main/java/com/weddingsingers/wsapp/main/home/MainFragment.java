@@ -1,12 +1,18 @@
 package com.weddingsingers.wsapp.main.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,6 +20,8 @@ import android.widget.ImageView;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.function.search.search.SearchActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +37,12 @@ public class MainFragment extends Fragment {
 
     public MainFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -67,4 +81,18 @@ public class MainFragment extends Fragment {
         }
     };
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.main_menu_search) {
+            startActivity(new Intent(getContext(), SearchActivity.class));
+            return true;
+            }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main_menu,menu);
+    }
 }

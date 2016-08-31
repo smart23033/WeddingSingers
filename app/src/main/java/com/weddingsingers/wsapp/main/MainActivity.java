@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_home: {
                 changeNavMenu(new MainFragment());
                 titleTextView.setText(getResources().getString(R.string.app_name));
-                searchMenuItem.setVisible(true);
                 return true;
             }
             case R.id.nav_mypage: {
@@ -232,8 +231,6 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.main_fl_container, f)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
-        searchMenuItem.setVisible(false);
-
     }
 
     private void changeFragment(Fragment f) {
@@ -242,30 +239,15 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    MenuItem searchMenuItem;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        searchMenuItem = menu.findItem(R.id.main_menu_search);
-        return true;
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                if (drawer.isDrawerOpen(GravityCompat.START)) {
-                    drawer.closeDrawer(GravityCompat.START);
-                } else {
-                    drawer.openDrawer(GravityCompat.START);
-                }
-                return true;
+        if(item.getItemId() == android.R.id.home){
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                drawer.openDrawer(GravityCompat.START);
             }
-            case R.id.main_menu_search: {
-                startActivity(new Intent(MainActivity.this, SearchActivity.class));
-                return true;
-            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -4,6 +4,7 @@ package com.weddingsingers.wsapp.main.reservationmgm;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -43,7 +44,6 @@ public class ReservationMgmFragment extends Fragment {
     public ReservationMgmFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
