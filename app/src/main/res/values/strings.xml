@@ -40,4 +40,7 @@
 
     <!--schedule_menu.xml-->
     <string name="schedule_menu_plus">휴일 관리</string>
+
+    <!--search_menu.xml-->
+    <string name="search_menu_filter">filter</string>
 </resources>

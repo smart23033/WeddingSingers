@@ -4,7 +4,11 @@ package com.weddingsingers.wsapp.function.search.search;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -82,4 +86,30 @@ public class FilterFragment extends Fragment {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.search_menu_filter) {
+                item.setIcon(R.drawable.search_ic_filter_off);
+                FragmentTransaction ft = getActivity().getSupportFragmentManager()
+                        .beginTransaction();
+                RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+                ft.replace(R.id.act_search_fl_container, recentSearchFragment);
+                ft.commit();
+            }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.search_menu,menu);
+        MenuItem filterMenuItem = menu.findItem(R.id.search_menu_filter);
+        filterMenuItem.setIcon(R.drawable.search_ic_filter_on);
+    }
 }

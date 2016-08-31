@@ -53,60 +53,41 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home: {
                 Toast.makeText(SearchActivity.this,"SearchActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
             }
-             case R.id.main_menu_search: {
-                 Toast.makeText(SearchActivity.this,"SearchActivity's Search Button Clicked", Toast.LENGTH_SHORT).show();
+            case R.id.main_menu_search: {
+                Toast.makeText(SearchActivity.this, "SearchActivity's Search Button Clicked", Toast.LENGTH_SHORT).show();
 
-                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_search_fl_container);
+                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_search_fl_container);
 
-                if(currentFragment.getTag() != SEARCH_RESULT_FRAGMENT) {
+                if (currentFragment.getTag() != SEARCH_RESULT_FRAGMENT) {
 //               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
                     keywordView.setText(keywordInput.getText());
                     keywordView.setVisibility(View.VISIBLE);
                     keywordInput.setText("");
                     keywordInput.setVisibility(View.GONE);
-                    filterMenuItem.setVisible(false);
 
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
                     SearchResultFragment searchResultFragment = new SearchResultFragment();
-                    ft.replace(R.id.act_search_fl_container, searchResultFragment , SEARCH_RESULT_FRAGMENT);
+                    ft.replace(R.id.act_search_fl_container, searchResultFragment, SEARCH_RESULT_FRAGMENT);
                     ft.commit();
-                }else {
+                } else {
 //               searchResultFragment에서 search버튼 누를 때
                     keywordView.setText("");
                     keywordView.setVisibility(View.GONE);
                     keywordInput.setVisibility(View.VISIBLE);
-                    filterMenuItem.setVisible(true);
-
-                    FragmentTransaction ft = getSupportFragmentManager()
-                            .beginTransaction();
-                    RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-                    ft.replace(R.id.act_search_fl_container, recentSearchFragment, RECENT_SEARCH_FRAGMENT);
-                    ft.commit();
-                }
-                 return true;
-             }
-            case R.id.search_menu_filter:{
-                if(!item.isChecked()){
-                    item.setChecked(true);
-                    item.setIcon(R.drawable.search_ic_filter_on);
-
-                    FragmentTransaction ft = getSupportFragmentManager()
-                            .beginTransaction();
-                      FilterFragment filterFragment = new FilterFragment();
-                    ft.replace(R.id.act_search_fl_container, filterFragment, RECENT_SEARCH_FRAGMENT);
-                    ft.commit();
-
-                }else{
-                    item.setChecked(false);
-                    item.setIcon(R.drawable.search_ic_filter_off);
 
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
@@ -116,21 +97,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 return true;
             }
-         }
+        }
         return super.onOptionsItemSelected(item);
     }
-
-    MenuItem filterMenuItem;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        filterMenuItem = menu.findItem(R.id.search_menu_filter);
-        filterMenuItem.setVisible(true);
-//        서치뷰 넣을지 생각좀 해보라
-        return true;
-    }
-
-
-
-
 }
