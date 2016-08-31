@@ -30,7 +30,7 @@
             android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
             android:layout_marginRight="@dimen/schedule_mgm_tv_margin_right"
             android:layout_toRightOf="@id/schedule_mgm_iv_none"
-            android:text="accept" />
+            android:text="none" />
 
         <ImageView
             android:id="@+id/schedule_mgm_iv_reserved"
@@ -47,7 +47,7 @@
             android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
             android:layout_marginRight="@dimen/schedule_mgm_tv_margin_right"
             android:layout_toRightOf="@id/schedule_mgm_iv_reserved"
-            android:text="wait" />
+            android:text="reserved" />
 
         <ImageView
             android:id="@+id/schedule_mgm_iv_holiday"
@@ -63,7 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
             android:layout_toRightOf="@id/schedule_mgm_iv_holiday"
-            android:text="reject" />
+            android:text="holiday"
+            android:singleLine="true"
+            android:ellipsize="end" />
 
     </RelativeLayout>
 

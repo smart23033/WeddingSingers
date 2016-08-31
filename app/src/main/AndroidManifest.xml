@@ -58,7 +58,8 @@
         <activity android:name=".function.mypage.mypage.UserInfoActivity" />
         <activity android:name=".function.mypage.mypoint.MyPointActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
-        <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity"></activity>
+        <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
+        <activity android:name=".function.schedulemgm.schedulemgm.HolidayMgmActivity"></activity>
     </application>
 
 </manifest>

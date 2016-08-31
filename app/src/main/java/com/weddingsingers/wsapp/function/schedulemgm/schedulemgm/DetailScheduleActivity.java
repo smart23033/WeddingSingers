@@ -61,4 +61,5 @@ public class DetailScheduleActivity extends AppCompatActivity {
         searchMenuItem.setVisible(false);
         return true;
     }
+
 }
