@@ -50,20 +50,20 @@
             android:text="reserved" />
 
         <ImageView
-            android:id="@+id/schedule_mgm_iv_holiday"
+            android:id="@+id/schedule_mgm_iv_day_off"
             android:layout_width="@dimen/schedule_mgm_iv_width"
             android:layout_height="@dimen/schedule_mgm_iv_height"
             android:layout_toRightOf="@id/schedule_mgm_tv_reserved"
             android:background="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/schedule_mgm_tv_holiday"
+            android:id="@+id/schedule_mgm_tv_day_of"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/schedule_mgm_tv_margin_left"
-            android:layout_toRightOf="@id/schedule_mgm_iv_holiday"
-            android:text="holiday"
+            android:layout_toRightOf="@id/schedule_mgm_iv_day_off"
+            android:text="day off"
             android:singleLine="true"
             android:ellipsize="end" />
 

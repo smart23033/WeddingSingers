@@ -16,9 +16,8 @@ import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DayOffActivity;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
-import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.HolidayMgmActivity;
-import com.weddingsingers.wsapp.main.MainActivity;
 
 import java.util.Calendar;
 
@@ -76,7 +75,7 @@ public class ScheduleMgmFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.schedule_menu_plus){
-            getActivity().startActivity(new Intent(getActivity(), HolidayMgmActivity.class));
+            getActivity().startActivity(new Intent(getActivity(), DayOffActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
