@@ -62,7 +62,6 @@ public class ReservedOneFragment extends Fragment {
     @OnClick(R.id.reserved_one_btn_chat)
     void onChatBtnClicked(){
         startActivity(new Intent(getActivity(), ChattingActivity.class));
-        getActivity().finish();
     }
 
 }
