@@ -38,4 +38,6 @@
     <string name="reservation_list">예약 현황</string>
     <string name="reserved_one">예약 완료</string>
 
+    <!--schedule_menu.xml-->
+    <string name="schedule_menu_plus">휴일 관리</string>
 </resources>
