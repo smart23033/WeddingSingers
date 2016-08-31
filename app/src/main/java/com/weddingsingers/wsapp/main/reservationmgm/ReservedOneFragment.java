@@ -2,16 +2,14 @@ package com.weddingsingers.wsapp.main.reservationmgm;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.view.LargeProfileView;
+import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 
@@ -31,9 +29,6 @@ public class ReservedOneFragment extends Fragment {
     public ReservedOneFragment() {
         // Required empty public constructor
     }
-
-    @BindView(R.id.reserved_one_lpv_profile)
-    LargeProfileView singerView;
 
     public static ReservedOneFragment newInstance(String message) {
         ReservedOneFragment fragment = new ReservedOneFragment();

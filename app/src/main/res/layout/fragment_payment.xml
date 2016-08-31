@@ -24,8 +24,8 @@
 
     </RelativeLayout>
 
-    <com.weddingsingers.wsapp.data.view.LargeProfileView
-        android:id="@+id/payment_lpv_profile"
+    <com.weddingsingers.wsapp.data.view.EstimateView
+        android:id="@+id/payment_ev_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/payment_rl_statement" />
@@ -34,7 +34,7 @@
         android:id="@+id/payment_rl_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/payment_lpv_profile"
+        android:layout_below="@id/payment_ev_profile"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/payment_rl_btn_group_margin_top">
 

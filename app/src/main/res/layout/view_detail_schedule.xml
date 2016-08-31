@@ -28,8 +28,8 @@
         android:visibility="gone" />
 
 
-    <com.weddingsingers.wsapp.data.view.LargeProfileView
-        android:id="@+id/view_detail_schedule_lpv_profile"
+    <com.weddingsingers.wsapp.data.view.EstimateView
+        android:id="@+id/view_detail_schedule_ev_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />
@@ -39,7 +39,7 @@
         android:id="@+id/view_detail_schedule_btn_cancel"
         android:layout_width="@dimen/view_detail_schedule_btn_width"
         android:layout_height="@dimen/view_detail_schedule_btn_height"
-        android:layout_below="@+id/view_detail_schedule_lpv_profile"
+        android:layout_below="@+id/view_detail_schedule_ev_profile"
         android:layout_marginLeft="@dimen/view_detail_schedule_btn_margin_left"
         android:layout_toLeftOf="@+id/view_detail_schedule_btn_chat"
         android:padding="@dimen/view_detail_schedule_btn_padding"
@@ -51,7 +51,7 @@
         android:layout_width="@dimen/view_detail_schedule_btn_width"
         android:layout_height="@dimen/view_detail_schedule_btn_height"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/view_detail_schedule_lpv_profile"
+        android:layout_below="@id/view_detail_schedule_ev_profile"
         android:layout_marginLeft="@dimen/view_detail_schedule_btn_margin_left"
         android:padding="@dimen/view_detail_schedule_btn_padding"
         android:text="chat"

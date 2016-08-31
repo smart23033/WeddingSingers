@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.LargeProfile;
+import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.viewholder.ScheduleListViewHolder;
 
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         ScheduleListViewHolder.OnCancelBtnClickListener,
         ScheduleListViewHolder.OnChatBtnClickListener
 {
-    List<LargeProfile> items = new ArrayList<>();
+    List<Estimate> items = new ArrayList<>();
 
-    public void add(LargeProfile p){
+    public void add(Estimate p){
         items.add(p);
         notifyDataSetChanged();
     }
@@ -48,7 +48,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
     }
 
     public interface OnAdapterChatBtnClickListener {
-        public void onAdapterChatBtnClick(View view, LargeProfile profile, int position);
+        public void onAdapterChatBtnClick(View view, Estimate profile, int position);
     }
 
 
@@ -59,7 +59,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
 
     public interface OnAdapterCancelBtnClickListener{
-        public void onAdapterCancelBtnClick(View view, LargeProfile profile, int position);
+        public void onAdapterCancelBtnClick(View view, Estimate profile, int position);
     }
 
     OnAdapterCancelBtnClickListener cancelBtnListener;
@@ -68,14 +68,14 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
     }
 
     @Override
-    public void onCancelBtnClick(View view,LargeProfile profile, int position) {
+    public void onCancelBtnClick(View view, Estimate profile, int position) {
         if(cancelBtnListener != null){
             cancelBtnListener.onAdapterCancelBtnClick(view,profile,position);
         }
     }
 
     @Override
-    public void onChatBtnClick(View view, LargeProfile profile, int position) {
+    public void onChatBtnClick(View view, Estimate profile, int position) {
         if(chatBtnListener != null){
             chatBtnListener.onAdapterChatBtnClick(view,profile,position);
         }

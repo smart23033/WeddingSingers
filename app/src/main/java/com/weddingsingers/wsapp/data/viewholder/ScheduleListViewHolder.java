@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.LargeProfile;
-import com.weddingsingers.wsapp.data.view.LargeProfileView;
+import com.weddingsingers.wsapp.data.Estimate;
+import com.weddingsingers.wsapp.data.view.EstimateView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,8 +16,8 @@ import butterknife.ButterKnife;
  */
 public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.view_detail_schedule_lpv_profile)
-    LargeProfileView profileView;
+    @BindView(R.id.view_detail_schedule_ev_profile)
+    EstimateView estimateView;
 
     @BindView(R.id.view_detail_schedule_btn_cancel)
     Button cancelBtn;
@@ -26,7 +26,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
     Button chatBtn;
 
     public interface OnCancelBtnClickListener {
-        public void onCancelBtnClick(View view, LargeProfile profile, int position);
+        public void onCancelBtnClick(View view, Estimate profile, int position);
     }
 
     OnCancelBtnClickListener cancelBtnListener;
@@ -36,7 +36,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
 
 
     public interface OnChatBtnClickListener {
-        public void onChatBtnClick(View view, LargeProfile profile, int position);
+        public void onChatBtnClick(View view, Estimate profile, int position);
     }
 
     OnChatBtnClickListener chatBtnListener;
@@ -54,7 +54,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (cancelBtnListener != null) {
-                    cancelBtnListener.onCancelBtnClick(view, profile, getAdapterPosition());
+                    cancelBtnListener.onCancelBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
@@ -63,18 +63,18 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (chatBtnListener != null) {
-                    chatBtnListener.onChatBtnClick(view, profile, getAdapterPosition());
+                    chatBtnListener.onChatBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
 
     }
 
-    LargeProfile profile;
+    Estimate estimate;
 
-    public void setScheduleList(LargeProfile profile) {
-        this.profile = profile;
-        profileView.setLargeProfile(profile);
+    public void setScheduleList(Estimate estimate) {
+        this.estimate = estimate;
+        estimateView.setEstimate(estimate);
     }
 
 }

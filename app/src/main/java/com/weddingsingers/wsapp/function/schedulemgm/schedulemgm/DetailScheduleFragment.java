@@ -8,14 +8,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.LargeProfile;
+import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 
 import butterknife.BindView;
@@ -53,7 +52,7 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterCancelBtnClickListener(new ScheduleListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
-            public void onAdapterCancelBtnClick(View view, LargeProfile profile, int position) {
+            public void onAdapterCancelBtnClick(View view, Estimate profile, int position) {
                 Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
                 startActivity(intent);
             }
@@ -61,7 +60,7 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterChatBtnClickListener(new ScheduleListAdapter.OnAdapterChatBtnClickListener() {
             @Override
-            public void onAdapterChatBtnClick(View view, LargeProfile profile, int position) {
+            public void onAdapterChatBtnClick(View view, Estimate profile, int position) {
                 Intent intent = new Intent(getContext(), ChattingActivity.class);
                 startActivity(intent);
             }
@@ -93,13 +92,13 @@ public class DetailScheduleFragment extends Fragment {
 
     private void initData() {
         for (int i = 0; i < 20; i++) {
-            LargeProfile profile = new LargeProfile();
-            profile.setLocation("Seoul");
-            profile.setDate("2016. 4. 26");
-            profile.setUserName("customer name");
-            profile.setSongs("Thriller - Michael Jackson");
-            profile.setSpecial("special Request");
-            mAdapter.add(profile);
+            Estimate estimate = new Estimate();
+            estimate.setLocation("Seoul");
+            estimate.setDate("2016. 4. 26");
+            estimate.setCustomerName("customer name");
+            estimate.setSongs("Thriller - Michael Jackson");
+            estimate.setSpecial("special Request");
+            mAdapter.add(estimate);
         }
     }
 
