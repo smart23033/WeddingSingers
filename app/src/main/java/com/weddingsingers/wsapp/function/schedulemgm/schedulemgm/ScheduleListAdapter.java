@@ -29,11 +29,10 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
     @Override
     public ScheduleListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_calendar,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_detail_schedule,parent,false);
         ScheduleListViewHolder holder = new ScheduleListViewHolder(view);
         holder.setOnCancelBtnClickListener(this);
         holder.setOnChatBtnClickListener(this);
-
         return holder;
     }
 

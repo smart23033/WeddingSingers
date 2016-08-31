@@ -48,7 +48,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
     public ScheduleListViewHolder(View itemView) {
         super(itemView);
 
-        ButterKnife.bind(this, itemView);
+        ButterKnife.bind(this,itemView);
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override

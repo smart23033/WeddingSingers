@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/view_vertical_margin"
     android:layout_marginLeft="@dimen/view_horizontal_margin"
     android:layout_marginRight="@dimen/view_horizontal_margin"
@@ -10,9 +10,20 @@
 
     <!--날짜가 바뀌면 visible  true-->
     <TextView
+        android:id="@+id/detail_schedule_tv_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="August"
+        android:textColor="@color/colorPrimaryPink"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/view_detail_schedule_tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/detail_schedule_tv_month"
         android:text="27th (Tuesday)"
         android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
