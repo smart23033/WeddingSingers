@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
-import com.weddingsingers.wsapp.data.viewholder.CalendarViewHolder;
-import com.weddingsingers.wsapp.function.search.search.SearchResultAdapter;
+import com.weddingsingers.wsapp.data.viewholder.CalendarListViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +15,8 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-30.
  */
-public class CalendarListAdapter extends RecyclerView.Adapter<CalendarViewHolder> implements
-    CalendarViewHolder.OnCalendarListItemClickListener{
+public class CalendarListAdapter extends RecyclerView.Adapter<CalendarListViewHolder> implements
+    CalendarListViewHolder.OnCalendarListItemClickListener{
     List<CalendarList> items = new ArrayList<>();
 
     public void add(CalendarList c){
@@ -26,15 +25,15 @@ public class CalendarListAdapter extends RecyclerView.Adapter<CalendarViewHolder
     }
 
     @Override
-    public CalendarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CalendarListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_calendar,parent,false);
-        CalendarViewHolder holder = new CalendarViewHolder(view);
+        CalendarListViewHolder holder = new CalendarListViewHolder(view);
         holder.setOnCalendarListItemClickListener(this);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(CalendarViewHolder holder, int position) {
+    public void onBindViewHolder(CalendarListViewHolder holder, int position) {
         holder.setCalendarList(items.get(position));
     }
 

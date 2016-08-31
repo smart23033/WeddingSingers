@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-30.
  */
-public class CalendarViewHolder extends RecyclerView.ViewHolder {
+public class CalendarListViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.view_calendar_tv_month)
     TextView monthView;
@@ -28,7 +28,7 @@ public class CalendarViewHolder extends RecyclerView.ViewHolder {
         this.listener = listener;
     }
 
-    public CalendarViewHolder(View itemView) {
+    public CalendarListViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
 
