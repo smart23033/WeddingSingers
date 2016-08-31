@@ -40,6 +40,7 @@ import com.weddingsingers.wsapp.main.mypage.MyPageCustomerFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageSingerFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneFragment;
 import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity
             }
             case R.id.nav_reservation_mgm: {
                 changeNavMenu(new ReservationMgmFragment());
+//                changeNavMenu(new ReservedCustomerFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                 return true;
             }

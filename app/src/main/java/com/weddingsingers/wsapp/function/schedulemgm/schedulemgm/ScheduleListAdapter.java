@@ -58,7 +58,7 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
 
 
     public interface OnAdapterCancelBtnClickListener{
-        public void onAdapterCancelBtnClick(View view, Estimate profile, int position);
+        public void onAdapterCancelBtnClick(View view, Estimate estimate, int position);
     }
 
     OnAdapterCancelBtnClickListener cancelBtnListener;
@@ -67,16 +67,16 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
     }
 
     @Override
-    public void onCancelBtnClick(View view, Estimate profile, int position) {
+    public void onCancelBtnClick(View view, Estimate estimate, int position) {
         if(cancelBtnListener != null){
-            cancelBtnListener.onAdapterCancelBtnClick(view,profile,position);
+            cancelBtnListener.onAdapterCancelBtnClick(view,estimate,position);
         }
     }
 
     @Override
-    public void onChatBtnClick(View view, Estimate profile, int position) {
+    public void onChatBtnClick(View view, Estimate estimate, int position) {
         if(chatBtnListener != null){
-            chatBtnListener.onAdapterChatBtnClick(view,profile,position);
+            chatBtnListener.onAdapterChatBtnClick(view,estimate,position);
         }
     }
 
