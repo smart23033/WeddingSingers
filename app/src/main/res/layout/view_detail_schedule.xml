@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/view_vertical_margin"
+    android:layout_marginLeft="@dimen/view_horizontal_margin"
+    android:layout_marginRight="@dimen/view_horizontal_margin"
+    android:layout_marginTop="@dimen/view_vertical_margin">
+
+
+    <!--날짜가 바뀌면 visible  true-->
+    <TextView
+        android:id="@+id/view_detail_schedule_tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27th (Tuesday)"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/view_detail_schedule_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/view_detail_schedule_tv_date"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray"
+        android:visibility="gone" />
+
+
+    <com.weddingsingers.wsapp.data.view.LargeProfileView
+        android:id="@+id/view_detail_schedule_lpv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+
+
+    <Button
+        android:id="@+id/view_detail_schedule_btn_cancel"
+        android:layout_width="@dimen/view_detail_schedule_btn_width"
+        android:layout_height="@dimen/view_detail_schedule_btn_height"
+        android:layout_below="@+id/view_detail_schedule_lpv_profile"
+        android:layout_marginLeft="@dimen/view_detail_schedule_btn_margin_left"
+        android:layout_toLeftOf="@id/view_detail_schedule_btn_chat"
+        android:padding="@dimen/view_detail_schedule_btn_padding"
+        android:text="cancel"
+        android:textSize="@dimen/view_detail_schedule_btn_text_size" />
+
+    <Button
+        android:id="@+id/view_detail_schedule_btn_chat"
+        android:layout_width="@dimen/view_detail_schedule_btn_width"
+        android:layout_height="@dimen/view_detail_schedule_btn_height"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/view_detail_schedule_lpv_profile"
+        android:layout_marginLeft="@dimen/view_detail_schedule_btn_margin_left"
+        android:padding="@dimen/view_detail_schedule_btn_padding"
+        android:text="chat"
+        android:textSize="@dimen/view_detail_schedule_btn_text_size" />
+
+</RelativeLayout>

@@ -29,8 +29,8 @@ public class LargeProfileView extends FrameLayout {
     @BindView(R.id.view_large_profile_riv_profile)
     RoundedImageView imageView = new RoundedImageView(getContext());
 
-    @BindView(R.id.view_large_profile_tv_singer_name)
-    TextView singerNameView;
+    @BindView(R.id.view_large_profile_tv_user_name)
+    TextView userNameView;
 
     @BindView(R.id.view_large_profile_tv_detail_date)
     TextView dateView;

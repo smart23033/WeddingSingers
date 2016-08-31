@@ -30,13 +30,13 @@
             app:riv_tile_mode="clamp" />
 
         <TextView
-            android:id="@+id/view_large_profile_tv_singer_name"
+            android:id="@+id/view_large_profile_tv_user_name"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/view_large_profile_riv_profile"
             android:layout_centerHorizontal="true"
-            android:text="singer name" />
+            android:text="user name" />
 
     </RelativeLayout>
 
