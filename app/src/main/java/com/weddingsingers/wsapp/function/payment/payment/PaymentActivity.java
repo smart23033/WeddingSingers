@@ -42,24 +42,4 @@ public class PaymentActivity extends AppCompatActivity {
         ft.commit();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                Toast.makeText(PaymentActivity.this, "PaymentActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
-                finish();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    MenuItem searchMenuItem;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        searchMenuItem = menu.findItem(R.id.main_menu_search);
-        searchMenuItem.setVisible(false);
-        return true;
-    }
-
 }
