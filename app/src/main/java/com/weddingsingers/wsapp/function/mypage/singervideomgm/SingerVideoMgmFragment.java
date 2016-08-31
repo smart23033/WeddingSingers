@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
@@ -89,11 +90,13 @@ public class SingerVideoMgmFragment extends Fragment {
                 return true;
             }
             case R.id.video_add_add: {
-//                getContext().startActivity(new Intent(getActivity(), VideoAddActivity.class));
-
                 FragmentManager fm = getFragmentManager();
                 VideoAddFragment videoAddFragment = new VideoAddFragment();
                 videoAddFragment.show(fm, "fragment_dialog_test");
+                return true;
+            }
+            case R.id.video_add_delete: {
+                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
                 return true;
             }
 

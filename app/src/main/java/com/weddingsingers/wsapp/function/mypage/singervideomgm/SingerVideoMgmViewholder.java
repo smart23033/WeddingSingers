@@ -40,10 +40,6 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
 
     }
 
-    @OnClick(R.id.view_singer_video_mgm_btn_modify)
-    public void onModifyClick() {
-    }
-
     SingerVideoMgm singerVideoMgm;
 
     public void setSingerVideoMgm(SingerVideoMgm singerVideoMgm) {
