@@ -41,22 +41,4 @@ public class DetailScheduleActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home: {
-                Toast.makeText(DetailScheduleActivity.this, "DetailScheduleActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
-                finish();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return true;
-    }
-
 }
