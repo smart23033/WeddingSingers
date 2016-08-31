@@ -4,19 +4,10 @@
     android:layout_height="match_parent"
     tools:context=".function.mypage.singervideomgm.SingerVideoMgmFragment">
 
-    <Button
-        android:id="@+id/singer_video_mgm_btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="동영상 추가"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/singer_video_mgm_rv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/singer_video_mgm_btn_add">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 

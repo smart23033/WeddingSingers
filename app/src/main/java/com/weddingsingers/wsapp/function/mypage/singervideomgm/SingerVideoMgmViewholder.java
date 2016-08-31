@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.function.mypage.singervideomgm;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -40,8 +41,7 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
     }
 
     @OnClick(R.id.view_singer_video_mgm_btn_modify)
-    public void onModifyClock() {
-        Toast.makeText(context, "modify - " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+    public void onModifyClick() {
     }
 
     SingerVideoMgm singerVideoMgm;
