@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         LoginIntroFragment loginIntroFragment = new LoginIntroFragment();
-        ft.add(R.id.act_login_container,loginIntroFragment, FRAG_LOGIN_INTRO);
+        ft.add(R.id.act_login_container, loginIntroFragment, FRAG_LOGIN_INTRO);
         ft.commit();
 
 
@@ -65,14 +66,18 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_login_container);
-            if(currentFragment.getTag() != FRAG_LOGIN_INTRO ) {
+            if (currentFragment.getTag() != FRAG_LOGIN_INTRO) {
                 FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction();
                 ft.detach(currentFragment);
                 ft.commit();
-            }else{
+
+//                InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(this.INPUT_METHOD_SERVICE);
+//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+            } else {
                 finish();
             }
 
