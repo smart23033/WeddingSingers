@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    private void changeFragment(Fragment f) {
+    public void changeFragment(Fragment f) {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main_fl_container, f)
                 .commit();

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,9 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,5 +117,18 @@ public class ReservedCustomerFragment extends Fragment {
         intent.putExtra(PaymentActivity.FRAG_NAME, "DetailScheduleFragment");
         startActivityForResult(intent, MainActivity.RC_FRAG);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode){
+            case MainActivity.RC_FRAG:
+                if(resultCode == PaymentActivity.RESULT_OK){
+                    ((MainActivity)getActivity()).changeFragment(new ScheduleMgmFragment());
+                    startActivity(new Intent(getActivity(),DetailScheduleActivity.class));
+                }
+                break;
+        }
+    }
+
 
 }
