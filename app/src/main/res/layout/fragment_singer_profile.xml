@@ -9,7 +9,6 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.mypage.SingerProfileFragment">
 
-
     <com.weddingsingers.wsapp.data.view.ProfileView
         android:id="@+id/singer_profile_pv"
         android:layout_width="match_parent"
@@ -118,8 +117,8 @@
             android:id="@+id/singer_profile_price_tv_std"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_below="@+id/singer_profile_price_tv_special"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_toRightOf="@id/singer_profile_price_tv_title"
             android:text="standard" />
 
@@ -127,8 +126,8 @@
             android:id="@+id/singer_profile_price_tv_std_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_below="@+id/singer_profile_price_tv_special_price"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_toRightOf="@id/singer_profile_price_tv_std"
             android:text="￦ 100,000" />
 
