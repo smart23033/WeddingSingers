@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.data;
+package com.weddingsingers.wsapp;
 
 /**
  * Created by Administrator on 2016-08-09.

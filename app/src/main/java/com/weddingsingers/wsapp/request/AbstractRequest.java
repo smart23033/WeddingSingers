@@ -2,8 +2,8 @@ package com.weddingsingers.wsapp.request;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.weddingsingers.wsapp.NetworkResultTemp;
 import com.weddingsingers.wsapp.data.NetworkResult;
-import com.weddingsingers.wsapp.data.NetworkResultTemp;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 
 import java.io.IOException;
@@ -20,9 +20,10 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     protected HttpUrl.Builder getBaseUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
-        builder.host("dongjatestweb.appspot.com");
+        builder.host("ec2-52-78-147-230.ap-northeast-2.compute.amazonaws.com");
         return builder;
     }
+
 
     @Override
     protected T parse(ResponseBody body) throws IOException {
@@ -47,5 +48,4 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     }
 
     protected abstract Type getType();
-
 }
