@@ -14,26 +14,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_intro_logo"
-        android:layout_marginTop="40dp"
+        android:layout_marginLeft="@dimen/sign_up_first_tv_type_horizontal_margin"
+        android:layout_marginRight="@dimen/sign_up_first_tv_type_horizontal_margin"
+        android:layout_marginTop="@dimen/sign_up_first_tv_type_margin_top"
         android:text="Are you singer or customer?"
         android:textColor="@android:color/white"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textSize="36sp" />
+        android:textSize="@dimen/sign_up_first_tv_type_text_size" />
 
     <LinearLayout
         android:id="@+id/sign_up_first_ll_btn_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/sign_up_first_tv_type"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/sign_up_first_ll_btn_group_horizontal_margin"
+        android:layout_marginRight="@dimen/sign_up_first_ll_btn_group_margin_top"
+        android:layout_marginTop="@dimen/sign_up_first_ll_btn_group_margin_top"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/sign_up_first_btn_singer"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/sign_up_first_btn_width"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
@@ -44,7 +44,7 @@
 
         <Button
             android:id="@+id/sign_up_first_btn_customer"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/sign_up_first_btn_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/login_intro_btn_singer"
             android:layout_weight="1"

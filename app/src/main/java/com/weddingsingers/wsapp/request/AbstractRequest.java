@@ -2,7 +2,7 @@ package com.weddingsingers.wsapp.request;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.weddingsingers.wsapp.NetworkResultTemp;
+import com.weddingsingers.wsapp.data.NetworkResultTemp;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 
