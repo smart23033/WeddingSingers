@@ -1,7 +1,6 @@
 package com.weddingsingers.wsapp.function.mypage.singervideomgm;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,7 +17,9 @@ import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
-import com.weddingsingers.wsapp.login.ClauseDialogFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +30,8 @@ import butterknife.ButterKnife;
 public class SingerVideoMgmFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
+
+    ArrayList<SingerVideoMgm> items = new ArrayList<SingerVideoMgm>();
 
     @BindView(R.id.singer_video_mgm_rv_list)
     RecyclerView recyclerView;
@@ -60,13 +63,26 @@ public class SingerVideoMgmFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_singer_video_mgm, container, false);
 
         ButterKnife.bind(this, view);
-        mAdapter = new SingerVideoMgmAdapter();
+
+        for(int i = 0; i < 20; i++){
+            SingerVideoMgm singerVideoMgm = new SingerVideoMgm();
+            singerVideoMgm.setTitle("video title " + i);
+            singerVideoMgm.setDate("2016. 4. 24");
+            singerVideoMgm.setHit(123);
+            singerVideoMgm.setFavorite(4123);
+            singerVideoMgm.setSelected(false);
+            items.add(singerVideoMgm);
+
+//            mAdapter.add(singerVideoMgm);
+        }
+
+        mAdapter = new SingerVideoMgmAdapter(this.items);
         recyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        initData();
+        //initData();
 
         return view;
     }
@@ -78,6 +94,7 @@ public class SingerVideoMgmFragment extends Fragment {
             singerVideoMgm.setDate("2016. 4. 24");
             singerVideoMgm.setHit(123);
             singerVideoMgm.setFavorite(4123);
+            singerVideoMgm.setSelected(false);
             mAdapter.add(singerVideoMgm);
         }
     }
@@ -96,7 +113,18 @@ public class SingerVideoMgmFragment extends Fragment {
                 return true;
             }
             case R.id.video_add_delete: {
-                Toast.makeText(getActivity(), "delete", Toast.LENGTH_SHORT).show();
+
+                StringBuilder stringBuilder = new StringBuilder();
+                for (SingerVideoMgm vItem : items) {
+                    if (vItem.isSelected()) {
+                        if (stringBuilder.length() > 0)
+                            stringBuilder.append(", ");
+                        stringBuilder.append(vItem.getTitle());
+                    }
+                }
+                Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
+
+
                 return true;
             }
 

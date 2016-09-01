@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.main.mypage;
+package com.weddingsingers.wsapp.function.mypage.singervideomgm;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class SingerProfileAdapter extends BaseAdapter {
+public class SingerProfileModifyAdapter extends BaseAdapter {
     List<String> items = new ArrayList<>();
 
     public void addAll(String[] items){

@@ -9,54 +9,69 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.mypage.SingerProfileFragment">
 
-    <com.weddingsingers.wsapp.data.view.ProfileView
-        android:id="@+id/singer_profile_pv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.weddingsingers.wsapp.data.view.ProfileView>
+    <ImageButton
+        android:id="@+id/singer_profile_img_btn_modify"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        android:src="@drawable/my_page_btn_modify" />
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_basic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/singer_profile_pv">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_info"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:text="기본 정보"
             android:textColor="@color/colorLightPink" />
 
-        <Spinner
-            android:id="@+id/singer_profile_sp_location"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
-
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="31dp"
-            android:layout_marginStart="31dp"
+        <TextView
+            android:id="@+id/singer_profile_tv_basic_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:spinnerMode="dropdown" />
+            android:text="블랙넛" />
 
-        <Spinner
-            android:id="@+id/singer_profile_sp_composition"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="31dp"
-            android:layout_marginStart="31dp"
-            android:layout_toRightOf="@+id/singer_profile_sp_location"
-            android:spinnerMode="dropdown" />
+        <TextView
+            android:id="@+id/singer_profile_tv_basic_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_tv_basic_name"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
+            android:text="축가 전문 개고수!" />
 
-        <Spinner
-            android:id="@+id/singer_profile_sp_theme"
-            android:layout_width="65dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="31dp"
-            android:layout_marginStart="31dp"
-            android:layout_toRightOf="@+id/singer_profile_sp_composition"
-            android:spinnerMode="dropdown" />
+        <TextView
+            android:id="@+id/singer_profile_tv_basic_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_tv_basic_comment"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
+            android:text="지역 : 서울" />
+
+        <TextView
+            android:id="@+id/singer_profile_tv_basic_composition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_tv_basic_location"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
+            android:text="구성 : 듀엣" />
+
+        <TextView
+            android:id="@+id/singer_profile_tv_basic_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_tv_basic_composition"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
+            android:text="테마 : 발라드" />
 
     </RelativeLayout>
 
@@ -64,13 +79,13 @@
         android:id="@+id/singer_profile_rl_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_basic">
+        android:layout_below="@id/singer_profile_rl_basic"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/singer_profile_intro_tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_price_info_margin_right"
             android:text="자기 소개"
             android:textColor="@color/colorLightPink" />
 
@@ -87,13 +102,13 @@
         android:id="@+id/singer_profile_rl_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_intro">
+        android:layout_below="@id/singer_profile_rl_intro"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/singer_profile_price_tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_price_info_margin_right"
             android:text="가격 정보"
             android:textColor="@color/colorLightPink" />
 
@@ -131,20 +146,19 @@
             android:layout_toRightOf="@id/singer_profile_price_tv_std"
             android:text="￦ 100,000" />
 
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_song"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_price">
+        android:layout_below="@id/singer_profile_rl_price"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/singer_profile_song_tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_price_info_margin_right"
             android:text="곡목록"
             android:textColor="@color/colorLightPink" />
 
@@ -163,13 +177,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/singer_profile_rl_song"
+        android:layout_marginTop="10dp"
         android:clickable="true">
 
         <TextView
             android:id="@+id/singer_profile_my_video_tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="내 동영상 관리"
+            android:text="동영상 관리"
             android:textColor="@color/colorLightPink" />
 
         <ImageButton

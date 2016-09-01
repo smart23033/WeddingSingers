@@ -1,0 +1,182 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".function.mypage.singervideomgm.SingerProfileModifyFragment">
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_comment"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="한마디" />
+
+        <EditText
+            android:id="@+id/singer_profile_modify_et_comment"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_comment" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_comment">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_location"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="지역" />
+
+        <Spinner
+            android:id="@+id/singer_profile_modify_sp_location"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_location"
+            android:spinnerMode="dropdown" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_composition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_location">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_composition"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="구성" />
+
+        <Spinner
+            android:id="@+id/singer_profile_modify_sp_composition"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_composition"
+            android:spinnerMode="dropdown" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_composition">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_theme"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="테마" />
+
+        <Spinner
+            android:id="@+id/singer_profile_modify_sp_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_theme"
+            android:spinnerMode="dropdown" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_theme">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_intro"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="자기 소개" />
+
+        <EditText
+            android:id="@+id/singer_profile_modify_et_intro"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_intro" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_intro">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_price"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="가격 정보" />
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_standard"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_price"
+            android:text="스탠다드" />
+
+        <EditText
+            android:id="@+id/singer_profile_modify_et_standard"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_standard" />
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_special"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_modify_tv_standard"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_price"
+            android:text="스페셜" />
+
+        <EditText
+            android:id="@+id/singer_profile_modify_et_special"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_profile_modify_et_standard"
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_special" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_price">
+
+        <Button
+            android:id="@+id/singer_profile_modify_btn_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="41dp"
+            android:layout_marginRight="41dp"
+            android:layout_toLeftOf="@+id/singer_profile_modify_btn_cancel"
+            android:layout_toStartOf="@+id/singer_profile_modify_btn_cancel"
+            android:text="적용" />
+
+        <Button
+            android:id="@+id/singer_profile_modify_btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="92dp"
+            android:layout_marginRight="92dp"
+            android:text="취소" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".function.mypage.singervideomgm.SingerProfileModifyActivity">
+
+    <FrameLayout
+        android:id="@+id/singer_video_profile_modify_fl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/singer_video_profile_modify_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:title="" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="프로필 수정" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/act_singer_video_profile_modify_fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/singer_video_profile_modify_fl_toolbar" />
+
+</RelativeLayout>

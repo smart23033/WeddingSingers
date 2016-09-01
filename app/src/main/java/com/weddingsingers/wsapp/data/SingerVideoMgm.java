@@ -11,6 +11,7 @@ public class SingerVideoMgm implements Serializable {
     private String date;
     private int hit;
     private int favorite;
+    private boolean isSelected;
 
     public String getTitle() {
         return title;
@@ -50,5 +51,13 @@ public class SingerVideoMgm implements Serializable {
 
     public void setFavorite(int favorite) {
         this.favorite = favorite;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

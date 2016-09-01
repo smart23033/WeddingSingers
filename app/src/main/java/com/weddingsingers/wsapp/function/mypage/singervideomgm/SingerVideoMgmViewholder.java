@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +35,14 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
     @BindView(R.id.view_singer_video_mgm_tv_favorite)
     TextView favoriteView;
 
+//    @BindView(R.id.view_singer_video_mgm_cb)
+    CheckBox checkBox;
+
     public SingerVideoMgmViewholder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
+        checkBox = (CheckBox) itemView.findViewById(R.id.view_singer_video_mgm_cb);
 
     }
 

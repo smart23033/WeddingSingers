@@ -60,6 +60,8 @@
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
+        <activity android:name=".function.mypage.singervideomgm.SingerVideoMgmAdapter$SingerProfileModifyActivity" />
+        <activity android:name=".function.mypage.singervideomgm.SingerProfileModifyActivity"></activity>
     </application>
 
 </manifest>
