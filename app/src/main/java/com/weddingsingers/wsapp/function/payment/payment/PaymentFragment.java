@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.ButterKnife;
@@ -28,6 +29,7 @@ import butterknife.OnClick;
 public class PaymentFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
+    public static final int FRAG__SCHEDULE_MGM = 400;
 
     private String message;
     private static PaymentFragment instance;
@@ -106,7 +108,14 @@ public class PaymentFragment extends Fragment {
 
 //    프레그먼트 이동 + 액티비티 하나 띄워줘야 함.
     private void moveDetailScheduleFragment(){
-        getActivity().startActivity(new Intent(getContext(),DetailScheduleActivity.class));
+        Intent intent;
+        startActivity(new Intent(getActivity(),DetailScheduleActivity.class));
+
+        intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra("fragmentName", FRAG__SCHEDULE_MGM);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        getActivity().finish();
     }
 
     private void moveReservedOneFragment(){

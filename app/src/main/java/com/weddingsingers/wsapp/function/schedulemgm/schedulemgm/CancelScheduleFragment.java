@@ -46,14 +46,14 @@ public class CancelScheduleFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Cancel complete")
                 .setMessage("Cancel complete,\nyou can check your penalty in my page")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("GO MY PAGE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         moveMyPageFragment();
                     }
                 });
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("GO MAIN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 moveMainActivity();
@@ -73,7 +73,9 @@ public class CancelScheduleFragment extends Fragment {
     }
 
     private void moveMainActivity() {
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         getActivity().finish();
     }
 

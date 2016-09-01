@@ -66,7 +66,9 @@ public class CancelReservationFragment extends Fragment {
     }
 
     private void moveMainActivity() {
-        startActivity(new Intent(getActivity(), MainActivity.class));
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        startActivity(intent);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         getActivity().finish();
     }
 
