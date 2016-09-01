@@ -61,7 +61,8 @@
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
         <activity android:name=".function.mypage.singervideomgm.SingerVideoMgmAdapter$SingerProfileModifyActivity" />
-        <activity android:name=".function.mypage.singervideomgm.SingerProfileModifyActivity"></activity>
+        <activity android:name=".function.mypage.singervideomgm.SingerProfileModifyActivity" />
+        <activity android:name=".function.video.othervideo.OtherVideoActivity"></activity>
     </application>
 
 </manifest>

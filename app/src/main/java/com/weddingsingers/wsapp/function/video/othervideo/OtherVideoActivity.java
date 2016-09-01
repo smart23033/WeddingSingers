@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.function.video.singerinfo;
+package com.weddingsingers.wsapp.function.video.othervideo;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -6,20 +6,20 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerProfileModifyFragment;
+import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SingerInfoActivity extends AppCompatActivity {
+public class OtherVideoActivity extends AppCompatActivity {
 
-    @BindView(R.id.singer_info_toolbar)
+    @BindView(R.id.other_video_toolbar)
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_singer_info);
+        setContentView(R.layout.activity_other_video);
 
         ButterKnife.bind(this);
 
@@ -30,8 +30,8 @@ public class SingerInfoActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        SingerInfoFragment singerInfoFragment = new SingerInfoFragment();
-        ft.add(R.id.act_singer_info_fl_container, singerInfoFragment);
+        OtherVideoFragment otherVideoFragment = new OtherVideoFragment();
+        ft.add(R.id.act_other_video_fl_container, otherVideoFragment);
         ft.commit();
 
     }

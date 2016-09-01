@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.video.singerreview.SingerReviewActivity">
+    tools:context=".function.video.othervideo.OtherVideoActivity">
 
     <FrameLayout
-        android:id="@+id/singer_review_fl_toolbar"
+        android:id="@+id/other_video_fl_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/singer_review_toolbar"
+            android:id="@+id/other_video_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:title="" />
@@ -20,16 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="싱어 리뷰" />
+            android:text="싱어의 다른 동영상" />
 
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/act_singer_review_fl_container"
+        android:id="@+id/act_other_video_fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/singer_review_fl_toolbar" />
+        android:layout_below="@+id/other_video_fl_toolbar" />
 
 </RelativeLayout>

@@ -1,13 +1,160 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".function.video.singerinfo.SingerInfoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.weddingsingers.wsapp.data.view.ProfileView
+        android:id="@+id/singer_info_pv_profile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/singer_info_rl_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singer_info_pv_profile"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/singer_info_intro_tv_title"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="자기 소개"
+            android:textColor="@color/colorLightPink" />
+
+        <TextView
+            android:id="@+id/singer_info_intro_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/singer_info_intro_tv_title"
+            android:text="마치 제가 사랑하는 사람에게 노래를 부르는 것처럼 진심을 담아 부르겠습니다. 기호 1번 꼭 뽑아주십시오!" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_info_rl_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singer_info_rl_intro"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/singer_info_price_tv_title"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="가격 정보"
+            android:textColor="@color/colorLightPink" />
+
+        <TextView
+            android:id="@+id/singer_info_price_tv_special"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_info_price_tv_title"
+            android:text="special" />
+
+        <TextView
+            android:id="@+id/singer_info_price_tv_special_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_info_price_tv_special"
+            android:text="￦ 300,000" />
+
+        <TextView
+            android:id="@+id/singer_info_price_tv_std"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_info_price_tv_special"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_info_price_tv_title"
+            android:text="standard" />
+
+        <TextView
+            android:id="@+id/singer_info_price_tv_std_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_info_price_tv_special_price"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_info_price_tv_std"
+            android:text="￦ 100,000" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_info_rl_song"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singer_info_rl_price"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/singer_info_song_tv_title"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="곡목록"
+            android:textColor="@color/colorLightPink" />
+
+        <TextView
+            android:id="@+id/singer_info_song_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_toRightOf="@id/singer_info_song_tv_title"
+            android:text="she's gone\nsay good bye \nfarewell taxi" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_info_rl_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singer_info_rl_song"
+        android:layout_marginTop="20dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/singer_info_review_tv_title"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="싱어 리뷰"
+            android:textColor="@color/colorLightPink" />
+
+        <ImageButton
+            android:id="@+id/singer_info_review_iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_detail_arrow" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_info_rl_other"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/singer_info_rl_review"
+        android:layout_marginTop="20dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/singer_info_other_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="싱어의 다른 동영상"
+            android:textColor="@color/colorLightPink" />
+
+        <ImageButton
+            android:id="@+id/singer_info_other_iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_detail_arrow" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

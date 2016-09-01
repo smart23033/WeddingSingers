@@ -21,6 +21,7 @@ import android.widget.VideoView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.function.search.search.RecentSearchFragment;
 import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
+import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +59,6 @@ public class VideoFragment extends Fragment {
         final MediaController mediaController = new MediaController(getContext());
         videoView.setMediaController(mediaController);
 
-
         return  view;
 
     }
@@ -66,6 +66,11 @@ public class VideoFragment extends Fragment {
     @OnClick(R.id.view_profile_btn_reserve)
     void onReserveBtnClicked(){
         moveReservationActivity();
+    }
+
+    @OnClick(R.id.view_profile_rl)
+    void onProfileClicked(){
+        startActivity(new Intent(getActivity(), SingerInfoActivity.class));
     }
 
     void moveReservationActivity(){
