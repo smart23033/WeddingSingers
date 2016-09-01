@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
+import com.weddingsingers.wsapp.data.viewholder.SingerVideoMgmViewholder;
 
 import java.util.ArrayList;
 import java.util.List;
