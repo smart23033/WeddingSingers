@@ -30,6 +30,7 @@ import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActiv
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
 import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
+import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
@@ -164,7 +165,8 @@ public class MainActivity extends AppCompatActivity
 
             navLayoutLogout.setVisibility(View.GONE);
 
-            naviView.inflateMenu(R.menu.activity_main_drawer_singer);
+//            naviView.inflateMenu(R.menu.activity_main_drawer_singer);
+            naviView.inflateMenu(R.menu.activity_main_drawer_customer);
 
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -219,7 +221,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_review: {
-                changeNavMenu(new ReviewFragment());
+                changeNavMenu(new WriteReviewFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_review));
                 return true;
             }

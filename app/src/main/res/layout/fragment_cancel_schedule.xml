@@ -9,12 +9,12 @@
     tools:context=".function.schedulemgm.schedulemgm.CancelScheduleFragment">
 
     <RelativeLayout
-        android:id="@+id/cancel_schedule_rl_statement"
+        android:id="@+id/cancel_schedule_rl_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/cancel_schedule_tv_statement"
+            android:id="@+id/cancel_schedule_tv_bill"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cancel_schedule_ev_profile"
-        android:layout_below="@id/cancel_schedule_rl_statement"
+        android:layout_below="@id/cancel_schedule_rl_bill"
         />
 
     <View

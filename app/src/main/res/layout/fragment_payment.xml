@@ -10,16 +10,16 @@
     tools:context=".function.payment.payment.PaymentFragment">
 
     <RelativeLayout
-        android:id="@+id/payment_rl_statement"
+        android:id="@+id/payment_rl_bill"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/payment_tv_statement"
+            android:id="@+id/payment_tv_bill"
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="reservation statement"
+            android:text="reservation bill"
             android:textColor="@color/colorPrimaryPink" />
 
     </RelativeLayout>
@@ -28,7 +28,7 @@
         android:id="@+id/payment_ev_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/payment_rl_statement" />
+        android:layout_below="@id/payment_rl_bill" />
 
     <RelativeLayout
         android:id="@+id/payment_rl_btn_group"

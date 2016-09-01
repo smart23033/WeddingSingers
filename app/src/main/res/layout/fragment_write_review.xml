@@ -1,13 +1,98 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".function.review.writereview.WriteReviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/write_review_rl_bill"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/write_review_tv_bill_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="bill number"
+            android:textColor="@color/colorPrimaryPink"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/write_review_tv_detail_bill_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/write_review_tv_bill_num"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:text="123-12-3551-2344"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/write_review_rl_write"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/write_review_rl_bill"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/write_review_tv_rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="my rating"
+            android:textColor="@color/colorPrimaryPink"
+            android:textSize="12sp" />
+
+        <RatingBar
+            android:id="@+id/write_review_rb_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/write_review_tv_rating"
+            android:layout_marginTop="10dp"
+            android:numStars="5" />
+
+        <View
+            android:id="@+id/write_review_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/write_review_rb_rating"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/colorPrimaryPink" />
+
+
+        <EditText
+            android:id="@+id/write_review_et_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/write_review_divider"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:lines="10"
+            android:maxWidth="180dp"
+            android:minWidth="10dp"
+            android:scrollHorizontally="false" />
+
+        <Button
+            android:id="@+id/write_review_btn_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/write_review_et_write"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="write" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
