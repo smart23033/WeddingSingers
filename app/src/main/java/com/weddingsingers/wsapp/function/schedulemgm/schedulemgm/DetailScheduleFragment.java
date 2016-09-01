@@ -55,6 +55,7 @@ public class DetailScheduleFragment extends Fragment {
             public void onAdapterCancelBtnClick(View view, Estimate profile, int position) {
                 Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -63,6 +64,7 @@ public class DetailScheduleFragment extends Fragment {
             public void onAdapterChatBtnClick(View view, Estimate profile, int position) {
                 Intent intent = new Intent(getContext(), ChattingActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
+
+    public static final String FRAG_NAME = "fragmentName";
+
     public static final int FRAG_MAIN = 100;
     public static final int FRAG_MY_PAGE = 200;
     public static final int FRAG_RESERVATION_MGM = 300;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_CHATTING = 600;
     public static final int FRAG_COMMUNITY = 700;
     public static final int FRAG_QNA = 800;
+    public static final int FRAG_ALARM = 900;
 
     public static final int ERROR_CODE = -1;
 
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        int fragmentName = intent.getIntExtra("fragmentName", ERROR_CODE);
+        int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
         changeFragmentFromAnotherActivity(fragmentName);
 
         boolean isLogin = intent.getBooleanExtra("login", false);

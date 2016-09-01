@@ -58,7 +58,7 @@ public class ReservationMgmFragment extends Fragment {
 
     public void startPaymentActivity() {
         Intent intent = new Intent(getContext(), PaymentActivity.class);
-        intent.putExtra("fragmentName", "ReservedOneFragment");
+        intent.putExtra(PaymentActivity.FRAG_NAME, "ReservedOneFragment");
         startActivityForResult(intent, FRAG_RESERVATION_MGM);
     }
 
@@ -67,8 +67,6 @@ public class ReservationMgmFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == FRAG_RESERVATION_MGM){
             if(resultCode == Activity.RESULT_OK){
-                String fragmentName = data.getStringExtra(PaymentActivity.RESULT_MESSAGE);
-                Log.i("ReservationMgmFragment","FragmentName 받았다! : " + fragmentName);
                pager.setCurrentItem(1);
             }else{
                 Log.i("ReservationMgmFragment","FragmentName 못받았다");

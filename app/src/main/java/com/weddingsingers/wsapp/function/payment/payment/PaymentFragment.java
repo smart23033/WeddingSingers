@@ -110,17 +110,12 @@ public class PaymentFragment extends Fragment {
     private void moveDetailScheduleFragment(){
         Intent intent;
         startActivity(new Intent(getActivity(),DetailScheduleActivity.class));
-
-        intent = new Intent(getActivity(), MainActivity.class);
-        intent.putExtra("fragmentName", FRAG__SCHEDULE_MGM);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
         getActivity().finish();
     }
 
     private void moveReservedOneFragment(){
         Intent intent = new Intent();
-        intent.putExtra(PaymentActivity.RESULT_MESSAGE,"ReservedOneFragment");
+        intent.putExtra(PaymentActivity.FRAG_NAME,"ReservedOneFragment");
         getActivity().setResult(PaymentActivity.RESULT_OK, intent);
         getActivity().finish();
     }

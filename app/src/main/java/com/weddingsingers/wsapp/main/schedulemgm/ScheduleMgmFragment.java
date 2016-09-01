@@ -58,6 +58,7 @@ public class ScheduleMgmFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, CalendarList calendarList, int position) {
                 startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
+//                Intent intent = new Intent(getActivity(), DetailScheduleActivity.class);
             }
         });
 

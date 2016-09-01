@@ -17,7 +17,7 @@
         android:text="August"
         android:textColor="@color/colorPrimaryPink"
         android:textSize="14sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/view_detail_schedule_tv_date"
@@ -27,7 +27,7 @@
         android:text="27th (Tuesday)"
         android:textColor="@android:color/darker_gray"
         android:textSize="12sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <View
         android:id="@+id/view_detail_schedule_divider"
@@ -36,11 +36,12 @@
         android:layout_below="@id/view_detail_schedule_tv_date"
         android:layout_marginTop="5dp"
         android:background="@android:color/darker_gray"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
 
     <com.weddingsingers.wsapp.data.view.EstimateView
         android:id="@+id/view_detail_schedule_ev_profile"
+        android:layout_below="@id/view_detail_schedule_divider"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp" />

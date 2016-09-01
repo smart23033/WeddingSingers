@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
@@ -25,9 +26,6 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class ReservedCustomerFragment extends Fragment {
-
-    public static final int FRAG_RESERVED_CUSTOMER = 320;
-
 
     @BindView(R.id.reserved_customer_rv_list)
     RecyclerView recyclerView;
@@ -73,7 +71,8 @@ public class ReservedCustomerFragment extends Fragment {
                 builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveMainActivity();
+//                        일정삭제
+                        Toast.makeText(getContext(),"reservation rejected",Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog = builder.create();
@@ -112,8 +111,9 @@ public class ReservedCustomerFragment extends Fragment {
 
     private void movePaymentActivity(){
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
-        intent.putExtra("fragmentName", "DetailScheduleFragment");
-        startActivityForResult(intent,FRAG_RESERVED_CUSTOMER);
+        intent.putExtra(PaymentActivity.FRAG_NAME, "DetailScheduleFragment");
+        startActivity(intent);
+        getActivity().finish();
     }
 
 }

@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity {
-    public final static String RESULT_MESSAGE = "fragmentName";
+    public final static String FRAG_NAME = "fragmentName";
 
     @BindView(R.id.payment_toolbar)
     Toolbar toolbar;
@@ -33,7 +33,7 @@ public class PaymentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Intent intent = getIntent();
-        String fragmentName = intent.getStringExtra("fragmentName");
+        String fragmentName = intent.getStringExtra(FRAG_NAME);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
