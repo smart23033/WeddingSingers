@@ -10,7 +10,7 @@
     <dimen name="view_vertical_margin">4dp</dimen>
 
     <!--activity_login.xml -->
-    <dimen name="login_et_horizontal_margin">50dp</dimen>
+    <dimen name="login_et_horizontal_margin">30dp</dimen>
     <dimen name="login_et_margin_top">100dp</dimen>
     <dimen name="sign_up_et_margin_top">50dp</dimen>
 

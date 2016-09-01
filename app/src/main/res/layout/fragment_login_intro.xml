@@ -23,7 +23,7 @@
         android:layout_marginTop="40dp"
         android:text="Welcome to WeddingSingers!"
         android:textColor="@android:color/white"
-        android:textSize="48sp" />
+        android:textSize="46sp" />
 
     <Button
         android:id="@+id/login_intro_btn_facebook_login"
