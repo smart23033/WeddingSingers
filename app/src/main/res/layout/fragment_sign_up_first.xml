@@ -13,7 +13,6 @@
         android:id="@+id/sign_up_first_tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_intro_logo"
         android:layout_marginLeft="@dimen/sign_up_first_tv_type_horizontal_margin"
         android:layout_marginRight="@dimen/sign_up_first_tv_type_horizontal_margin"
         android:layout_marginTop="@dimen/sign_up_first_tv_type_margin_top"

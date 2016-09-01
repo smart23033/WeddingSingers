@@ -19,9 +19,9 @@ import butterknife.ButterKnife;
 
 public class SearchActivity extends AppCompatActivity {
 
-    final static String RECENT_SEARCH_FRAGMENT = "RecentSearchFragment";
-    final static String FILTER_FRAGMENT = "FilterFragment";
-    final static String SEARCH_RESULT_FRAGMENT = "SearchResultFragment";
+    final static String FRAG_RECENT_SEARCH = "RecentSearchFragment";
+    final static String FRAG_FILTER = "FilterFragment";
+    final static String FRAG_SEACH_RESULT = "SearchResultFragment";
 
 
     @BindView(R.id.search_et_keyword)
@@ -47,7 +47,7 @@ public class SearchActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-        ft.add(R.id.act_search_fl_container,recentSearchFragment, RECENT_SEARCH_FRAGMENT);
+        ft.add(R.id.act_search_fl_container,recentSearchFragment, FRAG_RECENT_SEARCH);
         ft.commit();
 
     }
@@ -71,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
 
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_search_fl_container);
 
-                if (currentFragment.getTag() != SEARCH_RESULT_FRAGMENT) {
+                if (currentFragment.getTag() != FRAG_SEACH_RESULT) {
 //               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
                     keywordView.setText(keywordInput.getText());
                     keywordView.setVisibility(View.VISIBLE);
@@ -81,7 +81,7 @@ public class SearchActivity extends AppCompatActivity {
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
                     SearchResultFragment searchResultFragment = new SearchResultFragment();
-                    ft.replace(R.id.act_search_fl_container, searchResultFragment, SEARCH_RESULT_FRAGMENT);
+                    ft.replace(R.id.act_search_fl_container, searchResultFragment, FRAG_SEACH_RESULT);
                     ft.commit();
                 } else {
 //               searchResultFragment에서 search버튼 누를 때
@@ -92,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
                     RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-                    ft.replace(R.id.act_search_fl_container, recentSearchFragment, RECENT_SEARCH_FRAGMENT);
+                    ft.replace(R.id.act_search_fl_container, recentSearchFragment, FRAG_RECENT_SEARCH);
                     ft.commit();
                 }
                 return true;

@@ -18,9 +18,9 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     List<String> items = new ArrayList<>();
     int numOfTabs;
 
-    public final static int POPULAR_FRAGMENT = 0;
-    public final static int NEW_FRAGMENT = 1;
-    public final static int EVENT_FRAGMENT = 2;
+    public final static int FRAG_POPULAR = 0;
+    public final static int FRAG_NEW = 1;
+    public final static int FRAG_EVENT = 2;
 
     Context context = MyApplication.getContext();
 
@@ -48,11 +48,11 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case POPULAR_FRAGMENT:
+            case FRAG_POPULAR:
                 return VideoListFragment.newInstance("a");
-            case NEW_FRAGMENT:
+            case FRAG_NEW:
                 return VideoListFragment.newInstance("b");
-            case EVENT_FRAGMENT:
+            case FRAG_EVENT:
                 return EventListFragment.newInstance("c");
             default:
                 return null;

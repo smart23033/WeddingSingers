@@ -9,32 +9,24 @@
     android:background="@color/colorPrimaryPink"
     tools:context="com.weddingsingers.wsapp.login.LoginIntroFragment">
 
-    <ImageView
-        android:id="@+id/login_intro_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp" />
-
     <TextView
         android:id="@+id/login_intro_tv_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_intro_logo"
-        android:layout_marginTop="40dp"
         android:text="Welcome to WeddingSingers!"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/login_intro_tv_intro_horizontal_margin"
+        android:layout_marginRight="@dimen/login_intro_tv_intro_horizontal_margin"
         android:textColor="@android:color/white"
-        android:textSize="40sp" />
+        android:textSize="@dimen/login_intro_tv_intro_text_size" />
 
     <Button
         android:id="@+id/login_intro_btn_facebook_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/login_intro_tv_intro"
+        android:layout_marginLeft="@dimen/login_intro_btn_facebook_login_horizontal_margin"
+        android:layout_marginRight="@dimen/login_intro_btn_facebook_login_horizontal_margin"
+        android:layout_marginTop="@dimen/login_intro_btn_facebook_login_margin_top"
         android:background="#415e9b"
         android:text="facebook login"
         android:textColor="@android:color/white" />
@@ -45,15 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/login_intro_btn_facebook_login"
         android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="@dimen/login_intro_ll_btn_group_horizontal_margin"
+        android:layout_marginRight="@dimen/login_intro_ll_btn_group_horizontal_margin"
+        android:layout_marginTop="@dimen/login_intro_ll_btn_group_margin_top">
 
         <Button
             android:id="@+id/login_intro_btn_sign_up"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/login_intro_btn_width"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/login_intro_btn_sign_up_margin_right"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:text="sign up"
@@ -62,7 +54,7 @@
 
         <Button
             android:id="@+id/login_intro_btn_login"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/login_intro_btn_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/login_intro_btn_sign_up"
             android:layout_weight="1"
@@ -77,11 +69,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_intro_ll_btn_group"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/login_intro_tv_clause_margin_left"
+        android:layout_marginTop="@dimen/login_intro_tv_clause_margin_top"
         android:text="review terms and conditions"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="@dimen/login_intro_tv_clause_text_size" />
 
 
 </RelativeLayout>

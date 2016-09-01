@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class LoginPagerAdapter extends FragmentPagerAdapter {
 
-    public final static int LOGIN_FRAGMENT = 0;
-    public final static int SIGN_UP_FRAGMENT = 1;
+    public final static int FRAG_LOGIN = 0;
+    public final static int FRAG_SIGN_UP = 1;
 
     int tabCount;
     private String tabTitles[] = new String[]{"Login", "Sign Up"};
@@ -23,9 +23,9 @@ public class LoginPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case LOGIN_FRAGMENT:
+            case FRAG_LOGIN:
                 return new DeprecatedLoginFragment();
-            case SIGN_UP_FRAGMENT:
+            case FRAG_SIGN_UP:
                 return new DeprecatedSignUpFragment();
             default:
                 return null;

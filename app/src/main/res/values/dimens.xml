@@ -11,10 +11,23 @@
 
     <!--activity_login.xml -->
     <dimen name="login_et_horizontal_margin">30dp</dimen>
-    <dimen name="login_et_margin_top">100dp</dimen>
+    <dimen name="login_et_margin_top">0dp</dimen>
+
+    <!--fragment_login_intro.xml-->
+    <dimen name="login_intro_tv_intro_horizontal_margin">20dp</dimen>
+    <dimen name="login_intro_tv_intro_text_size">40sp</dimen>
+    <dimen name="login_intro_btn_facebook_login_horizontal_margin">20dp</dimen>
+    <dimen name="login_intro_btn_facebook_login_margin_top">100dp</dimen>
+    <dimen name="login_intro_ll_btn_group_horizontal_margin">20dp</dimen>
+    <dimen name="login_intro_ll_btn_group_margin_top">10dp</dimen>
+    <dimen name="login_intro_btn_width">0dp</dimen>
+    <dimen name="login_intro_tv_clause_margin_left">20dp</dimen>
+    <dimen name="login_intro_tv_clause_margin_top">20dp</dimen>
+    <dimen name="login_intro_btn_sign_up_margin_right">10dp</dimen>
+    <dimen name="login_intro_tv_clause_text_size">18sp</dimen>
 
     <!--fragment_sign_up_first.xml-->
-    <dimen name="sign_up_first_tv_type_margin_top">40dp</dimen>
+    <dimen name="sign_up_first_tv_type_margin_top">0dp</dimen>
     <dimen name="sign_up_first_tv_type_horizontal_margin">20dp</dimen>
     <dimen name="sign_up_first_tv_type_text_size">36dp</dimen>
     <dimen name="sign_up_first_ll_btn_group_margin_top">20dp</dimen>
@@ -24,7 +37,7 @@
 
     <!--fragment_sign_up_second.xml-->
     <dimen name="sign_up_second_et_horizontal_margin">30dp</dimen>
-    <dimen name="sign_up_second_et_margin_top">50dp</dimen>
+    <dimen name="sign_up_second_et_margin_top">0dp</dimen>
 
 
     <!--네비게이션 드로워-->
