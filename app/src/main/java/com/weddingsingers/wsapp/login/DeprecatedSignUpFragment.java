@@ -24,15 +24,15 @@ public class DeprecatedSignUpFragment extends Fragment {
     public DeprecatedSignUpFragment() {
         // Required empty public constructor
     }
-
-    @BindView(R.id.sign_up_et_email)
-    EditText emailInput;
-
-    @BindView(R.id.sign_up_et_password)
-    EditText passwordInput;
-
-    @BindView(R.id.sign_up_edit_password_confirm)
-    EditText passwordConfirmInput;
+//
+//    @BindView(R.id.sign_up_et_email)
+//    EditText emailInput;
+//
+//    @BindView(R.id.sign_up_et_password)
+//    EditText passwordInput;
+//
+//    @BindView(R.id.sign_up_edit_password_confirm)
+//    EditText passwordConfirmInput;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,11 +44,11 @@ public class DeprecatedSignUpFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.sign_up_tv_clause)
-    public void onClickClause(){
-        ClauseDialogFragment f = new ClauseDialogFragment();
-        FragmentManager fm = getChildFragmentManager();
-        f.show(fm,"dialog");
-    }
+//    @OnClick(R.id.sign_up_tv_clause)
+//    public void onClickClause(){
+//        ClauseDialogFragment f = new ClauseDialogFragment();
+//        FragmentManager fm = getChildFragmentManager();
+//        f.show(fm,"dialog");
+//    }
 
 }
