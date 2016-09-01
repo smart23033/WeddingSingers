@@ -108,7 +108,7 @@ public class PaymentFragment extends Fragment {
 
 //    프레그먼트 이동 + 액티비티 하나 띄워줘야 함.
     private void moveDetailScheduleFragment(){
-        Intent intent;
+
         startActivity(new Intent(getActivity(),DetailScheduleActivity.class));
         getActivity().finish();
     }

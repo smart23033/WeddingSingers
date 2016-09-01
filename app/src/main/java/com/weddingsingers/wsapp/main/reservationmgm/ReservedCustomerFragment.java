@@ -112,8 +112,7 @@ public class ReservedCustomerFragment extends Fragment {
     private void movePaymentActivity(){
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
         intent.putExtra(PaymentActivity.FRAG_NAME, "DetailScheduleFragment");
-        startActivity(intent);
-        getActivity().finish();
+        startActivityForResult(intent, MainActivity.RC_FRAG);
     }
 
 }

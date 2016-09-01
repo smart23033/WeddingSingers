@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity
 
     public static final String FRAG_NAME = "fragmentName";
 
+    public static final int RC_FRAG = 1000;
+
     public static final int FRAG_MAIN = 100;
     public static final int FRAG_MY_PAGE = 200;
     public static final int FRAG_RESERVATION_MGM = 300;
@@ -209,7 +211,9 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_reservation_mgm: {
+//               수요자의 예약관리
 //                changeNavMenu(new ReservationMgmFragment());
+//                공급자의 예약관리
                 changeNavMenu(new ReservedCustomerFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                 return true;
