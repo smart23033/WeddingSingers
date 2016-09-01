@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.weddingsingers.wsapp.R;
 
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity {
 
 //    Toolbar toolbar;
@@ -34,6 +36,13 @@ public class LoginActivity extends AppCompatActivity {
 //        pager.setAdapter(mAdapter);
 //        tabs.setupWithViewPager(pager);
 
+        ButterKnife.bind(this);
+
+        FragmentTransaction ft = getSupportFragmentManager()
+                .beginTransaction();
+        LoginIntroFragment loginIntroFragment = new LoginIntroFragment();
+        ft.add(R.id.act_login_container,loginIntroFragment);
+        ft.commit();
 
 
     }
