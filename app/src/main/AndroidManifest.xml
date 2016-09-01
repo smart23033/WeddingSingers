@@ -40,7 +40,6 @@
             android:name=".function.search.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".function.review.writereview.ReviewActivity" />
-        <activity android:name=".login.FacebookSignUpActivity" />
         <activity android:name=".login.FacebookLoginActivity" />
         <activity android:name=".function.video.reservation.ReservationActivity" />
         <activity android:name=".function.video.singerreview.SingerReviewActivity" />
@@ -60,7 +59,6 @@
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
-        <activity android:name=".function.mypage.singervideomgm.SingerVideoMgmAdapter$SingerProfileModifyActivity" />
         <activity android:name=".function.mypage.singervideomgm.SingerProfileModifyActivity" />
         <activity android:name=".function.video.othervideo.OtherVideoActivity"></activity>
     </application>
