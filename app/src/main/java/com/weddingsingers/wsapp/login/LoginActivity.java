@@ -12,27 +12,29 @@ import com.weddingsingers.wsapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    TabLayout tabs;
-    ViewPager pager;
-    LoginPagerAdapter mAdapter;
+//    Toolbar toolbar;
+//    TabLayout tabs;
+//    ViewPager pager;
+//    LoginPagerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        toolbar = (Toolbar)findViewById(R.id.login_toolbar);
-        tabs = (TabLayout)findViewById(R.id.login_tabs);
-        pager = (ViewPager)findViewById(R.id.login_pager);
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+//        toolbar = (Toolbar)findViewById(R.id.login_toolbar);
+//        tabs = (TabLayout)findViewById(R.id.login_tabs);
+//        pager = (ViewPager)findViewById(R.id.login_pager);
+//        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+//
+//        tabs.addTab(tabs.newTab().setText("Login"));
+//        tabs.addTab(tabs.newTab().setText("Sign Up"));
+//
+//        mAdapter = new LoginPagerAdapter(getSupportFragmentManager(),tabs.getTabCount());
+//        pager.setAdapter(mAdapter);
+//        tabs.setupWithViewPager(pager);
 
-        tabs.addTab(tabs.newTab().setText("Login"));
-        tabs.addTab(tabs.newTab().setText("Sign Up"));
 
-        mAdapter = new LoginPagerAdapter(getSupportFragmentManager(),tabs.getTabCount());
-        pager.setAdapter(mAdapter);
-        tabs.setupWithViewPager(pager);
 
     }
 

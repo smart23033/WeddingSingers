@@ -5,37 +5,44 @@
     android:id="@+id/login_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryPink"
     tools:context=".login.LoginActivity">
 
+    <!--<FrameLayout-->
+        <!--android:id="@+id/login_fl"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize">-->
+
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/login_toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:title=""/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:gravity="center"-->
+                <!--android:text="WeddingSingers" />-->
+    <!--</FrameLayout>-->
+
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/login_tabs"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/login_fl"-->
+        <!--app:tabMode="fixed" />-->
+
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/login_pager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/login_tabs"/>-->
+
     <FrameLayout
-        android:id="@+id/login_fl"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/login_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:title=""/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="WeddingSingers" />
-    </FrameLayout>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/login_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/login_fl"
-        app:tabMode="fixed" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/login_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/login_tabs"/>
+        android:id="@+id/act_login_container"
+        />
 
 </RelativeLayout>

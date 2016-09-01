@@ -4,7 +4,6 @@ package com.weddingsingers.wsapp.login;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,10 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUpFragment extends Fragment {
+public class DeprecatedSignUpFragment extends Fragment {
 
 
-    public SignUpFragment() {
+    public DeprecatedSignUpFragment() {
         // Required empty public constructor
     }
 
@@ -39,7 +38,7 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
+        View view =  inflater.inflate(R.layout.fragment_deprecated__sign_up, container, false);
         ButterKnife.bind(this,view);
 
         return view;

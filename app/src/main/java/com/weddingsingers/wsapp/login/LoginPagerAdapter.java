@@ -24,9 +24,9 @@ public class LoginPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case LOGIN_FRAGMENT:
-                return new LoginFragment();
+                return new DeprecatedLoginFragment();
             case SIGN_UP_FRAGMENT:
-                return new SignUpFragment();
+                return new DeprecatedSignUpFragment();
             default:
                 return null;
         }
