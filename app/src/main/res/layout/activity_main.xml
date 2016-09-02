@@ -22,7 +22,7 @@
         <!--&gt;-->
 
         <RelativeLayout
-            android:id="@+id/main_rl_login"
+            android:id="@+id/nav_rl_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/nav_rl_login_margin_top"

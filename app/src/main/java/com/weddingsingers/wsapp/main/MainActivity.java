@@ -152,11 +152,12 @@ public class MainActivity extends AppCompatActivity
         TextView emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
         Button loginBtn = (Button)findViewById(R.id.nav_btn_login);
 
-        if (isLogin) { // 로그인
+        if (isLogin) { // 로그인 상태
 
             loginBtn.setVisibility(View.GONE);
 
 //            naviView.inflateMenu(R.menu.main_drawer_singer);
+
             naviView.inflateMenu(R.menu.main_drawer_customer);
 
             alarmBtn.setOnClickListener(new View.OnClickListener() {
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-        } else { // 로그아웃
+        } else { // 로그아웃 상태
 
             loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
