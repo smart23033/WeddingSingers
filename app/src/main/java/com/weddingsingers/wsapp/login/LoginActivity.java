@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +29,12 @@ public class LoginActivity extends AppCompatActivity {
     final static String FRAG_LOGIN = "LoginFragment";
     final static String FRAG_SIGN_UP_SECOND = "SignUpSecondFragment";
 
+    final static String KEY_USER_INFO = "UserInfo";
+
     @BindView(R.id.login_toolbar)
     Toolbar toolbar;
+
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

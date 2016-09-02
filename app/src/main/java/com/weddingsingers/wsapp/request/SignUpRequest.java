@@ -19,19 +19,18 @@ import okhttp3.RequestBody;
 public class SignUpRequest extends AbstractRequest<NetworkResult<User>> {
     Request request;
 
-    public SignUpRequest(Context context, String email, String password,
-                         String name, String phone, int type, String regId) {
+    public SignUpRequest(Context context,User user,String registrationToken) {
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("users")
                 .addPathSegment("local");
 
         RequestBody body = new FormBody.Builder()
-                .add("email", email)
-                .add("password", password)
-                .add("name",name)
-                .add("phone", phone)
-                .add("type", String.valueOf(type))
-                .add("registrationId", regId)
+                .add("email", user.getEmail())
+                .add("password", user.getPassword())
+                .add("name",user.getName())
+                .add("phone", user.getPhone())
+                .add("type", String.valueOf(user.getType()))
+                .add("registration_token", registrationToken)
                 .build();
 
         request = new Request.Builder()

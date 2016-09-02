@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.User;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +29,6 @@ public class LoginIntroFragment extends Fragment {
     public LoginIntroFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +57,14 @@ public class LoginIntroFragment extends Fragment {
         ft.commit();
     }
 
+    User user;
+
     @OnClick(R.id.login_intro_btn_sign_up)
     void onSignUpBtnClick(){
+        user = new User();
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
-        SignUpFirstFragment signUpFirstFragment = new SignUpFirstFragment();
+        SignUpFirstFragment signUpFirstFragment = SignUpFirstFragment.newInstance(user);
         ft.add(R.id.act_login_container,signUpFirstFragment);
         ft.addToBackStack(null);
         ft.commit();
