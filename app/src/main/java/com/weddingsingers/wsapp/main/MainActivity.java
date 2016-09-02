@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.drawer)
     DrawerLayout drawer;
 
-    @BindView(R.id.main_nav_menu)
+    @BindView(R.id.main_nv_nav)
     NavigationView naviView;
 
     @BindView(R.id.main_toolbar)
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.main_tv_toolbar)
     TextView titleTextView;
+
 
     boolean isBackPressed = false;
 
@@ -143,16 +144,17 @@ public class MainActivity extends AppCompatActivity
     //로그인 체크 후 네비게이션 드로워 변경
     private void checkLogin(boolean isLogin) {
         naviView.getMenu().clear();
+
         View headerView = naviView.inflateHeaderView(R.layout.nav_main_header);
         ImageButton alarmBtn = (ImageButton) headerView.findViewById(R.id.nav_header_bell);
         ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
-        TextView nameTextView = (TextView) headerView.findViewById(R.id.nav_header_name);
-        TextView emailTextView = (TextView) headerView.findViewById(R.id.nav_header_email);
-        RelativeLayout navLayoutLogout = (RelativeLayout) findViewById(R.id.nav_layout_logout);
+        TextView nameView = (TextView) headerView.findViewById(R.id.nav_header_name);
+        TextView emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
+        Button loginBtn = (Button)findViewById(R.id.nav_btn_login);
 
         if (isLogin) { // 로그인
 
-            navLayoutLogout.setVisibility(View.GONE);
+            loginBtn.setVisibility(View.GONE);
 
 //            naviView.inflateMenu(R.menu.main_drawer_singer);
             naviView.inflateMenu(R.menu.main_drawer_customer);
@@ -166,8 +168,7 @@ public class MainActivity extends AppCompatActivity
 
         } else { // 로그아웃
 
-            Button navLoginBtn = (Button) findViewById(R.id.nav_login_btn);
-            navLoginBtn.setOnClickListener(new View.OnClickListener() {
+            loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
@@ -176,8 +177,8 @@ public class MainActivity extends AppCompatActivity
 
             alarmBtn.setVisibility(View.INVISIBLE);
             pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
-            nameTextView.setVisibility(View.INVISIBLE);
-            emailTextView.setVisibility(View.INVISIBLE);
+            nameView.setVisibility(View.INVISIBLE);
+            emailView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -240,14 +241,14 @@ public class MainActivity extends AppCompatActivity
 
     private void changeNavMenu(Fragment f) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_fl_container, f)
+                .replace(R.id.act_main_fl_container, f)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
     }
 
     public void changeFragment(Fragment f) {
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main_fl_container, f)
+                .replace(R.id.act_main_fl_container, f)
                 .commit();
     }
 

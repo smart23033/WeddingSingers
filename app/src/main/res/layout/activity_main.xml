@@ -13,28 +13,28 @@
 
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/main_nav_menu"
+        android:id="@+id/main_nv_nav"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="left|start"
-        app:headerLayout="@layout/nav_main_header"
-        app:menu="@menu/main_drawer_customer"
-        >
+        android:layout_gravity="left|start">
+        <!--app:headerLayout="@layout/nav_main_header"-->
+        <!--app:menu="@menu/main_drawer_customer"-->
+        <!--&gt;-->
 
         <RelativeLayout
-            android:id="@+id/nav_layout_logout"
+            android:id="@+id/main_rl_login"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/nav_rl_login_margin_top"
+            >
 
             <Button
-                android:id="@+id/nav_login_btn"
+                android:id="@+id/nav_btn_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/nav_header_below"
-                android:text="@string/nav_do_login" />
+                android:text="@string/nav_do_login"
+                android:layout_centerHorizontal="true"/>
+
         </RelativeLayout>
 
     </android.support.design.widget.NavigationView>

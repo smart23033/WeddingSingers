@@ -41,9 +41,9 @@
 
 
     <!--네비게이션 드로워-->
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_padding_top">8dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
-    <dimen name="nav_header_below">180dp</dimen>
+    <dimen name="nav_rl_login_margin_top">200dp</dimen>
 
     <!--activity_search.xml과 그 하위 프래그먼트 통합. 나중에 나눠야됨 -->
     <dimen name="search_et_margin_top">20dp</dimen>
