@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_login_container);
             String fragmentTag = currentFragment.getTag();
-            boolean flag = false;
             InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
             if (fragmentTag != FRAG_LOGIN_INTRO) {
