@@ -71,8 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_login_container);
             String fragmentTag = currentFragment.getTag();
-            InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
-
             if (fragmentTag != FRAG_LOGIN_INTRO) {
                 FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction();
@@ -80,7 +78,10 @@ public class LoginActivity extends AppCompatActivity {
                 ft.commit();
 
                 if(fragmentTag == FRAG_LOGIN || fragmentTag == FRAG_SIGN_UP_SECOND) {
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+                    if(getCurrentFocus() != null) {
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                    }
                 }
             } else {
                 finish();
