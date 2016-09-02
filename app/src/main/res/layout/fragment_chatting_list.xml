@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context=".main.chatting.ChattingListFragment">
 
-    <ListView
-        android:id="@+id/chatting_list_lv_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/chatting_list_rv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

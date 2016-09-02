@@ -10,13 +10,21 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.ChatContract;
+import com.weddingsingers.wsapp.data.ChattingList;
+import com.weddingsingers.wsapp.data.Review;
+import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
+import com.weddingsingers.wsapp.function.video.singerreview.SingerReviewAdapter;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
+import com.weddingsingers.wsapp.main.home.VideoListAdapter;
+import com.weddingsingers.wsapp.manager.DBManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,23 +35,13 @@ import butterknife.OnItemClick;
  */
 public class ChattingListFragment extends Fragment {
 
-    @BindView(R.id.chatting_list_lv_list)
-    ListView listView;
+    @BindView(R.id.chatting_list_rv_list)
+    RecyclerView recyclerView;
 
-    SimpleCursorAdapter mAdapter;
+    ChattingListAdapter mAdapter;
 
     public ChattingListFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        String[] from = {ChatContract.ChatUser.COLUMN_NAME, ChatContract.ChatUser.COLUMN_LAST_DATE, ChatContract.ChatMessage.COLUMN_MESSAGE};
-        int[] to = {R.id.view_chat_user_tv_name, R.id.view_chat_user_tv_last_date, R.id.view_chat_user_tv_last_message};
-
-        mAdapter = new SimpleCursorAdapter(getContext(), R.layout.view_chat_user, null, from, to, 0);
     }
 
     @Override
@@ -54,19 +52,61 @@ public class ChattingListFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        listView.setAdapter(mAdapter);
+        mAdapter = new ChattingListAdapter();
+        recyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnAdapterItemClickListener(new ChattingListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemClick(View view, ChattingList chattingList, int position) {
+                Intent intent = new Intent(getContext(), ChattingActivity.class);
+                //intent.putExtra(ChattingList.EXTRA_SEARCH_RESULT, chattingList);
+
+                startActivity(intent);
+            }
+        });
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
 
         initData();
 
         return view;
     }
 
-    public void initData() {
+    private void initData() {
+        for (int i = 0; i < 10; i++) {
+            ChattingList chattingList = new ChattingList();
+            //videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+            chattingList.setName("사용자 " + i);
+            chattingList.setMsg("이분 채소 아" + i + "유");
+//            review.setDate("2016. 8. 24");
+            mAdapter.add(chattingList);
 
-    }
-
-    @OnItemClick(R.id.chatting_list_lv_list)
-    public void onItemClick(int position, long id) {
-        startActivity(new Intent(getActivity(), ChattingActivity.class));
+        }
     }
 }
+
+
+/*    @OnItemClick(R.id.chatting_list_rv_list)
+    public void onItemClick(int position, long id) {
+        Cursor cursor = (Cursor)recyclerView.getItemAtPosition(position);
+        User user = new User();
+        user.setId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+        user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+        Intent intent = new Intent(getContext(), ChattingActivity.class);
+        //intent.putExtra(ChattingActivity.EXTRA_USER, user);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Cursor c = DBManager.getInstance().getChatUser();
+        mAdapter.changeCursor(c);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.changeCursor(null);
+    }*/
