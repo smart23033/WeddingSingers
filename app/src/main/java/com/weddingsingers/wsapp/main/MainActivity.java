@@ -12,9 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
-import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
-import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
-import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
-import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
 import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
-import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
@@ -43,8 +34,6 @@ import com.weddingsingers.wsapp.main.mypage.SingerMyPageFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
-import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneFragment;
-import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.BindView;
@@ -76,7 +65,7 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.drawer)
     DrawerLayout drawer;
 
-    @BindView(R.id.navi_menu)
+    @BindView(R.id.main_nav_menu)
     NavigationView naviView;
 
     @BindView(R.id.main_toolbar)
@@ -154,7 +143,7 @@ public class MainActivity extends AppCompatActivity
     //로그인 체크 후 네비게이션 드로워 변경
     private void checkLogin(boolean isLogin) {
         naviView.getMenu().clear();
-        View headerView = naviView.inflateHeaderView(R.layout.nav_header_main);
+        View headerView = naviView.inflateHeaderView(R.layout.nav_main_header);
         ImageButton alarmBtn = (ImageButton) headerView.findViewById(R.id.nav_header_bell);
         ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
         TextView nameTextView = (TextView) headerView.findViewById(R.id.nav_header_name);
@@ -165,8 +154,8 @@ public class MainActivity extends AppCompatActivity
 
             navLayoutLogout.setVisibility(View.GONE);
 
-//            naviView.inflateMenu(R.menu.activity_main_drawer_singer);
-            naviView.inflateMenu(R.menu.activity_main_drawer_customer);
+//            naviView.inflateMenu(R.menu.main_drawer_singer);
+            naviView.inflateMenu(R.menu.main_drawer_customer);
 
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
