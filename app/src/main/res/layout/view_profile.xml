@@ -10,7 +10,7 @@
     android:layout_marginTop="@dimen/view_vertical_margin">
 
     <RelativeLayout
-        android:id="@+id/view_profile_rl"
+        android:id="@+id/view_profile_rl_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true">
@@ -36,8 +36,6 @@
             android:layout_toRightOf="@id/view_profile_riv_profile"
             android:text="singer name" />
 
-
-        <!--android:textAppearance="?android:attr/textAppearanceSmall"가 적용이 안됨. -->
         <TextView
             android:id="@+id/view_profile_tv_comment"
             android:layout_width="wrap_content"
@@ -59,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/view_profile_btn_reserve_margin_left"
         android:layout_marginTop="@dimen/view_profile_btn_reserve_margin_top"
-        android:layout_toRightOf="@+id/view_profile_rl"
+        android:layout_toRightOf="@+id/view_profile_rl_profile"
         android:text="reserve"
         android:textSize="@dimen/view_profile_btn_reserve_text_size" />
 

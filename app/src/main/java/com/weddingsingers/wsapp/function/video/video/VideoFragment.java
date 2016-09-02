@@ -4,22 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.media.session.MediaControllerCompat;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.search.search.RecentSearchFragment;
 import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
 import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoActivity;
 
@@ -68,7 +63,7 @@ public class VideoFragment extends Fragment {
         moveReservationActivity();
     }
 
-    @OnClick(R.id.view_profile_rl)
+    @OnClick(R.id.view_profile_rl_profile)
     void onProfileClicked(){
         startActivity(new Intent(getActivity(), SingerInfoActivity.class));
     }
