@@ -52,7 +52,7 @@ public class LoginIntroFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         LoginFragment loginFragment = new LoginFragment();
-        ft.add(R.id.act_login_container,loginFragment);
+        ft.add(R.id.act_login_container,loginFragment,LoginActivity.FRAG_LOGIN);
         ft.addToBackStack(null);
         ft.commit();
     }

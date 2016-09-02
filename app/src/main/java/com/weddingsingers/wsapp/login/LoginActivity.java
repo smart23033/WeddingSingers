@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 //    LoginPagerAdapter mAdapter;
 
     final static String FRAG_LOGIN_INTRO = "LoginIntroFragment";
+    final static String FRAG_LOGIN = "LoginFragment";
+    final static String FRAG_SIGN_UP_SECOND = "SignUpSecondFragment";
 
     @BindView(R.id.login_toolbar)
     Toolbar toolbar;
@@ -68,15 +70,19 @@ public class LoginActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_login_container);
-            if (currentFragment.getTag() != FRAG_LOGIN_INTRO) {
+            String fragmentTag = currentFragment.getTag();
+            boolean flag = false;
+            InputMethodManager imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+
+            if (fragmentTag != FRAG_LOGIN_INTRO) {
                 FragmentTransaction ft = getSupportFragmentManager()
                         .beginTransaction();
                 ft.detach(currentFragment);
                 ft.commit();
 
-//                InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(this.INPUT_METHOD_SERVICE);
-//                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
+                if(fragmentTag == FRAG_LOGIN || fragmentTag == FRAG_SIGN_UP_SECOND) {
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                }
             } else {
                 finish();
             }

@@ -59,7 +59,7 @@ public class SignUpFirstFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         SignUpSecondFragment signUpSecondFragment = new SignUpSecondFragment();
-        ft.add(R.id.act_login_container,signUpSecondFragment);
+        ft.add(R.id.act_login_container,signUpSecondFragment,LoginActivity.FRAG_SIGN_UP_SECOND);
         ft.addToBackStack(null);
         ft.commit();
     }
