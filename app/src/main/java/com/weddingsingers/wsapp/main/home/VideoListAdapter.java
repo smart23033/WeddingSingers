@@ -25,12 +25,16 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListViewHolder>
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public VideoListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_video_list, parent,false);
         VideoListViewHolder holder = new VideoListViewHolder(view);
         holder.setOnVideoListItemClickListener(this);
-
         return holder;
     }
 

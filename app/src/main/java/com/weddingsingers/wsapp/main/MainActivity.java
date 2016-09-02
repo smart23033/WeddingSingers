@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final int ERROR_CODE = -1;
 
-    @BindView(R.id.drawer)
+    @BindView(R.id.main_drawer)
     DrawerLayout drawer;
 
     @BindView(R.id.main_nv_nav)
@@ -186,7 +185,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer = (DrawerLayout) findViewById(R.id.main_drawer);
 
         switch (item.getItemId()) {
             case R.id.nav_home: {

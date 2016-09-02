@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,25 +18,42 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
-import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
 
-    TabLayout tabs;
-    MainPagerAdapter mAdapter;
-    ViewPager pager;
+
+    @BindView(R.id.main_cv_carousel)
     CarouselView carouselView;
 
-    int[] bannerImages = {R.drawable.banner1, R.drawable.banner1, R.drawable.banner1, R.drawable.banner1, R.drawable.banner1};
+    @BindView(R.id.main_tabHost)
+    TabHost tabHost;
+
+    @BindView(R.id.main_rv_list)
+    RecyclerView recyclerView;
+
+    VideoListAdapter videoListAdapter;
+
+    int[] bannerImages = {R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner};
 
     public MainFragment() {
         // Required empty public constructor
@@ -51,27 +71,64 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        carouselView = (CarouselView) view.findViewById(R.id.main_cv_carousel);
+        ButterKnife.bind(this,view);
+
         carouselView.setPageCount(bannerImages.length);
         carouselView.setIndicatorMarginVertical(50);
         carouselView.setIndicatorMarginHorizontal(100);
         carouselView.setIndicatorGravity(Gravity.BOTTOM | Gravity.RIGHT);
-
         carouselView.setImageListener(imageListener);
 
-        pager = (ViewPager)view.findViewById(R.id.main_pager);
-        tabs = (TabLayout)view.findViewById(R.id.main_tabs);
+        videoListAdapter = new VideoListAdapter();
 
-        tabs.addTab(tabs.newTab().setText("TAB1").setTag("tab1"));
-        tabs.addTab(tabs.newTab().setText("TAB2").setTag("tab2"));
-        tabs.addTab(tabs.newTab().setText("TAB3").setTag("tab3"));
+        TabHost.TabContentFactory dummyFactory = new DummyContentFactory(getContext());
 
-        mAdapter = new MainPagerAdapter(getChildFragmentManager() ,tabs.getTabCount());
+        tabHost.setup();
 
-        pager.setAdapter(mAdapter);
-        tabs.setupWithViewPager(pager);
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("TAB1").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("TAB2").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("TAB3").setContent(dummyFactory));
+
+        recyclerView.setAdapter(videoListAdapter);
+
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                if(!tabHost.getCurrentTabTag().equals(tabId)){
+                    tabHost.setCurrentTabByTag(tabId);
+                }
+                initData(tabId);
+            }
+        });
+
+        videoListAdapter.setOnAdapterItemClickListener(new VideoListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemClick(View view, VideoList videoList, int position) {
+                Intent intent = new Intent(getContext(), VideoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
+
+        initData("tab1");
 
         return view;
+    }
+
+    private void initData(String tabId) {
+        videoListAdapter.clear();
+        for(int i = 0; i < 20; i++){
+            VideoList videoList = new VideoList();
+//            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+            videoList.setTitle("video title " + i);
+            videoList.setDate("2016. 4. 24");
+            videoList.setHit(123);
+            videoList.setFavorite(4123);
+            videoListAdapter.add(videoList);
+        }
     }
 
     ImageListener imageListener = new ImageListener() {

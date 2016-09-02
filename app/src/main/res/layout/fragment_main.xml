@@ -1,33 +1,52 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.weddingsingers.wsapp.main.home.MainFragment">
 
-    <com.synnapps.carouselview.CarouselView
-        android:id="@+id/main_cv_carousel"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:fillColor="#AAEEEEEE"
-        app:pageColor="#00000000"
-        app:radius="6dp"
-        app:slideInterval="3000"
-        app:strokeColor="#AA888888"
-        app:strokeWidth="2dp" />
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/main_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        >
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/main_tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_cv_carousel"
-        app:tabMode="fixed" />
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/main_cv_carousel"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:fillColor="@android:color/transparent"
+                app:pageColor="@android:color/transparent"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="@android:color/transparent"
+                app:layout_scrollFlags="enterAlwaysCollapsed|scroll"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/main_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/main_tabs"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            <TabHost
+                android:id="@+id/main_tabHost"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="exitUntilCollapsed">
 
-</RelativeLayout>
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp" />
+
+            </TabHost>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/main_appbar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</android.support.design.widget.CoordinatorLayout>
