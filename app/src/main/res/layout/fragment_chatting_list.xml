@@ -1,13 +1,14 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".main.chatting.ChattingListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/chatting_list_lv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="chatting  frag" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+    </ListView>
+
+</RelativeLayout>
