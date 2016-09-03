@@ -25,6 +25,12 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListViewHolder>
         notifyDataSetChanged();
     }
 
+
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public EventListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_event_list, parent, false);

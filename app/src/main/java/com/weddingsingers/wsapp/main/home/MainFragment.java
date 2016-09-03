@@ -29,7 +29,9 @@ import android.widget.Toast;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.EventList;
 import com.weddingsingers.wsapp.data.VideoList;
+import com.weddingsingers.wsapp.function.event.event.EventActivity;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 
@@ -52,6 +54,7 @@ public class MainFragment extends Fragment {
     RecyclerView recyclerView;
 
     VideoListAdapter videoListAdapter;
+    EventListAdapter eventListAdapter;
 
     int[] bannerImages = {R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner};
 
@@ -80,6 +83,7 @@ public class MainFragment extends Fragment {
         carouselView.setImageListener(imageListener);
 
         videoListAdapter = new VideoListAdapter();
+        eventListAdapter = new EventListAdapter();
 
         TabHost.TabContentFactory dummyFactory = new DummyContentFactory(getContext());
 
@@ -88,8 +92,6 @@ public class MainFragment extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("TAB1").setContent(dummyFactory));
         tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("TAB2").setContent(dummyFactory));
         tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("TAB3").setContent(dummyFactory));
-
-        recyclerView.setAdapter(videoListAdapter);
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -110,6 +112,14 @@ public class MainFragment extends Fragment {
         });
 
 
+        eventListAdapter.setOnAdapterItemClickListener(new EventListAdapter.OnAdapterItemClickListener() {
+            @Override
+            public void onAdapterItemClick(View view, EventList eventList, int position) {
+                Intent intent = new Intent(getContext(), EventActivity.class);
+                startActivity(intent);
+            }
+        });
+
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
@@ -119,17 +129,34 @@ public class MainFragment extends Fragment {
     }
 
     private void initData(String tabId) {
-        videoListAdapter.clear();
-        for(int i = 0; i < 20; i++){
-            VideoList videoList = new VideoList();
+
+        if (tabId != "tab3"){
+            recyclerView.setAdapter(videoListAdapter);
+            videoListAdapter.clear();
+            for(int i = 0; i < 20; i++){
+                VideoList videoList = new VideoList();
 //            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-            videoList.setTitle("video title " + i);
-            videoList.setDate("2016. 4. 24");
-            videoList.setHit(123);
-            videoList.setFavorite(4123);
-            videoListAdapter.add(videoList);
+                videoList.setTitle(tabId + "'s video title " + i);
+                videoList.setDate("2016. 4. 24");
+                videoList.setHit(123);
+                videoList.setFavorite(4123);
+                videoListAdapter.add(videoList);
+            }
+        }else{
+            recyclerView.setAdapter(eventListAdapter);
+            videoListAdapter.clear();
+            eventListAdapter.clear();
+            for(int i = 0; i < 20; i++){
+                EventList eventList = new EventList();
+                //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+                eventList.setTitle("Event title " + i);
+                eventList.setDate("2016. 4. 24");
+                eventListAdapter.add(eventList);
+            }
         }
+
     }
+
 
     ImageListener imageListener = new ImageListener() {
         @Override
