@@ -59,12 +59,12 @@ public class VideoFragment extends Fragment {
     }
 
     @OnClick(R.id.view_profile_btn_reserve)
-    void onReserveBtnClicked(){
+    void onReserveBtnClick(){
         moveReservationActivity();
     }
 
     @OnClick(R.id.view_profile_rl_profile)
-    void onProfileClicked(){
+    void onProfileClick(){
         startActivity(new Intent(getActivity(), SingerInfoActivity.class));
     }
 
@@ -76,7 +76,6 @@ public class VideoFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Toast.makeText(getContext(), "VideoActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

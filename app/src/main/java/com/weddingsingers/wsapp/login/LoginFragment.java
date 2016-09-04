@@ -22,6 +22,7 @@ import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.manager.PropertyManager;
 import com.weddingsingers.wsapp.request.LoginRequest;
 
 import butterknife.BindView;
@@ -64,15 +65,16 @@ public class LoginFragment extends Fragment {
     @OnClick(R.id.login_btn_login)
     void onLoginBtnClick(){
 
-        String email = emailInput.getText().toString();
-        String password = passwordInput.getText().toString();
+        final String email = emailInput.getText().toString();
+        final String password = passwordInput.getText().toString();
 
         LoginRequest request = new LoginRequest(getContext(),email,password);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
-
+                PropertyManager.getInstance().setEmail(email);
+                PropertyManager.getInstance().setPassword(password);
                 moveMainActivity();
             }
 

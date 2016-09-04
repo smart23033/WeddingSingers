@@ -6,9 +6,18 @@ import java.io.Serializable;
 public class VideoList implements Serializable {
     private String thumbnail;
     private String title;
+    private String singerName;
     private String date;
     private int hit;
     private int favorite;
+
+    public String getSingerName() {
+        return singerName;
+    }
+
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
+    }
 
     public String getThumbnail() {
         return thumbnail;

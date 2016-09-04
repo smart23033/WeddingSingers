@@ -49,7 +49,7 @@ public class CancelScheduleFragment extends Fragment {
     }
 
     @OnClick(R.id.cancel_schedule_btn_cancel)
-    void onCancelBtnClicked() {
+    void onCancelBtnClick() {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Cancel complete")
@@ -91,7 +91,6 @@ public class CancelScheduleFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Toast.makeText(getContext(), "CancelScheduleActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

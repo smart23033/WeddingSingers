@@ -69,7 +69,7 @@ public class DayOffFragment extends Fragment implements
     ArrayList<CalendarDay> dates = new ArrayList<>();
 
     @OnClick(R.id.day_off_btn_set)
-    void onSetBtnClicked(){
+    void onSetBtnClick(){
         for(CalendarDay d : dates) {
             Log.i("DayOffFragment", "dates : " + FORMATTER.format(d.getDate()));
             calendarView.setDateSelected(d,true);
@@ -92,7 +92,6 @@ public class DayOffFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                Toast.makeText(getContext(),"DayOffActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

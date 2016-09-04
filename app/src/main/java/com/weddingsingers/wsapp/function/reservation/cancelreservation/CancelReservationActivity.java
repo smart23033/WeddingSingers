@@ -44,7 +44,6 @@ public class CancelReservationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Toast.makeText(CancelReservationActivity.this, "CancelReservationActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
             }

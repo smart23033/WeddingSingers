@@ -34,7 +34,7 @@ public class DeprecatedLoginFragment extends Fragment {
     }
 
     @OnClick(R.id.login_btn_login)
-    void onLoginBtnClicked(){
+    void onLoginBtnClick(){
         moveMainActivity();
     }
 

@@ -31,7 +31,6 @@ public class ClauseDialogFragment extends DialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getContext(),"Clause Dialog OK Clicked",Toast.LENGTH_SHORT).show();
             }
         });
 

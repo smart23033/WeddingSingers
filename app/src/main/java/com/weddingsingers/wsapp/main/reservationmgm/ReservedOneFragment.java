@@ -50,12 +50,12 @@ public class ReservedOneFragment extends Fragment {
     }
 
     @OnClick(R.id.reserved_one_btn_cancel)
-    void onCancelBtnClicked(){
+    void onCancelBtnClick(){
         startActivity(new Intent(getActivity(),CancelReservationActivity.class));
     }
 
     @OnClick(R.id.reserved_one_btn_chat)
-    void onChatBtnClicked(){
+    void onChatBtnClick(){
         startActivity(new Intent(getActivity(), ChattingActivity.class));
     }
 

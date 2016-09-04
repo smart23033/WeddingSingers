@@ -105,7 +105,7 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnClick(R.id.reservation_btn_reserve)
-    void onReserveBtnClicked(){
+    void onReserveBtnClick(){
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Reservation Complete")
@@ -127,7 +127,7 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
-    void onRadioBtnClicked(RadioButton radioButton){
+    void onRadioBtnClick(RadioButton radioButton){
         boolean checked = radioButton.isChecked();
 
         switch (radioButton.getId()){
@@ -183,7 +183,6 @@ public class ReservationFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                Toast.makeText(getContext(),"ReservationActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

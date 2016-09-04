@@ -91,7 +91,6 @@ public class WriteReviewFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Toast.makeText(getContext(), "CancelScheduleActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

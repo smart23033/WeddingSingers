@@ -4,13 +4,9 @@ package com.weddingsingers.wsapp.main.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,22 +14,24 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.EventList;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.function.event.event.EventActivity;
 import com.weddingsingers.wsapp.function.search.search.SearchActivity;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.VideoListRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +40,14 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class MainFragment extends Fragment {
+
+    final static int TYPE_POPULAR = 1;
+    final static int TYPE_LATEST = 2;
+
+    final static String VIDEO_POPULAR = "PopularVideoList";
+    final static String VIDEO_LATEST = "LatestVideoList";
+    final static String EVENT_LIST = "EventList";
+
 
 
     @BindView(R.id.main_cv_carousel)
@@ -89,9 +95,9 @@ public class MainFragment extends Fragment {
 
         tabHost.setup();
 
-        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("TAB1").setContent(dummyFactory));
-        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("TAB2").setContent(dummyFactory));
-        tabHost.addTab(tabHost.newTabSpec("tab3").setIndicator("TAB3").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(VIDEO_POPULAR).setIndicator("TAB1").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(VIDEO_LATEST).setIndicator("TAB2").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(EVENT_LIST).setIndicator("TAB3").setContent(dummyFactory));
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -123,35 +129,87 @@ public class MainFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        initData("tab1");
+        initData(VIDEO_POPULAR);
 
         return view;
     }
 
     private void initData(String tabId) {
+        switch (tabId){
+            case VIDEO_POPULAR:
+            {
 
-        if (tabId != "tab3"){
-            recyclerView.setAdapter(videoListAdapter);
-            videoListAdapter.clear();
-            for(int i = 0; i < 20; i++){
-                VideoList videoList = new VideoList();
+                recyclerView.setAdapter(videoListAdapter);
+                videoListAdapter.clear();
+
+                VideoListRequest request = new VideoListRequest(getContext(), TYPE_POPULAR);
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<VideoList>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
+                        Toast.makeText(getContext(),VIDEO_POPULAR,Toast.LENGTH_SHORT).show();
+//                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
+                        for(int i = 0; i < result.getResult().size(); i++){
+                            VideoList videoList = new VideoList();
 //            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-                videoList.setTitle(tabId + "'s video title " + i);
-                videoList.setDate("2016. 4. 24");
-                videoList.setHit(123);
-                videoList.setFavorite(4123);
-                videoListAdapter.add(videoList);
+                            videoList.setTitle(result.getResult().get(i).getTitle());
+                            videoList.setDate(result.getResult().get(i).getDate());
+                            videoList.setHit(result.getResult().get(i).getHit());
+                            videoList.setFavorite(result.getResult().get(i).getFavorite());
+                            videoListAdapter.add(videoList);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<VideoList>>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return;
             }
-        }else{
-            recyclerView.setAdapter(eventListAdapter);
-            videoListAdapter.clear();
-            eventListAdapter.clear();
-            for(int i = 0; i < 20; i++){
-                EventList eventList = new EventList();
-                //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-                eventList.setTitle("Event title " + i);
-                eventList.setDate("2016. 4. 24");
-                eventListAdapter.add(eventList);
+            case VIDEO_LATEST:
+            {
+
+                recyclerView.setAdapter(videoListAdapter);
+                videoListAdapter.clear();
+
+                VideoListRequest request = new VideoListRequest(getContext(), TYPE_LATEST);
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<VideoList>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
+                        Toast.makeText(getContext(),VIDEO_LATEST,Toast.LENGTH_SHORT).show();
+//                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
+                        for(int i = 0; i < result.getResult().size(); i++){
+                            VideoList videoList = new VideoList();
+//            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+                            videoList.setTitle(result.getResult().get(i).getTitle());
+                            videoList.setDate(result.getResult().get(i).getDate());
+                            videoList.setHit(result.getResult().get(i).getHit());
+                            videoList.setFavorite(result.getResult().get(i).getFavorite());
+                            videoListAdapter.add(videoList);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<VideoList>>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return;
+            }
+            case EVENT_LIST : {
+                recyclerView.setAdapter(eventListAdapter);
+                videoListAdapter.clear();
+                eventListAdapter.clear();
+                for(int i = 0; i < 20; i++){
+                    EventList eventList = new EventList();
+                    //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+                    eventList.setTitle("Event title " + i);
+                    eventList.setDate("2016. 4. 24");
+                    eventListAdapter.add(eventList);
+                }
+                return;
             }
         }
 

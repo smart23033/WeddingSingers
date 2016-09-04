@@ -67,7 +67,7 @@ public class PaymentFragment extends Fragment {
     }
 
     @OnClick(R.id.payment_btn_remittance)
-    void onRemittanceBtnClicked(){
+    void onRemittanceBtnClick(){
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Remittance")
@@ -87,7 +87,7 @@ public class PaymentFragment extends Fragment {
     }
 
     @OnClick(R.id.payment_btn_kakao_pay)
-    void onKakaoPayBtnClicked(){
+    void onKakaoPayBtnClick(){
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Kakao Pay")
@@ -126,7 +126,6 @@ public class PaymentFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:{
-                Toast.makeText(getContext(),"PaymentActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 getActivity().finish();
                 return true;
             }

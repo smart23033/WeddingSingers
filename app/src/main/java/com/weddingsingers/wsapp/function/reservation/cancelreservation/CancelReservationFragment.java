@@ -50,7 +50,7 @@ public class CancelReservationFragment extends Fragment {
     }
 
     @OnClick(R.id.cancel_reservation_btn_cancel)
-    void onCancelBtnClicked() {
+    void onCancelBtnClick() {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Cancel complete")

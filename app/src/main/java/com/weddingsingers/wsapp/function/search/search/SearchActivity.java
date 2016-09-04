@@ -62,12 +62,10 @@ public class SearchActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                Toast.makeText(SearchActivity.this,"SearchActivity's HomeAsUp Clicked", Toast.LENGTH_SHORT).show();
                 finish();
                 return true;
             }
             case R.id.main_menu_search: {
-                Toast.makeText(SearchActivity.this, "SearchActivity's Search Button Clicked", Toast.LENGTH_SHORT).show();
 
                 Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.act_search_fl_container);
 
