@@ -22,7 +22,7 @@ public abstract class AbstractRequest<T> extends NetworkRequest<T> {
     protected HttpUrl.Builder getBaseUrlBuilder() {
         HttpUrl.Builder builder = new HttpUrl.Builder();
         builder.scheme("https");
-        builder.host("ec2-52-78-147-230.ap-northeast-2.compute.amazonaws.com");
+        builder.host("ec2-52-78-132-224.ap-northeast-2.compute.amazonaws.com");
         return builder;
     }
 

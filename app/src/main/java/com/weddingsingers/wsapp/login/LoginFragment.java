@@ -13,11 +13,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.LoginRequest;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -37,6 +44,12 @@ public class LoginFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @BindView(R.id.login_et_email)
+    EditText emailInput;
+
+    @BindView(R.id.login_et_password)
+    EditText passwordInput;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +63,24 @@ public class LoginFragment extends Fragment {
 
     @OnClick(R.id.login_btn_login)
     void onLoginBtnClick(){
-        moveMainActivity();
+
+        String email = emailInput.getText().toString();
+        String password = passwordInput.getText().toString();
+
+        LoginRequest request = new LoginRequest(getContext(),email,password);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+                Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
+
+                moveMainActivity();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void moveMainActivity(){
