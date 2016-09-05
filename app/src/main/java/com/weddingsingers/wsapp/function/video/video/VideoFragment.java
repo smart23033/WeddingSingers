@@ -153,16 +153,12 @@ public class VideoFragment extends Fragment {
 
     @OnClick(R.id.view_profile_btn_reserve)
     void onReserveBtnClick(){
-        moveReservationActivity();
+        startActivity(new Intent(getContext(), ReservationActivity.class));
     }
 
     @OnClick(R.id.view_profile_rl_profile)
     void onProfileClick(){
         startActivity(new Intent(getActivity(), SingerInfoActivity.class));
-    }
-
-    void moveReservationActivity(){
-        startActivity(new Intent(getContext(), ReservationActivity.class));
     }
 
     @Override
@@ -192,4 +188,5 @@ public class VideoFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.video_menu,menu);
     }
+
 }
