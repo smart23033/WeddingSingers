@@ -6,13 +6,14 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-09-05.
  */
 public class Search implements Serializable {
-    int theme;
-    int location;
-    int price;
-    int composition;
-    String startDate;
-    String endDate;
-    String keyword;
+    private int theme;
+    private int location;
+    private int price;
+    private int composition;
+    private String startDate;
+    private String endDate;
+    private String keyword;
+
 
     public int getTheme() {
         return theme;

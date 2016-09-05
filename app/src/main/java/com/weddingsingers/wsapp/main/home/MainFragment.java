@@ -150,7 +150,6 @@ public class MainFragment extends Fragment {
                     type = TYPE_LATEST;
                 }
 
-
                 VideoListRequest request = new VideoListRequest(getContext(), type);
                 getVideoList(request);
                 return;
@@ -179,19 +178,19 @@ public class MainFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
-                for(int i = 0; i < result.getResult().size(); i++){
-                    VideoList videoList = new VideoList();
+                    for(int i = 0; i < result.getResult().size(); i++){
+                VideoList videoList = new VideoList();
 //            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-                    videoList.setTitle(result.getResult().get(i).getTitle());
-                    videoList.setDate(result.getResult().get(i).getDate());
-                    videoList.setHit(result.getResult().get(i).getHit());
-                    videoList.setFavorite(result.getResult().get(i).getFavorite());
-                    videoListAdapter.add(videoList);
-                }
-
+                videoList.setTitle(result.getResult().get(i).getTitle());
+                videoList.setDate(result.getResult().get(i).getDate());
+                videoList.setHit(result.getResult().get(i).getHit());
+                videoList.setFavorite(result.getResult().get(i).getFavorite());
+                videoListAdapter.add(videoList);
             }
 
-            @Override
+        }
+
+        @Override
             public void onFail(NetworkRequest<NetworkResult<List<VideoList>>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
             }

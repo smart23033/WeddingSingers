@@ -4,13 +4,22 @@ import android.graphics.drawable.Drawable;
 
 import java.io.Serializable;
 
-public class SearchResult implements Serializable{
+public class SearchResult implements Serializable {
+    private int id;
     private String thumbnail;
     private String title;
     private String singerName;
     private String date;
     private int hit;
     private int favorite;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getThumbnail() {
         return thumbnail;
