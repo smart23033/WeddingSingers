@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
         changeFragmentFromAnotherActivity(fragmentName);
-
         boolean isLogin = intent.getBooleanExtra("login", false);
         checkLogin(isLogin);
 

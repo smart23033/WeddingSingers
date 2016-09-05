@@ -1,5 +1,7 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,15 +10,33 @@ import java.io.Serializable;
 public class Video implements Serializable {
     private String url;
     private String title;
+
+    @SerializedName("singer_name")
     private String singerName;
+
+    @SerializedName("write_dtime")
     private String date;
+
+    @SerializedName("favorite_cnt")
     private int favorite;
+
     private int hit;
+
+    @SerializedName("singer_comment")
     private String comment;
+
+    @SerializedName("standard_price")
     private int standard;
+
+    @SerializedName("special_price")
     private int special;
+
+    @SerializedName("review_point")
     private int rating;
+
+    @SerializedName("review_cnt")
     private int review;
+
     private int id;
 
     public int getReview() {

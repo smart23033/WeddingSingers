@@ -75,6 +75,10 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
                 PropertyManager.getInstance().setEmail(email);
                 PropertyManager.getInstance().setPassword(password);
+
+
+
+
                 moveMainActivity();
             }
 
