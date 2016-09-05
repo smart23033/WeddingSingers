@@ -41,10 +41,12 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static int isLogin = 0;
+
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
-
+    public static final String EXTRA_USER_ID ="";
     public static final String FRAG_NAME = "fragmentName";
 
     public static final int RC_FRAG = 1000;
@@ -109,8 +111,13 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
         changeFragmentFromAnotherActivity(fragmentName);
-        boolean isLogin = intent.getBooleanExtra("login", false);
-        checkLogin(isLogin);
+
+        isLogin = intent.getIntExtra(EXTRA_USER_ID, 0);
+        if(isLogin == 0) {
+            checkLogin(false);
+        } else {
+            checkLogin(true);
+        }
 
     }
 

@@ -49,4 +49,3 @@ public class OtherVideoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-

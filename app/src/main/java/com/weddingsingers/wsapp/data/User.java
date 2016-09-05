@@ -11,6 +11,7 @@ public class User implements Serializable{
     private String password;
     private String name;
     private String phone;
+    private int point;
     private int type;
 
     public long getId() {
@@ -43,6 +44,14 @@ public class User implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 
     public String getPhone() {

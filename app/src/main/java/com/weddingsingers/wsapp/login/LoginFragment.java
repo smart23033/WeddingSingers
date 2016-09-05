@@ -75,11 +75,9 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
                 PropertyManager.getInstance().setEmail(email);
                 PropertyManager.getInstance().setPassword(password);
+                long id = result.getResult().getId();
 
-
-
-
-                moveMainActivity();
+                moveMainActivity(id);
             }
 
             @Override
@@ -89,9 +87,10 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private void moveMainActivity(){
+    private void moveMainActivity(long id){
         Intent intent = new Intent(getActivity(),MainActivity.class);
         intent.putExtra("login", true);
+        intent.putExtra(MainActivity.EXTRA_USER_ID, id);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();

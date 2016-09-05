@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.VideoList;
@@ -82,5 +84,17 @@ public class VideoListFragment extends Fragment {
             videoList.setFavorite(4123);
             mAdapter.add(videoList);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                Toast.makeText(getActivity(), "sdfsfsfs", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

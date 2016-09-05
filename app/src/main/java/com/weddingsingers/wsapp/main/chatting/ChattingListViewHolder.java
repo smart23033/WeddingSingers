@@ -35,8 +35,6 @@ public class ChattingListViewHolder extends RecyclerView.ViewHolder {
         this.listener = listener;
     }
 
-
-
     public ChattingListViewHolder(View itemView) {
         super(itemView);
 
