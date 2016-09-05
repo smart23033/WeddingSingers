@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -34,7 +35,6 @@ import butterknife.OnItemSelected;
  */
 public class FilterFragment extends Fragment{
 
-    final static int INITIAL_POSITION = 0;
 
     @BindView(R.id.filter_spinner_location)
     Spinner locationSpinner;
@@ -47,6 +47,12 @@ public class FilterFragment extends Fragment{
 
     @BindView(R.id.filter_spinner_price)
     Spinner priceSpinner;
+
+    @BindView(R.id.filter_tv_start_date)
+    TextView startDateView;
+
+    @BindView(R.id.filter_tv_end_date)
+    TextView endDateView;
 
     FilterSpinnerAdapter locationAdapter;
     FilterSpinnerAdapter compositionAdapter;
@@ -132,12 +138,11 @@ public class FilterFragment extends Fragment{
                 startDate = startDate.substring(startDate.indexOf('{')+1,startDate.indexOf('}'));
                 endDate = endDate.substring(endDate.indexOf('{')+1,endDate.indexOf('}'));
 
+                startDateView.setText(startDate);
+                endDateView.setText(endDate);
+
                 search.setStartDate(startDate);
                 search.setEndDate(endDate);
-
-
-                Log.i("FilterFragment",startDate);
-                Log.i("FilterFragment",endDate);
 
             }
         });

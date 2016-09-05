@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.Search;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +35,8 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.search_toolbar)
     Toolbar toolbar;
 
+    Search search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,9 +48,11 @@ public class SearchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        search = new Search();
+
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+        RecentSearchFragment recentSearchFragment = RecentSearchFragment.newInstance(search);
         ft.add(R.id.act_search_fl_container,recentSearchFragment, FRAG_RECENT_SEARCH);
         ft.commit();
 
@@ -77,6 +82,9 @@ public class SearchActivity extends AppCompatActivity {
                     keywordInput.setText("");
                     keywordInput.setVisibility(View.GONE);
 
+                    search.setKeyword(keywordView.toString());
+
+
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
                     SearchResultFragment searchResultFragment = new SearchResultFragment();
@@ -84,6 +92,7 @@ public class SearchActivity extends AppCompatActivity {
                     ft.commit();
                 } else {
 //               searchResultFragment에서 search버튼 누를 때
+
                     keywordView.setText("");
                     keywordView.setVisibility(View.GONE);
                     keywordInput.setVisibility(View.VISIBLE);

@@ -36,10 +36,22 @@ public class RecentSearchFragment extends Fragment {
     @BindView(R.id.search_btn_recent)
     Button recentBtn;
 
+    public static RecentSearchFragment newInstance(Search search){
+        RecentSearchFragment fragment = new RecentSearchFragment();
+        Bundle b = new Bundle();
+        b.putSerializable(SearchActivity.KEY_SEARCH,search);
+        fragment.setArguments(b);
+        return fragment;
+    }
+
+    Search search;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+            search = (Search) getArguments().getSerializable(SearchActivity.KEY_SEARCH);
+        }
     }
 
     @Override
@@ -62,7 +74,6 @@ public class RecentSearchFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
           if(item.getItemId() == R.id.search_menu_filter) {
-                Search search = new Search();
                 item.setIcon(R.drawable.search_ic_filter_on);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager()
                         .beginTransaction();
