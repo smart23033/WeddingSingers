@@ -40,10 +40,12 @@ public class VideoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        Intent intent = getIntent();
+        int videoId = intent.getIntExtra(EXTRA_SEARCH_RESULT, 0);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        VideoFragment videoFragment = new VideoFragment();
+        VideoFragment videoFragment = VideoFragment.newInstance(videoId);
         ft.add(R.id.act_video_fl_container,videoFragment);
         ft.commit();
 

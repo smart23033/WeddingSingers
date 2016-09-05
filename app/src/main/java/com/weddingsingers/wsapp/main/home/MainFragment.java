@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,7 +50,6 @@ public class MainFragment extends Fragment {
     final static String EVENT_LIST = "EventList";
 
 
-
     @BindView(R.id.main_cv_carousel)
     CarouselView carouselView;
 
@@ -80,7 +80,7 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         carouselView.setPageCount(bannerImages.length);
         carouselView.setIndicatorMarginVertical(50);
@@ -102,7 +102,7 @@ public class MainFragment extends Fragment {
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                if(!tabHost.getCurrentTabTag().equals(tabId)){
+                if (!tabHost.getCurrentTabTag().equals(tabId)) {
                     tabHost.setCurrentTabByTag(tabId);
                 }
                 initData(tabId);
@@ -136,17 +136,16 @@ public class MainFragment extends Fragment {
 
     private void initData(String tabId) {
         int type = 0;
-        switch (tabId){
+        switch (tabId) {
             case VIDEO_POPULAR:
-            case VIDEO_LATEST:
-            {
+            case VIDEO_LATEST: {
 
                 recyclerView.setAdapter(videoListAdapter);
                 videoListAdapter.clear();
 
-                if(tabId == VIDEO_POPULAR){
+                if (tabId == VIDEO_POPULAR) {
                     type = TYPE_POPULAR;
-                }else if(tabId == VIDEO_LATEST){
+                } else if (tabId == VIDEO_LATEST) {
                     type = TYPE_LATEST;
                 }
 
@@ -156,11 +155,11 @@ public class MainFragment extends Fragment {
 
             }
 
-            case EVENT_LIST : {
+            case EVENT_LIST: {
                 recyclerView.setAdapter(eventListAdapter);
                 videoListAdapter.clear();
                 eventListAdapter.clear();
-                for(int i = 0; i < 20; i++){
+                for (int i = 0; i < 20; i++) {
                     EventList eventList = new EventList();
                     //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
                     eventList.setTitle("Event title " + i);
@@ -173,26 +172,27 @@ public class MainFragment extends Fragment {
 
     }
 
-    private void getVideoList(VideoListRequest request){
+    private void getVideoList(VideoListRequest request) {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<VideoList>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
-                    for(int i = 0; i < result.getResult().size(); i++){
-                VideoList videoList = new VideoList();
+                for (int i = 0; i < result.getResult().size(); i++) {
+                    VideoList videoList = new VideoList();
 //            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
-                videoList.setTitle(result.getResult().get(i).getTitle());
-                videoList.setDate(result.getResult().get(i).getDate());
-                videoList.setHit(result.getResult().get(i).getHit());
-                videoList.setFavorite(result.getResult().get(i).getFavorite());
-                videoListAdapter.add(videoList);
+                    videoList.setTitle(result.getResult().get(i).getTitle());
+                    videoList.setDate(result.getResult().get(i).getDate());
+                    Log.i("MainFragment", "date : " + result.getResult().get(i).getDate());
+                    videoList.setHit(result.getResult().get(i).getHit());
+                    videoList.setFavorite(result.getResult().get(i).getFavorite());
+                    videoListAdapter.add(videoList);
+                }
+
             }
 
-        }
-
-        @Override
+            @Override
             public void onFail(NetworkRequest<NetworkResult<List<VideoList>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -207,16 +207,16 @@ public class MainFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.main_menu_search) {
+        if (item.getItemId() == R.id.main_menu_search) {
             startActivity(new Intent(getContext(), SearchActivity.class));
             return true;
-            }
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.main_menu,menu);
+        inflater.inflate(R.menu.main_menu, menu);
     }
 }

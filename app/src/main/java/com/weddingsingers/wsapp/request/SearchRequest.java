@@ -23,10 +23,10 @@ public class SearchRequest  extends AbstractRequest<NetworkResult<List<SearchRes
     public SearchRequest(Context context, Search search) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("videos")
-                .addQueryParameter("thema", String.valueOf(search.getTheme()))
+                .addQueryParameter("theme", String.valueOf(search.getTheme()))
                 .addQueryParameter("location", String.valueOf(search.getLocation()))
-                .addQueryParameter("s_workday",search.getStartDate())
-                .addQueryParameter("e_workday",search.getEndDate())
+                .addQueryParameter("start_date",search.getStartDate())
+                .addQueryParameter("end_date",search.getEndDate())
                 .addQueryParameter("price", String.valueOf(search.getPrice()))
                 .addQueryParameter("composition", String.valueOf(search.getComposition()))
                 .addQueryParameter("hash",search.getKeyword())

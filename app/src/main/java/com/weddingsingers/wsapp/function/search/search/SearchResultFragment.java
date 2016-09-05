@@ -87,10 +87,9 @@ public class SearchResultFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new SearchResultAdapter.OnAdapterItemClickListener() {
             @Override
             public void onAdapterItemClick(View view, SearchResult searchResult, int position) {
-                Toast.makeText(getContext(), "SearchResult : " + searchResult.getTitle(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "SearchResult : " + searchResult.getId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), VideoActivity.class);
-                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, searchResult);
-
+                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, searchResult.getId());
                 startActivity(intent);
             }
         });
@@ -123,7 +122,7 @@ public class SearchResultFragment extends Fragment {
                     searchResult.setId(sr.getId());
                     searchResult.setSingerName(sr.getSingerName());
                     searchResult.setThumbnail(sr.getThumbnail());
-
+                    searchResult.setId(sr.getId());
                     mAdapter.add(searchResult);
                 }
 

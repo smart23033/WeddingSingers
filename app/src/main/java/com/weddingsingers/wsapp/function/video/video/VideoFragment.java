@@ -26,7 +26,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class VideoFragment extends Fragment {
-
+    final static String KEY_VIDEO_ID = "VideoId";
 
     public VideoFragment() {
         // Required empty public constructor
@@ -36,10 +36,24 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_vv_video)
     VideoView videoView;
 
+
+    public static VideoFragment newInstance(int videoId) {
+        VideoFragment fragment = new VideoFragment();
+        Bundle b = new Bundle();
+        b.putInt(KEY_VIDEO_ID,videoId);
+        fragment.setArguments(b);
+        return fragment;
+    }
+
+    int videoId;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+            videoId = getArguments().getInt(KEY_VIDEO_ID);
+        }
     }
 
     @Override
