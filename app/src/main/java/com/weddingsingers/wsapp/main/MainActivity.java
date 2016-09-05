@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
-    public static final String EXTRA_USER_ID ="";
+    public static final String EXTRA_USER_ID ="EXTRA_USER_ID";
     public static final String FRAG_NAME = "fragmentName";
 
     public static final int RC_FRAG = 1000;
