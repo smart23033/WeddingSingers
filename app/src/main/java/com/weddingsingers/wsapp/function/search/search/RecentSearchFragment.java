@@ -78,7 +78,7 @@ public class RecentSearchFragment extends Fragment {
                 FragmentTransaction ft = getActivity().getSupportFragmentManager()
                         .beginTransaction();
                 FilterFragment filterFragment = FilterFragment.newInstance(search);
-                ft.replace(R.id.act_search_fl_container, filterFragment);
+                ft.replace(R.id.act_search_fl_container, filterFragment, SearchActivity.FRAG_FILTER);
                 ft.commit();
             }
         return super.onOptionsItemSelected(item);

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.weddingsingers.wsapp.data.Search;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity{
 
     final static String FRAG_RECENT_SEARCH = "RecentSearchFragment";
     final static String FRAG_FILTER = "FilterFragment";
@@ -64,6 +65,15 @@ public class SearchActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+//    FilterFragment filterFragment;
+//    public void changeFilterFragment() {
+//        filterFragment = FilterFragment.newInstance(null);
+//        if (filterFragment != null) {
+//
+//        }
+//    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -77,12 +87,23 @@ public class SearchActivity extends AppCompatActivity {
 
                 if (currentFragment.getTag() != FRAG_SEACH_RESULT) {
 //               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
-                    keywordView.setText(keywordInput.getText());
+                    keywordView.setText(keywordInput.getText().toString());
                     keywordView.setVisibility(View.VISIBLE);
                     keywordInput.setText("");
                     keywordInput.setVisibility(View.GONE);
 
-                    search.setKeyword(keywordView.toString());
+                    search.setKeyword(keywordInput.toString());
+                    Log.i("SearchActivity","search.keyword : " + search.getKeyword());
+
+                    if(currentFragment.getTag() == FRAG_FILTER){
+                        search.setLocation(((FilterFragment) currentFragment).search.getLocation());
+                        search.setComposition(((FilterFragment) currentFragment).search.getComposition());
+                        search.setPrice(((FilterFragment)currentFragment).search.getPrice());
+                        search.setStartDate(((FilterFragment)currentFragment).search.getStartDate());
+                        search.setEndDate(((FilterFragment)currentFragment).search.getEndDate());
+                        search.setTheme(((FilterFragment)currentFragment).search.getTheme());
+                    }
+
 
 
                     FragmentTransaction ft = getSupportFragmentManager()
@@ -108,4 +129,5 @@ public class SearchActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

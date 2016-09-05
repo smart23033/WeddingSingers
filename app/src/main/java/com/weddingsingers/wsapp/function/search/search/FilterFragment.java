@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.function.search.search;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -33,8 +34,9 @@ import butterknife.OnItemSelected;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FilterFragment extends Fragment{
+public class FilterFragment extends Fragment {
 
+    final static int INITIAL_POSITION = 0;
 
     @BindView(R.id.filter_spinner_location)
     Spinner locationSpinner;
@@ -59,15 +61,16 @@ public class FilterFragment extends Fragment{
     FilterSpinnerAdapter themeAdapter;
     FilterSpinnerAdapter priceAdapter;
 
-    public static FilterFragment newInstance(Search search){
+    public static FilterFragment newInstance(Search search) {
         FilterFragment fragment = new FilterFragment();
         Bundle b = new Bundle();
-        b.putSerializable(SearchActivity.KEY_SEARCH,search);
+        b.putSerializable(SearchActivity.KEY_SEARCH, search);
         fragment.setArguments(b);
         return fragment;
     }
 
-    Search search;
+    public Search search;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,8 +89,8 @@ public class FilterFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_filter, container, false);
-        ButterKnife.bind(this,view);
+        View view = inflater.inflate(R.layout.fragment_filter, container, false);
+        ButterKnife.bind(this, view);
 
         locationAdapter = new FilterSpinnerAdapter();
         compositionAdapter = new FilterSpinnerAdapter();
@@ -105,38 +108,38 @@ public class FilterFragment extends Fragment{
     }
 
     @OnItemSelected(R.id.filter_spinner_composition)
-    void onCompositionSelected(int position){
+    void onCompositionSelected(int position) {
         search.setComposition(position);
     }
 
     @OnItemSelected(R.id.filter_spinner_location)
-    void onLocationSelected(int position){
+    void onLocationSelected(int position) {
         search.setLocation(position);
     }
 
     @OnItemSelected(R.id.filter_spinner_price)
-    void onPriceSelected(int position){
+    void onPriceSelected(int position) {
         search.setPrice(position);
     }
 
     @OnItemSelected(R.id.filter_spinner_theme)
-    void onThemeSelected(int position){
+    void onThemeSelected(int position) {
         search.setTheme(position);
     }
 
     @OnClick(R.id.filter_btn_calendar)
-    void onCalendarClick(){
+    void onCalendarClick() {
         CalendarDialogFragment calendarDialogFragment = new CalendarDialogFragment();
-        calendarDialogFragment.show(getActivity().getSupportFragmentManager(),"calendarDialog");
+        calendarDialogFragment.show(getActivity().getSupportFragmentManager(), "calendarDialog");
 
         calendarDialogFragment.setOnCalendarRangeSelected(new CalendarDialogFragment.OnCalendarRangeSelectedListener() {
             @Override
             public void onCalendarRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
                 String startDate = dates.get(0).toString();
-                String endDate = dates.get(dates.size()-1).toString();
+                String endDate = dates.get(dates.size() - 1).toString();
 
-                startDate = startDate.substring(startDate.indexOf('{')+1,startDate.indexOf('}'));
-                endDate = endDate.substring(endDate.indexOf('{')+1,endDate.indexOf('}'));
+                startDate = startDate.substring(startDate.indexOf('{') + 1, startDate.indexOf('}'));
+                endDate = endDate.substring(endDate.indexOf('{') + 1, endDate.indexOf('}'));
 
                 startDateView.setText(startDate);
                 endDateView.setText(endDate);
@@ -148,7 +151,7 @@ public class FilterFragment extends Fragment{
         });
     }
 
-    private void initData(){
+    private void initData() {
         String[] items = getResources().getStringArray(R.array.location);
         locationAdapter.addAll(items);
         items = getResources().getStringArray(R.array.composition);
@@ -162,21 +165,21 @@ public class FilterFragment extends Fragment{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.search_menu_filter) {
-                item.setIcon(R.drawable.search_ic_filter_off);
-                FragmentTransaction ft = getActivity().getSupportFragmentManager()
-                        .beginTransaction();
-                RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
-                ft.replace(R.id.act_search_fl_container, recentSearchFragment);
-                ft.commit();
-            }
+        if (item.getItemId() == R.id.search_menu_filter) {
+            item.setIcon(R.drawable.search_ic_filter_off);
+            FragmentTransaction ft = getActivity().getSupportFragmentManager()
+                    .beginTransaction();
+            RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+            ft.replace(R.id.act_search_fl_container, recentSearchFragment, SearchActivity.FRAG_RECENT_SEARCH);
+            ft.commit();
+        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.search_menu,menu);
+        inflater.inflate(R.menu.search_menu, menu);
         MenuItem filterMenuItem = menu.findItem(R.id.search_menu_filter);
         filterMenuItem.setIcon(R.drawable.search_ic_filter_on);
     }
