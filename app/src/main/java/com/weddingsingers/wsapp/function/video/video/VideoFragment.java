@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -51,11 +52,14 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_tv_special_price)
     TextView specialView;
 
-    @BindView(R.id.singer_review_tv_rating)
-    TextView ratingView;
+    @BindView(R.id.video_rb_rating)
+    RatingBar ratingBar;
 
-    @BindView(R.id.video_tv_review)
+    @BindView(R.id.video_tv_num_of_person)
     TextView reviewView;
+
+    @BindView(R.id.video_tv_hit)
+    TextView hitView;
 
     ProfileView singerProfileView;
 
@@ -112,22 +116,29 @@ public class VideoFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
                 Toast.makeText(getContext(), "VideoFragment Success", Toast.LENGTH_SHORT).show();
 
-//                Video video = new Video();
+                Video video = new Video();
 
-//                video.setDate(result.getResult().getDate());
-//                video.setSingerName(result.getResult().getSingerName());
-//                video.setId(result.getResult().getId());
-//                video.setFavorite(result.getResult().getFavorite());
-//                video.setComment(result.getResult().getComment());
-//                video.setHit(result.getResult().getHit());
-//                video.setRating(result.getResult().getRating());
-//                video.setReview(result.getResult().getReview());
-//                video.setStandard(result.getResult().getStandard());
-//                video.setSpecial(result.getResult().getSpecial());
-//                video.setTitle(result.getResult().getTitle());
-//                video.setUrl(result.getResult().getUrl());
+                video.setDate(result.getResult().getDate());
+                video.setSingerName(result.getResult().getSingerName());
+                video.setId(result.getResult().getId());
+                video.setFavorite(result.getResult().getFavorite());
+                video.setComment(result.getResult().getComment());
+                video.setHit(result.getResult().getHit());
+                video.setRating(result.getResult().getRating());
+                video.setReview(result.getResult().getReview());
+                video.setStandard(result.getResult().getStandard());
+                video.setSpecial(result.getResult().getSpecial());
+                video.setTitle(result.getResult().getTitle());
+                video.setUrl(result.getResult().getUrl());
 
-
+                titleView.setText(video.getTitle());
+                dateView.setText(video.getDate());
+                favoriteView.setText("" + video.getFavorite());
+                hitView.setText("" + video.getHit());
+                ratingBar.setRating(video.getRating());
+                reviewView.setText("" + video.getReview());
+                standardView.setText("" + video.getStandard());
+                specialView.setText("" + video.getSpecial());
 
 
             }

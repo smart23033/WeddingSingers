@@ -13,8 +13,8 @@ public class Video implements Serializable {
     private int favorite;
     private int hit;
     private String comment;
-    private String standard;
-    private String special;
+    private int standard;
+    private int special;
     private int rating;
     private int review;
     private int id;
@@ -83,20 +83,20 @@ public class Video implements Serializable {
         this.comment = comment;
     }
 
-    public String getStandard() {
-        return standard;
-    }
-
-    public void setStandard(String standard) {
+    public void setStandard(int standard) {
         this.standard = standard;
     }
 
-    public String getSpecial() {
-        return special;
+    public void setSpecial(int special) {
+        this.special = special;
     }
 
-    public void setSpecial(String special) {
-        this.special = special;
+    public int getStandard() {
+        return standard;
+    }
+
+    public int getSpecial() {
+        return special;
     }
 
     public int getRating() {

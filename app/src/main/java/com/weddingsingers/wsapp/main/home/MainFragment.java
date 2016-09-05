@@ -182,7 +182,6 @@ public class MainFragment extends Fragment {
 //            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
                     videoList.setTitle(result.getResult().get(i).getTitle());
                     videoList.setDate(result.getResult().get(i).getDate());
-                    Log.i("MainFragment", "date : " + result.getResult().get(i).getDate());
                     videoList.setHit(result.getResult().get(i).getHit());
                     videoList.setFavorite(result.getResult().get(i).getFavorite());
                     videoListAdapter.add(videoList);

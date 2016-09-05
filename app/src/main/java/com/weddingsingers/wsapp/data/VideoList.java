@@ -1,14 +1,26 @@
 package com.weddingsingers.wsapp.data;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class VideoList implements Serializable {
+
+    @SerializedName("url")
     private String thumbnail;
+
     private String title;
+
+    @SerializedName("singer_name")
     private String singerName;
+
+    @SerializedName("write_dtime")
     private String date;
+
     private int hit;
+
+    @SerializedName("favorite_cnt")
     private int favorite;
 
     public String getSingerName() {

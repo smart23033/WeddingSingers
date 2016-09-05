@@ -2,15 +2,27 @@ package com.weddingsingers.wsapp.data;
 
 import android.graphics.drawable.Drawable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class SearchResult implements Serializable {
     private int id;
+
+    @SerializedName("url")
     private String thumbnail;
+
     private String title;
+
+    @SerializedName("singer_name")
     private String singerName;
+
+    @SerializedName("write_dtime")
     private String date;
+
     private int hit;
+
+    @SerializedName("favorite_cnt")
     private int favorite;
 
     public int getId() {
