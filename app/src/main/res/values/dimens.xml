@@ -54,7 +54,7 @@
     <dimen name="search_btn_filter_height">25dp</dimen>
     <dimen name="search_btn_filter_margin_bottom">2dp</dimen>
     <dimen name="search_btn_filter_margin_right">60dp</dimen>
-    <dimen name="filter_spinner_location_margin_top">20dp</dimen>
+    <dimen name="filter_spinner_location_margin_top">30dp</dimen>
     <dimen name="filter_spinner_margin_top">30dp</dimen>
     <dimen name="search_tv_search_margin_left">54dp</dimen>
     <dimen name="search_tv_search_margin_right">90dp</dimen>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.Search;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,10 +62,11 @@ public class RecentSearchFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
           if(item.getItemId() == R.id.search_menu_filter) {
+                Search search = new Search();
                 item.setIcon(R.drawable.search_ic_filter_on);
                 FragmentTransaction ft = getActivity().getSupportFragmentManager()
                         .beginTransaction();
-                FilterFragment filterFragment = new FilterFragment();
+                FilterFragment filterFragment = FilterFragment.newInstance(search);
                 ft.replace(R.id.act_search_fl_container, filterFragment);
                 ft.commit();
             }

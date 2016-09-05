@@ -23,6 +23,7 @@ public class SearchActivity extends AppCompatActivity {
     final static String FRAG_FILTER = "FilterFragment";
     final static String FRAG_SEACH_RESULT = "SearchResultFragment";
 
+    final static String KEY_SEARCH = "Search";
 
     @BindView(R.id.search_et_keyword)
     EditText keywordInput;

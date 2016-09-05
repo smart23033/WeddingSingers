@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:title=""
+            android:background="@android:color/white"
             >
             <TextView
                 android:id="@+id/main_tv_toolbar"

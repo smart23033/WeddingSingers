@@ -9,4 +9,40 @@
         <item>list data 4</item>
     </string-array>
 
+    <string-array name="location">
+        <item>location</item>
+        <item>Seoul</item>
+        <item>Kangwon</item>
+        <item>Chungcheong</item>
+        <item>Kyeongsang</item>
+        <item>Jeonra</item>
+        <item>Jeju</item>
+    </string-array>
+
+    <string-array name="composition">
+        <item>composition</item>
+        <item>solo</item>
+        <item>duet</item>
+        <item>group</item>
+        <item>session</item>
+    </string-array>
+    
+    <string-array name="theme">
+        <item>theme</item>
+        <item>ballad</item>
+        <item>musical</item>
+        <item>classic</item>
+        <item>jazz</item>
+        <item>pop</item>
+        <item>dance</item>
+    </string-array>
+
+    <string-array name="price">
+        <item>price</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>none</item>
+    </string-array>
+
 </resources>
