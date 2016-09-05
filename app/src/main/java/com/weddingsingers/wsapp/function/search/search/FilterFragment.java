@@ -130,7 +130,7 @@ public class FilterFragment extends Fragment{
                 String endDate = dates.get(dates.size()-1).toString();
 
                 startDate = startDate.substring(startDate.indexOf('{')+1,startDate.indexOf('}'));
-                endDate = endDate.substring(endDate.indexOf('{'),endDate.indexOf('}'));
+                endDate = endDate.substring(endDate.indexOf('{')+1,endDate.indexOf('}'));
 
                 search.setStartDate(startDate);
                 search.setEndDate(endDate);
