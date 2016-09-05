@@ -18,7 +18,7 @@ public class MyPageRequest extends AbstractRequest<NetworkResult<User>> {
 
     Request request;
 
-    public MyPageRequest(Context context, int id) {
+    public MyPageRequest(Context context, long id) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("users")
                 .addPathSegment("me")
