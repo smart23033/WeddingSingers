@@ -14,7 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Search;
+import com.weddingsingers.wsapp.data.SearchResult;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SearchRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,13 +111,26 @@ public class SearchActivity extends AppCompatActivity{
                         search.setTheme(((FilterFragment)currentFragment).search.getTheme());
                     }
 
+                    SearchRequest request = new SearchRequest(this,search);
+                    NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<SearchResult>>>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResult<List<SearchResult>>> request, NetworkResult<List<SearchResult>> result) {
 
+                            Toast.makeText(SearchActivity.this,"Search Success!",Toast.LENGTH_SHORT).show();
 
-                    FragmentTransaction ft = getSupportFragmentManager()
-                            .beginTransaction();
-                    SearchResultFragment searchResultFragment = new SearchResultFragment();
-                    ft.replace(R.id.act_search_fl_container, searchResultFragment, FRAG_SEACH_RESULT);
-                    ft.commit();
+                            FragmentTransaction ft = getSupportFragmentManager()
+                                    .beginTransaction();
+                            SearchResultFragment searchResultFragment = new SearchResultFragment();
+                            ft.replace(R.id.act_search_fl_container, searchResultFragment, FRAG_SEACH_RESULT);
+                            ft.commit();
+                        }
+
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResult<List<SearchResult>>> request, int errorCode, String errorMessage, Throwable e) {
+                            Toast.makeText(SearchActivity.this,"Search Fail",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 } else {
 //               searchResultFragment에서 search버튼 누를 때
 
@@ -118,9 +138,11 @@ public class SearchActivity extends AppCompatActivity{
                     keywordView.setVisibility(View.GONE);
                     keywordInput.setVisibility(View.VISIBLE);
 
+                    search = new Search();
+
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();
-                    RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+                    RecentSearchFragment recentSearchFragment = RecentSearchFragment.newInstance(search);
                     ft.replace(R.id.act_search_fl_container, recentSearchFragment, FRAG_RECENT_SEARCH);
                     ft.commit();
                 }
