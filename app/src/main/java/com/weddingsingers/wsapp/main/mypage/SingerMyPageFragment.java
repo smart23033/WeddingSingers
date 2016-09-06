@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
@@ -25,6 +26,7 @@ import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.MyPageRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -34,6 +36,15 @@ import butterknife.OnClick;
 public class SingerMyPageFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
+
+    @BindView(R.id.singer_my_page_tv_email)
+    TextView emailView;
+
+    @BindView(R.id.singer_my_page_tv_name)
+    TextView nameView;
+
+    @BindView(R.id.singer_my_page_tv_point_value)
+    TextView pointView;
 
     public SingerMyPageFragment() {
         // Required empty public constructor
@@ -54,7 +65,6 @@ public class SingerMyPageFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        Toast.makeText(getActivity(), "id : " + MainActivity.isLogin, Toast.LENGTH_SHORT).show();
         initData();
 
         return view;
@@ -66,25 +76,16 @@ public class SingerMyPageFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                Toast.makeText(getActivity(), result.getResult().getName(), Toast.LENGTH_SHORT).show();
+
                 User user = new User();
                 user.setName(result.getResult().getName());
+                user.setEmail(result.getResult().getEmail());
+                user.setPoint(result.getResult().getPoint());
 
+                nameView.setText(user.getName());
+                emailView.setText(user.getEmail());
+                pointView.setText(user.getPoint() + "P");
 
-//                Video video = new Video();
-
-//                video.setDate(result.getResult().getDate());
-//                video.setSingerName(result.getResult().getSingerName());
-//                video.setId(result.getResult().getId());
-//                video.setFavorite(result.getResult().getFavorite());
-//                video.setComment(result.getResult().getComment());
-//                video.setHit(result.getResult().getHit());
-//                video.setRating(result.getResult().getRating());
-//                video.setReview(result.getResult().getReview());
-//                video.setStandard(result.getResult().getStandard());
-//                video.setSpecial(result.getResult().getSpecial());
-//                video.setTitle(result.getResult().getTitle());
-//                video.setUrl(result.getResult().getUrl());
             }
 
             @Override

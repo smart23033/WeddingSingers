@@ -29,7 +29,7 @@
             app:riv_tile_mode="clamp" />
 
         <TextView
-            android:id="@+id/singer_my_page_riv_name"
+            android:id="@+id/singer_my_page_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/singer_my_page_riv_picture"
@@ -38,22 +38,32 @@
             android:text="name" />
 
         <TextView
-            android:id="@+id/singer_my_page_riv_email"
+            android:id="@+id/singer_my_page_tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_my_page_riv_name"
+            android:layout_below="@+id/singer_my_page_tv_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:text="email@didimdolc.o.kr" />
 
         <TextView
-            android:id="@+id/singer_my_page_riv_point"
+            android:id="@+id/singer_my_page_tv_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_my_page_riv_email"
+            android:layout_below="@+id/singer_my_page_tv_email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
-            android:text="마이 페널티 300" />
+            android:text="마이 페널티 " />
+
+        <TextView
+            android:id="@+id/singer_my_page_tv_point_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_my_page_tv_email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+            android:layout_toRightOf="@+id/singer_my_page_tv_point"
+            android:text="" />
 
         <ImageButton
             android:id="@+id/my_page_singer_img_btn_modify"
@@ -110,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/singer_my_page_rl_inquiry"
         android:layout_marginTop="20dp"
-        android:clickable="true" >
+        android:clickable="true">
 
         <ImageView
             android:id="@+id/singer_my_page_statistic_ic"

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-25.
  */
 public class User implements Serializable{
-    private long id;
+    private int id;
     private String email;
     private String password;
     private String name;
@@ -14,11 +14,11 @@ public class User implements Serializable{
     private int point;
     private int type;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

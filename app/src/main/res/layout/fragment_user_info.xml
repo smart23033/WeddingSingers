@@ -65,10 +65,31 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/user_info_rl_password"
+        android:id="@+id/user_info_rl_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/user_info_rl_email">
+
+        <TextView
+            android:id="@+id/user_info_tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연락처" />
+
+        <TextView
+            android:id="@+id/user_info_tv_phone_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/user_info_tv_phone"
+            android:text="010-1234-5555" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/user_info_rl_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_info_rl_phone">
 
         <TextView
             android:id="@+id/user_info_tv_password"
@@ -81,8 +102,9 @@
             android:id="@+id/user_info_et_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:layout_toRightOf="@id/user_info_tv_password"
-            android:hint="****" />
+            android:hint="12345" />
 
     </RelativeLayout>
 
@@ -103,8 +125,9 @@
             android:id="@+id/user_info_et_password_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:layout_toRightOf="@id/user_info_tv_password_confirm"
-            android:hint="****" />
+            android:hint="123213123" />
 
     </RelativeLayout>
 

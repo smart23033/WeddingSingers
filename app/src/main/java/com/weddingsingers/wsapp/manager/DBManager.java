@@ -57,7 +57,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     }
 
-    public long getUserId(long serverId) {
+    public int getUserId(int serverId) {
         String selection = ChatContract.ChatUser.COLUMN_SERVER_ID + " = ?";
         String[] args = {""+serverId};
         String[] columns = {ChatContract.ChatUser._ID};
@@ -65,7 +65,7 @@ public class DBManager extends SQLiteOpenHelper {
         Cursor c = db.query(ChatContract.ChatUser.TABLE, columns, selection, args, null, null, null);
         try {
             if (c.moveToNext()) {
-                long id = c.getLong(c.getColumnIndex(ChatContract.ChatUser._ID));
+                int id = c.getInt(c.getColumnIndex(ChatContract.ChatUser._ID));
                 return id;
             }
         } finally {
@@ -94,26 +94,26 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     ContentValues values = new ContentValues();
-    public long addUser(User user) {
+    public int addUser(User user) {
         if (getUserId(user.getId()) == -1) {
             SQLiteDatabase db = getWritableDatabase();
             values.clear();
             values.put(ChatContract.ChatUser.COLUMN_SERVER_ID, user.getId());
             values.put(ChatContract.ChatUser.COLUMN_NAME, user.getName());
             values.put(ChatContract.ChatUser.COLUMN_EMAIL, user.getEmail());
-            return db.insert(ChatContract.ChatUser.TABLE, null, values);
+            return (int) db.insert(ChatContract.ChatUser.TABLE, null, values);
         }
         throw new IllegalArgumentException("aleady user added");
     }
 
-    Map<Long, Long> resolveUserId = new HashMap<>();
-    public long addMessage(User user, int type, String message) {
+    Map<Integer, Integer> resolveUserId = new HashMap<>();
+    public int addMessage(User user, int type, String message) {
         return addMessage(user, type, message, new Date());
     }
-    public long addMessage(User user, int type, String message, Date date) {
-        Long uid = resolveUserId.get(user.getId());
-        if (uid == null) {
-            long id = getUserId(user.getId());
+    public int addMessage(User user, int type, String message, Date date) {
+        int uid = resolveUserId.get(user.getId());
+        if (uid == 0) {
+            int id = getUserId(user.getId());
             if (id == -1) {
                 id = addUser(user);
             }
@@ -123,14 +123,14 @@ public class DBManager extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         values.clear();
-        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (long)uid);
+        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (int)uid);
         values.put(ChatContract.ChatMessage.COLUMN_TYPE, type);
         values.put(ChatContract.ChatMessage.COLUMN_MESSAGE, message);
         long current = date.getTime();
         values.put(ChatContract.ChatMessage.COLUMN_CREATED, current);
         try {
             db.beginTransaction();
-            long mid = db.insert(ChatContract.ChatMessage.TABLE, null, values);
+            int mid = (int) db.insert(ChatContract.ChatMessage.TABLE, null, values);
 
             values.clear();
             values.put(ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID, mid);
@@ -160,10 +160,10 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public Cursor getChatMessage(User user) {
-        long userid = -1;
-        Long uid = resolveUserId.get(user.getId());
-        if (uid == null) {
-            long id = getUserId(user.getId());
+        int userid = -1;
+        int uid = resolveUserId.get(user.getId());
+        if (uid == 0) {
+            int id = getUserId(user.getId());
             if (id != -1) {
                 resolveUserId.put(user.getId(), id);
                 userid = id;
