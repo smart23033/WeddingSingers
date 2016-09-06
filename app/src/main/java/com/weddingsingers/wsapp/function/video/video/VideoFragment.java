@@ -120,8 +120,6 @@ public class VideoFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
-                Toast.makeText(getContext(), "VideoFragment Success", Toast.LENGTH_SHORT).show();
-
                 Video video = new Video();
 
                 video.setDate(result.getResult().getDate());
@@ -150,7 +148,7 @@ public class VideoFragment extends Fragment {
             }
             @Override
             public void onFail(NetworkRequest<NetworkResult<Video>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "VideoFragment failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "videoReqeust fail", Toast.LENGTH_SHORT).show();
 
             }
         });

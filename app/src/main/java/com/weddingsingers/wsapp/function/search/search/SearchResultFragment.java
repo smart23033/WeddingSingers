@@ -130,7 +130,7 @@ public class SearchResultFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<SearchResult>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "Search Failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Search fail", Toast.LENGTH_SHORT).show();
             }
         });
 

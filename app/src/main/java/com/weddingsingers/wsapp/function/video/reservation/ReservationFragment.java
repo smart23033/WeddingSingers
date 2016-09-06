@@ -34,13 +34,17 @@ import com.weddingsingers.wsapp.function.search.search.CalendarDialogFragment;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.ReservationRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
@@ -51,6 +55,8 @@ public class ReservationFragment extends Fragment {
 
     final static int FRAG_RESERVATION_MGM = 300;
     final static int ARG_SIMPLE = 1;
+    final static int TYPE_STANDARD = 1;
+    final static int TYPE_SPECIAL = 2;
 
     public ReservationFragment() {
         // Required empty public constructor
@@ -79,6 +85,7 @@ public class ReservationFragment extends Fragment {
 
     @BindView(R.id.reservation_pv_profile)
     ProfileView singerProfileView;
+
 
     ReservationSpinnerAdapter priceSpinnerAdapter;
     ReservationSpinnerAdapter locationSpinnerAdapter;
@@ -133,10 +140,6 @@ public class ReservationFragment extends Fragment {
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
 
-                Log.i("ReservationFragment", "singerId : " + singerId);
-                Log.i("ReservationFragment", "singerName : " + singerName);
-                Log.i("ReservationFragment", "comment : " + comment);
-
                 singerProfileView.setSingerId(singerId);
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
@@ -149,6 +152,7 @@ public class ReservationFragment extends Fragment {
             }
         });
     }
+
 
     @OnClick(R.id.reservation_tv_date)
     void onDateClick() {
@@ -166,6 +170,7 @@ public class ReservationFragment extends Fragment {
             }
         });
     }
+
 
     @OnClick(R.id.reservation_tv_time)
     void onTimeClick() {
@@ -185,35 +190,81 @@ public class ReservationFragment extends Fragment {
         timePickerDialog.show();
     }
 
+    String location;
+    @OnItemSelected(R.id.reservation_spinner_location)
+    void onLocationSelected(int position){
+        location = (String) locationSpinner.getItemAtPosition(position);
+    }
+
+    String song;
+    @OnItemSelected(R.id.reservation_spinner_standard)
+    void onSongSelected(int position){
+        song = (String) standardSpinner.getItemAtPosition(position);
+    }
+
+    int type = TYPE_STANDARD;
+    @OnClick(R.id.reservation_rb_standard)
+    void onStandardClick(){
+        type = TYPE_STANDARD;
+    }
+
+    @OnClick(R.id.reservation_rb_special)
+    void onSpecialClick(){
+        type = TYPE_SPECIAL;
+    }
+
+
     @OnClick(R.id.reservation_btn_reserve)
     void onReserveBtnClick() {
+        String special = (specialInput.getText().toString() != null) ?  specialInput.getText().toString() : "none" ;
 
+        long time = System.currentTimeMillis();
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String writeDate = dayTime.format(new Date(time));
 
+        String reservationDate = dateView.getText().toString();
+        String reservationTime = timeView.getText().toString();
 
+        if(type == TYPE_STANDARD){
+            special = "";
+        }else if(type == TYPE_SPECIAL){
+            song = "";
+        }
 
+        ReservationRequest reservationRequest = new ReservationRequest(getContext(),singerId,location,special,reservationDate,reservationTime,writeDate,type,song);
+        NetworkManager.getInstance().getNetworkData(reservationRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Toast.makeText(getContext(),"Reservation success",Toast.LENGTH_SHORT).show();
 
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Reservation Complete")
+                        .setMessage("Reservation complete,\ncould you go to confirm?")
+                        .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                moveReservationMgmFragment();
+                            }
+                        });
 
-
-
-        AlertDialog dialog;
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Reservation Complete")
-                .setMessage("Reservation complete,\ncould you go to confirm?")
-                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservationMgmFragment();
+                        moveMainActivity();
                     }
                 });
+                dialog = builder.create();
+                dialog.show();
+            }
 
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                moveMainActivity();
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(),"Reservation fail",Toast.LENGTH_SHORT).show();
             }
         });
-        dialog = builder.create();
-        dialog.show();
+
+
     }
 
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
@@ -238,11 +289,6 @@ public class ReservationFragment extends Fragment {
                 }
             }
         }
-    }
-
-    @OnItemSelected(R.id.reservation_spinner_standard)
-    void onItemSelected(int position) {
-        Toast.makeText(getContext(), "price : " + priceSpinnerAdapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
 
     private void initData() {

@@ -28,7 +28,7 @@ public class ReservationRequest  extends AbstractRequest<NetworkResult<String>>{
                 .add("demand",special)
                 .add("reservation_date",reservationDate)
                 .add("reservation_time",reservationTime)
-                .add("write_dtime",writeDate)
+                .add("write_dtime", writeDate)
                 .add("singer_id", String.valueOf(singerId))
                 .add("type", String.valueOf(type))
                 .add("song",song)

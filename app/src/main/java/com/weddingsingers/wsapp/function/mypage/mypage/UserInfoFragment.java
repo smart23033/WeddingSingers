@@ -81,7 +81,7 @@ public class UserInfoFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "SingerMyPageFragment failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "SingerMyPageFragment fail", Toast.LENGTH_SHORT).show();
 
             }
         });
