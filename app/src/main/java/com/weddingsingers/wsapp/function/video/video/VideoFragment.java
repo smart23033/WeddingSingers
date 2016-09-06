@@ -164,9 +164,6 @@ public class VideoFragment extends Fragment {
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
 
-                Log.i("VideoFragment", "singerId : " + singerId);
-                Log.i("VideoFragment", "singerName : " + singerName);
-                Log.i("VideoFragment", "comment : " + comment);
 
                 singerProfileView.setSingerId(singerId);
                 singerProfileView.setComment(comment);
@@ -185,7 +182,9 @@ public class VideoFragment extends Fragment {
 
     @OnClick(R.id.view_profile_btn_reserve)
     void onReserveBtnClick(){
-        startActivity(new Intent(getContext(), ReservationActivity.class));
+        Intent intent = new Intent(new Intent(getContext(), ReservationActivity.class));
+        intent.putExtra(ReservationActivity.EXTRA_SINGER_ID,singerId);
+        startActivity(intent);
     }
 
     @OnClick(R.id.view_profile_rl_profile)

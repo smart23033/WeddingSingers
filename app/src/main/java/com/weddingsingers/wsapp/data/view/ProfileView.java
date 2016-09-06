@@ -56,7 +56,7 @@ public class ProfileView extends FrameLayout {
         imageView.setBackgroundColor(Color.LTGRAY);
     }
 
-
+    //추가 요망
     public void setSingerId(int singerId) {
         this.singerId = singerId;
 
@@ -67,13 +67,13 @@ public class ProfileView extends FrameLayout {
         singerNameView.setText(singerName);
     }
 
+    //추가 요망
     public void setSingerImage(String singerImage) {
         this.singerImage = singerImage;
     }
 
     public void setComment(String comment) {
         this.comment = comment;
-
         commentView.setText(comment);
     }
 }

@@ -10,13 +10,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -27,12 +27,17 @@ import android.widget.Toast;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Singer;
+import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.function.search.search.CalendarDialogFragment;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +50,7 @@ import butterknife.OnItemSelected;
 public class ReservationFragment extends Fragment {
 
     final static int FRAG_RESERVATION_MGM = 300;
+    final static int ARG_SIMPLE = 1;
 
     public ReservationFragment() {
         // Required empty public constructor
@@ -73,16 +79,20 @@ public class ReservationFragment extends Fragment {
     @BindView(R.id.reservation_tv_time)
     TextView timeView;
 
+    @BindView(R.id.reservation_pv_profile)
+    ProfileView singerProfileView;
+
     PriceFilterSpinnerAdapter mAdapter;
 
-    private static final String ARG_MESSAGE = "param1";
-    private String message;
+    private static final String KEY_SINGER_ID = "singerId";
     private static ReservationFragment instance;
 
-    public static ReservationFragment newInstance(String message) {
+    int singerId;
+
+    public static ReservationFragment newInstance(int singerId) {
         ReservationFragment fragment = new ReservationFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
+        args.putInt(KEY_SINGER_ID, singerId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -107,10 +117,37 @@ public class ReservationFragment extends Fragment {
 
         standardSpinner.setAdapter(mAdapter);
 
-
+        initSingerProfile();
         initData();
 
         return view;
+    }
+
+
+    private void initSingerProfile(){
+        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId,ARG_SIMPLE);
+        NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+                String singerName = result.getResult().getSingerName();
+                String singerImage = result.getResult().getSingerImage();
+                String comment = result.getResult().getComment();
+
+                Log.i("ReservationFragment", "singerId : " + singerId);
+                Log.i("ReservationFragment", "singerName : " + singerName);
+                Log.i("ReservationFragment", "comment : " + comment);
+
+                singerProfileView.setSingerId(singerId);
+                singerProfileView.setComment(comment);
+                singerProfileView.setSingerName(singerName);
+                singerProfileView.setSingerImage(singerImage);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
     }
 
     @OnClick(R.id.reservation_tv_date)
@@ -131,7 +168,7 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnClick(R.id.reservation_tv_time)
-    void onTImeClick() {
+    void onTimeClick() {
 
         GregorianCalendar calendar = new GregorianCalendar();
         final int hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -197,7 +234,7 @@ public class ReservationFragment extends Fragment {
 
     @OnItemSelected(R.id.reservation_spinner_standard)
     void onItemSelected(int position) {
-        Toast.makeText(getContext(), "item : " + mAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "price : " + mAdapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
 
     private void initData() {
@@ -222,6 +259,10 @@ public class ReservationFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+            singerId = getArguments().getInt(KEY_SINGER_ID);
+        }
+
     }
 
     @Override
