@@ -150,7 +150,7 @@
     <!--fragment_reservation.xml-->
     <dimen name="reservation_pv_profile_margin_left">0dp</dimen>
     <dimen name="reservation_pv_profile_margin_top">0dp</dimen>
-    <dimen name="reservation_ll_options_margin_top">40dp</dimen>
+    <dimen name="reservation_ll_calendar_margin_top">10dp</dimen>
     <dimen name="reservation_spinner_width">0dp</dimen>
     <dimen name="reservation_spinner_date_margin_bottom">10dp</dimen>
     <dimen name="reservation_spinner_date_margin_left">10dp</dimen>

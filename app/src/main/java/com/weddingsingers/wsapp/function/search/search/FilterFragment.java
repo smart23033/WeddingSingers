@@ -129,17 +129,23 @@ public class FilterFragment extends Fragment {
 
     @OnClick(R.id.filter_btn_calendar)
     void onCalendarClick() {
-        CalendarDialogFragment calendarDialogFragment = new CalendarDialogFragment();
+        CalendarDialogFragment calendarDialogFragment = CalendarDialogFragment.newInstance(CalendarDialogFragment.FRAG_FILTER);
         calendarDialogFragment.show(getActivity().getSupportFragmentManager(), "calendarDialog");
+
 
         calendarDialogFragment.setOnCalendarRangeSelected(new CalendarDialogFragment.OnCalendarRangeSelectedListener() {
             @Override
             public void onCalendarRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
-                String startDate = dates.get(0).toString();
-                String endDate = dates.get(dates.size() - 1).toString();
 
-                startDate = startDate.substring(startDate.indexOf('{') + 1, startDate.indexOf('}'));
-                endDate = endDate.substring(endDate.indexOf('{') + 1, endDate.indexOf('}'));
+                int startYear = dates.get(0).getYear();
+                int startMonth = dates.get(0).getMonth() + 1;
+                int startDay = dates.get(0).getDay();
+                String startDate = String.format("%d-%d-%d",startYear,startMonth,startDay);
+
+                int endYear = dates.get(dates.size() - 1).getYear();
+                int endMonth = dates.get(dates.size() - 1).getMonth() + 1;
+                int endDay = dates.get(dates.size() - 1).getDay();
+                String endDate = String.format("%d-%d-%d",endYear,endMonth,endDay);
 
                 startDateView.setText(startDate);
                 endDateView.setText(endDate);

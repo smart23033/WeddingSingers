@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import com.weddingsingers.wsapp.R;
 
@@ -26,7 +27,21 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-09-05.
  */
 public class CalendarDialogFragment extends DialogFragment implements
-        OnRangeSelectedListener {
+        OnRangeSelectedListener,
+        OnDateSelectedListener{
+
+    final public static String FRAG_FILTER = "FilterFragment";
+    final public static String FRAG_RESERVATION = "ReservationFragment";
+    final static String KEY_FRAGMENT = "fragmentName";
+
+
+    public static CalendarDialogFragment newInstance(String tag) {
+        CalendarDialogFragment fragment = new CalendarDialogFragment();
+        Bundle b = new Bundle();
+        b.putString(KEY_FRAGMENT, tag);
+        fragment.setArguments(b);
+        return fragment;
+    }
 
     public CalendarDialogFragment() {
     }
@@ -34,10 +49,14 @@ public class CalendarDialogFragment extends DialogFragment implements
     @BindView(R.id.filter_cv_calendar)
     MaterialCalendarView calendarView;
 
+    String tag;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NO_TITLE, android.R.style.Theme_Holo_Light_Dialog);
+        if (getArguments() != null) {
+            tag = getArguments().getString(KEY_FRAGMENT);
+        }
     }
 
     @Nullable
@@ -50,8 +69,17 @@ public class CalendarDialogFragment extends DialogFragment implements
 
 //        calendarView = new MaterialCalendarView(getContext());
 
-        calendarView.setOnRangeSelectedListener(this);
-        calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_RANGE);
+//        태그에 따른 분기
+          Log.i("CalendarDialogFragment","tag : " + tag);
+
+
+        if(tag.equals(FRAG_FILTER)) {
+            calendarView.setOnRangeSelectedListener(this);
+            calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_RANGE);
+        }else if(tag.equals(FRAG_RESERVATION)){
+            calendarView.setOnDateChangedListener(this);
+            calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_SINGLE);
+        }
 
         return view;
     }
@@ -64,6 +92,15 @@ public class CalendarDialogFragment extends DialogFragment implements
         dismiss();
     }
 
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        if(dateChangedListener != null){
+            dateChangedListener.onCalendarDateChanged(widget,date,selected);
+        }
+        dismiss();
+    }
+
+
     public interface OnCalendarRangeSelectedListener {
         public void onCalendarRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates);
     }
@@ -71,6 +108,15 @@ public class CalendarDialogFragment extends DialogFragment implements
     OnCalendarRangeSelectedListener rangeSelectedListener;
     public void setOnCalendarRangeSelected(OnCalendarRangeSelectedListener rangeSelectedListener){
         this.rangeSelectedListener = rangeSelectedListener;
+    }
+
+    public interface OnCalendarDateChangedListener{
+        public void onCalendarDateChanged(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected);
+    }
+
+    OnCalendarDateChangedListener dateChangedListener;
+    public void setOnCalendarDateChanged(OnCalendarDateChangedListener dateChangedListener){
+        this.dateChangedListener = dateChangedListener;
     }
 
 

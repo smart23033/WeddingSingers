@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,8 +22,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.function.search.search.CalendarDialogFragment;
 import com.weddingsingers.wsapp.main.MainActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,11 +53,6 @@ public class ReservationFragment extends Fragment {
     EditText specialInput;
 
 //    dateSpinner와 timeSpinner는 나중에 datePicker와 timePicker로 만들 것
-    @BindView(R.id.reservation_spinner_date)
-    Spinner dateSpinner;
-
-    @BindView(R.id.reservation_spinner_time)
-    Spinner timeSpinner;
 
     @BindView(R.id.reservation_spinner_standard)
     Spinner standardSpinner;
@@ -61,6 +62,9 @@ public class ReservationFragment extends Fragment {
 
     @BindView(R.id.reservation_rb_standard)
     RadioButton standardRadioBtn;
+
+    @BindView(R.id.reservation_tv_date)
+    TextView dateView;
 
     PriceFilterSpinnerAdapter mAdapter;
 
@@ -95,13 +99,29 @@ public class ReservationFragment extends Fragment {
         standardRadioBtn.setChecked(true);
 
         standardSpinner.setAdapter(mAdapter);
-        dateSpinner.setAdapter(mAdapter);
-        timeSpinner.setAdapter(mAdapter);
 
 
         initData();
 
         return view;
+    }
+
+    @OnClick(R.id.reservation_tv_date)
+    void onDateClick(){
+        CalendarDialogFragment calendarDialogFragment = CalendarDialogFragment.newInstance(CalendarDialogFragment.FRAG_RESERVATION);
+        calendarDialogFragment.show(getActivity().getSupportFragmentManager(), "calendarDialog");
+
+       calendarDialogFragment.setOnCalendarDateChanged(new CalendarDialogFragment.OnCalendarDateChangedListener() {
+           @Override
+           public void onCalendarDateChanged(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+               int year = date.getYear();
+               int month = date.getMonth() + 1;
+               int day = date.getDay();
+               String reservationDate = String.format("%d-%d-%d",year,month,day);
+               dateView.setText(reservationDate);
+           }
+       });
+
     }
 
     @OnClick(R.id.reservation_btn_reserve)

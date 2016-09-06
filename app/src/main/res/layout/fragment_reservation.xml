@@ -17,34 +17,43 @@
         android:layout_marginLeft="@dimen/reservation_pv_profile_margin_left"
         android:layout_marginTop="@dimen/reservation_pv_profile_margin_top" />
 
+    <TextView
+        android:id="@+id/reservation_tv_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Select reservation date"
+        android:textSize="12sp"
+        android:layout_marginLeft="18dp"
+        android:layout_below="@id/reservation_pv_profile"/>
+
     <LinearLayout
-        android:id="@+id/reservation_ll_options"
+        android:id="@+id/reservation_ll_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/reservation_pv_profile"
-        android:layout_marginTop="@dimen/reservation_ll_options_margin_top"
+        android:layout_below="@id/reservation_tv_calendar"
+        android:layout_marginTop="@dimen/reservation_ll_calendar_margin_top"
         android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/reservation_spinner_date"
-            android:layout_width="@dimen/reservation_spinner_width"
+        <TextView
+            android:id="@+id/reservation_tv_date"
+            style="@android:style/Widget.Holo.Spinner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/reservation_spinner_date_margin_bottom"
-            android:layout_marginLeft="@dimen/reservation_spinner_date_margin_left"
-            android:layout_marginRight="@dimen/reservation_spinner_date_margin_right"
-            android:layout_marginTop="@dimen/reservation_spinner_date_margin_top"
             android:layout_weight="1"
-            android:spinnerMode="dialog" />
+            android:clickable="true"
+            android:gravity="center"
+            android:text="2016-02-12" />
 
-        <Spinner
-            android:id="@+id/reservation_spinner_time"
-            android:layout_width="@dimen/reservation_spinner_width"
+        <TextView
+            android:id="@+id/reservation_tv_time"
+            style="@android:style/Widget.Holo.Spinner"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/reservation_spinner_time_margin_bottom"
-            android:layout_marginTop="@dimen/reservation_spinner_time_margin_top"
-            android:layout_toRightOf="@id/reservation_spinner_date"
             android:layout_weight="1"
-            android:spinnerMode="dialog" />
+            android:clickable="true"
+            android:gravity="center"
+            android:text="2:00 p.m" />
 
     </LinearLayout>
 
@@ -52,7 +61,7 @@
         android:id="@+id/reservation_tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reservation_ll_options"
+        android:layout_below="@+id/reservation_ll_calendar"
         android:layout_marginLeft="@dimen/reservation_tv_type_margin_left"
         android:layout_marginTop="@dimen/reservation_tv_type_margin_top"
         android:text="TYPE" />
