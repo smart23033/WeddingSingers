@@ -71,7 +71,7 @@ public class EstimateView extends FrameLayout {
         songsView.setText(estimate.getSongs());
 
 //        스탠다드인지 스페셜인지 둘중에 하나
-        standardView.setText(estimate.getStandard());
+//        standardView.setText(estimate.getStandard());
         specialView.setText(estimate.getSpecial());
     }
 }

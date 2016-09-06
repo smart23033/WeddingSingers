@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.Estimate;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Reservation;
 import com.weddingsingers.wsapp.data.SearchResult;
 import com.weddingsingers.wsapp.data.SingerList;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
@@ -20,6 +23,12 @@ import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.ReservationListRequest;
+import com.weddingsingers.wsapp.request.ReservationRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +38,7 @@ import butterknife.ButterKnife;
  */
 public class ReservationListFragment extends Fragment {
 
+    private static final int TAB_RESERVATION_LIST = 1;
     private static final String ARG_MESSAGE = "param1";
     private String message;
     private static ReservationListFragment instance;
@@ -100,14 +110,27 @@ public class ReservationListFragment extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < 20; i++) {
-            SingerList singerList = new SingerList();
-            singerList.setLocation("Seoul");
-            singerList.setDate("2016. 4. 26");
-            singerList.setSingerName("singer name");
-            singerList.setSongs("Clarity - Zedd");
-            mAdapter.add(singerList);
-        }
+//        for (int i = 0; i < 20; i++) {
+//            SingerList singerList = new SingerList();
+//            singerList.setLocation("Seoul");
+//            singerList.setDate("2016. 4. 26");
+//            singerList.setSingerName("singer name");
+//            singerList.setSongs("Clarity - Zedd");
+//            mAdapter.add(singerList);
+//        }
+
+        ReservationListRequest reservationListRequest = new ReservationListRequest(getContext(),TAB_RESERVATION_LIST);
+        NetworkManager.getInstance().getNetworkData(reservationListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
     }
 
 }

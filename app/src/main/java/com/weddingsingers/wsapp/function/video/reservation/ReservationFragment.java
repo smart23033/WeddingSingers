@@ -260,7 +260,7 @@ public class ReservationFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(),"Reservation fail",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Reservation failure",Toast.LENGTH_SHORT).show();
             }
         });
 

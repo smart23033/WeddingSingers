@@ -1,22 +1,78 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
  * Created by Tacademy on 2016-08-31.
  */
-//씨발 일정관리랑 공급자 예약관리 리싸이클러 뷰 같이쓰는것 떄매 사용
+//일정관리랑 공급자 예약관리 리싸이클러 뷰 같이쓰는것 떄매 사용
 public class Estimate implements Serializable {
+    private int id;
 
+    @SerializedName("singer_image")
     private String singerImage;
+
+    @SerializedName("singer_name")
     private String singerName;
+
+    @SerializedName("customer_name")
     private String customerName;
+
+    @SerializedName("customer_image")
     private String customerImage;
+
+    @SerializedName("place")
     private String location;
+
+    @SerializedName("reservation_dtime")
     private String date;
+
+    @SerializedName("song")
     private String songs;
+
+    @SerializedName("type")
+    private int type;
+
+//    예약상태
+    @SerializedName("status")
+    private int status;
+
+    @SerializedName("demand")
     private String special;
-    private String standard;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getSpecial() {
+        return special;
+    }
+
+    public void setSpecial(String special) {
+        this.special = special;
+    }
 
     public String getSingerImage() {
         return singerImage;
@@ -74,19 +130,4 @@ public class Estimate implements Serializable {
         this.songs = songs;
     }
 
-    public String getSpecial() {
-        return special;
-    }
-
-    public void setSpecial(String special) {
-        this.special = special;
-    }
-
-    public String getStandard() {
-        return standard;
-    }
-
-    public void setStandard(String standard) {
-        this.standard = standard;
-    }
 }

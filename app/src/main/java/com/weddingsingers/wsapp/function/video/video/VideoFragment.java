@@ -168,7 +168,6 @@ public class VideoFragment extends Fragment {
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
 
-
             }
 
             @Override
