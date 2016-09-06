@@ -18,7 +18,7 @@ import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
-import com.weddingsingers.wsapp.request.ReservationListRequest;
+import com.weddingsingers.wsapp.request.ReservedSingerRequest;
 
 import java.util.List;
 
@@ -104,8 +104,8 @@ public class ReservationListFragment extends Fragment {
 
     private void initData() {
 
-        ReservationListRequest reservationListRequest = new ReservationListRequest(getContext(), TAB_RESERVATION_LIST);
-        NetworkManager.getInstance().getNetworkData(reservationListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+        ReservedSingerRequest reservedSingerRequest = new ReservedSingerRequest(getContext(), TAB_RESERVATION_LIST);
+        NetworkManager.getInstance().getNetworkData(reservedSingerRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 

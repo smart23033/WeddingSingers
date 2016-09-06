@@ -15,10 +15,10 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-09-06.
  */
-public class ReservationListRequest extends AbstractRequest<NetworkResult<List<Estimate>>> {
+public class ReservedSingerRequest extends AbstractRequest<NetworkResult<List<Estimate>>> {
     Request request;
 
-    public ReservationListRequest(Context context,int tab) {
+    public ReservedSingerRequest(Context context, int tab) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reservations")
                 .addPathSegment("me")

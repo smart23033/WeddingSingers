@@ -18,6 +18,14 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-08-30.
  */
 public class EstimateView extends FrameLayout {
+    private String location;
+    private String date;
+    private String song;
+    private String userName;
+    private String userImage;
+    private String special;
+    private int type;
+
     public EstimateView(Context context) {
         this(context, null);
     }
@@ -73,5 +81,34 @@ public class EstimateView extends FrameLayout {
 //        스탠다드인지 스페셜인지 둘중에 하나
 //        standardView.setText(estimate.getStandard());
         specialView.setText(estimate.getSpecial());
+
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setSpecial(String special) {
+        this.special = special;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setSong(String song) {
+        this.song = song;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
