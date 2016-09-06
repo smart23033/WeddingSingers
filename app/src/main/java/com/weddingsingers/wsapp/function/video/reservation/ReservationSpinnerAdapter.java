@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-08-29.
  */
-public class PriceFilterSpinnerAdapter extends BaseAdapter {
+public class ReservationSpinnerAdapter extends BaseAdapter {
     List<String> items = new ArrayList<>();
 
     public void addAll(String[] items){

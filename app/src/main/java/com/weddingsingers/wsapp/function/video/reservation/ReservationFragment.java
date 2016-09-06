@@ -62,6 +62,9 @@ public class ReservationFragment extends Fragment {
     @BindView(R.id.reservation_spinner_standard)
     Spinner standardSpinner;
 
+    @BindView(R.id.reservation_spinner_location)
+    Spinner locationSpinner;
+
     @BindView(R.id.reservation_tv_type_selected)
     TextView typeView;
 
@@ -77,7 +80,8 @@ public class ReservationFragment extends Fragment {
     @BindView(R.id.reservation_pv_profile)
     ProfileView singerProfileView;
 
-    PriceFilterSpinnerAdapter mAdapter;
+    ReservationSpinnerAdapter priceSpinnerAdapter;
+    ReservationSpinnerAdapter locationSpinnerAdapter;
 
     private static final String KEY_SINGER_ID = "singerId";
     private static ReservationFragment instance;
@@ -105,11 +109,13 @@ public class ReservationFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new PriceFilterSpinnerAdapter();
+        priceSpinnerAdapter = new ReservationSpinnerAdapter();
+        locationSpinnerAdapter = new ReservationSpinnerAdapter();
 
         standardRadioBtn.setChecked(true);
 
-        standardSpinner.setAdapter(mAdapter);
+        standardSpinner.setAdapter(priceSpinnerAdapter);
+        locationSpinner.setAdapter(locationSpinnerAdapter);
 
         initSingerProfile();
         initData();
@@ -236,12 +242,15 @@ public class ReservationFragment extends Fragment {
 
     @OnItemSelected(R.id.reservation_spinner_standard)
     void onItemSelected(int position) {
-        Toast.makeText(getContext(), "price : " + mAdapter.getItem(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "price : " + priceSpinnerAdapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
 
     private void initData() {
         String[] items = getResources().getStringArray(R.array.price);
-        mAdapter.addAll(items);
+        priceSpinnerAdapter.addAll(items);
+
+        items = getResources().getStringArray(R.array.location);
+        locationSpinnerAdapter.addAll(items);
     }
 
     private void moveReservationMgmFragment() {

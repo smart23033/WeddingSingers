@@ -21,10 +21,10 @@
         android:id="@+id/reservation_tv_calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Select reservation date"
+        android:layout_marginTop="@dimen/reservation_tv_calendar_margin_top"
+        android:text="RESERVATION DATE"
         android:textSize="12sp"
-        android:layout_marginLeft="18dp"
+        android:layout_marginLeft="@dimen/reservation_tv_calendar_margin_left"
         android:layout_below="@id/reservation_pv_profile"/>
 
     <LinearLayout
@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/reservation_tv_calendar"
         android:layout_marginTop="@dimen/reservation_ll_calendar_margin_top"
+        android:layout_marginLeft="@dimen/reservation_ll_calendar_margin_left"
         android:orientation="horizontal">
 
         <TextView
@@ -58,12 +59,34 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/reservation_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/reservation_tv_location_margin_top"
+        android:text="LOCATION"
+        android:textSize="12sp"
+        android:layout_marginLeft="@dimen/reservation_tv_location_margin_left"
+        android:layout_below="@id/reservation_ll_calendar"/>
+
+
+    <Spinner
+        android:id="@+id/reservation_spinner_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reservation_tv_location"
+        android:layout_marginTop="@dimen/reservation_spinner_location_margin_top"
+        android:layout_marginLeft="@dimen/reservation_spinner_location_margin_left"
+        android:spinnerMode="dialog"
+        android:textSize="12sp"/>
+
+    <TextView
         android:id="@+id/reservation_tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reservation_ll_calendar"
+        android:layout_below="@+id/reservation_spinner_location"
         android:layout_marginLeft="@dimen/reservation_tv_type_margin_left"
         android:layout_marginTop="@dimen/reservation_tv_type_margin_top"
+        android:textSize="12sp"
         android:text="TYPE" />
 
     <RadioGroup
@@ -97,6 +120,7 @@
         android:layout_below="@id/reservation_rg_type"
         android:layout_marginLeft="@dimen/reservation_tv_type_selected_margin_left"
         android:layout_marginTop="@dimen/reservation_tv_type_selected_margin_top"
+        android:textSize="12sp"
         android:text="STANDARD" />
 
     <FrameLayout
@@ -119,7 +143,7 @@
             android:layout_height="wrap_content"
             android:gravity="top|left"
             android:inputType="textMultiLine"
-            android:lines="5"
+            android:lines="4"
             android:maxWidth="@dimen/reservation_et_special_max_width"
             android:minWidth="@dimen/reservation_et_special_min_width"
             android:scrollHorizontally="false"
