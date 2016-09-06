@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.SingerList;
+import com.weddingsingers.wsapp.data.Estimate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +44,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     Button chatBtn;
 
     public interface OnPayBtnClickListener {
-        public void onPayBtnClick(View view, SingerList singerList, int position);
+        public void onPayBtnClick(View view, Estimate estimate, int position);
     }
 
     OnPayBtnClickListener payBtnListener;
@@ -53,7 +53,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     }
 
     public interface OnChatBtnClickListener {
-        public void onChatBtnClick(View view, SingerList singerList, int position);
+        public void onChatBtnClick(View view, Estimate estimate, int position);
     }
 
     OnChatBtnClickListener chatBtnListener;
@@ -63,7 +63,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
 
     public interface OnCancelBtnClickListener {
-        public void onCancelBtnClick(View view, SingerList singerList, int position);
+        public void onCancelBtnClick(View view, Estimate estimate, int position);
     }
 
     OnCancelBtnClickListener cancelBtnListener;
@@ -85,7 +85,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (payBtnListener != null) {
-                    payBtnListener.onPayBtnClick(view, singerList, getAdapterPosition());
+                    payBtnListener.onPayBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
@@ -94,7 +94,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (chatBtnListener != null) {
-                    chatBtnListener.onChatBtnClick(view, singerList, getAdapterPosition());
+                    chatBtnListener.onChatBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
@@ -103,7 +103,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 if (cancelBtnListener != null) {
-                    cancelBtnListener.onCancelBtnClick(view, singerList, getAdapterPosition());
+                    cancelBtnListener.onCancelBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
@@ -111,14 +111,13 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
     }
 
+    Estimate estimate;
 
-    SingerList singerList;
-
-    public void setSingerList(SingerList singerList){
-        this.singerList = singerList;
-        singerNameView.setText(singerList.getSingerName());
-        locationView.setText(singerList.getLocation());
-        dateView.setText(singerList.getDate());
-        songsView.setText(singerList.getSongs());
+    public void setSingerList(Estimate estimate){
+        this.estimate = estimate;
+        singerNameView.setText(estimate.getSingerName());
+        locationView.setText(estimate.getLocation());
+        dateView.setText(estimate.getDate());
+        songsView.setText(estimate.getSongs());
     }
 }

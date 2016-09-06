@@ -5,7 +5,6 @@ import android.content.Context;
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
-import com.weddingsingers.wsapp.data.Reservation;
 
 import java.lang.reflect.Type;
 import java.util.List;

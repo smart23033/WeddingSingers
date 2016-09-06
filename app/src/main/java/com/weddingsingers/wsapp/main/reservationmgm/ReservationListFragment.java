@@ -10,23 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
-import com.weddingsingers.wsapp.data.Reservation;
-import com.weddingsingers.wsapp.data.SearchResult;
-import com.weddingsingers.wsapp.data.SingerList;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
-import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
 import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
-import com.weddingsingers.wsapp.function.video.video.VideoActivity;
-import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.ReservationListRequest;
-import com.weddingsingers.wsapp.request.ReservationRequest;
 
 import java.util.List;
 
@@ -72,20 +64,21 @@ public class ReservationListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reservation_list, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         recyclerView.setAdapter(mAdapter);
 
         mAdapter.setOnAdapterPayBtnClickListener(new ReservationListAdapter.OnAdapterPayBtnClickListener() {
             @Override
-            public void onAdapterPayBtnClick(View view, SingerList singerList, int position) {;
-                ((ReservationMgmFragment)getParentFragment()).startPaymentActivity();
+            public void onAdapterPayBtnClick(View view, Estimate estimate, int position) {
+                ;
+                ((ReservationMgmFragment) getParentFragment()).startPaymentActivity();
             }
         });
 
         mAdapter.setOnAdapterChatBtnClickListener(new ReservationListAdapter.OnAdapterChatBtnClickListener() {
             @Override
-            public void onAdapterChatBtnClick(View view, SingerList singerList, int position) {
+            public void onAdapterChatBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), ChattingActivity.class);
                 startActivity(intent);
             }
@@ -93,14 +86,14 @@ public class ReservationListFragment extends Fragment {
 
         mAdapter.setOnAdapterCancelBtnClickListener(new ReservationListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
-            public void onAdapterCancelBtnClick(View view, SingerList singerList, int position) {
+            public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), CancelReservationActivity.class);
                 startActivity(intent);
             }
         });
 
         LinearLayoutManager manager =
-                new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(manager);
 
@@ -110,27 +103,30 @@ public class ReservationListFragment extends Fragment {
     }
 
     private void initData() {
-//        for (int i = 0; i < 20; i++) {
-//            SingerList singerList = new SingerList();
-//            singerList.setLocation("Seoul");
-//            singerList.setDate("2016. 4. 26");
-//            singerList.setSingerName("singer name");
-//            singerList.setSongs("Clarity - Zedd");
-//            mAdapter.add(singerList);
-//        }
 
-        ReservationListRequest reservationListRequest = new ReservationListRequest(getContext(),TAB_RESERVATION_LIST);
+        ReservationListRequest reservationListRequest = new ReservationListRequest(getContext(), TAB_RESERVATION_LIST);
         NetworkManager.getInstance().getNetworkData(reservationListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 
-            }
+                        for (Estimate e : result.getResult()) {
+                            Estimate estimate = new Estimate();
+                            estimate.setSingerName(e.getSingerName());
+                            estimate.setSingerImage(e.getSingerImage());
+                            estimate.setDate(e.getDate());
+                            estimate.setLocation(e.getLocation());
+                            estimate.setSongs(e.getSongs());
+                            mAdapter.add(e);
+                        }
+                    }
 
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request, int errorCode, String errorMessage, Throwable e) {
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request,
+                                       int errorCode, String errorMessage, Throwable e) {
 
-            }
-        });
+                    }
+                }
+
+        );
     }
-
 }

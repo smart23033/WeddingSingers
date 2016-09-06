@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.SingerList;
+import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.viewholder.SingerListViewHolder;
 
 import java.util.ArrayList;
@@ -21,10 +21,10 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
         SingerListViewHolder.OnCancelBtnClickListener,
         SingerListViewHolder.OnChatBtnClickListener{
 
-    List<SingerList> items = new ArrayList<>();
+    List<Estimate> items = new ArrayList<>();
 
-    public void add(SingerList singerList) {
-        items.add(singerList);
+    public void add(Estimate estimate) {
+        items.add(estimate);
         notifyDataSetChanged();
     }
 
@@ -54,7 +54,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
 
 
     public interface OnAdapterPayBtnClickListener{
-        public void onAdapterPayBtnClick(View view, SingerList singerList, int position);
+        public void onAdapterPayBtnClick(View view, Estimate estimate, int position);
     }
 
     OnAdapterPayBtnClickListener payBtnListener;
@@ -64,7 +64,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
 
 
     public interface OnAdapterChatBtnClickListener{
-        public void onAdapterChatBtnClick(View view, SingerList singerList, int position);
+        public void onAdapterChatBtnClick(View view, Estimate estimate, int position);
     }
 
     OnAdapterChatBtnClickListener chatBtnListener;
@@ -74,7 +74,7 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
 
 
     public interface OnAdapterCancelBtnClickListener{
-        public void onAdapterCancelBtnClick(View view, SingerList singerList, int position);
+        public void onAdapterCancelBtnClick(View view, Estimate estimate, int position);
     }
 
     OnAdapterCancelBtnClickListener cancelBtnListener;
@@ -83,23 +83,23 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
     }
 
     @Override
-    public void onPayBtnClick(View view, SingerList singerList, int position) {
+    public void onPayBtnClick(View view, Estimate estimate, int position) {
         if(payBtnListener != null){
-            payBtnListener.onAdapterPayBtnClick(view,singerList,position);
+            payBtnListener.onAdapterPayBtnClick(view,estimate,position);
         }
     }
 
     @Override
-    public void onCancelBtnClick(View view, SingerList singerList, int position) {
+    public void onCancelBtnClick(View view, Estimate estimate, int position) {
         if(cancelBtnListener != null){
-            cancelBtnListener.onAdapterCancelBtnClick(view,singerList,position);
+            cancelBtnListener.onAdapterCancelBtnClick(view,estimate,position);
         }
     }
 
     @Override
-    public void onChatBtnClick(View view, SingerList singerList, int position) {
+    public void onChatBtnClick(View view, Estimate estimate, int position) {
         if(chatBtnListener != null){
-            chatBtnListener.onAdapterChatBtnClick(view,singerList,position);
+            chatBtnListener.onAdapterChatBtnClick(view,estimate,position);
         }
     }
 }
