@@ -25,6 +25,7 @@ import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
 import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
 
 import butterknife.BindView;
@@ -110,8 +111,8 @@ public class VideoFragment extends Fragment {
     }
 
     private void initData(){
-        VideoRequest request = new VideoRequest(getContext(),videoId);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
+        VideoRequest videoRequest = new VideoRequest(getContext(),videoId);
+        NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
                 Toast.makeText(getContext(), "VideoFragment Success", Toast.LENGTH_SHORT).show();
@@ -119,10 +120,8 @@ public class VideoFragment extends Fragment {
                 Video video = new Video();
 
                 video.setDate(result.getResult().getDate());
-                video.setSingerName(result.getResult().getSingerName());
                 video.setId(result.getResult().getId());
                 video.setFavorite(result.getResult().getFavorite());
-                video.setComment(result.getResult().getComment());
                 video.setHit(result.getResult().getHit());
                 video.setRating(result.getResult().getRating());
                 video.setReview(result.getResult().getReview());
@@ -140,15 +139,15 @@ public class VideoFragment extends Fragment {
                 standardView.setText("" + video.getStandard());
                 specialView.setText("" + video.getSpecial());
 
-
             }
-
             @Override
             public void onFail(NetworkRequest<NetworkResult<Video>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "VideoFragment failure", Toast.LENGTH_SHORT).show();
 
             }
         });
+
+//        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),)
     }
 
     @OnClick(R.id.view_profile_btn_reserve)
