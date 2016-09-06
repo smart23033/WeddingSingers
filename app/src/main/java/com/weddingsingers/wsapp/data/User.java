@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class User implements Serializable{
     private int id;
+    private String photoURL;
     private String email;
     private String password;
     private String name;
@@ -20,6 +21,14 @@ public class User implements Serializable{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getPhotoURL() {
+        return this.photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 
     public String getEmail() {

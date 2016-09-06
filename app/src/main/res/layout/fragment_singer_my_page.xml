@@ -89,23 +89,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/singer_my_page_inquiry_ic"
+            android:id="@+id/singer_my_page_iv_inquiry_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/singer_my_page_inquiry_title"
+            android:id="@+id/singer_my_page_tv_inquiry_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/singer_my_page_inquiry_ic"
+            android:layout_toRightOf="@+id/singer_my_page_iv_inquiry_ic"
             android:text="1:1문의 답변" />
 
         <ImageView
-            android:id="@+id/singer_my_page_inquiry_detail"
+            android:id="@+id/singer_my_page_iv_inquiry_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -123,23 +123,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/singer_my_page_statistic_ic"
+            android:id="@+id/singer_my_page_iv_statistic_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/singer_my_page_statistic_title"
+            android:id="@+id/singer_my_page_tv_statistic_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/singer_my_page_statistic_ic"
+            android:layout_toRightOf="@+id/singer_my_page_iv_statistic_ic"
             android:text="통계 분석" />
 
         <ImageView
-            android:id="@+id/singer_my_page_statistic_detail"
+            android:id="@+id/singer_my_page_iv_statistic_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -157,23 +157,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/singer_my_page_account_ic"
+            android:id="@+id/singer_my_page_iv_account_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/singer_my_page_account_title"
+            android:id="@+id/singer_my_page_tv_account_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/singer_my_page_account_ic"
+            android:layout_toRightOf="@+id/singer_my_page_iv_account_ic"
             android:text="환불계좌 관리" />
 
         <ImageView
-            android:id="@+id/singer_my_page_account_detail"
+            android:id="@+id/singer_my_page_iv_account_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

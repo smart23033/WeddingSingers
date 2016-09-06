@@ -7,20 +7,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerProfileModifyActivity;
 import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerVideoMgmActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemSelected;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +30,33 @@ import butterknife.OnItemSelected;
 public class SingerProfileFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
+
+    @BindView(R.id.singer_profile_tv_basic_name)
+    TextView nameView;
+
+    @BindView(R.id.singer_profile_tv_basic_comment)
+    TextView commentView;
+
+    @BindView(R.id.singer_profile_tv_basic_location)
+    TextView locationView;
+
+    @BindView(R.id.singer_profile_tv_basic_composition)
+    TextView compositionView;
+
+    @BindView(R.id.singer_profile_tv_basic_theme)
+    TextView themeView;
+
+    @BindView(R.id.singer_profile_intro_tv_content)
+    TextView introView;
+
+    @BindView(R.id.singer_profile_price_tv_special_price)
+    TextView specialPriceView;
+
+    @BindView(R.id.singer_profile_price_tv_std_price)
+    TextView standardPriceView;
+
+    @BindView(R.id.singer_profile_song_tv_song)
+    TextView songView;
 
     public SingerProfileFragment() {
         // Required empty public constructor
@@ -49,8 +78,53 @@ public class SingerProfileFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        //initData();
 
         return view;
+    }
+
+    private void initData() {
+
+        SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
+                Singer singer = new Singer();
+                singer.setSingerName(result.getResult().getSingerName());
+                singer.setComment(result.getResult().getComment());
+                singer.setLocation(result.getResult().getLocation());
+                singer.setComposition(result.getResult().getComposition());
+                singer.setTheme(result.getResult().getTheme());
+                singer.setDescription(result.getResult().getDescription());
+                singer.setSpecial(result.getResult().getSpecial());
+                singer.setStandard(result.getResult().getStandard());
+                singer.setSongs(result.getResult().getSongs());
+
+                String songList = "";
+                for (String song : singer.getSongs())
+                {
+                    songList += song + "\n";
+                }
+
+                nameView.setText(singer.getSingerName());
+                commentView.setText(singer.getComment());
+                locationView.setText(singer.getLocation());
+                compositionView.setText(singer.getComposition());
+                themeView.setText(singer.getTheme());
+                introView.setText(singer.getDescription());
+                specialPriceView.setText(" " + singer.getSpecial());
+                standardPriceView.setText(" " + singer.getStandard());
+                songView.setText(songList);
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorCode, Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @OnClick(R.id.singer_profile_img_btn_modify)

@@ -29,7 +29,7 @@
             app:riv_tile_mode="clamp" />
 
         <TextView
-            android:id="@+id/my_page_customer_riv_name"
+            android:id="@+id/my_page_customer_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/my_page_customer_riv_picture"
@@ -38,19 +38,19 @@
             android:text="name" />
 
         <TextView
-            android:id="@+id/my_page_customer_riv_email"
+            android:id="@+id/my_page_customer_tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/my_page_customer_riv_name"
+            android:layout_below="@+id/my_page_customer_tv_name"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:text="email@didimdolc.o.kr" />
 
         <TextView
-            android:id="@+id/my_page_customer_riv_point"
+            android:id="@+id/my_page_customer_tv_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/my_page_customer_riv_email"
+            android:layout_below="@+id/my_page_customer_tv_email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
             android:text="마이포인트 300" />
@@ -79,23 +79,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/my_page_customer_inquiry_ic"
+            android:id="@+id/my_page_customer_iv_inquiry_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/my_page_customer_inquiry_title"
+            android:id="@+id/my_page_customer_tv_inquiry_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/my_page_customer_inquiry_ic"
+            android:layout_toRightOf="@+id/my_page_customer_iv_inquiry_ic"
             android:text="1:1문의 답변" />
 
         <ImageView
-            android:id="@+id/my_page_customer_inquiry_detail"
+            android:id="@+id/my_page_customer_iv_inquiry_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -113,23 +113,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/my_page_customer_favor_ic"
+            android:id="@+id/my_page_customer_iv_favor_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/my_page_customer_favor_title"
+            android:id="@+id/my_page_customer_tv_favor_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/my_page_customer_favor_ic"
+            android:layout_toRightOf="@+id/my_page_customer_iv_favor_ic"
             android:text="찜한 목록" />
 
         <ImageView
-            android:id="@+id/my_page_customer_favor_detail"
+            android:id="@+id/my_page_customer_iv_favor_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -147,23 +147,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/my_page_customer_account_ic"
+            android:id="@+id/my_page_customer_iv_account_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/my_page_customer_account_title"
+            android:id="@+id/my_page_customer_tv_account_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/my_page_customer_account_ic"
+            android:layout_toRightOf="@+id/my_page_customer_iv_account_ic"
             android:text="환불계좌 관리" />
 
         <ImageView
-            android:id="@+id/my_page_customer_account_detail"
+            android:id="@+id/my_page_customer_iv_account_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -181,23 +181,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/my_page_customer_point_ic"
+            android:id="@+id/my_page_customer_iv_point_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/my_page_customer_point_title"
+            android:id="@+id/my_page_customer_tv_point_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/my_page_customer_point_ic"
+            android:layout_toRightOf="@+id/my_page_customer_iv_point_ic"
             android:text="포인트 상점" />
 
         <ImageView
-            android:id="@+id/my_page_customer_point_detail"
+            android:id="@+id/my_page_customer_iv_point_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -215,23 +215,23 @@
         android:clickable="true">
 
         <ImageView
-            android:id="@+id/singer_my_page_my_point_ic"
+            android:id="@+id/singer_my_page_iv_my_point_ic"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:src="@drawable/search_ic_hit" />
 
         <TextView
-            android:id="@+id/singer_my_page_my_point_title"
+            android:id="@+id/singer_my_page_tv_my_point_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/singer_my_page_my_point_ic"
+            android:layout_toRightOf="@+id/singer_my_page_iv_my_point_ic"
             android:text="포인트 관리" />
 
         <ImageView
-            android:id="@+id/singer_my_page_my_point_detail"
+            android:id="@+id/singer_my_page_iv_my_point_detail"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

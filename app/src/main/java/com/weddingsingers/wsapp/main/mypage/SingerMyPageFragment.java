@@ -4,27 +4,25 @@ package com.weddingsingers.wsapp.main.mypage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
-import com.weddingsingers.wsapp.data.Video;
 import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
-import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
-import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
 import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
-import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.MyPageRequest;
-import com.weddingsingers.wsapp.request.VideoRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +34,9 @@ import butterknife.OnClick;
 public class SingerMyPageFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
+
+    @BindView(R.id.singer_my_page_riv_picture)
+    RoundedImageView pictureView;
 
     @BindView(R.id.singer_my_page_tv_email)
     TextView emailView;
@@ -65,6 +66,9 @@ public class SingerMyPageFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        pictureView.mutateBackground(true);
+        pictureView.setOval(true);
+
         initData();
 
         return view;
@@ -72,15 +76,24 @@ public class SingerMyPageFragment extends Fragment {
 
     private void initData() {
 
-        MyPageRequest request = new MyPageRequest(getContext(), MainActivity.isLogin);
+        MyPageRequest request = new MyPageRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
 
                 User user = new User();
+                user.setPhotoURL(result.getResult().getPhotoURL());
                 user.setName(result.getResult().getName());
                 user.setEmail(result.getResult().getEmail());
                 user.setPoint(result.getResult().getPoint());
+
+                Glide.with(getActivity())
+                        .load(user.getPhotoURL())
+                        //.load("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQg7S3iXqkm3eh5jVd6Or7tlCF7iAv3XeDwWwxqSsVyCBPng0inR9Pn9H0")
+                        .centerCrop()
+                        .crossFade()
+                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
+                        .into(pictureView);
 
                 nameView.setText(user.getName());
                 emailView.setText(user.getEmail());

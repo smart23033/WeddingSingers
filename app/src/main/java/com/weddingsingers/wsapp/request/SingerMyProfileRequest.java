@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
-import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.data.Singer;
 
 import java.lang.reflect.Type;
 
@@ -12,15 +12,15 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-09-05.
+ * Created by Tacademy on 2016-09-06.
  */
-public class MyPageRequest extends AbstractRequest<NetworkResult<User>> {
+public class SingerMyProfileRequest extends AbstractRequest<NetworkResult<Singer>> {
 
     Request request;
 
-    public MyPageRequest(Context context) {
+    public SingerMyProfileRequest(Context context) {
         HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("users")
+                .addPathSegment("singers")
                 .addPathSegment("me")
                 .build();
         request = new Request.Builder()
@@ -31,7 +31,7 @@ public class MyPageRequest extends AbstractRequest<NetworkResult<User>> {
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<User>>() {
+        return new TypeToken<NetworkResult<Singer>>() {
         }.getType();
     }
 

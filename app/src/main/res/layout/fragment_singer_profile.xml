@@ -163,7 +163,7 @@
             android:textColor="@color/colorLightPink" />
 
         <TextView
-            android:id="@+id/singer_profile_song_tv_content"
+            android:id="@+id/singer_profile_song_tv_song"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/video_tv_standard_margin_right"

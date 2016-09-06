@@ -100,11 +100,10 @@
 
         <EditText
             android:id="@+id/user_info_et_password"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:layout_toRightOf="@id/user_info_tv_password"
-            android:hint="12345" />
+            android:layout_toRightOf="@id/user_info_tv_password" />
 
     </RelativeLayout>
 
@@ -123,11 +122,10 @@
 
         <EditText
             android:id="@+id/user_info_et_password_confirm"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:layout_toRightOf="@id/user_info_tv_password_confirm"
-            android:hint="123213123" />
+            android:layout_toRightOf="@id/user_info_tv_password_confirm" />
 
     </RelativeLayout>
 
