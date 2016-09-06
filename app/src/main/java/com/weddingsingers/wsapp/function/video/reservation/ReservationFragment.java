@@ -50,8 +50,8 @@ public class ReservationFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @BindView(R.id.view_profile_btn_reserve)
-    Button reserveBtn;
+//    @BindView(R.id.view_profile_btn_reserve)
+//    Button reserveBtn;
 
     @BindView(R.id.reservation_et_special)
     EditText specialInput;
@@ -102,7 +102,7 @@ public class ReservationFragment extends Fragment {
 
         mAdapter = new PriceFilterSpinnerAdapter();
 
-        reserveBtn.setVisibility(View.GONE);
+//        reserveBtn.setVisibility(View.GONE);
         standardRadioBtn.setChecked(true);
 
         standardSpinner.setAdapter(mAdapter);
@@ -148,28 +148,28 @@ public class ReservationFragment extends Fragment {
         timePickerDialog.show();
     }
 
-    @OnClick(R.id.reservation_btn_reserve)
-    void onReserveBtnClick() {
-        AlertDialog dialog;
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Reservation Complete")
-                .setMessage("Reservation complete,\ncould you go to confirm?")
-                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservationMgmFragment();
-                    }
-                });
-
-        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                moveMainActivity();
-            }
-        });
-        dialog = builder.create();
-        dialog.show();
-    }
+//    @OnClick(R.id.reservation_btn_reserve)
+//    void onReserveBtnClick() {
+//        AlertDialog dialog;
+//        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//        builder.setTitle("Reservation Complete")
+//                .setMessage("Reservation complete,\ncould you go to confirm?")
+//                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        moveReservationMgmFragment();
+//                    }
+//                });
+//
+//        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                moveMainActivity();
+//            }
+//        });
+//        dialog = builder.create();
+//        dialog.show();
+//    }
 
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
     void onRadioBtnClick(RadioButton radioButton) {

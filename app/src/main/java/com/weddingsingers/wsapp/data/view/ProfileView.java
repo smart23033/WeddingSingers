@@ -27,16 +27,8 @@ public class ProfileView extends FrameLayout {
     private String singerImage;
     private String comment;
 
-
-//    여기서부터 다시한다!
-
-    public ProfileView(Context context, int singerId, String singerName, String singerImage,String comment) {
-        super(context);
-        this.singerId = singerId;
-        this.singerName = singerName;
-        this.singerImage = singerImage;
-        this.comment = comment;
-        init();
+    public ProfileView(Context context) {
+        this(context,null);
     }
 
     public ProfileView(Context context, AttributeSet attrs) {
@@ -63,12 +55,29 @@ public class ProfileView extends FrameLayout {
         imageView.setOval(true);
         imageView.setBackgroundColor(Color.LTGRAY);
 
-        Log.i("ProfileView", "singerName : " + singerName);
-
         singerNameView.setText(singerName);
         commentView.setText(comment);
 
+        Log.i("ProfileView","singerId : " + singerId);
+        Log.i("ProfileView","singerName : " + singerName);
+        Log.i("ProfileView","comment : " + comment);
 
     }
 
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
+
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
+    }
+
+    public void setSingerImage(String singerImage) {
+        this.singerImage = singerImage;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

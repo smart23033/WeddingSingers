@@ -80,19 +80,34 @@
 
     </RelativeLayout>
 
+    <FrameLayout
+        android:id="@+id/video_fl_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/video_rl_video_info">
 
     <com.weddingsingers.wsapp.data.view.ProfileView
         android:id="@+id/video_pv_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/video_rl_video_info" />
+        android:layout_height="wrap_content" />
 
+        <Button
+            android:id="@+id/view_profile_btn_reserve"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/reservation_pv_profile"
+            android:text="reserve"
+            android:textSize="@dimen/view_profile_btn_reserve_text_size"
+            android:layout_gravity="right|center_vertical" />
+
+    </FrameLayout>
 
     <RelativeLayout
         android:id="@+id/video_rl_price_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/video_pv_profile"
+        android:layout_below="@id/video_fl_profile"
         android:layout_marginBottom="@dimen/video_rl_price_info_margin_bottom"
         android:layout_marginLeft="@dimen/video_rl_video_info_horizontal_margin"
         android:layout_marginTop="@dimen/video_rl_price_info_margin_top">
@@ -200,5 +215,6 @@
             android:text="20,110" />
 
     </RelativeLayout>
+
 
 </RelativeLayout>

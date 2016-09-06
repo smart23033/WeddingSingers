@@ -50,16 +50,5 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/view_profile_btn_reserve"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/view_profile_btn_reserve_margin_left"
-        android:layout_marginTop="@dimen/view_profile_btn_reserve_margin_top"
-        android:layout_toRightOf="@+id/view_profile_rl_profile"
-        android:text="reserve"
-        android:textSize="@dimen/view_profile_btn_reserve_text_size" />
-
 </RelativeLayout>
 

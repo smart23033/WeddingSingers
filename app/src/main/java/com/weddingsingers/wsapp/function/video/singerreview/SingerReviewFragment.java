@@ -25,9 +25,6 @@ import butterknife.ButterKnife;
  */
 public class SingerReviewFragment extends Fragment {
 
-    @BindView(R.id.view_profile_btn_reserve)
-    Button reserveBtn;
-
     @BindView(R.id.singer_review_rv_list)
     RecyclerView recyclerView;
 
@@ -50,7 +47,6 @@ public class SingerReviewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_singer_review, container, false);
 
         ButterKnife.bind(this, view);
-        reserveBtn.setVisibility(View.GONE);
 
         mAdapter = new SingerReviewAdapter();
         recyclerView.setAdapter(mAdapter);

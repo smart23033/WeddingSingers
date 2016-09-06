@@ -1,5 +1,7 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,16 +9,31 @@ import java.util.ArrayList;
  * Created by Tacademy on 2016-08-25.
  */
 public class Singer implements Serializable{
+    @SerializedName("user_id")
     private int id;
+
+    @SerializedName("name")
     private String singerName;
+
+    @SerializedName("photoURL")
     private String singerImage;
+
     private String comment;
+
     private String description;
+
+    @SerializedName("standard_price")
     private int standard;
+
+    @SerializedName("special_price")
     private int special;
+
     private String location;
+
     private String composition;
+
     private String theme;
+
     private ArrayList<String> songs;
 
     public int getId() {

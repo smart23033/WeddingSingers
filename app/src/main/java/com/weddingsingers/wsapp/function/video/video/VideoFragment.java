@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.RatingBar;
@@ -165,7 +166,15 @@ public class VideoFragment extends Fragment {
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
 
-                singerProfileView = new ProfileView(getContext(),singerId,singerName,singerImage,comment);
+                Log.i("VideoFragment", "singerId : " + singerId);
+                Log.i("VideoFragment", "singerName : " + singerName);
+                Log.i("VideoFragment", "comment : " + comment);
+
+                singerProfileView.setSingerId(singerId);
+                singerProfileView.setComment(comment);
+                singerProfileView.setSingerName(singerName);
+                singerProfileView.setSingerImage(singerImage);
+
             }
 
             @Override
