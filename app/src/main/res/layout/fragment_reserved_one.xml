@@ -9,41 +9,10 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.reservationmgm.ReservedOneFragment">
 
-    <com.weddingsingers.wsapp.data.view.EstimateView
-        android:id="@+id/reserved_one_ev_profile"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reserved_one_rv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <RelativeLayout
-        android:id="@+id/reserved_one_rl_btn_group"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/reserved_one_ev_profile"
-        android:layout_alignRight="@+id/reserved_one_ev_profile"
-        android:layout_below="@+id/reserved_one_ev_profile"
-        android:layout_marginBottom="@dimen/reserved_one_rl_btn_group_margin_bottom"
-        android:layout_marginRight="@dimen/reserved_one_rl_btn_group_margin_right">
-
-        <Button
-            android:id="@+id/reserved_one_btn_cancel"
-            android:layout_width="@dimen/reserved_one_btn_width"
-            android:layout_height="@dimen/reserved_one_btn_height"
-            android:layout_marginLeft="@dimen/reserved_one_btn_margin_left"
-            android:padding="@dimen/reserved_one_btn_padding"
-            android:text="cancel"
-            android:textSize="@dimen/reserved_one_btn_text_size" />
-
-        <Button
-            android:id="@+id/reserved_one_btn_chat"
-            android:layout_width="@dimen/reserved_one_btn_width"
-            android:layout_height="@dimen/reserved_one_btn_height"
-            android:layout_marginLeft="@dimen/reserved_one_btn_margin_left"
-            android:layout_toRightOf="@id/reserved_one_btn_cancel"
-            android:padding="@dimen/reserved_one_btn_padding"
-            android:text="chat"
-            android:textSize="@dimen/reserved_one_btn_text_size" />
-
-
-    </RelativeLayout>
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

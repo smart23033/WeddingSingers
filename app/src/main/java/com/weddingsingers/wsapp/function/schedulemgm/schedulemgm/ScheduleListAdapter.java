@@ -18,12 +18,12 @@ import java.util.List;
 
 public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHolder> implements
         ScheduleListViewHolder.OnCancelBtnClickListener,
-        ScheduleListViewHolder.OnChatBtnClickListener
-{
+        ScheduleListViewHolder.OnChatBtnClickListener {
+
     List<Estimate> items = new ArrayList<>();
 
-    public void add(Estimate p){
-        items.add(p);
+    public void add(Estimate e){
+        items.add(e);
         notifyDataSetChanged();
     }
 

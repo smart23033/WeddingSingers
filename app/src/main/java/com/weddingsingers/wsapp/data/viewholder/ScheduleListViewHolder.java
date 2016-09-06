@@ -26,7 +26,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
     Button chatBtn;
 
     public interface OnCancelBtnClickListener {
-        public void onCancelBtnClick(View view, Estimate profile, int position);
+        public void onCancelBtnClick(View view, Estimate estimate, int position);
     }
 
     OnCancelBtnClickListener cancelBtnListener;
@@ -36,7 +36,7 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
 
 
     public interface OnChatBtnClickListener {
-        public void onChatBtnClick(View view, Estimate profile, int position);
+        public void onChatBtnClick(View view, Estimate estimate, int position);
     }
 
     OnChatBtnClickListener chatBtnListener;
