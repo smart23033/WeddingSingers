@@ -2,6 +2,7 @@ package com.weddingsingers.wsapp.function.video.reservation;
 
 
 import android.app.AlertDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
@@ -28,6 +30,8 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.function.search.search.CalendarDialogFragment;
 import com.weddingsingers.wsapp.main.MainActivity;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -66,6 +70,9 @@ public class ReservationFragment extends Fragment {
     @BindView(R.id.reservation_tv_date)
     TextView dateView;
 
+    @BindView(R.id.reservation_tv_time)
+    TextView timeView;
+
     PriceFilterSpinnerAdapter mAdapter;
 
     private static final String ARG_MESSAGE = "param1";
@@ -89,9 +96,9 @@ public class ReservationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_reservation, container, false);
+        View view = inflater.inflate(R.layout.fragment_reservation, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         mAdapter = new PriceFilterSpinnerAdapter();
 
@@ -107,25 +114,42 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnClick(R.id.reservation_tv_date)
-    void onDateClick(){
+    void onDateClick() {
         CalendarDialogFragment calendarDialogFragment = CalendarDialogFragment.newInstance(CalendarDialogFragment.FRAG_RESERVATION);
         calendarDialogFragment.show(getActivity().getSupportFragmentManager(), "calendarDialog");
 
-       calendarDialogFragment.setOnCalendarDateChanged(new CalendarDialogFragment.OnCalendarDateChangedListener() {
-           @Override
-           public void onCalendarDateChanged(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-               int year = date.getYear();
-               int month = date.getMonth() + 1;
-               int day = date.getDay();
-               String reservationDate = String.format("%d-%d-%d",year,month,day);
-               dateView.setText(reservationDate);
-           }
-       });
+        calendarDialogFragment.setOnCalendarDateChanged(new CalendarDialogFragment.OnCalendarDateChangedListener() {
+            @Override
+            public void onCalendarDateChanged(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+                int year = date.getYear();
+                int month = date.getMonth() + 1;
+                int day = date.getDay();
+                String reservationDate = String.format("%d-%d-%d", year, month, day);
+                dateView.setText(reservationDate);
+            }
+        });
+    }
 
+    @OnClick(R.id.reservation_tv_time)
+    void onTImeClick() {
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+                String reservationTime = String.format("%d:%d", hourOfDay, minute);
+                timeView.setText(reservationTime);
+            }
+        }, hour, minute, false);
+
+        timePickerDialog.show();
     }
 
     @OnClick(R.id.reservation_btn_reserve)
-    void onReserveBtnClick(){
+    void onReserveBtnClick() {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Reservation Complete")
@@ -133,13 +157,14 @@ public class ReservationFragment extends Fragment {
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveReservationMgmFragment();                    }
+                        moveReservationMgmFragment();
+                    }
                 });
 
         builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                        moveMainActivity();
+                moveMainActivity();
             }
         });
         dialog = builder.create();
@@ -147,20 +172,20 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
-    void onRadioBtnClick(RadioButton radioButton){
+    void onRadioBtnClick(RadioButton radioButton) {
         boolean checked = radioButton.isChecked();
 
-        switch (radioButton.getId()){
-            case R.id.reservation_rb_standard:{
-                if(checked) {
+        switch (radioButton.getId()) {
+            case R.id.reservation_rb_standard: {
+                if (checked) {
                     specialInput.setVisibility(View.GONE);
                     standardSpinner.setVisibility(View.VISIBLE);
                     typeView.setText("STANDARD");
                     break;
                 }
             }
-            case R.id.reservation_rb_special:{
-                if(checked) {
+            case R.id.reservation_rb_special: {
+                if (checked) {
                     specialInput.setVisibility(View.VISIBLE);
                     standardSpinner.setVisibility(View.GONE);
                     typeView.setText("SPECIAL");
@@ -171,16 +196,16 @@ public class ReservationFragment extends Fragment {
     }
 
     @OnItemSelected(R.id.reservation_spinner_standard)
-    void onItemSelected(int position){
-        Toast.makeText(getContext(),"item : " + mAdapter.getItem(position),Toast.LENGTH_SHORT).show();
+    void onItemSelected(int position) {
+        Toast.makeText(getContext(), "item : " + mAdapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
 
-    private void initData(){
-        String[] items = getResources().getStringArray(R.array.items);
+    private void initData() {
+        String[] items = getResources().getStringArray(R.array.price);
         mAdapter.addAll(items);
     }
 
-    private void moveReservationMgmFragment(){
+    private void moveReservationMgmFragment() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra(MainActivity.FRAG_NAME, FRAG_RESERVATION_MGM);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -188,7 +213,7 @@ public class ReservationFragment extends Fragment {
         getActivity().finish();
     }
 
-    private void moveMainActivity(){
+    private void moveMainActivity() {
         startActivity(new Intent(getActivity(), MainActivity.class));
         getActivity().finish();
     }
@@ -201,8 +226,8 @@ public class ReservationFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{
+        switch (item.getItemId()) {
+            case android.R.id.home: {
                 getActivity().finish();
                 return true;
             }
