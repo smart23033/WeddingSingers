@@ -243,7 +243,7 @@
     <dimen name="payment_rl_btn_group_margin_top">40dp</dimen>
     <dimen name="payment_btn_remittance_margin_right">20dp</dimen>
 
-    <!--view_estimate.xml-->
+    <!--view_estimate_default.xml-->
     <dimen name="view_estimate_rl_profile_margin_left">10dp</dimen>
     <dimen name="view_estimate_rl_profile_margin_right">10dp</dimen>
     <dimen name="view_estimate_riv_profile_width">55dp</dimen>
@@ -259,6 +259,14 @@
     <dimen name="view_estimate_tv__margin_top">2dp</dimen>
     <dimen name="view_estimate_rl_detail_info_margin_top">10dp</dimen>
 
+    <!--view_estimate.xml-->
+    <dimen name="view_estimate_btn_width">60dp</dimen>
+    <dimen name="view_estimate_btn_height">30dp</dimen>
+    <dimen name="view_estimate_btn_margin_left">5dp</dimen>
+    <dimen name="view_estimate_btn_padding">0dp</dimen>
+    <dimen name="view_estimate_btn_text_size">10sp</dimen>"
+
+
     <!--fragment_schedule_mgm.xml-->
     <dimen name="schedule_mgm_rl_color_info_margin">15dp</dimen>
     <dimen name="schedule_mgm_iv_width">20dp</dimen>
@@ -272,6 +280,8 @@
     <dimen name="view_detail_schedule_btn_margin_left">5dp</dimen>
     <dimen name="view_detail_schedule_btn_padding">0dp</dimen>
     <dimen name="view_detail_schedule_btn_text_size">10sp</dimen>
+
+
 
     <!--view_reserved_customer.xml-->
     <dimen name="view_reserved_customer_btn_width">60dp</dimen>

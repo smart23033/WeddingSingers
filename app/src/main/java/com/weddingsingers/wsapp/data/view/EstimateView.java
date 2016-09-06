@@ -58,7 +58,7 @@ public class EstimateView extends FrameLayout {
 
     private void init(){
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.view_estimate,this);
+        inflater.inflate(R.layout.view_estimate_default,this);
 
         ButterKnife.bind(this);
 

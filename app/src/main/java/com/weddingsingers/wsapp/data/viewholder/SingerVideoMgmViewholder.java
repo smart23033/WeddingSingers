@@ -18,8 +18,6 @@ import butterknife.ButterKnife;
  */
 public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
 
-    Context context = MyApplication.getContext();
-
     @BindView(R.id.view_singer_video_mgm_tv_title)
     TextView titleView;
 
