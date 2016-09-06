@@ -246,6 +246,9 @@ public class ReservationFragment extends Fragment {
     }
 
     private void initData() {
+        priceSpinnerAdapter.clear();
+        locationSpinnerAdapter.clear();
+
         String[] items = getResources().getStringArray(R.array.price);
         priceSpinnerAdapter.addAll(items);
 

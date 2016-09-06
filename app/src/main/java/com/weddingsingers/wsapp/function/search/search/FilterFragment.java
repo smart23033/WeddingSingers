@@ -1,13 +1,11 @@
 package com.weddingsingers.wsapp.function.search.search;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,11 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Search;
 
@@ -158,6 +154,11 @@ public class FilterFragment extends Fragment {
     }
 
     private void initData() {
+        locationAdapter.clear();
+        compositionAdapter.clear();
+        themeAdapter.clear();
+        priceAdapter.clear();
+
         String[] items = getResources().getStringArray(R.array.location);
         locationAdapter.addAll(items);
         items = getResources().getStringArray(R.array.composition);
@@ -175,7 +176,7 @@ public class FilterFragment extends Fragment {
             item.setIcon(R.drawable.search_ic_filter_off);
             FragmentTransaction ft = getActivity().getSupportFragmentManager()
                     .beginTransaction();
-            RecentSearchFragment recentSearchFragment = new RecentSearchFragment();
+            RecentSearchFragment recentSearchFragment = RecentSearchFragment.newInstance(search);
             ft.replace(R.id.act_search_fl_container, recentSearchFragment, SearchActivity.FRAG_RECENT_SEARCH);
             ft.commit();
         }

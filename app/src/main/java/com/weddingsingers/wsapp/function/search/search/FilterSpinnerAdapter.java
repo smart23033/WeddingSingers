@@ -20,6 +20,12 @@ public class FilterSpinnerAdapter extends BaseAdapter {
         this.items.addAll(Arrays.asList(items));
         notifyDataSetChanged();
     }
+
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return items.size();
