@@ -56,13 +56,8 @@ public class ReservationFragment extends Fragment {
         // Required empty public constructor
     }
 
-//    @BindView(R.id.view_profile_btn_reserve)
-//    Button reserveBtn;
-
     @BindView(R.id.reservation_et_special)
     EditText specialInput;
-
-//    dateSpinner와 timeSpinner는 나중에 datePicker와 timePicker로 만들 것
 
     @BindView(R.id.reservation_spinner_standard)
     Spinner standardSpinner;
@@ -112,7 +107,6 @@ public class ReservationFragment extends Fragment {
 
         mAdapter = new PriceFilterSpinnerAdapter();
 
-//        reserveBtn.setVisibility(View.GONE);
         standardRadioBtn.setChecked(true);
 
         standardSpinner.setAdapter(mAdapter);
@@ -187,6 +181,14 @@ public class ReservationFragment extends Fragment {
 
     @OnClick(R.id.reservation_btn_reserve)
     void onReserveBtnClick() {
+
+
+
+
+
+
+
+
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Reservation Complete")
