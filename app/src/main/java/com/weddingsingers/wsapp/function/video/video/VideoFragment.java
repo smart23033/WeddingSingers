@@ -137,8 +137,6 @@ public class VideoFragment extends Fragment {
 
                 singerId = result.getResult().getSingerId();
 
-                Log.i("VideoFragment","singer id : " + singerId);
-
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
@@ -174,6 +172,7 @@ public class VideoFragment extends Fragment {
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
+
 
             }
 

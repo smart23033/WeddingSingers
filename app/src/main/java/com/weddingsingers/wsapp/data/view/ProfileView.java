@@ -54,23 +54,17 @@ public class ProfileView extends FrameLayout {
         imageView.mutateBackground(true);
         imageView.setOval(true);
         imageView.setBackgroundColor(Color.LTGRAY);
-
-        singerNameView.setText(singerName);
-        commentView.setText(comment);
-
-        Log.i("ProfileView","singerId : " + singerId);
-        Log.i("ProfileView","singerName : " + singerName);
-        Log.i("ProfileView","comment : " + comment);
-
     }
 
 
     public void setSingerId(int singerId) {
         this.singerId = singerId;
+
     }
 
     public void setSingerName(String singerName) {
         this.singerName = singerName;
+        singerNameView.setText(singerName);
     }
 
     public void setSingerImage(String singerImage) {
@@ -79,5 +73,7 @@ public class ProfileView extends FrameLayout {
 
     public void setComment(String comment) {
         this.comment = comment;
+
+        commentView.setText(comment);
     }
 }

@@ -148,28 +148,28 @@ public class ReservationFragment extends Fragment {
         timePickerDialog.show();
     }
 
-//    @OnClick(R.id.reservation_btn_reserve)
-//    void onReserveBtnClick() {
-//        AlertDialog dialog;
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//        builder.setTitle("Reservation Complete")
-//                .setMessage("Reservation complete,\ncould you go to confirm?")
-//                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialogInterface, int i) {
-//                        moveReservationMgmFragment();
-//                    }
-//                });
-//
-//        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                moveMainActivity();
-//            }
-//        });
-//        dialog = builder.create();
-//        dialog.show();
-//    }
+    @OnClick(R.id.reservation_btn_reserve)
+    void onReserveBtnClick() {
+        AlertDialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Reservation Complete")
+                .setMessage("Reservation complete,\ncould you go to confirm?")
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        moveReservationMgmFragment();
+                    }
+                });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                moveMainActivity();
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+    }
 
     @OnClick({R.id.reservation_rb_standard, R.id.reservation_rb_special})
     void onRadioBtnClick(RadioButton radioButton) {
