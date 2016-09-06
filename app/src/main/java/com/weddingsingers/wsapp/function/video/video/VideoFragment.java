@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import android.widget.VideoView;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.Video;
 import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
@@ -37,6 +39,7 @@ import butterknife.OnClick;
  */
 public class VideoFragment extends Fragment {
     final static String KEY_VIDEO_ID = "VideoId";
+    final static int ARG_SIMPLE = 1;
 
     @BindView(R.id.video_tv_title)
     TextView titleView;
@@ -62,6 +65,7 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_tv_hit)
     TextView hitView;
 
+    @BindView(R.id.video_pv_profile)
     ProfileView singerProfileView;
 
     public VideoFragment() {
@@ -109,7 +113,7 @@ public class VideoFragment extends Fragment {
         return  view;
 
     }
-
+    int singerId;
     private void initData(){
         VideoRequest videoRequest = new VideoRequest(getContext(),videoId);
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
@@ -130,6 +134,10 @@ public class VideoFragment extends Fragment {
                 video.setTitle(result.getResult().getTitle());
                 video.setUrl(result.getResult().getUrl());
 
+                singerId = result.getResult().getSingerId();
+
+                Log.i("VideoFragment","singer id : " + singerId);
+
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
@@ -139,6 +147,7 @@ public class VideoFragment extends Fragment {
                 standardView.setText("" + video.getStandard());
                 specialView.setText("" + video.getSpecial());
 
+
             }
             @Override
             public void onFail(NetworkRequest<NetworkResult<Video>> request, int errorCode, String errorMessage, Throwable e) {
@@ -147,7 +156,23 @@ public class VideoFragment extends Fragment {
             }
         });
 
-//        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),)
+        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId,ARG_SIMPLE);
+        NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
+                String singerName = result.getResult().getSingerName();
+                String singerImage = result.getResult().getSingerImage();
+                String comment = result.getResult().getComment();
+
+                singerProfileView = new ProfileView(getContext(),singerId,singerName,singerImage,comment);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
     }
 
     @OnClick(R.id.view_profile_btn_reserve)

@@ -3,6 +3,7 @@ package com.weddingsingers.wsapp.data.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -20,10 +21,22 @@ import butterknife.ButterKnife;
  */
 
 //Compound Widget
-public class ProfileView extends FrameLayout{
+public class ProfileView extends FrameLayout {
+    private int singerId;
+    private String singerName;
+    private String singerImage;
+    private String comment;
 
-    public ProfileView(Context context) {
-       this(context, null);
+
+//    여기서부터 다시한다!
+
+    public ProfileView(Context context, int singerId, String singerName, String singerImage,String comment) {
+        super(context);
+        this.singerId = singerId;
+        this.singerName = singerName;
+        this.singerImage = singerImage;
+        this.comment = comment;
+        init();
     }
 
     public ProfileView(Context context, AttributeSet attrs) {
@@ -40,15 +53,22 @@ public class ProfileView extends FrameLayout{
     @BindView(R.id.view_profile_tv_comment)
     TextView commentView;
 
-    private void init(){
+    public void init() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.view_profile,this);
+        inflater.inflate(R.layout.view_profile, this);
 
         ButterKnife.bind(this);
 
         imageView.mutateBackground(true);
         imageView.setOval(true);
         imageView.setBackgroundColor(Color.LTGRAY);
+
+        Log.i("ProfileView", "singerName : " + singerName);
+
+        singerNameView.setText(singerName);
+        commentView.setText(comment);
+
+
     }
 
 }

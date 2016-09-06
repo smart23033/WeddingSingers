@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class Video implements Serializable {
     private String url;
     private String title;
-
     @SerializedName("singer_name")
     private String singerName;
 
@@ -38,6 +37,18 @@ public class Video implements Serializable {
     private int review;
 
     private int id;
+
+    @SerializedName("singer_id")
+    private int singerId;
+
+
+    public int getSingerId() {
+        return singerId;
+    }
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
 
     public int getReview() {
         return review;
