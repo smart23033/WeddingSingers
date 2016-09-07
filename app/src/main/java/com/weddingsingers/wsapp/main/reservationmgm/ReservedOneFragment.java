@@ -113,9 +113,6 @@ public class ReservedOneFragment extends Fragment {
                     estimate.setSpecial(e.getSpecial());
                     mAdapter.add(e);
 
-                    Log.i("ReservedOneFragment","singerName : " + estimate.getUserName());
-                    Log.i("ReservedOneFragment","singerImage : " + estimate.getUserImage());
-
                 }
 
             }

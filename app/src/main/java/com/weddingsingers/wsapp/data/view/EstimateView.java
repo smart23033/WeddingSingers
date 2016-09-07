@@ -3,6 +3,7 @@ package com.weddingsingers.wsapp.data.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -75,7 +76,6 @@ public class EstimateView extends FrameLayout {
 //         고객이면 싱어의 이름과 이미지를 set, 싱어면 고객의 이름과 이미지를 set해줘야 한다.
 
         userNameView.setText(estimate.getUserName());
-//        유저네임 에러
         dateView.setText(estimate.getDate());
         locationView.setText(estimate.getLocation());
         songsView.setText(estimate.getSongs());

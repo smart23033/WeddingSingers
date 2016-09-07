@@ -48,7 +48,9 @@ public class Estimate implements Serializable {
     private String userImage;
 
     public String getUserName() {
-        return userName;
+        if(singerName != null){
+            return singerName;
+        }else return customerName;
     }
 
     public void setUserName(String userName) {
@@ -56,7 +58,9 @@ public class Estimate implements Serializable {
     }
 
     public String getUserImage() {
-        return userImage;
+        if(singerImage != null){
+            return singerImage;
+        }else return customerImage;
     }
 
     public void setUserImage(String userImage) {
