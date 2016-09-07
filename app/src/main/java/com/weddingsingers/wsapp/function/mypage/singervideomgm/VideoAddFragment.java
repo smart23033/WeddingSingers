@@ -46,6 +46,7 @@ public class VideoAddFragment extends DialogFragment {
 
     @OnClick(R.id.video_add_btn_apply)
     public void onApplyClick() {
+
         dismiss();
     }
 

@@ -47,14 +47,6 @@ public class SingerVideoMgmFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static SingerVideoMgmFragment newInstance(String message) {
-        SingerVideoMgmFragment fragment = new SingerVideoMgmFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,13 +61,20 @@ public class SingerVideoMgmFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        initData();
-
-        mAdapter = new SingerVideoMgmAdapter(items);
+        mAdapter = new SingerVideoMgmAdapter();
+        mAdapter.setOnAdapterItemClickListener(new SingerVideoMgmAdapter.OnAdapterItemClickLIstener() {
+            @Override
+            public void onAdapterItemClick(View view, VideoList videoList, int position) {
+                videoList.setSelected(true);
+                Toast.makeText(getActivity(), "person : " + position + "-" + videoList.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerView.setAdapter(mAdapter);
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
+
+        initData();
 
         return view;
     }
@@ -87,7 +86,7 @@ public class SingerVideoMgmFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
-                /*for (int i = 0; i < result.getResult().size(); i++) {
+                for (int i = 0; i < result.getResult().size(); i++) {
                     VideoList videoList = new VideoList();
                     videoList.setThumbnail(result.getResult().get(i).getThumbnail());
                     videoList.setTitle(result.getResult().get(i).getTitle());
@@ -95,18 +94,9 @@ public class SingerVideoMgmFragment extends Fragment {
                     videoList.setHit(result.getResult().get(i).getHit());
                     videoList.setFavorite(result.getResult().get(i).getFavorite());
                     videoList.setSelected(false);
-                    items.add(videoList);
-                }*/
-                Toast.makeText(getActivity(), "onSuccess" + result.getResult().get(3).getTitle(), Toast.LENGTH_SHORT).show();
-                for(int i = 0; i < 20; i++){
-                    VideoList videoList = new VideoList();
-                    videoList.setTitle("video title " + i);
-                    videoList.setDate("2016. 4. 24");
-                    videoList.setHit(123);
-                    videoList.setFavorite(4123);
-                    videoList.setSelected(false);
-                    items.add(videoList);
+                    mAdapter.add(videoList);
                 }
+
             }
 
             @Override
@@ -115,7 +105,7 @@ public class SingerVideoMgmFragment extends Fragment {
             }
         });
 
-        /*for(int i = 0; i < 20; i++){
+/*        for(int i = 0; i < 20; i++){
             VideoList videoList = new VideoList();
             videoList.setTitle("video title " + i);
             videoList.setDate("2016. 4. 24");
@@ -150,7 +140,14 @@ public class SingerVideoMgmFragment extends Fragment {
                     }
                 }
                 Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
+                int cnt = 0;
+                for (VideoList vItem : items) {
+                    if (vItem.isSelected()) {
+                        cnt++;
+                    }
+                }
 
+                Toast.makeText(getActivity(), "count : " + cnt, Toast.LENGTH_SHORT).show();
 
                 return true;
             }

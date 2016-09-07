@@ -5,13 +5,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.data.SingerVideoMgm;
 import com.weddingsingers.wsapp.data.VideoList;
 
 import butterknife.BindView;
@@ -20,7 +20,8 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-31.
  */
-public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
+public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder
+    implements Checkable {
 
     Context context = MyApplication.getContext();
 
@@ -42,11 +43,27 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
     @BindView(R.id.view_singer_video_mgm_cb)
     public CheckBox checkBox;
 
+    public interface OnVideoItemClickListener {
+        public void onVideoItemClick(View view, VideoList videoList, int position);
+    }
+
+    OnVideoItemClickListener listener;
+    public void setOnVideoItemClickListener(OnVideoItemClickListener listener) {
+        this.listener = listener;
+    }
+
     public SingerVideoMgmViewholder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
 
-        //checkBox = (CheckBox) itemView.findViewById(R.id.view_singer_video_mgm_cb);
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onVideoItemClick(v, videoList, getAdapterPosition());
+                }
+            }
+        });
 
     }
 
@@ -66,5 +83,23 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
         dateView.setText(videoList.getDate());
         hitView.setText("" + videoList.getHit());
         favoriteView.setText("" + videoList.getFavorite());
+    }
+
+    boolean isChecked;
+    @Override
+    public void setChecked(boolean checked) {
+        if (isChecked != checked) {
+            isChecked = checked;
+        }
+    }
+
+    @Override
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(!isChecked);
     }
 }
