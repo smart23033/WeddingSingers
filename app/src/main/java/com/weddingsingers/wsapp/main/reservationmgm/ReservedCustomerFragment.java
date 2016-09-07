@@ -81,6 +81,7 @@ public class ReservedCustomerFragment extends Fragment {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Toast.makeText(getContext(), "reservation accepted", Toast.LENGTH_SHORT).show();
                                 movePaymentActivity();
+
                             }
                         });
 
@@ -153,23 +154,32 @@ public class ReservedCustomerFragment extends Fragment {
 
     }
 
+
     private void movePaymentActivity() {
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
-        intent.putExtra(PaymentActivity.FRAG_NAME, "DetailScheduleFragment");
-        startActivityForResult(intent, MainActivity.RC_FRAG);
+
+        //deprecated. 왜냐하면 고객의 최종 결제가 떨어지지 않았기 때문에 일정목록으로 가봤자 방금 승인한거 안나옴.
+//        intent.putExtra(PaymentActivity.FRAG_NAME,"DetailScheduleFragment");
+//        startActivityForResult(intent, MainActivity.RC_FRAG);
+
+
+//        ReservedCustomerFragment로 돌아와라!
+        intent.putExtra(PaymentActivity.FRAG_NAME,"ReservedCustomerFragment");
+        startActivity(intent);
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode) {
-            case MainActivity.RC_FRAG:
-                if (resultCode == PaymentActivity.RESULT_OK) {
-                    ((MainActivity) getActivity()).changeFragment(new ScheduleMgmFragment());
-                    startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
-                }
-                break;
-        }
-    }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//        switch (requestCode) {
+//            case MainActivity.RC_FRAG:
+//                if (resultCode == PaymentActivity.RESULT_OK) {
+//                    ((MainActivity) getActivity()).changeFragment(new ScheduleMgmFragment());
+//                    startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
+//                }
+//                break;
+//        }
+//    }
 
 
 }
