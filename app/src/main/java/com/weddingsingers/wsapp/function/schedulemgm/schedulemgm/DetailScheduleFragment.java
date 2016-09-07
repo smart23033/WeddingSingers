@@ -126,9 +126,8 @@ public class DetailScheduleFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void init() {
 
-//        monthView.setText("" + monthName[month]);
+    private void init() {
 
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
@@ -145,6 +144,8 @@ public class DetailScheduleFragment extends Fragment {
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
                             mAdapter.add(e);
+
+                            //멀티타입으로 날자까지 받을 것이냐.
                         }
 
                     }

@@ -74,7 +74,6 @@ public class DayOffFragment extends Fragment implements
             Log.i("DayOffFragment", "dates : " + FORMATTER.format(d.getDate()));
             calendarView.setDateSelected(d,true);
         }
-
     }
 
     @Override

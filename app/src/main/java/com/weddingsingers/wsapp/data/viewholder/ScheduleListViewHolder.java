@@ -3,10 +3,18 @@ package com.weddingsingers.wsapp.data.viewholder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.view.EstimateView;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +32,12 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.view_detail_schedule_btn_chat)
     Button chatBtn;
+
+    @BindView(R.id.view_detail_schedule_tv_date)
+    TextView dateView;
+
+    @BindView(R.id.view_detail_schedule_divider)
+    View dividerView;
 
     public interface OnCancelBtnClickListener {
         public void onCancelBtnClick(View view, Estimate estimate, int position);
@@ -75,6 +89,8 @@ public class ScheduleListViewHolder extends RecyclerView.ViewHolder {
     public void setScheduleList(Estimate estimate) {
         this.estimate = estimate;
         estimateView.setEstimate(estimate);
+        dateView.setText(estimate.getDate());
+
     }
 
 }
