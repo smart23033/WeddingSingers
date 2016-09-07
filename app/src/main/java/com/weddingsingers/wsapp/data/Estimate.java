@@ -8,6 +8,7 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-08-31.
  */
 //일정관리랑 공급자 예약관리 리싸이클러 뷰 같이쓰는것 떄매 사용
+
 public class Estimate implements Serializable {
     private int id;
 
@@ -41,6 +42,26 @@ public class Estimate implements Serializable {
 
     @SerializedName("demand")
     private String special;
+
+    private String userName;
+
+    private String userImage;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
 
     public int getId() {
         return id;
