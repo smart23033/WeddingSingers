@@ -7,10 +7,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
@@ -38,6 +40,9 @@ public class DetailScheduleFragment extends Fragment {
     @BindView(R.id.detail_schedule_rv_list)
     RecyclerView recyclerView;
 
+    @BindView(R.id.detail_schedule_tv_month)
+    TextView monthView;
+
     ScheduleListAdapter mAdapter;
 
     public static DetailScheduleFragment newInstance(int year, int month) {
@@ -55,6 +60,7 @@ public class DetailScheduleFragment extends Fragment {
 
     int year;
     int month;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +78,10 @@ public class DetailScheduleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail_schedule, container, false);
 
         ButterKnife.bind(this,view);
+
+        String[] monthName = getResources().getStringArray(R.array.month);
+
+        monthView.setText(monthName[month-1]);
 
         mAdapter = new ScheduleListAdapter();
 
@@ -117,7 +127,9 @@ public class DetailScheduleFragment extends Fragment {
     }
 
     private void init() {
-        
+
+//        monthView.setText("" + monthName[month]);
+
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override
