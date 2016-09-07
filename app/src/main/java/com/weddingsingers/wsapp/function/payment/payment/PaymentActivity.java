@@ -16,6 +16,8 @@ import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity {
     public final static String FRAG_NAME = "fragmentName";
+    public final static String EXTRA_ESTIMATE_ID = "estimateId";
+    public final static int DEFAULT_VALUE = 0;
 
     @BindView(R.id.payment_toolbar)
     Toolbar toolbar;
@@ -34,10 +36,11 @@ public class PaymentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String fragmentName = intent.getStringExtra(FRAG_NAME);
+        int estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, DEFAULT_VALUE);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        PaymentFragment paymentFragment = PaymentFragment.newInstance(fragmentName);
+        PaymentFragment paymentFragment = PaymentFragment.newInstance(fragmentName,estimateId);
         ft.add(R.id.act_payment_fl_container,paymentFragment);
         ft.commit();
     }

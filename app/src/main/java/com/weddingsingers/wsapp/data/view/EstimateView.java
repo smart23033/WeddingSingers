@@ -90,25 +90,31 @@ public class EstimateView extends FrameLayout {
 
     public void setSpecial(String special) {
         this.special = special;
+        specialView.setText(special);
     }
 
+//    추가요망
     public void setUserImage(String userImage) {
         this.userImage = userImage;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
+        userNameView.setText(userName);
     }
 
     public void setSong(String song) {
         this.song = song;
+        songsView.setText(song);
     }
 
     public void setDate(String date) {
         this.date = date;
+        dateView.setText(date);
     }
 
     public void setLocation(String location) {
         this.location = location;
+        locationView.setText(location);
     }
 }

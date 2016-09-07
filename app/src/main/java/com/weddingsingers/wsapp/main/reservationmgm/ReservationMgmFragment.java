@@ -56,9 +56,10 @@ public class ReservationMgmFragment extends Fragment {
         return view;
     }
 
-    public void startPaymentActivity() {
+    public void startPaymentActivity(int estimateId) {
         Intent intent = new Intent(getContext(), PaymentActivity.class);
         intent.putExtra(PaymentActivity.FRAG_NAME, "ReservedOneFragment");
+        intent.putExtra(PaymentActivity.EXTRA_ESTIMATE_ID,estimateId);
         startActivityForResult(intent, FRAG_RESERVATION_MGM);
     }
 

@@ -71,8 +71,9 @@ public class ReservationListFragment extends Fragment {
         mAdapter.setOnAdapterPayBtnClickListener(new ReservationListAdapter.OnAdapterPayBtnClickListener() {
             @Override
             public void onAdapterPayBtnClick(View view, Estimate estimate, int position) {
-                ;
-                ((ReservationMgmFragment) getParentFragment()).startPaymentActivity();
+                int estimateId;
+                estimateId = estimate.getId();
+                ((ReservationMgmFragment) getParentFragment()).startPaymentActivity(estimateId);
             }
         });
 
@@ -101,7 +102,6 @@ public class ReservationListFragment extends Fragment {
 
         return view;
     }
-
     private void initData() {
 
         ReservedSingerRequest reservedSingerRequest = new ReservedSingerRequest(getContext(), TAB_RESERVATION_LIST);
@@ -111,6 +111,7 @@ public class ReservationListFragment extends Fragment {
 
                         for (Estimate e : result.getResult()) {
                             Estimate estimate = new Estimate();
+                            estimate.setId(e.getId());
                             estimate.setSingerName(e.getSingerName());
                             estimate.setSingerImage(e.getSingerImage());
                             estimate.setDate(e.getDate());

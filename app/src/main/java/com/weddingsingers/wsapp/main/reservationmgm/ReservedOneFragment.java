@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,6 +112,10 @@ public class ReservedOneFragment extends Fragment {
                     estimate.setSongs(e.getSongs());
                     estimate.setSpecial(e.getSpecial());
                     mAdapter.add(e);
+
+                    Log.i("ReservedOneFragment","singerName : " + estimate.getSingerName());
+                    Log.i("ReservedOneFragment","singerImage : " + estimate.getSingerImage());
+
                 }
 
             }
