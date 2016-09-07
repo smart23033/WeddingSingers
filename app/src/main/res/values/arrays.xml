@@ -38,11 +38,17 @@
     </string-array>
 
     <string-array name="price">
-        <item>song (price)</item>
-        <item>Shot (10)</item>
-        <item>Live forever (20)</item>
-        <item>Always awake (30)</item>
+        <item>price</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
         <item>none</item>
     </string-array>
 
+    <string-array name="song">
+        <item>song</item>
+        <item>Shot</item>
+        <item>Live forever</item>
+        <item>Always awake</item>
+    </string-array>
 </resources>

@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -109,8 +110,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-        int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
-        changeFragmentFromAnotherActivity(fragmentName);
 
         isLogin = intent.getIntExtra(EXTRA_USER_ID, 0);
         if(isLogin == 0) {
@@ -119,6 +118,16 @@ public class MainActivity extends AppCompatActivity
             checkLogin(true);
         }
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
+        Log.i("MainActivity","fragName : " + fragmentName);
+
+        changeFragmentFromAnotherActivity(fragmentName);
     }
 
     //다른 액티비티안의 프레그먼트에서 메인액티비티의 프레그먼트를 변경하도록 요청할 때
