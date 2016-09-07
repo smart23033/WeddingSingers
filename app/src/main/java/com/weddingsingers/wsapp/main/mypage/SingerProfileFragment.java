@@ -13,12 +13,11 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Singer;
-import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerProfileModifyActivity;
+import com.weddingsingers.wsapp.function.mypage.mypage.SingerProfileModifyActivity;
 import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerVideoMgmActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
-import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
 import java.text.NumberFormat;
 

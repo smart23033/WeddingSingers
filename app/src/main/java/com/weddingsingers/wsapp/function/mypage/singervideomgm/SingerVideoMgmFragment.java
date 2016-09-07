@@ -16,7 +16,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
+import com.weddingsingers.wsapp.data.VideoList;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerVideoMgmRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +36,7 @@ public class SingerVideoMgmFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
 
-    ArrayList<SingerVideoMgm> items = new ArrayList<SingerVideoMgm>();
+    ArrayList<VideoList> items = new ArrayList<VideoList>();
 
     @BindView(R.id.singer_video_mgm_rv_list)
     RecyclerView recyclerView;
@@ -64,39 +69,61 @@ public class SingerVideoMgmFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        for(int i = 0; i < 20; i++){
-            SingerVideoMgm singerVideoMgm = new SingerVideoMgm();
-            singerVideoMgm.setTitle("video title " + i);
-            singerVideoMgm.setDate("2016. 4. 24");
-            singerVideoMgm.setHit(123);
-            singerVideoMgm.setFavorite(4123);
-            singerVideoMgm.setSelected(false);
-            items.add(singerVideoMgm);
+        initData();
 
-//            mAdapter.add(singerVideoMgm);
-        }
-
-        mAdapter = new SingerVideoMgmAdapter(this.items);
+        mAdapter = new SingerVideoMgmAdapter(items);
         recyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        //initData();
-
         return view;
     }
 
     private void initData() {
-        for(int i = 0; i < 20; i++){
-            SingerVideoMgm singerVideoMgm = new SingerVideoMgm();
-            singerVideoMgm.setTitle("video title " + i);
-            singerVideoMgm.setDate("2016. 4. 24");
-            singerVideoMgm.setHit(123);
-            singerVideoMgm.setFavorite(4123);
-            singerVideoMgm.setSelected(false);
-            mAdapter.add(singerVideoMgm);
-        }
+
+        SingerVideoMgmRequest request = new SingerVideoMgmRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<VideoList>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {
+//                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
+                /*for (int i = 0; i < result.getResult().size(); i++) {
+                    VideoList videoList = new VideoList();
+                    videoList.setThumbnail(result.getResult().get(i).getThumbnail());
+                    videoList.setTitle(result.getResult().get(i).getTitle());
+                    videoList.setDate(result.getResult().get(i).getDate());
+                    videoList.setHit(result.getResult().get(i).getHit());
+                    videoList.setFavorite(result.getResult().get(i).getFavorite());
+                    videoList.setSelected(false);
+                    items.add(videoList);
+                }*/
+                Toast.makeText(getActivity(), "onSuccess" + result.getResult().get(3).getTitle(), Toast.LENGTH_SHORT).show();
+                for(int i = 0; i < 20; i++){
+                    VideoList videoList = new VideoList();
+                    videoList.setTitle("video title " + i);
+                    videoList.setDate("2016. 4. 24");
+                    videoList.setHit(123);
+                    videoList.setFavorite(4123);
+                    videoList.setSelected(false);
+                    items.add(videoList);
+                }
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<VideoList>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*for(int i = 0; i < 20; i++){
+            VideoList videoList = new VideoList();
+            videoList.setTitle("video title " + i);
+            videoList.setDate("2016. 4. 24");
+            videoList.setHit(123);
+            videoList.setFavorite(4123);
+            videoList.setSelected(false);
+            items.add(videoList);
+        }*/
     }
 
     @Override
@@ -115,7 +142,7 @@ public class SingerVideoMgmFragment extends Fragment {
             case R.id.video_add_delete: {
 
                 StringBuilder stringBuilder = new StringBuilder();
-                for (SingerVideoMgm vItem : items) {
+                for (VideoList vItem : items) {
                     if (vItem.isSelected()) {
                         if (stringBuilder.length() > 0)
                             stringBuilder.append(", ");

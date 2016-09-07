@@ -23,6 +23,9 @@ public class VideoList implements Serializable {
     @SerializedName("favorite_cnt")
     private int favorite;
 
+    private boolean isSelected;
+
+
     public String getSingerName() {
         return singerName;
     }
@@ -69,5 +72,13 @@ public class VideoList implements Serializable {
 
     public void setFavorite(int favorite) {
         this.favorite = favorite;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }

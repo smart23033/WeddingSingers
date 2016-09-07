@@ -76,7 +76,6 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
                 .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))
                 .into(thumbnailImageView);
 
-        //thumbnailImageView.setImageBitmap();
         titleView.setText(videoList.getTitle());
         dateView.setText(videoList.getDate());
         hitView.setText("" + videoList.getHit());

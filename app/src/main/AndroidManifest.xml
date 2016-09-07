@@ -59,11 +59,11 @@
         <activity android:name=".function.event.event.EventActivity" />
         <activity android:name=".function.mypage.mypage.UserInfoActivity"
             android:exported="true"/>
+        <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" />
         <activity android:name=".function.mypage.mypoint.MyPointActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
-        <activity android:name=".function.mypage.singervideomgm.SingerProfileModifyActivity" />
         <activity android:name=".function.video.othervideo.OtherVideoActivity"></activity>
     </application>
 

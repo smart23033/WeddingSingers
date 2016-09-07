@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.mypage.singervideomgm.SingerProfileModifyActivity">
+    tools:context=".function.mypage.mypage.SingerProfileModifyActivity">
 
     <FrameLayout
         android:id="@+id/singer_video_profile_modify_fl_toolbar"

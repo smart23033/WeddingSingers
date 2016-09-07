@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.function.mypage.singervideomgm;
+package com.weddingsingers.wsapp.function.mypage.mypage;
 
 import android.view.LayoutInflater;
 import android.view.View;

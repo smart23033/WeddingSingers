@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.function.mypage.singervideomgm.SingerProfileModifyFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

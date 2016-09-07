@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp.function.mypage.singervideomgm;
+package com.weddingsingers.wsapp.function.mypage.mypage;
 
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;

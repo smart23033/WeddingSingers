@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
+import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.data.viewholder.SingerVideoMgmViewholder;
 
 import java.util.ArrayList;
@@ -21,14 +22,14 @@ import java.util.List;
  */
 public class SingerVideoMgmAdapter extends RecyclerView.Adapter<SingerVideoMgmViewholder> {
 
-    ArrayList<SingerVideoMgm> items;
+    ArrayList<VideoList> items;
 
-    public SingerVideoMgmAdapter(List<SingerVideoMgm> items) {
+    public SingerVideoMgmAdapter(List<VideoList> items) {
         this.items = new ArrayList<>(items);
     }
 
-    public void add(SingerVideoMgm singerVideoMgm) {
-        items.add(singerVideoMgm);
+    public void add(VideoList videoList) {
+        items.add(videoList);
         notifyDataSetChanged();
     }
 

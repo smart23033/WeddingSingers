@@ -1,14 +1,18 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
+import com.weddingsingers.wsapp.data.VideoList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,6 +21,11 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-08-31.
  */
 public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
+
+    Context context = MyApplication.getContext();
+
+    @BindView(R.id.view_singer_video_mgm_iv_thumbnail)
+    ImageView thumbnailImageView;
 
     @BindView(R.id.view_singer_video_mgm_tv_title)
     TextView titleView;
@@ -41,13 +50,21 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
 
     }
 
-    SingerVideoMgm singerVideoMgm;
+    VideoList videoList;
 
-    public void setSingerVideoMgm(SingerVideoMgm singerVideoMgm) {
-        this.singerVideoMgm = singerVideoMgm;
-        titleView.setText(singerVideoMgm.getTitle());
-        dateView.setText(singerVideoMgm.getDate());
-        hitView.setText("" + singerVideoMgm.getHit());
-        favoriteView.setText("" + singerVideoMgm.getFavorite());
+    public void setSingerVideoMgm(VideoList videoList) {
+        this.videoList = videoList;
+
+        Glide.with(context)
+                .load(videoList.getThumbnail())
+                .centerCrop()
+                .crossFade()
+                .error(ContextCompat.getDrawable(context, R.drawable.ic_nav_logout))
+                .into(thumbnailImageView);
+
+        titleView.setText(videoList.getTitle());
+        dateView.setText(videoList.getDate());
+        hitView.setText("" + videoList.getHit());
+        favoriteView.setText("" + videoList.getFavorite());
     }
 }

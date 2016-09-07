@@ -1,17 +1,31 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
  * Created by Tacademy on 2016-08-31.
  */
 public class SingerVideoMgm implements Serializable {
-    private String title;
+
     private String url;
+
+    private String title;
+
+    @SerializedName("write_dtime")
     private String date;
+
+    @SerializedName("singer_name")
+    private String singerName;
+
     private int hit;
+
+    @SerializedName("favorite_cnt")
     private int favorite;
+
     private boolean isSelected;
+
 
     public String getTitle() {
         return title;
@@ -35,6 +49,14 @@ public class SingerVideoMgm implements Serializable {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getSingerName() {
+        return singerName;
+    }
+
+    public void setSingerName(String singerName) {
+        this.singerName = singerName;
     }
 
     public int getHit() {
