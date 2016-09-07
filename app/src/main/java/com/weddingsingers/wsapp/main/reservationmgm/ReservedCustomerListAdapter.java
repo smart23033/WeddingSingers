@@ -57,7 +57,7 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
     }
 
     public interface OnAdapterResponseBtnClickListener{
-        public void onAdapterResponseBtnClick(View view, Estimate profile, int position);
+        public void onAdapterResponseBtnClick(View view, Estimate estimate, int position);
     }
 
     OnAdapterResponseBtnClickListener responseBtnClickListener;

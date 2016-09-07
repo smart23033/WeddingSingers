@@ -25,6 +25,7 @@ import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
+import com.weddingsingers.wsapp.request.PaymentRequest;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ import butterknife.ButterKnife;
 public class ReservedCustomerFragment extends Fragment {
 
     private static final int TAB_ESTIMATE_LIST = 1;
+    private static final int TYPE_REJECT_RESERVATION = 11;
 
     @BindView(R.id.reserved_customer_rv_list)
     RecyclerView recyclerView;
@@ -47,14 +49,14 @@ public class ReservedCustomerFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    private int estimateId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reserved_customer, container, false);
 
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         mAdapter = new ReservedCustomerListAdapter();
 
@@ -68,7 +70,8 @@ public class ReservedCustomerFragment extends Fragment {
 
         mAdapter.setOnAdapterResponseBtnClickListener(new ReservedCustomerListAdapter.OnAdapterResponseBtnClickListener() {
             @Override
-            public void onAdapterResponseBtnClick(View view, Estimate profile, int position) {
+            public void onAdapterResponseBtnClick(View view, Estimate estimate, int position) {
+                estimateId = estimate.getId();
                 AlertDialog dialog;
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Response")
@@ -76,14 +79,16 @@ public class ReservedCustomerFragment extends Fragment {
                         .setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                movePaymentActivity();                }
+                                Toast.makeText(getContext(), "reservation accepted", Toast.LENGTH_SHORT).show();
+                                movePaymentActivity();
+                            }
                         });
 
                 builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-//                        일정삭제
-                        Toast.makeText(getContext(),"reservation rejected",Toast.LENGTH_SHORT).show();
+                        respondReservation(TYPE_REJECT_RESERVATION);
+                        Toast.makeText(getContext(), "reservation rejected", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog = builder.create();
@@ -92,7 +97,7 @@ public class ReservedCustomerFragment extends Fragment {
         });
 
         LinearLayoutManager manager =
-                new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+                new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
@@ -102,17 +107,22 @@ public class ReservedCustomerFragment extends Fragment {
         return view;
     }
 
-    private void initData() {
-//        for (int i = 0; i < 20; i++) {
-//            Estimate estimate = new Estimate();
-//            estimate.setLocation("Seoul");
-//            estimate.setDate("2016. 4. 26");
-//            estimate.setCustomerName("customer name");
-//            estimate.setSongs("Thriller - Michael Jackson");
-//            estimate.setSpecial("special Request");
-//            mAdapter.add(estimate);
-//        }
+    private void respondReservation(int type) {
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
+        NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Log.i("ReservedCustomerFragment","result : " + result.getResult().toString());
+            }
 
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Log.i("ReservedCustomerFragment","errorMessage : " + errorMessage);
+            }
+        });
+    }
+
+    private void initData() {
 
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
@@ -143,7 +153,7 @@ public class ReservedCustomerFragment extends Fragment {
 
     }
 
-    private void movePaymentActivity(){
+    private void movePaymentActivity() {
         Intent intent = new Intent(getActivity(), PaymentActivity.class);
         intent.putExtra(PaymentActivity.FRAG_NAME, "DetailScheduleFragment");
         startActivityForResult(intent, MainActivity.RC_FRAG);
@@ -151,11 +161,11 @@ public class ReservedCustomerFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        switch (requestCode){
+        switch (requestCode) {
             case MainActivity.RC_FRAG:
-                if(resultCode == PaymentActivity.RESULT_OK){
-                    ((MainActivity)getActivity()).changeFragment(new ScheduleMgmFragment());
-                    startActivity(new Intent(getActivity(),DetailScheduleActivity.class));
+                if (resultCode == PaymentActivity.RESULT_OK) {
+                    ((MainActivity) getActivity()).changeFragment(new ScheduleMgmFragment());
+                    startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
                 }
                 break;
         }

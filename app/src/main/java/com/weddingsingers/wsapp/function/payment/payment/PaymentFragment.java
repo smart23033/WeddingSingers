@@ -37,7 +37,14 @@ public class PaymentFragment extends Fragment {
 
     private static final String ARG_FRAG_NAME = "fragmentName";
     private static final String ARG_ESTIMATE_ID = "estimateId";
+
+//    싱어가 고객의 예약에 대한 수락으로 보증금 지불할 때
+    private static final int TYPE_ACCEPT_RESERVATION = 20;
+
+
+    //    고객이 예약하고나서 싱어가 수락해가지고 실제 금액 지불할 때
     private static final int TYPE_PAYMENT_SUCCESS = 30;
+
 
     private String fragmentName;
     private int estimateId;
@@ -113,11 +120,17 @@ public class PaymentFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+//                        사실 DetailScheduleFragment로 갈 필요가 없다. 그냥 백으로 가면 된다.
+//                        왜냐하면 싱어가 수락을 한다고해도, 고객이 예약목록에서 초록불인 싱어를 선택해서 최종 결제가 나는 것이기 때문에 싱어일정에 추가가 되지 않는다.
+//                         나중에 지우자..
+
+
                         if (fragmentName.equals("DetailScheduleFragment")) {
-                            makePayment();
+                            makePayment(TYPE_ACCEPT_RESERVATION);
                             moveDetailScheduleFragment();
                         } else {
-                            makePayment();
+                            makePayment(TYPE_PAYMENT_SUCCESS);
                             moveReservedOneFragment();
                         }
                     }
@@ -135,11 +148,16 @@ public class PaymentFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
+//                        사실 DetailScheduleFragment로 갈 필요가 없다. 그냥 백으로 가면 된다.
+//                        왜냐하면 싱어가 수락을 한다고해도, 고객이 예약목록에서 초록불인 싱어를 선택해서 최종 결제가 나는 것이기 때문에 싱어일정에 추가가 되지 않는다.
+//                         나중에 지우자..
+
                         if (fragmentName.equals("DetailScheduleFragment")) {
-                            makePayment();
+                            makePayment(TYPE_ACCEPT_RESERVATION);
                             moveDetailScheduleFragment();
                         } else {
-                            makePayment();
+                            makePayment(TYPE_PAYMENT_SUCCESS);
                             moveReservedOneFragment();
                         }
                     }
@@ -148,8 +166,8 @@ public class PaymentFragment extends Fragment {
         dialog.show();
     }
 
-    private void makePayment() {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, TYPE_PAYMENT_SUCCESS);
+    private void makePayment(int type) {
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
