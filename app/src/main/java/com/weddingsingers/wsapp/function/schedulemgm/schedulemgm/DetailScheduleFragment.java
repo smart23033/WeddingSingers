@@ -11,11 +11,16 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.EstimateListRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,19 +30,39 @@ import butterknife.ButterKnife;
  */
 public class DetailScheduleFragment extends Fragment {
 
+    private static final int TAB_ESTIMATE_LIST = 1;
+
+    final static String ARG_YEAR = "argYear";
+    final static String ARG_MONTH = "argMonth";
+
     @BindView(R.id.detail_schedule_rv_list)
     RecyclerView recyclerView;
 
     ScheduleListAdapter mAdapter;
 
+    public static DetailScheduleFragment newInstance(int year, int month) {
+        DetailScheduleFragment fragment = new DetailScheduleFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_YEAR, year);
+        args.putInt(ARG_MONTH,month);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public DetailScheduleFragment() {
         // Required empty public constructor
     }
 
+    int year;
+    int month;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+            year = getArguments().getInt(ARG_YEAR);
+            month = getArguments().getInt(ARG_MONTH);
+        }
     }
 
     @Override
@@ -52,7 +77,7 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterCancelBtnClickListener(new ScheduleListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
-            public void onAdapterCancelBtnClick(View view, Estimate profile, int position) {
+            public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -61,7 +86,7 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter.setOnAdapterChatBtnClickListener(new ScheduleListAdapter.OnAdapterChatBtnClickListener() {
             @Override
-            public void onAdapterChatBtnClick(View view, Estimate profile, int position) {
+            public void onAdapterChatBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), ChattingActivity.class);
                 startActivity(intent);
                 getActivity().finish();
@@ -74,7 +99,7 @@ public class DetailScheduleFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
 
-        initData();
+        init();
 
         return view;
     }
@@ -91,16 +116,35 @@ public class DetailScheduleFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void initData() {
-        for (int i = 0; i < 20; i++) {
-            Estimate estimate = new Estimate();
-            estimate.setLocation("Seoul");
-            estimate.setDate("2016. 4. 26");
-            estimate.setCustomerName("customer name");
-            estimate.setSongs("Thriller - Michael Jackson");
-            estimate.setSpecial("special Request");
-            mAdapter.add(estimate);
-        }
+    private void init() {
+        
+        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
+        NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
+
+                        for (Estimate e : result.getResult()) {
+                            Estimate estimate = new Estimate();
+                            estimate.setId(e.getId());
+                            estimate.setCustomerName(e.getCustomerName());
+                            estimate.setCustomerImage(e.getCustomerImage());
+                            estimate.setDate(e.getDate());
+                            estimate.setLocation(e.getLocation());
+                            estimate.setSongs(e.getSongs());
+                            estimate.setSpecial(e.getSpecial());
+                            mAdapter.add(e);
+                        }
+
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request,
+                                       int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                }
+
+        );
     }
 
 }

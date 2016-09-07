@@ -1,5 +1,6 @@
 package com.weddingsingers.wsapp.function.schedulemgm.schedulemgm;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailScheduleActivity extends AppCompatActivity {
+
+    public final static String EXTRA_YEAR = "extraYear";
+    public final static String EXTRA_MONTH = "extraMonth";
+    public final static int DEFAULT_VALUE = 0;
 
     @BindView(R.id.detail_schedule_toolbar)
     Toolbar toolbar;
@@ -32,10 +37,13 @@ public class DetailScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        Intent intent = getIntent();
+        int year = intent.getIntExtra(EXTRA_YEAR, DEFAULT_VALUE);
+        int month = intent.getIntExtra(EXTRA_MONTH, DEFAULT_VALUE);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        DetailScheduleFragment detailScheduleFragment = new DetailScheduleFragment();
+        DetailScheduleFragment detailScheduleFragment = DetailScheduleFragment.newInstance(year, month);
         ft.add(R.id.act_detail_schedule_fl_container,detailScheduleFragment);
         ft.commit();
 

@@ -7,6 +7,15 @@ import java.io.Serializable;
  */
 public class CalendarList implements Serializable {
     private int month;
+    private int year;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     public int getMonth() {
         return month;

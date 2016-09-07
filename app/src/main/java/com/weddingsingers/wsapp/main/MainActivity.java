@@ -170,9 +170,11 @@ public class MainActivity extends AppCompatActivity
 
             loginBtn.setVisibility(View.GONE);
 
-//            naviView.inflateMenu(R.menu.main_drawer_singer);
+//            싱어일 때 네비게이션 드로워
+            naviView.inflateMenu(R.menu.main_drawer_singer);
 
-            naviView.inflateMenu(R.menu.main_drawer_customer);
+//            고객일 때 네비게이션 드로워
+//            naviView.inflateMenu(R.menu.main_drawer_customer);
 
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

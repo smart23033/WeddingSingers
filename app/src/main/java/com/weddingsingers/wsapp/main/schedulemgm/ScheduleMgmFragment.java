@@ -57,8 +57,12 @@ public class ScheduleMgmFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new CalendarListAdapter.OnAdapterItemClickListener() {
             @Override
             public void onAdapterItemClick(View view, CalendarList calendarList, int position) {
-                startActivity(new Intent(getActivity(), DetailScheduleActivity.class));
-//                Intent intent = new Intent(getActivity(), DetailScheduleActivity.class);
+                int month = calendarList.getMonth();
+                int year = calendarList.getYear();
+                Intent intent = new Intent(getActivity(), DetailScheduleActivity.class);
+                intent.putExtra(DetailScheduleActivity.EXTRA_YEAR, year);
+                intent.putExtra(DetailScheduleActivity.EXTRA_MONTH, month);
+                startActivity(intent);
             }
         });
 
