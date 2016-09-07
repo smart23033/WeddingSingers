@@ -16,11 +16,17 @@ import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.EstimateListRequest;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +35,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class ReservedCustomerFragment extends Fragment {
+
+    private static final int TAB_ESTIMATE_LIST = 1;
 
     @BindView(R.id.reserved_customer_rv_list)
     RecyclerView recyclerView;
@@ -95,21 +103,44 @@ public class ReservedCustomerFragment extends Fragment {
     }
 
     private void initData() {
-        for (int i = 0; i < 20; i++) {
-            Estimate estimate = new Estimate();
-            estimate.setLocation("Seoul");
-            estimate.setDate("2016. 4. 26");
-            estimate.setCustomerName("customer name");
-            estimate.setSongs("Thriller - Michael Jackson");
-            estimate.setSpecial("special Request");
-            mAdapter.add(estimate);
-        }
-    }
+//        for (int i = 0; i < 20; i++) {
+//            Estimate estimate = new Estimate();
+//            estimate.setLocation("Seoul");
+//            estimate.setDate("2016. 4. 26");
+//            estimate.setCustomerName("customer name");
+//            estimate.setSongs("Thriller - Michael Jackson");
+//            estimate.setSpecial("special Request");
+//            mAdapter.add(estimate);
+//        }
 
 
-    private void moveMainActivity(){
-        startActivity(new Intent(getActivity(), MainActivity.class));
-        getActivity().finish();
+        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
+        NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
+
+                        for (Estimate e : result.getResult()) {
+                            Estimate estimate = new Estimate();
+                            estimate.setId(e.getId());
+                            estimate.setCustomerName(e.getCustomerName());
+                            estimate.setCustomerImage(e.getCustomerImage());
+                            estimate.setDate(e.getDate());
+                            estimate.setLocation(e.getLocation());
+                            estimate.setSongs(e.getSongs());
+                            estimate.setSpecial(e.getSpecial());
+                            mAdapter.add(e);
+                        }
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request,
+                                       int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                }
+
+        );
+
     }
 
     private void movePaymentActivity(){

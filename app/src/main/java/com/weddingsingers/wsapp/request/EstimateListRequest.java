@@ -13,12 +13,12 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-09-06.
+ * Created by Tacademy on 2016-08-23.
  */
-public class ReservedSingerRequest extends AbstractRequest<NetworkResult<List<Estimate>>> {
+public class EstimateListRequest extends AbstractRequest<NetworkResult<List<Estimate>>>{
     Request request;
 
-    public ReservedSingerRequest(Context context, int tab) {
+    public EstimateListRequest(Context context, int tab) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reservations")
                 .addPathSegment("me")
