@@ -11,8 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -21,6 +19,7 @@ import android.widget.VideoView;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Rating;
 import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.Video;
 import com.weddingsingers.wsapp.data.view.ProfileView;
@@ -28,6 +27,7 @@ import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
 import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.RatingRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
 
@@ -41,6 +41,7 @@ import butterknife.OnClick;
 public class VideoFragment extends Fragment {
     final static String KEY_VIDEO_ID = "VideoId";
     final static int ARG_SIMPLE = 1;
+    final static int ARG_RATING = 1;
 
     @BindView(R.id.video_tv_title)
     TextView titleView;
@@ -126,10 +127,6 @@ public class VideoFragment extends Fragment {
                 video.setId(result.getResult().getId());
                 video.setFavorite(result.getResult().getFavorite());
                 video.setHit(result.getResult().getHit());
-                video.setRating(result.getResult().getRating());
-                video.setReview(result.getResult().getReview());
-                video.setStandard(result.getResult().getStandard());
-                video.setSpecial(result.getResult().getSpecial());
                 video.setTitle(result.getResult().getTitle());
                 video.setUrl(result.getResult().getUrl());
 
@@ -139,11 +136,6 @@ public class VideoFragment extends Fragment {
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
                 hitView.setText("" + video.getHit());
-                ratingBar.setRating(video.getRating());
-                reviewView.setText("" + video.getReview());
-                standardView.setText("" + video.getStandard());
-                specialView.setText("" + video.getSpecial());
-
 
             }
             @Override
@@ -161,17 +153,44 @@ public class VideoFragment extends Fragment {
                 String singerName = result.getResult().getSingerName();
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
-
+                int standard = result.getResult().getStandard();
+                int special = result.getResult().getSpecial();
 
                 singerProfileView.setSingerId(singerId);
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
 
+
+                standardView.setText("" + standard);
+                specialView.setText("" + special);
+
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
+
+        RatingRequest ratingRequest = new RatingRequest(getContext(),singerId,ARG_RATING);
+        NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Rating>> request, NetworkResult<Rating> result) {
+
+                int reviewCnt = result.getResult().getReviewCnt();
+                float reviewPoint = result.getResult().getReviewPoint();
+
+                Log.i("VideoFragment","reviewCnt : " + reviewCnt);
+                Log.i("VideoFragment","reviewPoint : " + reviewPoint);
+
+                reviewView.setText("" + reviewCnt);
+                ratingBar.setRating(reviewPoint);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Rating>> request, int errorCode, String errorMessage, Throwable e) {
 
             }
         });

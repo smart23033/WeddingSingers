@@ -24,18 +24,6 @@ public class Video implements Serializable {
     @SerializedName("singer_comment")
     private String comment;
 
-    @SerializedName("standard_price")
-    private int standard;
-
-    @SerializedName("special_price")
-    private int special;
-
-    @SerializedName("review_point")
-    private int rating;
-
-    @SerializedName("review_cnt")
-    private int review;
-
     private int id;
 
     @SerializedName("singer_id")
@@ -48,14 +36,6 @@ public class Video implements Serializable {
 
     public void setSingerId(int singerId) {
         this.singerId = singerId;
-    }
-
-    public int getReview() {
-        return review;
-    }
-
-    public void setReview(int review) {
-        this.review = review;
     }
 
     public String getUrl() {
@@ -113,31 +93,6 @@ public class Video implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-    public void setStandard(int standard) {
-        this.standard = standard;
-    }
-
-    public void setSpecial(int special) {
-        this.special = special;
-    }
-
-    public int getStandard() {
-        return standard;
-    }
-
-    public int getSpecial() {
-        return special;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
 
     public int getId() {
         return id;

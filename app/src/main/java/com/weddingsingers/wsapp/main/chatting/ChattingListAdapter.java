@@ -7,10 +7,6 @@ import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.ChattingList;
-import com.weddingsingers.wsapp.data.Review;
-import com.weddingsingers.wsapp.data.VideoList;
-import com.weddingsingers.wsapp.data.viewholder.SingerReviewViewHolder;
-import com.weddingsingers.wsapp.data.viewholder.VideoListViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

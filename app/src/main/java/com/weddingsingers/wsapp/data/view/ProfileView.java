@@ -26,6 +26,8 @@ public class ProfileView extends FrameLayout {
     private String singerName;
     private String singerImage;
     private String comment;
+    private int standard;
+    private int special;
 
     public ProfileView(Context context) {
         this(context,null);
@@ -75,5 +77,13 @@ public class ProfileView extends FrameLayout {
     public void setComment(String comment) {
         this.comment = comment;
         commentView.setText(comment);
+    }
+
+    public void setStandard(int standard) {
+        this.standard = standard;
+    }
+
+    public void setSpecial(int special) {
+        this.special = special;
     }
 }
