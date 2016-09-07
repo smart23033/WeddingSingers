@@ -1,10 +1,13 @@
 package com.weddingsingers.wsapp.function.schedulemgm.schedulemgm;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,9 +18,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.Schedule;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.DayOffRequest;
+import com.weddingsingers.wsapp.request.ReservationDateRequest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -63,8 +74,46 @@ public class DayOffFragment extends Fragment implements
         calendarView.setOnDateChangedListener(this);
         calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
 
+//        initReservationDate();
+
+        initDayOff();
+
         return view;
     }
+
+    void initDayOff(){
+        DayOffRequest dayOffRequest = new DayOffRequest(getContext(),1);
+        NetworkManager.getInstance().getNetworkData(dayOffRequest, new NetworkManager.OnResultListener<NetworkResult<Schedule>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Schedule>> request, NetworkResult<Schedule> result) {
+                for(String date : result.getResult().getDayOff()) {
+                    Log.i("DayOffFragment", "dayOff : " + date);
+                }
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Schedule>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+    }
+
+    void initReservationDate(){
+        ReservationDateRequest reservationDateRequest = new ReservationDateRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(reservationDateRequest, new NetworkManager.OnResultListener<NetworkResult<Schedule>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Schedule>> request, NetworkResult<Schedule> result) {
+                Log.i("DayOffFragment","code : " + result.getCode());
+                Log.i("DayOffFragment","reservationDate : " + result.getResult().getReservationDate());
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Schedule>> request, int errorCode, String errorMessage, Throwable e) {
+                Log.i("DayOffFragment","errorMessage : " + errorMessage);
+            }
+        });
+    }
+
 
     ArrayList<CalendarDay> dates = new ArrayList<>();
 
