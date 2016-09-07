@@ -91,8 +91,6 @@ public class UserInfoFragment extends Fragment {
         userImageView.mutateBackground(true);
         userImageView.setOval(true);
 
-        checkPermission();
-
         initData();
 
         return view;
@@ -112,6 +110,11 @@ public class UserInfoFragment extends Fragment {
             permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
 
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            permissions.add(Manifest.permission.CAMERA);
+        }
+
         if (permissions.size() > 0) {
             boolean isShowUI = false;
             for (String perm : permissions) {
@@ -126,7 +129,7 @@ public class UserInfoFragment extends Fragment {
             if (isShowUI) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Permission");
-                builder.setMessage("External Storage...");
+                builder.setMessage("External Storage and Camera...");
                 builder.setCancelable(false);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -210,6 +213,9 @@ public class UserInfoFragment extends Fragment {
 
     @OnClick(R.id.user_info_riv_picture)
     public void onGetImageClick(View view) {
+
+        checkPermission();
+
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent, RC_GET_IMAGE);

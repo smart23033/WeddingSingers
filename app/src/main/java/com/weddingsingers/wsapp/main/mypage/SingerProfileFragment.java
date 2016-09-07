@@ -20,6 +20,8 @@ import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
+import java.text.NumberFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -78,7 +80,7 @@ public class SingerProfileFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        //initData();
+        initData();
 
         return view;
     }
@@ -101,11 +103,14 @@ public class SingerProfileFragment extends Fragment {
                 singer.setStandard(result.getResult().getStandard());
                 singer.setSongs(result.getResult().getSongs());
 
+                // 곡목록 배열 -> string 으로
                 String songList = "";
                 for (String song : singer.getSongs())
                 {
                     songList += song + "\n";
                 }
+                // 가격에 , 찍기
+                NumberFormat nf = NumberFormat.getInstance();
 
                 nameView.setText(singer.getSingerName());
                 commentView.setText(singer.getComment());
@@ -113,8 +118,8 @@ public class SingerProfileFragment extends Fragment {
                 compositionView.setText(singer.getComposition());
                 themeView.setText(singer.getTheme());
                 introView.setText(singer.getDescription());
-                specialPriceView.setText(" " + singer.getSpecial());
-                standardPriceView.setText(" " + singer.getStandard());
+                specialPriceView.setText(nf.format(singer.getSpecial()));
+                standardPriceView.setText(nf.format(singer.getStandard()));
                 songView.setText(songList);
 
             }

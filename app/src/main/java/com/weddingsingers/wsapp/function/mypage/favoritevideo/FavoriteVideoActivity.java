@@ -32,8 +32,8 @@ public class FavoriteVideoActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        VideoListFragment videoListFragment = new VideoListFragment();
-        ft.add(R.id.act_favorite_video_fl_container, videoListFragment);
+        FavoriteVideoFragment favoriteVideoFragment = new FavoriteVideoFragment();
+        ft.add(R.id.act_favorite_video_fl_container, favoriteVideoFragment);
         ft.commit();
 
     }

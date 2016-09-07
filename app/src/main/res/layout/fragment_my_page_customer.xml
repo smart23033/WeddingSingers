@@ -126,7 +126,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/my_page_customer_iv_favor_ic"
-            android:text="찜한 목록" />
+            android:text="찜한 영상" />
 
         <ImageView
             android:id="@+id/my_page_customer_iv_favor_detail"

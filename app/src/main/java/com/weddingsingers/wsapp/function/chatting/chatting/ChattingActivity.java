@@ -4,10 +4,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.main.home.VideoListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
