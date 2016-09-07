@@ -84,7 +84,7 @@
             android:id="@+id/cancel_schedule_tv_refund"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="charge"
+            android:text="refund"
             android:textColor="@color/colorPrimaryPink"
             android:textSize="@dimen/cancel_schedule_tv_text_size" />
 

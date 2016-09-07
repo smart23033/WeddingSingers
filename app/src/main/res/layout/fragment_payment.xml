@@ -30,11 +30,56 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/payment_rl_bill" />
 
+    <View
+        android:id="@+id/payment_second_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/payment_divider_height"
+        android:layout_below="@id/payment_ev_profile"
+        android:layout_marginBottom="@dimen/payment_divider_vertical_margin"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimaryPink" />
+
+    <RelativeLayout
+        android:id="@+id/payment_rl_charge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/payment_second_divider"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/payment_tv_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="charge"
+            android:textColor="@color/colorPrimaryPink"
+            android:textSize="@dimen/payment_tv_text_size" />
+
+        <TextView
+            android:id="@+id/payment_tv_detail_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="\ 24,000"
+            android:textSize="@dimen/payment_tv_text_size" />
+
+        <TextView
+            android:id="@+id/payment_tv_caution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/payment_tv_detail_charge"
+            android:layout_marginTop="@dimen/payment_tv_caution_margin_top"
+            android:text="* default caution"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/payment_tv_text_size" />
+    </RelativeLayout>
+
+
     <RelativeLayout
         android:id="@+id/payment_rl_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/payment_ev_profile"
+        android:layout_below="@id/payment_rl_charge"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/payment_rl_btn_group_margin_top">
 

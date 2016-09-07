@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:text="August"
         android:textColor="@color/colorPrimaryPink"
-        android:textSize="14sp"
-        android:visibility="visible" />
+        android:textSize="14sp"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/detail_schedule_rv_list"
