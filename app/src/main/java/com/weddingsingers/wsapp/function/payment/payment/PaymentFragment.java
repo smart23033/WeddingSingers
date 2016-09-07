@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
@@ -22,6 +24,7 @@ import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateRequest;
+import com.weddingsingers.wsapp.request.PaymentRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,7 @@ public class PaymentFragment extends Fragment {
 
     private static final String ARG_FRAG_NAME = "fragmentName";
     private static final String ARG_ESTIMATE_ID = "estimateId";
+    private static final int TYPE_PAYMENT_SUCCESS = 30;
 
     private String fragmentName;
     private int estimateId;
@@ -110,8 +114,10 @@ public class PaymentFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (fragmentName.equals("DetailScheduleFragment")) {
+                            makePayment();
                             moveDetailScheduleFragment();
                         } else {
+                            makePayment();
                             moveReservedOneFragment();
                         }
                     }
@@ -130,8 +136,10 @@ public class PaymentFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (fragmentName.equals("DetailScheduleFragment")) {
+                            makePayment();
                             moveDetailScheduleFragment();
                         } else {
+                            makePayment();
                             moveReservedOneFragment();
                         }
                     }
@@ -140,10 +148,26 @@ public class PaymentFragment extends Fragment {
         dialog.show();
     }
 
+    private void makePayment() {
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, TYPE_PAYMENT_SUCCESS);
+        NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Toast.makeText(getContext(), "Payment Request Success", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "Payment Request Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     //    프레그먼트 이동 + 액티비티 하나 띄워줘야 함.
     private void moveDetailScheduleFragment() {
         Intent intent = new Intent();
         intent.putExtra(MainActivity.FRAG_NAME, "DetailScheduleFragment");
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         getActivity().setResult(PaymentActivity.RESULT_OK, intent);
         getActivity().finish();
     }
