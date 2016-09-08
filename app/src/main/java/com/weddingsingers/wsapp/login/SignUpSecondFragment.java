@@ -91,9 +91,11 @@ public class SignUpSecondFragment extends Fragment {
                 PropertyManager.getInstance().setEmail(user.getEmail());
                 PropertyManager.getInstance().setPassword(user.getPassword());
 
-                Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
-
-                moveMainActivity();
+                int id = result.getResult().getId();
+                int type = result.getResult().getType();
+                String email = result.getResult().getEmail();
+                String name = result.getResult().getName();
+                moveMainActivity(id,type,name,email);
 
             }
             @Override
@@ -105,9 +107,13 @@ public class SignUpSecondFragment extends Fragment {
 
     }
 
-    private void moveMainActivity(){
+    private void moveMainActivity(int id,int type,String name, String email){
         Intent intent = new Intent(getActivity(),MainActivity.class);
-        intent.putExtra("login", true);
+        intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+        intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+        intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
+        intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
