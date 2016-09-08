@@ -1,15 +1,50 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class Review  implements Serializable {
+public class Review implements Serializable {
+
+    private int reservationId;
+
+    private int singerId;
+
+    @SerializedName("customer_photoURL")
     private String thumbnail;
-    private String userName;
+
+    @SerializedName("customer_name")
+    private String customerName;
+
+    @SerializedName("singer_name")
+    private String SingerName;
+
+    private String point;
+
     private String content;
-    private String date;
+
+    @SerializedName("write_dtime")
+
+    private String wrtieDTime;
+
+    public int getReservationId() {
+        return reservationId;
+    }
+
+    public void setReservationId(int reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public int getSingerId() {
+        return singerId;
+    }
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
 
     public String getThumbnail() {
         return thumbnail;
@@ -19,12 +54,28 @@ public class Review  implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getSingerName() {
+        return SingerName;
+    }
+
+    public void setSingerName(String singerName) {
+        SingerName = singerName;
+    }
+
+    public String getPoint() {
+        return point;
+    }
+
+    public void setPoint(String point) {
+        this.point = point;
     }
 
     public String getContent() {
@@ -35,12 +86,11 @@ public class Review  implements Serializable {
         this.content = content;
     }
 
-    public String getDate() {
-        return date;
+    public String getWrtieDTime() {
+        return wrtieDTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setWrtieDTime(String wrtieDTime) {
+        this.wrtieDTime = wrtieDTime;
     }
-
 }

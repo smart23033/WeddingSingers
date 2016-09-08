@@ -81,11 +81,6 @@ public class FavoriteVideoFragment extends Fragment {
         videoListAdapter.clear();
 
         FavoriteVideoListRequest request = new FavoriteVideoListRequest(getContext());
-        getVideoList(request);
-        return;
-    }
-
-    private void getVideoList(FavoriteVideoListRequest request) {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<VideoList>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<VideoList>>> request, NetworkResult<List<VideoList>> result) {

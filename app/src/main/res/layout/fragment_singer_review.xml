@@ -61,7 +61,7 @@
             android:layout_below="@id/singer_review_tv_review"
             android:layout_marginTop="@dimen/video_tv_num_of_person_margin_top"
             android:layout_toRightOf="@id/singer_review_iv_num_of_person"
-            android:text="20,110" />
+            android:text="0" />
 
     </RelativeLayout>
 
