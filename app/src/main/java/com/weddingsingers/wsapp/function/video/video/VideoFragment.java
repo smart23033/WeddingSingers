@@ -27,6 +27,8 @@ import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
 import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.CancelFavoriteRequest;
+import com.weddingsingers.wsapp.request.FavoriteRequest;
 import com.weddingsingers.wsapp.request.RatingRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
@@ -116,6 +118,7 @@ public class VideoFragment extends Fragment {
 
     }
     int singerId;
+    int isFavorite;
     private void initData(){
         VideoRequest videoRequest = new VideoRequest(getContext(),videoId);
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
@@ -129,7 +132,7 @@ public class VideoFragment extends Fragment {
                 video.setHit(result.getResult().getHit());
                 video.setTitle(result.getResult().getTitle());
                 video.setUrl(result.getResult().getUrl());
-
+                isFavorite = result.getResult().getIsFavorite();
                 singerId = result.getResult().getSingerId();
 
                 titleView.setText(video.getTitle());
@@ -217,9 +220,36 @@ public class VideoFragment extends Fragment {
             }
             case R.id.video_menu_favorite: {
                 if(!item.isChecked()){
+                    FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(),videoId);
+                    NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                            Toast.makeText(getContext(),"I like this",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                            Toast.makeText(getContext(),"favoriteRequest fail : " +errorMessage,Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                     item.setChecked(true);
                     item.setIcon(R.drawable.search_ic_favorite_on);
                 }else{
+
+                    CancelFavoriteRequest favoriteRequest = new CancelFavoriteRequest(getContext(),videoId);
+                    NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                            Toast.makeText(getContext(),"cancel favorite",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                            Toast.makeText(getContext(),"cancelFavoriteRequest fail : " +errorMessage,Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                     item.setChecked(false);
                     item.setIcon(R.drawable.search_ic_favorite_off);
                 }
@@ -234,6 +264,13 @@ public class VideoFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.video_menu,menu);
+        MenuItem item = menu.findItem(R.id.video_menu_favorite);
+
+        if(isFavorite == 1){
+            item.setChecked(true);
+        }else{
+            item.setChecked(false);
+        }
     }
 
 }

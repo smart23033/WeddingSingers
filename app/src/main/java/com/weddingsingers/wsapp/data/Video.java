@@ -29,6 +29,16 @@ public class Video implements Serializable {
     @SerializedName("singer_id")
     private int singerId;
 
+    @SerializedName("favorite_check")
+    private int isFavorite;
+
+    public int getIsFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(int isFavorite) {
+        this.isFavorite = isFavorite;
+    }
 
     public int getSingerId() {
         return singerId;
