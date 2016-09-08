@@ -7,6 +7,9 @@ import java.io.Serializable;
 
 public class VideoList implements Serializable {
 
+    @SerializedName("id")
+    private int videoId;
+
     @SerializedName("url")
     private String thumbnail;
 
@@ -25,6 +28,13 @@ public class VideoList implements Serializable {
 
     private boolean isSelected;
 
+    public int getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(int videoId) {
+        this.videoId = videoId;
+    }
 
     public String getSingerName() {
         return singerName;

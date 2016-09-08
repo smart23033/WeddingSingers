@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".function.review.writereview.ReviewActivity">
+    tools:context=".function.review.writereview.WriteReviewActivity">
 
     <FrameLayout
-        android:id="@+id/review_fl_toolbar"
+        android:id="@+id/write_review_fl_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/review_toolbar"
+            android:id="@+id/write_review_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:title="" />
@@ -31,5 +31,5 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/review_fl_toolbar" />
+        android:layout_below="@+id/write_review_fl_toolbar" />
 </RelativeLayout>

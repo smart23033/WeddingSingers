@@ -33,6 +33,8 @@ import com.weddingsingers.wsapp.request.RatingRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
 
+import java.text.NumberFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -153,6 +155,9 @@ public class VideoFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
 
+                // 가격에 , 찍기
+                NumberFormat nf = NumberFormat.getInstance();
+
                 String singerName = result.getResult().getSingerName();
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
@@ -164,9 +169,8 @@ public class VideoFragment extends Fragment {
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
 
-
-                standardView.setText("" + standard);
-                specialView.setText("" + special);
+                standardView.setText(nf.format(standard));
+                specialView.setText(nf.format(special));
 
             }
 

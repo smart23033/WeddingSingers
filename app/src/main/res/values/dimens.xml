@@ -305,7 +305,6 @@
     <dimen name="view_detail_schedule_btn_text_size">10sp</dimen>
 
 
-
     <!--view_reserved_customer.xml-->
     <dimen name="view_reserved_customer_btn_width">60dp</dimen>
     <dimen name="view_reserved_customer_btn_height">30dp</dimen>

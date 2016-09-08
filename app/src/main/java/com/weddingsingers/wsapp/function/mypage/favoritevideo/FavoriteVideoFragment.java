@@ -62,6 +62,7 @@ public class FavoriteVideoFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
+                intent.putExtra("videoId", videoList.getVideoId());
                 startActivity(intent);
             }
         });
@@ -75,7 +76,6 @@ public class FavoriteVideoFragment extends Fragment {
     }
 
     private void initData() {
-        int type = 0;
 
         recyclerView.setAdapter(videoListAdapter);
         videoListAdapter.clear();

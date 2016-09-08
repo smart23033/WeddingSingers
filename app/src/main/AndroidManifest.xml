@@ -34,7 +34,6 @@
         <activity android:name=".function.video.singerinfo.SingerInfoActivity" />
         <activity android:name=".function.chatting.chatting.ChattingActivity" />
         <activity android:name=".function.search.search.SearchActivity" />
-        <activity android:name=".function.review.writereview.ReviewActivity" />
         <activity android:name=".login.FacebookLoginActivity" />
         <activity android:name=".function.video.reservation.ReservationActivity" />
         <activity android:name=".function.video.singerreview.SingerReviewActivity" />
@@ -49,14 +48,14 @@
         <activity android:name=".function.community.writepost.WritePostActivity" />
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
-        <activity
-            android:name=".function.mypage.mypage.UserInfoActivity" />
+        <activity android:name=".function.mypage.mypage.UserInfoActivity" />
         <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" />
         <activity android:name=".function.mypage.mypoint.MyPointActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
-        <activity android:name=".function.video.othervideo.OtherVideoActivity"></activity>
+        <activity android:name=".function.video.othervideo.OtherVideoActivity" />
+        <activity android:name=".function.review.writereview.WriteReviewActivity"></activity>
     </application>
 
 </manifest>

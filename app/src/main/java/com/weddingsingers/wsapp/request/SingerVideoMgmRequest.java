@@ -31,6 +31,19 @@ public class SingerVideoMgmRequest extends AbstractRequest<NetworkResult<List<Vi
 
     }
 
+    public SingerVideoMgmRequest(Context context, int SingerId) {
+        HttpUrl url = getBaseUrlBuilder()
+                .addPathSegment("videos")
+                .addQueryParameter("sid", String.valueOf(SingerId))
+                .build();
+
+        request = new Request.Builder()
+                .url(url)
+                .tag(context)
+                .build();
+
+    }
+
     @Override
     protected Type getType() {
         return new TypeToken<NetworkResult<List<VideoList>>>(){}.getType();

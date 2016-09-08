@@ -34,6 +34,7 @@ import com.weddingsingers.wsapp.main.mypage.SingerMyPageFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
+import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 
 import butterknife.BindView;
@@ -237,7 +238,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_review: {
-                changeNavMenu(new WriteReviewFragment());
+                changeNavMenu(new ReviewFragment());
                 titleTextView.setText(getResources().getString(R.string.nav_review));
                 return true;
             }

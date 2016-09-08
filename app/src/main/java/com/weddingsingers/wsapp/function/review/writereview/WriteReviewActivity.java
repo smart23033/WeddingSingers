@@ -6,21 +6,20 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.main.review.ReviewFragment;
+import com.weddingsingers.wsapp.function.video.singerinfo.SingerInfoFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ReviewActivity extends AppCompatActivity {
+public class WriteReviewActivity extends AppCompatActivity {
 
-
-    @BindView(R.id.review_toolbar)
+    @BindView(R.id.write_review_toolbar)
     Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review);
+        setContentView(R.layout.activity_write_review);
 
         ButterKnife.bind(this);
 
@@ -32,7 +31,8 @@ public class ReviewActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         WriteReviewFragment writeReviewFragment = new WriteReviewFragment();
-        ft.add(R.id.act_review_fl_container,writeReviewFragment);
+        ft.add(R.id.act_review_fl_container, writeReviewFragment);
         ft.commit();
+
     }
 }

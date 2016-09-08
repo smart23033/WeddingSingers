@@ -83,6 +83,9 @@ public class SingerInfoFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
 
+                // 가격에 , 찍기
+                NumberFormat nf = NumberFormat.getInstance();
+
                 String singerName = result.getResult().getSingerName();
                 String singerImage = result.getResult().getSingerImage();
                 String comment = result.getResult().getComment();
@@ -95,8 +98,8 @@ public class SingerInfoFragment extends Fragment {
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
 
-                standardView.setText("" + standard);
-                specialView.setText("" + special);
+                standardView.setText(nf.format(standard));
+                specialView.setText(nf.format(special));
 
                 singer = new Singer();
                 singer.setSingerName(result.getResult().getSingerName());
@@ -115,12 +118,6 @@ public class SingerInfoFragment extends Fragment {
                 {
                     songList += song + "\n";
                 }
-                // 가격에 , 찍기
-                NumberFormat nf = NumberFormat.getInstance();
-
-                String[] locationItems = getResources().getStringArray(R.array.location);
-                String[] compositionItems = getResources().getStringArray(R.array.composition);
-                String[] themeItems = getResources().getStringArray(R.array.theme);
 
                 descriptionView.setText(singer.getDescription());
                 songView.setText(songList);
@@ -133,57 +130,20 @@ public class SingerInfoFragment extends Fragment {
             }
         });
 
-//        SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
-//        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
-//            @Override
-//            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
-//
-//                singer = new Singer();
-//                singer.setSingerName(result.getResult().getSingerName());
-//                singer.setComment(result.getResult().getComment());
-//                singer.setLocation(result.getResult().getLocation());
-//                singer.setComposition(result.getResult().getComposition());
-//                singer.setTheme(result.getResult().getTheme());
-//                singer.setDescription(result.getResult().getDescription());
-//                singer.setSpecial(result.getResult().getSpecial());
-//                singer.setStandard(result.getResult().getStandard());
-//                singer.setSongs(result.getResult().getSongs());
-//
-//                // 곡목록 배열 -> string 으로
-//                String songList = "";
-//                for (String song : singer.getSongs())
-//                {
-//                    songList += song + "\n";
-//                }
-//                // 가격에 , 찍기
-//                NumberFormat nf = NumberFormat.getInstance();
-//
-//                String[] locationItems = getResources().getStringArray(R.array.location);
-//                String[] compositionItems = getResources().getStringArray(R.array.composition);
-//                String[] themeItems = getResources().getStringArray(R.array.theme);
-//
-//
-//                descriptionView.setText(singer.getDescription());
-//                songView.setText(songList);
-//
-//            }
-//
-//            @Override
-//            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
-//                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorCode, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
     }
 
     @OnClick(R.id.singer_info_rl_review)
     public void onReviewClick() {
-        startActivity(new Intent(getActivity(), SingerReviewActivity.class));
+        Intent intent = new Intent(getActivity(), SingerReviewActivity.class);
+        intent.putExtra("singerId", singerId);
+        startActivity(intent);
     }
 
     @OnClick(R.id.singer_info_rl_other)
     public void onOtherVideoClick() {
-        startActivity(new Intent(getActivity(), OtherVideoActivity.class));
+        Intent intent = new Intent(getActivity(), OtherVideoActivity.class);
+        intent.putExtra("singerId", singerId);
+        startActivity(intent);
     }
 
     @Override

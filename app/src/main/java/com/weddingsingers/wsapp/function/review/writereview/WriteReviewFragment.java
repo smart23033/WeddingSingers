@@ -57,34 +57,20 @@ public class WriteReviewFragment extends Fragment {
                 .setPositiveButton("GO MY PAGE", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveMyPageFragment();
+
+                        getActivity().finish();
                     }
                 });
 
         builder.setNegativeButton("GO MAIN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                moveMainActivity();
+                getActivity().finish();
             }
         });
 
         dialog = builder.create();
         dialog.show();
-    }
-
-    private void moveMyPageFragment(){
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        intent.putExtra(MainActivity.FRAG_NAME, FRAG_MY_PAGE);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        getActivity().finish();
-    }
-
-    private void moveMainActivity() {
-        Intent intent = new Intent(getActivity(), MainActivity.class);
-        startActivity(intent);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        getActivity().finish();
     }
 
     @Override
