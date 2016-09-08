@@ -77,7 +77,7 @@ public class CancelReservationFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
 //               이미지 나중에
-//                estimateView.setUserImage(result.getResult().getSingerImage());
+                estimateView.setUserImage(result.getResult().getSingerImage());
                 estimateView.setUserName(result.getResult().getSingerName());
                 estimateView.setLocation(result.getResult().getLocation());
                 estimateView.setDate(result.getResult().getDate());

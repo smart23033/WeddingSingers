@@ -1,12 +1,16 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 
@@ -18,6 +22,8 @@ import butterknife.OnClick;
  * Created by Tacademy on 2016-08-29.
  */
 public class SingerListViewHolder extends RecyclerView.ViewHolder {
+
+    Context context = MyApplication.getContext();
 
     @BindView(R.id.view_reserved_singer_riv_profile)
     RoundedImageView singerImageView;
@@ -115,6 +121,12 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
     public void setSingerList(Estimate estimate){
         this.estimate = estimate;
+        Glide.with(context)
+                .load(estimate.getSingerImage())
+                .centerCrop()
+                .crossFade()
+                .error(ContextCompat.getDrawable(context, R.drawable.view_profile_ic_person))
+                .into(singerImageView);
         singerNameView.setText(estimate.getSingerName());
         locationView.setText(estimate.getLocation());
         dateView.setText(estimate.getDate());

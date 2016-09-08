@@ -1,6 +1,10 @@
 package com.weddingsingers.wsapp.data;
 
+import android.support.v4.content.ContextCompat;
+
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
+import com.weddingsingers.wsapp.R;
 
 import java.io.Serializable;
 
@@ -12,7 +16,7 @@ import java.io.Serializable;
 public class Estimate implements Serializable {
     private int id;
 
-    @SerializedName("singer_image")
+    @SerializedName("singer_photoURL")
     private String singerImage;
 
     @SerializedName("singer_name")
@@ -21,7 +25,7 @@ public class Estimate implements Serializable {
     @SerializedName("customer_name")
     private String customerName;
 
-    @SerializedName("customer_image")
+    @SerializedName("customer_photoURL")
     private String customerImage;
 
     @SerializedName("place")

@@ -105,6 +105,7 @@ public class ReservedOneFragment extends Fragment {
 
                 for(Estimate e : result.getResult()){
                     Estimate estimate = new Estimate();
+                    estimate.setUserImage(e.getSingerImage());
                     estimate.setUserName(e.getSingerName());
                     estimate.setUserImage(e.getSingerImage());
                     estimate.setDate(e.getDate());
