@@ -1,6 +1,8 @@
 package com.weddingsingers.wsapp.function.mypage.mypage;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -92,17 +94,17 @@ public class SingerProfileModifyFragment extends Fragment {
 
     @OnItemSelected(R.id.singer_profile_modify_sp_location)
     void onLocationItemSelected(int position){
-        singer.setLocation(locationSpinner.getSelectedItem().toString());
+        singer.setLocation((int) locationSpinner.getSelectedItemId());
     }
 
     @OnItemSelected(R.id.singer_profile_modify_sp_composition)
     void onCompositionSelected(int position){
-        singer.setComposition(compositionSpinner.getSelectedItem().toString());
+        singer.setComposition((int) compositionSpinner.getSelectedItemId());
     }
 
     @OnItemSelected(R.id.singer_profile_modify_sp_theme)
     void onThemeItemSelected(int position){
-        singer.setTheme(themeSpinner.getSelectedItem().toString());
+        singer.setTheme((int) themeSpinner.getSelectedItemId());
     }
 
     Singer singer = new Singer();
@@ -122,6 +124,8 @@ public class SingerProfileModifyFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<Boolean>> request, NetworkResult<Boolean> result) {
 
                 Toast.makeText(getActivity(), "success code : " + result.getCode(), Toast.LENGTH_SHORT).show();
+
+                getActivity().setResult(Activity.RESULT_OK, new Intent());
                 getActivity().finish();
             }
 

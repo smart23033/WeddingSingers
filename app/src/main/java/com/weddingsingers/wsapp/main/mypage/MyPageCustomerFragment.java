@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.main.mypage;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,9 +102,20 @@ public class MyPageCustomerFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
+            initData();
+        }
+    }
+
     @OnClick(R.id.my_page_customer_img_btn_modify)
     void onModifyClick() {
-        getContext().startActivity(new Intent(getActivity(), UserInfoActivity.class));
+        Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     @OnClick(R.id.my_page_customer_rl_inquiry)

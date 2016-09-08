@@ -5,11 +5,8 @@ import android.content.Context;
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.SingerVideoAdd;
-import com.weddingsingers.wsapp.data.VideoList;
 
-import java.io.File;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
@@ -31,7 +28,7 @@ public class SingerVideoAddRequest extends AbstractRequest<NetworkResult<Boolean
         FormBody.Builder formBuilder = new FormBody.Builder()
                 .add("title", singerVideoAdd.getTitle())
                 .add("url", singerVideoAdd.getUrl())
-                .add("write_dtime", singerVideoAdd.getWriteDtime());
+                .add("write_dtime", singerVideoAdd.getWriteDTime());
 
         for (String item : singerVideoAdd.getHash()) {
             formBuilder.add("hash", item);

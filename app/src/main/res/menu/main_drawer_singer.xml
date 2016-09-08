@@ -11,6 +11,10 @@
             android:icon="@android:drawable/ic_menu_gallery"
             android:title="@string/nav_mypage" />
         <item
+            android:id="@+id/nav_review"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/nav_review" />
+        <item
             android:id="@+id/nav_reservation_mgm"
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="@string/nav_reservation_mgm" />

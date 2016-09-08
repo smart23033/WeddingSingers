@@ -19,9 +19,10 @@ public class SingerVideoAdd implements Serializable {
     String url;
 
     @SerializedName("write_dtime")
-    String writeDtime;
+    String writeDTime;
 
     ArrayList<String> hash;
+
 
     public String getTitle() {
         return title;
@@ -39,12 +40,12 @@ public class SingerVideoAdd implements Serializable {
         this.url = url;
     }
 
-    public String getWriteDtime() {
-        return writeDtime;
+    public String getWriteDTime() {
+        return writeDTime;
     }
 
-    public void setWriteDtime(String writeDtime) {
-        this.writeDtime = writeDtime;
+    public void setWriteDTime(String writeDTime) {
+        this.writeDTime = writeDTime;
     }
 
     public ArrayList<String> getHash() {

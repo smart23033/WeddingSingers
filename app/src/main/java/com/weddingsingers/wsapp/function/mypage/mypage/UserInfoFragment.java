@@ -262,7 +262,10 @@ public class UserInfoFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<Boolean>> request, NetworkResult<Boolean> result) {
 
                 Toast.makeText(getActivity(), "success code : " + result.getCode(), Toast.LENGTH_SHORT).show();
+
+                getActivity().setResult(Activity.RESULT_OK, new Intent());
                 getActivity().finish();
+
             }
 
             @Override

@@ -33,6 +33,11 @@ public class SingerVideoMgmAdapter extends RecyclerView.Adapter<SingerVideoMgmVi
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public SingerVideoMgmViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_singer_video_mgm, parent, false);

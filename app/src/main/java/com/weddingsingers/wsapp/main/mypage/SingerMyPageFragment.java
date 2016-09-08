@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.main.mypage;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,6 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
-import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
 import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
@@ -110,9 +110,20 @@ public class SingerMyPageFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
+            initData();
+        }
+    }
+
     @OnClick(R.id.my_page_singer_img_btn_modify)
     void OnModifyClick() {
-        getContext().startActivity(new Intent(getActivity(), UserInfoActivity.class));
+        Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+        startActivityForResult(intent, 1);
     }
 
     @OnClick(R.id.singer_my_page_rl_inquiry)
@@ -130,8 +141,4 @@ public class SingerMyPageFragment extends Fragment {
         getContext().startActivity(new Intent(getActivity(), AccountMgmActivity.class));
     }
 
-    @OnClick(R.id.singer_my_page_rl_favor)
-    void onFavoriteVideoClick() {
-        getContext().startActivity(new Intent(getActivity(), FavoriteVideoActivity.class));
-    }
 }

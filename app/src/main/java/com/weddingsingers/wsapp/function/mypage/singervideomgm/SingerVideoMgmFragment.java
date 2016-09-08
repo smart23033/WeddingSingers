@@ -1,7 +1,10 @@
 package com.weddingsingers.wsapp.function.mypage.singervideomgm;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -96,7 +99,6 @@ public class SingerVideoMgmFragment extends Fragment {
                     videoList.setSelected(false);
                     mAdapter.add(videoList);
                 }
-
             }
 
             @Override
@@ -126,7 +128,15 @@ public class SingerVideoMgmFragment extends Fragment {
             case R.id.video_add_add: {
                 FragmentManager fm = getFragmentManager();
                 VideoAddFragment videoAddFragment = new VideoAddFragment();
-                videoAddFragment.show(fm, "fragment_dialog_test");
+                videoAddFragment.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        Toast.makeText(getActivity(), "dismissed", Toast.LENGTH_SHORT).show();
+                        mAdapter.clear();
+                        initData();
+                    }
+                });
+                videoAddFragment.show(fm, "fragment_dialog");
                 return true;
             }
             case R.id.video_add_delete: {

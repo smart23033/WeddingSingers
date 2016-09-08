@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.main.mypage;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -84,6 +85,8 @@ public class SingerProfileFragment extends Fragment {
         return view;
     }
 
+    Singer singer;
+
     private void initData() {
 
         SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
@@ -91,7 +94,7 @@ public class SingerProfileFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
 
-                Singer singer = new Singer();
+                singer = new Singer();
                 singer.setSingerName(result.getResult().getSingerName());
                 singer.setComment(result.getResult().getComment());
                 singer.setLocation(result.getResult().getLocation());
@@ -111,11 +114,15 @@ public class SingerProfileFragment extends Fragment {
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
 
+                String[] locationItems = getResources().getStringArray(R.array.location);
+                String[] compositionItems = getResources().getStringArray(R.array.composition);
+                String[] themeItems = getResources().getStringArray(R.array.theme);
+
                 nameView.setText(singer.getSingerName());
                 commentView.setText(singer.getComment());
-                locationView.setText(singer.getLocation());
-                compositionView.setText(singer.getComposition());
-                themeView.setText(singer.getTheme());
+                locationView.setText(locationItems[singer.getLocation()]);
+                compositionView.setText(compositionItems[singer.getComposition()]);
+                themeView.setText(themeItems[singer.getTheme()]);
                 introView.setText(singer.getDescription());
                 specialPriceView.setText(nf.format(singer.getSpecial()));
                 standardPriceView.setText(nf.format(singer.getStandard()));
@@ -133,7 +140,18 @@ public class SingerProfileFragment extends Fragment {
 
     @OnClick(R.id.singer_profile_img_btn_modify)
     void OnModifyClick() {
-        getContext().startActivity(new Intent(getActivity(), SingerProfileModifyActivity.class));
+        Intent intent = new Intent(getActivity(), SingerProfileModifyActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(getActivity(), "ok?" + resultCode, Toast.LENGTH_SHORT).show();
+            initData();
+        }
     }
 
     @OnClick(R.id.singer_profile_rl_my_video)

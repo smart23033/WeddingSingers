@@ -28,13 +28,14 @@ public class Singer implements Serializable{
     @SerializedName("special_price")
     private int special;
 
-    private String location;
+    private int location;
 
-    private String composition;
+    private int composition;
 
-    private String theme;
+    private int theme;
 
     private ArrayList<String> songs;
+
 
     public int getId() {
         return id;
@@ -92,27 +93,27 @@ public class Singer implements Serializable{
         this.special = special;
     }
 
-    public String getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 
-    public String getComposition() {
+    public int getComposition() {
         return composition;
     }
 
-    public void setComposition(String composition) {
+    public void setComposition(int composition) {
         this.composition = composition;
     }
 
-    public String getTheme() {
+    public int getTheme() {
         return theme;
     }
 
-    public void setTheme(String theme) {
+    public void setTheme(int theme) {
         this.theme = theme;
     }
 
@@ -123,5 +124,4 @@ public class Singer implements Serializable{
     public void setSongs(ArrayList<String> songs) {
         this.songs = songs;
     }
-
 }
