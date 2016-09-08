@@ -30,6 +30,7 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.DayOffRequest;
+import com.weddingsingers.wsapp.request.DayOffSettingRequest;
 import com.weddingsingers.wsapp.request.ReservationDateRequest;
 
 import java.text.DateFormat;
@@ -51,7 +52,7 @@ public class DayOffFragment extends Fragment implements
 
 
     public static final String KEY_SINGER_ID = "singerId";
-    private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
+    public static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
 
     @BindView(R.id.day_off_cv_calendar)
     MaterialCalendarView calendarView;
@@ -175,23 +176,39 @@ public class DayOffFragment extends Fragment implements
     }
 
 
-    ArrayList<CalendarDay> dates = new ArrayList<>();
+    ArrayList<CalendarDay> calendarDays = new ArrayList<>();
+    ArrayList<String> stringDates = new ArrayList<>();
 
     @OnClick(R.id.day_off_btn_set)
     void onSetBtnClick() {
-        for (CalendarDay d : dates) {
-            Log.i("DayOffFragment", "dates : " + FORMATTER.format(d.getDate()));
-            calendarView.setDateSelected(d, true);
+        for (CalendarDay day : calendarDays) {
+            calendarView.setDateSelected(day, true);
+
+//            DateFormatDayFormatter dayFormatter = new DateFormatDayFormatter();
+            DayFormatter dayFormatter = new DayFormatter() {
+                @NonNull
+                @Override
+                public String format(@NonNull CalendarDay day) {
+                    return  String.format("%d-%d-%d",day.getYear(),day.getMonth()+1,day.getDay());
+
+                }
+            };
+            String date = dayFormatter.format(day);
+            Log.i("DayOffFragment","date : " + date);
+            Toast.makeText(getContext(),"date : " + date,Toast.LENGTH_SHORT).show();
+            stringDates.add(date);
         }
+//            DayOffSettingRequest dayOffSettingRequest = new DayOffSettingRequest(getContext(),stringDates);
+
     }
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         Toast.makeText(getContext(), "date : " + date, Toast.LENGTH_SHORT).show();
-        if (dates.contains(date)) {
-            dates.remove(date);
+        if (calendarDays.contains(date)) {
+            calendarDays.remove(date);
         } else {
-            dates.add(date);
+            calendarDays.add(date);
         }
 
     }
