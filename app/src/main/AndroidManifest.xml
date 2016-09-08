@@ -17,8 +17,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,21 +26,14 @@
         </activity>
         <activity
             android:name=".SplashActivity"
-            android:exported="true"
             android:theme="@style/AppTheme.NoActionBarFullScreen" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" android:windowSoftInputMode="adjustResize"/>
-        <activity
-            android:name=".function.video.video.VideoActivity"
-            android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".function.video.video.VideoActivity" />
         <activity android:name=".function.video.singerinfo.SingerInfoActivity" />
         <activity android:name=".function.chatting.chatting.ChattingActivity" />
-        <activity
-            android:name=".function.search.search.SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".function.search.search.SearchActivity" />
         <activity android:name=".function.review.writereview.ReviewActivity" />
         <activity android:name=".login.FacebookLoginActivity" />
         <activity android:name=".function.video.reservation.ReservationActivity" />
@@ -57,8 +49,8 @@
         <activity android:name=".function.community.writepost.WritePostActivity" />
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
-        <activity android:name=".function.mypage.mypage.UserInfoActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".function.mypage.mypage.UserInfoActivity" />
         <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" />
         <activity android:name=".function.mypage.mypoint.MyPointActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />

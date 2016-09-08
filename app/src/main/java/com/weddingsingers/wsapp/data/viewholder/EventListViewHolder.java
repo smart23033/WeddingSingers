@@ -15,10 +15,10 @@ import butterknife.ButterKnife;
  * Created by overboy00 on 2016-08-26.
  */
 public class EventListViewHolder extends RecyclerView.ViewHolder{
-    @BindView(R.id.view_event_list_iv_thumbnail)
+    @BindView(R.id.view_event_list_iv_event)
     ImageView thumbnailImageView;
 
-    @BindView(R.id.view_event_list_tv_title)
+    @BindView(R.id.view_event_list_tv_event)
     TextView titleView;
 
     @BindView(R.id.view_event_list_tv_date)

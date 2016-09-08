@@ -2,41 +2,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/view_vertical_margin"
     android:layout_marginBottom="@dimen/view_vertical_margin"
-    android:layout_marginLeft="@dimen/view_horizontal_margin"
-    android:layout_marginRight="@dimen/view_horizontal_margin"
-    >
+    android:layout_marginTop="@dimen/view_vertical_margin"
+    android:background="@color/colorPrimary">
+
+    <!--위에서 이거 뺐다-->
+    <!--android:layout_marginLeft="@dimen/view_horizontal_margin"-->
+    <!--android:layout_marginRight="@dimen/view_horizontal_margin"-->
 
     <ImageView
-        android:id="@+id/view_event_list_iv_thumbnail"
-        android:layout_width="@dimen/view_video_list_iv_thumbnail_width"
-        android:layout_height="@dimen/view_video_list_iv_thumbnail_height"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:src="@mipmap/ic_launcher" />
+        android:id="@+id/view_event_list_iv_event"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_event_list_iv_event_height"
+        android:background="@drawable/main_img_02"
+        android:layout_marginTop="@dimen/view_event_list_iv_event_margin_top"
+        android:layout_marginLeft="@dimen/view_event_list_margin_left"
+        android:layout_marginRight="@dimen/view_event_list_margin_right"/>
 
     <TextView
-        android:id="@+id/view_event_list_tv_title"
+        android:id="@+id/view_event_list_tv_event"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/view_event_list_iv_thumbnail"
-        android:layout_toRightOf="@+id/view_event_list_iv_thumbnail"
-        android:text="Title"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_below="@+id/view_event_list_iv_event"
+        android:layout_marginTop="@dimen/view_event_list_tv_event_margin_top"
+        android:text="Autumn Event"
+        android:textSize="@dimen/view_event_list_text_size"
+        android:layout_marginLeft="@dimen/view_event_list_margin_left"
+        android:layout_marginRight="@dimen/view_event_list_margin_right"/>
 
     <TextView
         android:id="@+id/view_event_list_tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/view_event_list_tv_title"
-        android:layout_margin="@dimen/view_video_list_tv_date_margin"
-        android:layout_toEndOf="@+id/view_event_list_iv_thumbnail"
-        android:layout_toRightOf="@+id/view_event_list_iv_thumbnail"
-        android:text="2016. 6. 25"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_below="@+id/view_event_list_tv_event"
+        android:layout_marginBottom="@dimen/view_event_list_tv_date_margin_bottom"
+        android:layout_marginTop="@dimen/view_event_list_tv_date_margin_top"
+        android:text="2016. 09. 01 ~ 2016. 11. 30"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/view_event_list_text_size"
+        android:layout_marginLeft="@dimen/view_event_list_margin_left"
+        android:layout_marginRight="@dimen/view_event_list_margin_right"/>
 
 </RelativeLayout>

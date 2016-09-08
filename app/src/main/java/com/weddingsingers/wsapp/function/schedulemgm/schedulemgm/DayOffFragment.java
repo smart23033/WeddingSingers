@@ -1,13 +1,10 @@
 package com.weddingsingers.wsapp.function.schedulemgm.schedulemgm;
 
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,10 +19,9 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-import com.prolificinteractive.materialcalendarview.format.DateFormatDayFormatter;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import com.weddingsingers.wsapp.R;
-import com.weddingsingers.wsapp.Schedule;
+import com.weddingsingers.wsapp.data.Schedule;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -38,7 +34,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,4 +1,4 @@
-package com.weddingsingers.wsapp;
+package com.weddingsingers.wsapp.data;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -3,7 +3,7 @@ package com.weddingsingers.wsapp.request;
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
-import com.weddingsingers.wsapp.Schedule;
+import com.weddingsingers.wsapp.data.Schedule;
 import com.weddingsingers.wsapp.data.NetworkResult;
 
 import java.lang.reflect.Type;

@@ -23,6 +23,10 @@
         android:layout_alignLeft="@+id/search_tv_recent"
         android:layout_alignStart="@+id/search_tv_recent"
         android:layout_below="@+id/search_tv_recent"
-        android:text="recent keyword" />
+        android:background="@drawable/all_btn_default_empty"
+        android:text="keyword"
+        android:textSize="12sp"
+        android:padding="6dp"
+        />
 
 </RelativeLayout>
