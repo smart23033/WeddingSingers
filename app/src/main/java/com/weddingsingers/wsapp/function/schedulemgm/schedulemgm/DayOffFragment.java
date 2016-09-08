@@ -198,13 +198,24 @@ public class DayOffFragment extends Fragment implements
             Toast.makeText(getContext(),"date : " + date,Toast.LENGTH_SHORT).show();
             stringDates.add(date);
         }
-//            DayOffSettingRequest dayOffSettingRequest = new DayOffSettingRequest(getContext(),stringDates);
+
+            DayOffSettingRequest dayOffSettingRequest = new DayOffSettingRequest(getContext(),stringDates);
+            NetworkManager.getInstance().getNetworkData(dayOffSettingRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+                @Override
+                public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                    getActivity().finish();
+                }
+
+                @Override
+                public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                    Toast.makeText(getContext(),"DayOffSettingRequest Fail : " + errorMessage,Toast.LENGTH_SHORT).show();
+                }
+            });
 
     }
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        Toast.makeText(getContext(), "date : " + date, Toast.LENGTH_SHORT).show();
         if (calendarDays.contains(date)) {
             calendarDays.remove(date);
         } else {

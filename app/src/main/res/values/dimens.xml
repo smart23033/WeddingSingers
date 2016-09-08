@@ -88,14 +88,27 @@
 
 
     <!--view_video_list-->
-    <dimen name="view_video_list_iv_thumbnail_width">130dp</dimen>
-    <dimen name="view_video_list_iv_thumbnail_height">100dp</dimen>
     <dimen name="view_video_list_tv_date_margin">5dp</dimen>
     <dimen name="view_video_list_tv_favorite_margin">5dp</dimen>
     <dimen name="view_video_list_iv_hit_margin_bottom">5dp</dimen>
-    <dimen name="view_video_list_iv_hit_margin_left">10dp</dimen>
     <dimen name="view_video_list_iv_hit_margin_right">5dp</dimen>
     <dimen name="view_video_list_iv_hit_margin_top">5dp</dimen>
+
+    <!--view_video_list.xml Edit by SJ-->
+    <dimen name="view_video_list_iv_thumbnail_width">100dp</dimen>
+    <dimen name="view_video_list_iv_thumbnail_height">80dp</dimen>
+    <dimen name="view_video_list_iv_thumbnail_margin_right">20dp</dimen>
+    <dimen name="view_video_list_tv_margin_top">5dp</dimen>
+    <dimen name="view_video_list_tv_divider_horizontal_margin">15dp</dimen>
+    <dimen name="view_video_list_tv_num_of_favorite_margin_left">5dp</dimen>
+    <dimen name="view_video_list_iv_hit_margin_left">15dp</dimen>
+    <dimen name="view_video_list_tv_hit_margin_left">5dp</dimen>
+    <dimen name="view_video_list_iv_favorite_width">14dp</dimen>
+    <dimen name="view_video_list_iv_favorite_height">14dp</dimen>
+    <dimen name="view_video_list_iv_hit_width">14dp</dimen>
+    <dimen name="view_video_list_iv_hit_height">14dp</dimen>
+    <dimen name="view_video_list_iv_margin_top">8dp</dimen>
+
 
     <!--activity_video.xml-->
     <dimen name="video_vv_video_height">240dp</dimen>

@@ -22,7 +22,8 @@ public class DayOffSettingRequest extends AbstractRequest<NetworkResult<String>>
 
     public DayOffSettingRequest(Context context, ArrayList<String> date) {
         HttpUrl.Builder builder = getBaseUrlBuilder();
-        builder.addPathSegment("me")
+        builder.addPathSegment("singers")
+                .addPathSegment("me")
                 .addPathSegment("holidays");
 
 
