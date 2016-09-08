@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity
     public static final String EXTRA_USER_EMAIL = "userEmail";
     public static final String EXTRA_USER_NAME = "userName";
 
+    public static final int TYPE_SINGER = 1;
+    public static final int TYPE_CUSTOMER = 2;
 
     public static final String FRAG_NAME = "fragmentName";
 
@@ -67,7 +69,6 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
 
-    public static final int ERROR_CODE = -1;
 
     @BindView(R.id.main_drawer)
     DrawerLayout drawer;
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
+        int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
         Log.i("MainActivity", "fragName : " + fragmentName);
 
         changeFragmentFromAnotherActivity(fragmentName);
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity
 
     //다른 액티비티안의 프레그먼트에서 메인액티비티의 프레그먼트를 변경하도록 요청할 때
     private void changeFragmentFromAnotherActivity(int fragmentName) {
-        if (fragmentName != ERROR_CODE) {
+        if (fragmentName != DEFAULT_VALUE) {
             switch (fragmentName) {
                 case FRAG_RESERVATION_MGM: {
                     changeFragment(new ReservationMgmFragment());
@@ -165,7 +166,9 @@ public class MainActivity extends AppCompatActivity
         TextView emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
         Button loginBtn = (Button) findViewById(R.id.nav_btn_login);
 
-        if (intent != null) {
+        int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
+
+        if (fragmentName != DEFAULT_VALUE) {
 
             int userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
             int userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
@@ -175,9 +178,12 @@ public class MainActivity extends AppCompatActivity
             loginBtn.setVisibility(View.GONE);
 
 //            싱어일 때 네비게이션 드로워
-            naviView.inflateMenu(R.menu.main_drawer_singer);
+            if (userType == TYPE_SINGER) {
+                naviView.inflateMenu(R.menu.main_drawer_singer);
+            } else {
 //            고객일 때 네비게이션 드로워
-//            naviView.inflateMenu(R.menu.main_drawer_customer);
+                naviView.inflateMenu(R.menu.main_drawer_customer);
+            }
 
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

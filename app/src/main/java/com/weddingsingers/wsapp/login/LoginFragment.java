@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,7 +69,10 @@ public class LoginFragment extends Fragment {
         final String email = emailInput.getText().toString();
         final String password = passwordInput.getText().toString();
 
-        LoginRequest request = new LoginRequest(getContext(),email,password);
+        //잠깐 temp로 넣어놓음 1이면 싱어로그인, 2면 고객로그인
+        int type = 1;
+
+        LoginRequest request = new LoginRequest(getContext(),email,password,type);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
@@ -80,6 +84,7 @@ public class LoginFragment extends Fragment {
                 String email = result.getResult().getEmail();
                 String name = result.getResult().getName();
                 moveMainActivity(id,type,name,email);
+
             }
 
             @Override
@@ -95,7 +100,7 @@ public class LoginFragment extends Fragment {
         intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
         intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
         intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
-
+        intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();

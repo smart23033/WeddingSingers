@@ -113,7 +113,7 @@ public class SignUpSecondFragment extends Fragment {
         intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
         intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
         intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
-
+        intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();
