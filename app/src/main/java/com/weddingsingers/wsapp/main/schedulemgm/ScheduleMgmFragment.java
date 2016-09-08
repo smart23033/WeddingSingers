@@ -29,15 +29,32 @@ import butterknife.ButterKnife;
  */
 public class ScheduleMgmFragment extends Fragment {
 
+    public static final String KEY_SINGER_ID = "singerId";
+
     @BindView(R.id.schedule_mgm_rv_grid)
     RecyclerView recyclerView;
 
     CalendarListAdapter mAdapter;
 
+
+
+    public static ScheduleMgmFragment newInstance(int singerId){
+        ScheduleMgmFragment fragment = new ScheduleMgmFragment();
+        Bundle b = new Bundle();
+        b.putInt(KEY_SINGER_ID,singerId);
+        fragment.setArguments(b);
+        return fragment;
+    }
+
+
+    int singerId;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+           singerId = getArguments().getInt(KEY_SINGER_ID);
+        }
     }
 
     public ScheduleMgmFragment() {
@@ -80,7 +97,9 @@ public class ScheduleMgmFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.schedule_menu_plus){
-            getActivity().startActivity(new Intent(getActivity(), DayOffActivity.class));
+            Intent intent = new Intent(getActivity(), DayOffActivity.class);
+            intent.putExtra(DayOffActivity.EXTRA_SINGER_ID,singerId);
+            getActivity().startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -17,11 +17,10 @@ import okhttp3.Request;
 public class ReservationDateRequest extends AbstractRequest<NetworkResult<Schedule>> {
     Request request;
 
-    public ReservationDateRequest(Context context) {
+    public ReservationDateRequest(Context context,int singerId) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reservations")
-                .addPathSegment("me")
-                .addQueryParameter("date", String.valueOf(1))
+                .addQueryParameter("sid", String.valueOf(singerId))
                 .build();
 
         request = new Request.Builder()

@@ -11,9 +11,8 @@ import java.util.Arrays;
  */
 public class Schedule implements Serializable {
 
-//    어레이리스트로도 해보고 배열로도 해봐라
     @SerializedName("reservations")
-ArrayList<String> reservationDate;
+    ArrayList<String> reservationDate;
 
     @SerializedName("holidays")
     ArrayList<String> dayOff;
