@@ -1,10 +1,14 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
 
@@ -15,6 +19,10 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-08-25.
  */
 public class SearchResultViewHolder extends RecyclerView.ViewHolder{
+
+
+    Context context = MyApplication.getContext();
+
 
     @BindView(R.id.view_search_result_iv_thumbnail)
     ImageView thumbnailImageView;
@@ -63,6 +71,13 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     public void setSearchResult(SearchResult searchResult){
         this.searchResult = searchResult;
 //        thumbnailImageView.setImageDrawable();
+        Glide.with(context)
+                .load(searchResult.getThumbnail())
+                .centerCrop()
+                .crossFade()
+                .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))
+                .into(thumbnailImageView);
+
         titleView.setText(searchResult.getTitle());
         singerNameView.setText(searchResult.getSingerName());
         dateView.setText(searchResult.getDate());
