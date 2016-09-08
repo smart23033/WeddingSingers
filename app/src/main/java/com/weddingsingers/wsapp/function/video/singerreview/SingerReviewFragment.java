@@ -19,11 +19,14 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Rating;
 import com.weddingsingers.wsapp.data.Review;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.VideoList;
+import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.FavoriteVideoListRequest;
 import com.weddingsingers.wsapp.request.RatingRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.SingerReviewRequest;
 
 import java.util.List;
@@ -37,6 +40,10 @@ import butterknife.ButterKnife;
 public class SingerReviewFragment extends Fragment {
 
     final static int ARG_RATING = 1;
+    final static int ARG_SIMPLE = 1;
+
+    @BindView(R.id.singer_review_pv_profile)
+    ProfileView singerProfileView;
 
     @BindView(R.id.singer_review_tv_num_of_person)
     TextView countView;
@@ -82,7 +89,28 @@ public class SingerReviewFragment extends Fragment {
 
     private void initData() {
 
-        RatingRequest ratingRequest = new RatingRequest(getContext(),singerId,ARG_RATING);
+        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId, ARG_SIMPLE);
+        NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
+                String singerName = result.getResult().getSingerName();
+                String singerImage = result.getResult().getSingerImage();
+                String comment = result.getResult().getComment();
+
+                singerProfileView.setSingerId(singerId);
+                singerProfileView.setComment(comment);
+                singerProfileView.setSingerName(singerName);
+                singerProfileView.setSingerImage(singerImage);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
+        RatingRequest ratingRequest = new RatingRequest(getContext(),singerId, ARG_RATING);
         NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Rating>> request, NetworkResult<Rating> result) {

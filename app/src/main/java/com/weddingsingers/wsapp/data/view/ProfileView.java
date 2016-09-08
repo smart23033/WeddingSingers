@@ -2,6 +2,7 @@ package com.weddingsingers.wsapp.data.view;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
 
@@ -72,6 +74,12 @@ public class ProfileView extends FrameLayout {
     //추가 요망
     public void setSingerImage(String singerImage) {
         this.singerImage = singerImage;
+        Glide.with(getContext())
+                .load(singerImage)
+                .centerCrop()
+                .crossFade()
+                .error(ContextCompat.getDrawable(getContext(), R.drawable.ic_nav_logout))
+                .into(imageView);
     }
 
     public void setComment(String comment) {
