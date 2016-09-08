@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 case FRAG_MY_PAGE: {
                     changeFragment(new SingerMyPageFragment());
-                    titleTextView.setText(getResources().getString(R.string.nav_mypage));
+                    titleTextView.setText(getResources().getString(R.string.nav_my_page));
                     break;
                 }
                 case FRAG_SCHEDULE_MGM: {
@@ -219,13 +219,13 @@ public class MainActivity extends AppCompatActivity
                 titleTextView.setText(getResources().getString(R.string.app_name));
                 return true;
             }
-            case R.id.nav_mypage: {
+            case R.id.nav_my_page: {
                 if (false) { // 수요자 true /공급자 false
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());
                 }
-                titleTextView.setText(getResources().getString(R.string.nav_mypage));
+                titleTextView.setText(getResources().getString(R.string.nav_my_page));
                 return true;
             }
             case R.id.nav_reservation_mgm: {

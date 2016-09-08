@@ -4,35 +4,35 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/nav_ic_home"
             android:title="@string/nav_home" />
         <item
-            android:id="@+id/nav_mypage"
-            android:icon="@android:drawable/ic_menu_gallery"
-            android:title="@string/nav_mypage" />
+            android:id="@+id/nav_my_page"
+            android:icon="@drawable/nav_ic_my_page"
+            android:title="@string/nav_my_page" />
         <item
             android:id="@+id/nav_review"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/nav_ic_rate"
             android:title="@string/nav_review" />
         <item
             android:id="@+id/nav_reservation_mgm"
-            android:icon="@android:drawable/ic_menu_slideshow"
+            android:icon="@drawable/nav_ic_reservation"
             android:title="@string/nav_reservation_mgm" />
         <item
             android:id="@+id/nav_schedule_mgm"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/nav_ic_schedule"
             android:title="@string/nav_schedule_mgm" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@android:drawable/ic_menu_camera"
+            android:icon="@drawable/nav_ic_chatting"
             android:title="@string/nav_chat" />
         <item
             android:id="@+id/nav_community"
-            android:icon="@android:drawable/ic_menu_gallery"
+            android:icon="@drawable/nav_ic_community"
             android:title="@string/nav_community" />
         <item
             android:id="@+id/nav_qna"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/nav_ic_qna"
             android:title="@string/nav_qna" />
 
 
