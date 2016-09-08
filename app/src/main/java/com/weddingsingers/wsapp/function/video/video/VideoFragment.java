@@ -268,6 +268,7 @@ public class VideoFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.video_menu,menu);
+
         MenuItem item = menu.findItem(R.id.video_menu_favorite);
 
         if(isFavorite == 1){
