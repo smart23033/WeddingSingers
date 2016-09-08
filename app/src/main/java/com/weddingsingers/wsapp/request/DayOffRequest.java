@@ -21,7 +21,7 @@ public class DayOffRequest extends AbstractRequest<NetworkResult<Schedule>> {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("singers")
                 .addPathSegment(String.valueOf(singerId))
-                .addPathSegment("holidaies")
+                .addPathSegment("holidays")
                 .build();
 
         request = new Request.Builder()

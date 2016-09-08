@@ -92,7 +92,6 @@ public class ScheduleMgmFragment extends Fragment {
     private void initData(){
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
-
         int month = calendar.get(Calendar.MONTH) + 1;
         int year = calendar.get(Calendar.YEAR);
 

@@ -22,6 +22,8 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.format.DateFormatDayFormatter;
+import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.Schedule;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -31,8 +33,10 @@ import com.weddingsingers.wsapp.request.DayOffRequest;
 import com.weddingsingers.wsapp.request.ReservationDateRequest;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,7 +73,6 @@ public class DayOffFragment extends Fragment implements
         ButterKnife.bind(this,view);
 
 //        미완
-        calendarView.getSelectedDates();
 
         calendarView.setOnDateChangedListener(this);
         calendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_MULTIPLE);
@@ -87,13 +90,22 @@ public class DayOffFragment extends Fragment implements
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Schedule>> request, NetworkResult<Schedule> result) {
                 for(String date : result.getResult().getDayOff()) {
-                    Log.i("DayOffFragment", "dayOff : " + date);
+                    try {
+
+                        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date to = transFormat.parse(date);
+                        calendarView.setDateSelected(to,true);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Schedule>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Log.i("DayOffFragment", "request fail : " + errorMessage);
             }
         });
     }

@@ -42,12 +42,17 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static int isLogin = 0;
+    public static final int DEFAULT_VALUE = 0;
 
     public static final int MESSAGE_BACK_KEY_TIMEOUT = 1;
     public static final int TIMEOUT_TIME = 2000;
 
-    public static final String EXTRA_USER_ID ="EXTRA_USER_ID";
+    public static final String EXTRA_USER_TYPE = "userType";
+    public static final String EXTRA_USER_ID = "userId";
+    public static final String EXTRA_USER_EMAIL = "userEmail";
+    public static final String EXTRA_USER_NAME = "userName";
+
+
     public static final String FRAG_NAME = "fragmentName";
 
     public static final int RC_FRAG = 1000;
@@ -110,13 +115,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         Intent intent = getIntent();
-
-        isLogin = intent.getIntExtra(EXTRA_USER_ID, 0);
-        if(isLogin == 0) {
-            checkLogin(false);
-        } else {
-            checkLogin(true);
-        }
+        isLogin(intent);
 
     }
 
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity
         super.onNewIntent(intent);
 
         int fragmentName = intent.getIntExtra(FRAG_NAME, ERROR_CODE);
-        Log.i("MainActivity","fragName : " + fragmentName);
+        Log.i("MainActivity", "fragName : " + fragmentName);
 
         changeFragmentFromAnotherActivity(fragmentName);
     }
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity
                     titleTextView.setText(getResources().getString(R.string.nav_mypage));
                     break;
                 }
-                case FRAG_SCHEDULE_MGM : {
+                case FRAG_SCHEDULE_MGM: {
                     changeFragment(new ScheduleMgmFragment());
                     titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
                     break;
@@ -155,8 +154,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //로그인 체크 후 네비게이션 드로워 변경
-    private void checkLogin(boolean isLogin) {
+    //로그아웃상태의 네비게이션 드로워, 인자 없으면 로그아웃 상태임.
+    private void isLogin(Intent intent) {
         naviView.getMenu().clear();
 
         View headerView = naviView.inflateHeaderView(R.layout.nav_main_header);
@@ -164,15 +163,19 @@ public class MainActivity extends AppCompatActivity
         ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
         TextView nameView = (TextView) headerView.findViewById(R.id.nav_header_name);
         TextView emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
-        Button loginBtn = (Button)findViewById(R.id.nav_btn_login);
+        Button loginBtn = (Button) findViewById(R.id.nav_btn_login);
 
-        if (isLogin) { // 로그인 상태
+        if (intent != null) {
+
+            int userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
+            int userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
+            String userName = intent.getStringExtra(EXTRA_USER_NAME);
+            String userEmail = intent.getStringExtra(EXTRA_USER_EMAIL);
 
             loginBtn.setVisibility(View.GONE);
 
 //            싱어일 때 네비게이션 드로워
             naviView.inflateMenu(R.menu.main_drawer_singer);
-
 //            고객일 때 네비게이션 드로워
 //            naviView.inflateMenu(R.menu.main_drawer_customer);
 
@@ -182,8 +185,11 @@ public class MainActivity extends AppCompatActivity
                     changeNavMenu(new AlarmFragment());
                 }
             });
-
-        } else { // 로그아웃 상태
+        } else {
+            alarmBtn.setVisibility(View.INVISIBLE);
+            pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
+            nameView.setVisibility(View.INVISIBLE);
+            emailView.setVisibility(View.INVISIBLE);
 
             loginBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,13 +197,10 @@ public class MainActivity extends AppCompatActivity
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             });
-
-            alarmBtn.setVisibility(View.INVISIBLE);
-            pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
-            nameView.setVisibility(View.INVISIBLE);
-            emailView.setVisibility(View.INVISIBLE);
         }
+
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -271,7 +274,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {

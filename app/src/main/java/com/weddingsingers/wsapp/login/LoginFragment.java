@@ -76,8 +76,10 @@ public class LoginFragment extends Fragment {
                 PropertyManager.getInstance().setEmail(email);
                 PropertyManager.getInstance().setPassword(password);
                 int id = result.getResult().getId();
-
-                moveMainActivity(id);
+                int type = result.getResult().getType();
+                String email = result.getResult().getEmail();
+                String name = result.getResult().getName();
+                moveMainActivity(id,type,name,email);
             }
 
             @Override
@@ -87,10 +89,13 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    private void moveMainActivity(int id){
+    private void moveMainActivity(int id,int type,String name, String email){
         Intent intent = new Intent(getActivity(),MainActivity.class);
-        intent.putExtra("login", true);
         intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+        intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+        intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
+        intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
+
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         getActivity().finish();

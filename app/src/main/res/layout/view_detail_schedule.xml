@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:text="27th (Tuesday)"
         android:textColor="@android:color/darker_gray"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="gone"/>
 
     <View
         android:id="@+id/view_detail_schedule_divider"
@@ -23,7 +24,8 @@
         android:layout_height="1dp"
         android:layout_below="@id/view_detail_schedule_tv_date"
         android:layout_marginTop="5dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray"
+        android:visibility="gone"/>
 
 
     <com.weddingsingers.wsapp.data.view.EstimateView

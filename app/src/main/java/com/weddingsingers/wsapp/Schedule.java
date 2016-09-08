@@ -15,7 +15,7 @@ public class Schedule implements Serializable {
     @SerializedName("reservations")
 ArrayList<String> reservationDate;
 
-    @SerializedName("holidaies")
+    @SerializedName("holidays")
     ArrayList<String> dayOff;
 
     public ArrayList<String> getReservationDate() {
