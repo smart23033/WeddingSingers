@@ -40,8 +40,6 @@ public class Estimate implements Serializable {
     @SerializedName("type")
     private int type;
 
-//    예약상태
-    @SerializedName("status")
     private int status;
 
     @SerializedName("demand")

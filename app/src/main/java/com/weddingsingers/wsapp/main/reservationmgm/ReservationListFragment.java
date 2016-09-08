@@ -120,6 +120,7 @@ public class ReservationListFragment extends Fragment {
                             estimate.setDate(e.getDate());
                             estimate.setLocation(e.getLocation());
                             estimate.setSongs(e.getSongs());
+                            estimate.setStatus(e.getStatus());
                             mAdapter.add(e);
                         }
                     }

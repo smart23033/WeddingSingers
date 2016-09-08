@@ -272,5 +272,4 @@ public class VideoFragment extends Fragment {
             item.setChecked(false);
         }
     }
-
 }

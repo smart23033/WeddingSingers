@@ -1,11 +1,14 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +26,14 @@ import butterknife.OnClick;
  */
 public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
+    private final static int TYPE_WAIT = 10;
+    private final static int TYPE_ACCEPT = 20;
+    private final static int TYPE_REJECT = 11;
+
     Context context = MyApplication.getContext();
+
+    @BindView(R.id.view_reserved_singer_iv_color)
+    ImageView statusView;
 
     @BindView(R.id.view_reserved_singer_riv_profile)
     RoundedImageView singerImageView;
@@ -119,6 +129,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
     Estimate estimate;
 
+    @TargetApi(Build.VERSION_CODES.M)
     public void setSingerList(Estimate estimate){
         this.estimate = estimate;
         Glide.with(context)
@@ -131,5 +142,14 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         locationView.setText(estimate.getLocation());
         dateView.setText(estimate.getDate());
         songsView.setText(estimate.getSongs());
+
+        int status = estimate.getStatus();
+        if (status == TYPE_WAIT) {
+            statusView.setBackgroundColor(Color.YELLOW);
+        }else if(status == TYPE_ACCEPT){
+            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
+        }else if(status == TYPE_REJECT){
+            statusView.setBackgroundColor(Color.RED);
+        }
     }
 }

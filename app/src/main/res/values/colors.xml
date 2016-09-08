@@ -6,5 +6,6 @@
 
     <color name="colorPrimaryPink">#f27980</color>
     <color name="colorLightPink">#f8afa2</color>
+    <color name="colorAccept">#669900</color>
 
 </resources>
