@@ -78,7 +78,7 @@ public class ProfileView extends FrameLayout {
                 .load(singerImage)
                 .centerCrop()
                 .crossFade()
-                .error(ContextCompat.getDrawable(getContext(), R.drawable.ic_nav_logout))
+                .error(ContextCompat.getDrawable(getContext(), R.drawable.view_profile_ic_person))
                 .into(imageView);
     }
 
