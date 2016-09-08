@@ -6,6 +6,9 @@
 
     <color name="colorPrimaryPink">#f27980</color>
     <color name="colorLightPink">#f8afa2</color>
-    <color name="colorAccept">#669900</color>
+
+    <color name="colorAccept">#00a651</color>
+    <color name="colorWait">#fff200</color>
+    <color name="colorReject">#ed1c24</color>
 
 </resources>

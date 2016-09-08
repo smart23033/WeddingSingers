@@ -145,11 +145,11 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
         int status = estimate.getStatus();
         if (status == TYPE_WAIT) {
-            statusView.setBackgroundColor(Color.YELLOW);
+            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorWait));
         }else if(status == TYPE_ACCEPT){
             statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
         }else if(status == TYPE_REJECT){
-            statusView.setBackgroundColor(Color.RED);
+            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));
         }
     }
 }
