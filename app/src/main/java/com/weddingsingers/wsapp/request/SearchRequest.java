@@ -25,11 +25,9 @@ public class SearchRequest  extends AbstractRequest<NetworkResult<List<SearchRes
                 .addPathSegment("videos")
                 .addQueryParameter("theme", String.valueOf(search.getTheme()))
                 .addQueryParameter("location", String.valueOf(search.getLocation()))
-                .addQueryParameter("start_date",search.getStartDate())
-                .addQueryParameter("end_date",search.getEndDate())
                 .addQueryParameter("price", String.valueOf(search.getPrice()))
                 .addQueryParameter("composition", String.valueOf(search.getComposition()))
-                .addQueryParameter("hash",search.getKeyword())
+                .addQueryParameter("keyword",search.getKeyword())
                 .build();
 
         request = new Request.Builder()

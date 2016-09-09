@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -179,7 +180,7 @@ public class MainFragment extends Fragment {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
                 for (int i = 0; i < result.getResult().size(); i++) {
                     VideoList videoList = new VideoList();
-//            videoList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+//                    videoList.setThumbnail(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
                     videoList.setTitle(result.getResult().get(i).getTitle());
                     videoList.setDate(result.getResult().get(i).getDate());
                     videoList.setHit(result.getResult().get(i).getHit());

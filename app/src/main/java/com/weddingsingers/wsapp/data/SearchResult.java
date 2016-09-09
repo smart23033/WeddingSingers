@@ -1,7 +1,5 @@
 package com.weddingsingers.wsapp.data;
 
-import android.graphics.drawable.Drawable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
