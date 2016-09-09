@@ -28,6 +28,17 @@ public class VideoList implements Serializable {
 
     private boolean isSelected;
 
+    @SerializedName("singer_id")
+    int singerId;
+
+    public int getSingerId() {
+        return singerId;
+    }
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
+
     public int getVideoId() {
         return videoId;
     }

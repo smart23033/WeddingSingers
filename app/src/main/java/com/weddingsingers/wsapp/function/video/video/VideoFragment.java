@@ -104,7 +104,6 @@ public class VideoFragment extends Fragment {
         if (getArguments() != null) {
             videoId = getArguments().getInt(KEY_VIDEO_ID);
             singerId = getArguments().getInt(KEY_SINGER_ID);
-            Log.i("VideoFragment","onCreate에서 singerId : " + singerId);
         }
     }
 
@@ -157,7 +156,6 @@ public class VideoFragment extends Fragment {
             }
         });
 
-        Log.i("VideoFragment","SingerProifleRequest 앞에 singerId : " + singerId);
         SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(), singerId, ARG_SIMPLE);
         NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
             @Override

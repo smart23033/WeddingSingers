@@ -114,6 +114,9 @@ public class MainFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
+                intent.putExtra(VideoActivity.EXTRA_SINGER_ID, videoList.getSingerId());
+                intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, videoList.getVideoId());
+
                 startActivity(intent);
             }
         });
@@ -185,9 +188,10 @@ public class MainFragment extends Fragment {
                     videoList.setDate(result.getResult().get(i).getDate());
                     videoList.setHit(result.getResult().get(i).getHit());
                     videoList.setFavorite(result.getResult().get(i).getFavorite());
+                    videoList.setSingerId(result.getResult().get(i).getSingerId());
+                    videoList.setVideoId(result.getResult().get(i).getVideoId());
                     videoListAdapter.add(videoList);
                 }
-
             }
 
             @Override
