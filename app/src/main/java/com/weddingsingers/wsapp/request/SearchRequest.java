@@ -1,6 +1,8 @@
 package com.weddingsingers.wsapp.request;
 
 import android.content.Context;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -17,21 +19,29 @@ import okhttp3.Request;
 /**
  * Created by Tacademy on 2016-08-23.
  */
-public class SearchRequest  extends AbstractRequest<NetworkResult<List<SearchResult>>> {
+public class SearchRequest extends AbstractRequest<NetworkResult<List<SearchResult>>> {
     Request request;
 
     public SearchRequest(Context context, Search search) {
-        HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("videos")
-                .addQueryParameter("theme", String.valueOf(search.getTheme()))
-                .addQueryParameter("location", String.valueOf(search.getLocation()))
-                .addQueryParameter("price", String.valueOf(search.getPrice()))
-                .addQueryParameter("composition", String.valueOf(search.getComposition()))
-                .addQueryParameter("keyword",search.getKeyword())
-                .build();
+
+        Log.i("SearchRequest", "search.getKeyword() : " + search.getKeyword());
+
+        HttpUrl.Builder url = getBaseUrlBuilder();
+        url.addPathSegment("videos");
+        url.addQueryParameter("theme", String.valueOf(search.getTheme()));
+        url.addQueryParameter("location", String.valueOf(search.getLocation()));
+        url.addQueryParameter("price", String.valueOf(search.getPrice()));
+        url.addQueryParameter("composition", String.valueOf(search.getComposition()));
+
+        if (!TextUtils.isEmpty(search.getKeyword())) {
+            url.addQueryParameter("keyword", search.getKeyword());
+        }
+
+        url.build();
+
 
         request = new Request.Builder()
-                .url(url)
+                .url(String.valueOf(url))
                 .tag(context)
                 .build();
 
@@ -39,7 +49,8 @@ public class SearchRequest  extends AbstractRequest<NetworkResult<List<SearchRes
 
     @Override
     protected Type getType() {
-        return new TypeToken<NetworkResult<List<SearchResult>>>(){}.getType();
+        return new TypeToken<NetworkResult<List<SearchResult>>>() {
+        }.getType();
     }
 
     @Override

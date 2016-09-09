@@ -21,6 +21,9 @@ import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.SearchRequest;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,10 +91,11 @@ public class SearchActivity extends AppCompatActivity {
 //               searchResultFragment가 아닌 프레그먼트(filterFrag랑 RecentSearchFrag)에서 search버튼 누를 때
                     keywordView.setText(keywordInput.getText().toString());
                     keywordView.setVisibility(View.VISIBLE);
-                    keywordInput.setText("");
-                    keywordInput.setVisibility(View.GONE);
 
                     search.setKeyword(keywordInput.getText().toString());
+
+                    keywordInput.setText("");
+                    keywordInput.setVisibility(View.GONE);
 
                     if (currentFragment.getTag() == FRAG_FILTER) {
                         search.setLocation(((FilterFragment) currentFragment).search.getLocation());
@@ -101,6 +105,12 @@ public class SearchActivity extends AppCompatActivity {
                         search.setEndDate(((FilterFragment) currentFragment).search.getEndDate());
                         search.setTheme(((FilterFragment) currentFragment).search.getTheme());
                     }
+
+                    Log.i("SearchActivity","keyword : " + search.getKeyword());
+                    Log.i("SearchActivity","location : " + search.getLocation());
+                    Log.i("SearchActivity","price : " + search.getPrice());
+                    Log.i("SearchActivity","composition : " + search.getComposition());
+                    Log.i("SearchActivity","theme : " + search.getTheme());
 
                     FragmentTransaction ft = getSupportFragmentManager()
                             .beginTransaction();

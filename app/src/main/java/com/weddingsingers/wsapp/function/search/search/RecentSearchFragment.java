@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -51,6 +52,7 @@ public class RecentSearchFragment extends Fragment {
         setHasOptionsMenu(true);
         if (getArguments() != null) {
             search = (Search) getArguments().getSerializable(SearchActivity.KEY_SEARCH);
+            Log.i("RecentSearchFragment","search keyword : " + search.getKeyword());
         }
     }
 

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,10 @@ public class SearchResultFragment extends Fragment {
         mAdapter = new SearchResultAdapter();
         if (getArguments() != null) {
             search = (Search) getArguments().getSerializable(SearchActivity.KEY_SEARCH);
+
+            Log.i("SearchResultFragment", "search.getKeyword() : " + search.getKeyword());
+            Log.i("SearchResultFragment", "search.getTheme() : " + search.getTheme());
+            Log.i("SearchResultFragment", "search.getLocation() : " + search.getLocation());
         }
 
     }
@@ -113,24 +118,29 @@ public class SearchResultFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<List<SearchResult>>> request, NetworkResult<List<SearchResult>> result) {
                 Toast.makeText(getContext(), "Search Success!", Toast.LENGTH_SHORT).show();
 
-                for (SearchResult sr : result.getResult()) {
-                    SearchResult searchResult = new SearchResult();
-                    searchResult.setDate(sr.getDate());
-                    searchResult.setTitle(sr.getTitle());
-                    searchResult.setFavorite(sr.getFavorite());
-                    searchResult.setHit(sr.getHit());
-                    searchResult.setId(sr.getId());
-                    searchResult.setSingerName(sr.getSingerName());
-                    searchResult.setThumbnail(sr.getThumbnail());
-                    searchResult.setId(sr.getId());
-                    mAdapter.add(searchResult);
+                if (result.getResult().size() != 0) {
+                    Log.i("SearchResultFragment","result.getResult() 있다.");
+                    for (SearchResult sr : result.getResult()) {
+                        SearchResult searchResult = new SearchResult();
+                        searchResult.setDate(sr.getDate());
+                        searchResult.setTitle(sr.getTitle());
+                        searchResult.setFavorite(sr.getFavorite());
+                        searchResult.setHit(sr.getHit());
+                        searchResult.setId(sr.getId());
+                        searchResult.setSingerName(sr.getSingerName());
+                        searchResult.setThumbnail(sr.getThumbnail());
+                        mAdapter.add(searchResult);
+                    }
+                }else{
+                    Log.i("SearchResultFragment","result.getResult() 없다.");
                 }
 
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<SearchResult>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "Search fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Search fail : " + errorMessage, Toast.LENGTH_SHORT).show();
+                Log.i("SearchResultFragment", "Search fail : " + errorMessage);
             }
         });
 

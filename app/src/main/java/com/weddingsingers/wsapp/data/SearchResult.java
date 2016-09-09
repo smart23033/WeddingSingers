@@ -23,6 +23,9 @@ public class SearchResult implements Serializable {
     @SerializedName("favorite_cnt")
     private int favorite;
 
+
+
+
     public int getId() {
         return id;
     }
