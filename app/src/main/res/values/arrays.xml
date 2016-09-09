@@ -41,7 +41,7 @@
     </string-array>
 
     <string-array name="price">
-        <item>price</item>
+        <item>가격</item>
         <item>10</item>
         <item>20</item>
         <item>30</item>
@@ -49,7 +49,7 @@
     </string-array>
 
     <string-array name="song">
-        <item>song</item>
+        <item>전체</item>
         <item>Shot</item>
         <item>Live forever</item>
         <item>Always awake</item>

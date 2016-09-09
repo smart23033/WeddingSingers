@@ -189,7 +189,7 @@ public class ReservationFragment extends Fragment {
     }
 
     long time = System.currentTimeMillis();
-    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm");
     String writeDate = dayTime.format(new Date(time));
 
     @OnClick(R.id.reservation_btn_reserve)
@@ -279,10 +279,7 @@ public class ReservationFragment extends Fragment {
 
         String[] dtime = writeDate.split(" ");
         dateView.setText(dtime[0]);
-
-        Log.i("ReservationFragment","dtime[0] : " + dtime[0]);
-
-        timeView.setText(dtime[1].substring(0, 5));
+        timeView.setText(dtime[1]);
 
         SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId);
         NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
@@ -297,7 +294,15 @@ public class ReservationFragment extends Fragment {
 
                 String[] items = getResources().getStringArray(R.array.location);
                 locationSpinnerAdapter.add(items[location]);
-                songSpinnerAdapter.addAll(songs);
+
+                Log.i("ReservationFragment","songs.size() : " + songs.size());
+
+                if(songs.size() != 0) {
+                    songSpinnerAdapter.addAll(songs);
+                } else {
+                    String[] defaultSong = getResources().getStringArray(R.array.song);
+                    songSpinnerAdapter.add(defaultSong[0]);
+                }
 
                 singerProfileView.setSingerId(singerId);
                 singerProfileView.setComment(comment);
