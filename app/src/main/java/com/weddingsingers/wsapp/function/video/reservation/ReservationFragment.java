@@ -280,7 +280,8 @@ public class ReservationFragment extends Fragment {
         String[] dtime = writeDate.split(" ");
         dateView.setText(dtime[0]);
 
-        Log.i("ReservationFragment","dateVeiw : " + dtime);
+        Log.i("ReservationFragment","dtime[0] : " + dtime[0]);
+
         timeView.setText(dtime[1].substring(0, 5));
 
         SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId);

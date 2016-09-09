@@ -186,7 +186,6 @@ public class VideoFragment extends Fragment {
             }
         });
 
-        Log.i("VideoFragment","RatingRequest 앞에 singerId : " + singerId);
         RatingRequest ratingRequest = new RatingRequest(getContext(), singerId, ARG_RATING);
         NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
             @Override
@@ -228,7 +227,6 @@ public class VideoFragment extends Fragment {
             }
             case R.id.video_menu_favorite: {
                 if (!item.isChecked()) {
-                    Log.i("VideoFragment","FavoriteRequest 앞에 videoId : " + videoId);
                     FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(), videoId);
                     NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
                         @Override
