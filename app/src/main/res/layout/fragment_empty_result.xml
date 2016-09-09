@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
+    android:layout_marginRight="@dimen/fragment_horizontal_margin"
+    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:layout_marginBottom="@dimen/fragment_vertical_margin"
+    tools:context="com.weddingsingers.wsapp.function.search.search.EmptyResultFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:id="@+id/empty_result_iv_error"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/all_ic_error" />
+
+    <TextView
+        android:id="@+id/empty_result_tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/empty_result_iv_error"
+        android:layout_centerHorizontal="true"
+        android:text="no results"
+        android:textColor="@color/colorPrimaryPink"
+        android:layout_marginTop="20dp"
+        android:textSize="36sp" />
+</RelativeLayout>

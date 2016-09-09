@@ -116,31 +116,23 @@ public class SearchResultFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<SearchResult>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<SearchResult>>> request, NetworkResult<List<SearchResult>> result) {
-                Toast.makeText(getContext(), "Search Success!", Toast.LENGTH_SHORT).show();
-
-                if (result.getResult().size() != 0) {
-                    Log.i("SearchResultFragment","result.getResult() 있다.");
-                    for (SearchResult sr : result.getResult()) {
-                        SearchResult searchResult = new SearchResult();
-                        searchResult.setDate(sr.getDate());
-                        searchResult.setTitle(sr.getTitle());
-                        searchResult.setFavorite(sr.getFavorite());
-                        searchResult.setHit(sr.getHit());
-                        searchResult.setId(sr.getId());
-                        searchResult.setSingerName(sr.getSingerName());
-                        searchResult.setThumbnail(sr.getThumbnail());
-                        mAdapter.add(searchResult);
-                    }
-                }else{
-                    Log.i("SearchResultFragment","result.getResult() 없다.");
+                for (SearchResult sr : result.getResult()) {
+                    SearchResult searchResult = new SearchResult();
+                    searchResult.setDate(sr.getDate());
+                    searchResult.setTitle(sr.getTitle());
+                    searchResult.setFavorite(sr.getFavorite());
+                    searchResult.setHit(sr.getHit());
+                    searchResult.setId(sr.getId());
+                    searchResult.setSingerName(sr.getSingerName());
+                    searchResult.setThumbnail(sr.getThumbnail());
+                    mAdapter.add(searchResult);
                 }
+
 
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<List<SearchResult>>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "Search fail : " + errorMessage, Toast.LENGTH_SHORT).show();
-                Log.i("SearchResultFragment", "Search fail : " + errorMessage);
             }
         });
 
