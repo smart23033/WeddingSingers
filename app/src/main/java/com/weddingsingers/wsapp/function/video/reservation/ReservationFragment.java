@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -278,6 +279,8 @@ public class ReservationFragment extends Fragment {
 
         String[] dtime = writeDate.split(" ");
         dateView.setText(dtime[0]);
+
+        Log.i("ReservationFragment","dateVeiw : " + dtime);
         timeView.setText(dtime[1].substring(0, 5));
 
         SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId);
