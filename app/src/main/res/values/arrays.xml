@@ -28,8 +28,6 @@
         <item>듀엣</item>
         <item>그룹</item>
         <item>세션</item>
-        <item>셋션</item>
-        <item>섹션</item>
     </string-array>
     
     <string-array name="theme">

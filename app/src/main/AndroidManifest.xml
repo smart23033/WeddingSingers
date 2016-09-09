@@ -49,7 +49,8 @@
         <activity android:name=".function.payment.payment.PaymentActivity" />
         <activity android:name=".function.event.event.EventActivity" />
         <activity android:name=".function.mypage.mypage.UserInfoActivity" />
-        <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" android:screenOrientation="portrait"
+             android:exported="true"/>
         <activity android:name=".function.mypage.mypoint.MyPointActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />

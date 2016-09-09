@@ -151,10 +151,31 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/singer_profile_modify_rl_btn"
+        android:id="@+id/singer_profile_modify_rl_songs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/singer_profile_modify_rl_price">
+
+        <TextView
+            android:id="@+id/singer_profile_modify_tv_songs"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="곡 목록" />
+
+        <EditText
+            android:id="@+id/singer_profile_modify_et_songs"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:hint="노래는 쉼표로 구분합니다."
+            android:layout_toRightOf="@+id/singer_profile_modify_tv_songs" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singer_profile_modify_rl_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_profile_modify_rl_songs">
 
         <Button
             android:id="@+id/singer_profile_modify_btn_apply"

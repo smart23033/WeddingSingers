@@ -27,24 +27,24 @@ public class SingerProfileSettingRequest  extends AbstractRequest<NetworkResult<
 
     public SingerProfileSettingRequest(Context context, Singer singer) {
 
-        Log.i("SingerProfile location" , String.valueOf(singer.getLocation()) );
-        Log.i("SingerProfile compose " , String.valueOf(singer.getComposition()) );
-        Log.i("SingerProfile theme - " , String.valueOf(singer.getTheme()) );
-
-
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("singers")
                 .addPathSegment("me");
 
-        RequestBody body = new FormBody.Builder()
+        FormBody.Builder formBuilder = new FormBody.Builder()
                 .add("comment", singer.getComment())
                 .add("description", singer.getDescription())
                 .add("location", String.valueOf(singer.getLocation()))
                 .add("theme", String.valueOf(singer.getTheme()))
                 .add("composition", String.valueOf(singer.getComposition()))
                 .add("standard_price", String.valueOf(singer.getStandard()))
-                .add("special_price", String.valueOf(singer.getSpecial()))
-                .build();
+                .add("special_price", String.valueOf(singer.getSpecial()));
+
+        for (String item : singer.getSongs()) {
+            formBuilder.add("songs", item);
+        }
+
+        RequestBody body = formBuilder.build();
 
         request = new Request.Builder()
                 .url(builder.build())

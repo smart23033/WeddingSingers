@@ -275,7 +275,6 @@ public class UserInfoFragment extends Fragment {
             }
         });
 
-        //getActivity().finish();
     }
 
     @OnClick(R.id.user_info_btn_cancel)

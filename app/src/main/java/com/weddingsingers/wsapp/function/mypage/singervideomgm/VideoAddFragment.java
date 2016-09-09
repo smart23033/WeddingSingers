@@ -85,9 +85,14 @@ public class VideoAddFragment extends DialogFragment {
     @OnClick(R.id.video_add_btn_apply)
     public void onApplyClick() {
 
-        String dTime = "";
-        ArrayList<String> hashs = new ArrayList<String >(Arrays.asList("123aaa", "456bbb"));
+        String[] hashTemp = hashInput.getText().toString().split(",");
 
+        ArrayList<String> hash = new ArrayList<>();
+        for (String item : hashTemp) {
+            hash.add(item);
+        }
+
+        String dTime = "";
         SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT+9"));
         dTime = dateFormatGmt.format(new Date()).toString();
@@ -96,7 +101,7 @@ public class VideoAddFragment extends DialogFragment {
 
         singerVideoAdd.setTitle(titleInput.getText().toString());
         singerVideoAdd.setUrl(urlInput.getText().toString());
-        singerVideoAdd.setHash(hashs);
+        singerVideoAdd.setHash(hash);
         singerVideoAdd.setWriteDTime(dTime);
 
         SingerVideoAddRequest request = new SingerVideoAddRequest(getContext(), singerVideoAdd);
@@ -104,7 +109,7 @@ public class VideoAddFragment extends DialogFragment {
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Boolean>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Boolean>> request, NetworkResult<Boolean> result) {
-
+                dismiss();
                 //Toast.makeText(getActivity(), "success code : " + result.getCode(), Toast.LENGTH_SHORT).show();
             }
 
@@ -114,7 +119,7 @@ public class VideoAddFragment extends DialogFragment {
 
             }
         });
-        dismiss();
+
     }
 
     @OnClick(R.id.video_add_btn_cancel)

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,9 @@ import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.SingerProfileSettingRequest;
 
+import java.lang.reflect.Array;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,6 +58,9 @@ public class SingerProfileModifyFragment extends Fragment {
 
     @BindView(R.id.singer_profile_modify_sp_theme)
     Spinner themeSpinner;
+
+    @BindView(R.id.singer_profile_modify_et_songs)
+    EditText songsInput;
 
     FilterSpinnerAdapter locationAdapter;
     FilterSpinnerAdapter compositionAdapter;
@@ -109,6 +115,12 @@ public class SingerProfileModifyFragment extends Fragment {
 
     @OnClick(R.id.singer_profile_modify_btn_apply)
     public void onApplyClick() {
+        String[] songsTemp = songsInput.getText().toString().split(",");
+
+        ArrayList<String> songs = new ArrayList<>();
+        for (String item : songsTemp) {
+            songs.add(item);
+        }
 
         singer.setComment(commentInput.getText().toString());
         singer.setDescription(descriptionInput.getText().toString());
@@ -117,6 +129,7 @@ public class SingerProfileModifyFragment extends Fragment {
         singer.setLocation(locationSpinner.getSelectedItemPosition());
         singer.setComposition(compositionSpinner.getSelectedItemPosition());
         singer.setTheme(themeSpinner.getSelectedItemPosition());
+        singer.setSongs(songs);
 
         SingerProfileSettingRequest request = new SingerProfileSettingRequest(getContext(), singer);
 
@@ -174,7 +187,12 @@ public class SingerProfileModifyFragment extends Fragment {
                 singerGet.setStandard(result.getResult().getStandard());
                 singerGet.setSongs(result.getResult().getSongs());
 
-                Toast.makeText(getActivity(), "loca : " + result.getResult().getLocation() + "comp : " + result.getResult().getComposition() + "theme : " + result.getResult().getTheme(), Toast.LENGTH_SHORT).show();
+                String song = "";
+
+                for (String item : singerGet.getSongs())
+                {
+                    song += item + ",";
+                }
 
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
@@ -186,9 +204,7 @@ public class SingerProfileModifyFragment extends Fragment {
                 descriptionInput.setText(singerGet.getDescription());
                 specialInput.setText("" + singerGet.getSpecial());
                 standardInput.setText("" + singerGet.getStandard());
-//                specialInput.setText(nf.format(singerGet.getSpecial()));
-//                standardInput.setText(nf.format(singerGet.getStandard()));
-
+                songsInput.setText(song);
             }
 
             @Override

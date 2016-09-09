@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,7 @@ public class SingerProfileFragment extends Fragment {
                 String songList = "";
                 for (String song : singer.getSongs())
                 {
+                    Log.i("Song List ----", song);
                     songList += song + "\n";
                 }
 
@@ -118,8 +120,6 @@ public class SingerProfileFragment extends Fragment {
                 String[] locationItems = getResources().getStringArray(R.array.location);
                 String[] compositionItems = getResources().getStringArray(R.array.composition);
                 String[] themeItems = getResources().getStringArray(R.array.theme);
-
-                Toast.makeText(getActivity(), "loca : " + result.getResult().getLocation() + ", comp : " + result.getResult().getComposition() + ", theme : " + result.getResult().getTheme(), Toast.LENGTH_SHORT).show();
 
                 nameView.setText(singer.getSingerName());
                 commentView.setText(singer.getComment());
