@@ -111,12 +111,15 @@ public class SingerProfileFragment extends Fragment {
                 {
                     songList += song + "\n";
                 }
+
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
 
                 String[] locationItems = getResources().getStringArray(R.array.location);
                 String[] compositionItems = getResources().getStringArray(R.array.composition);
                 String[] themeItems = getResources().getStringArray(R.array.theme);
+
+                Toast.makeText(getActivity(), "loca : " + result.getResult().getLocation() + ", comp : " + result.getResult().getComposition() + ", theme : " + result.getResult().getTheme(), Toast.LENGTH_SHORT).show();
 
                 nameView.setText(singer.getSingerName());
                 commentView.setText(singer.getComment());
@@ -132,7 +135,7 @@ public class SingerProfileFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorCode, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
 
             }
         });

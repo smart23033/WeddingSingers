@@ -12,18 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Singer;
-import com.weddingsingers.wsapp.function.mypage.mypage.SingerProfileModifyAdapter;
 import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
-import com.weddingsingers.wsapp.request.ModifyUserRequest;
+import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.SingerProfileSettingRequest;
+
+import java.text.NumberFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,16 +36,16 @@ import butterknife.OnItemSelected;
 public class SingerProfileModifyFragment extends Fragment {
 
     @BindView(R.id.singer_profile_modify_et_comment)
-    EditText commentView;
+    EditText commentInput;
 
     @BindView(R.id.singer_profile_modify_et_intro)
-    EditText introView;
+    EditText descriptionInput;
 
     @BindView(R.id.singer_profile_modify_et_special)
-    EditText specialView;
+    EditText specialInput;
 
     @BindView(R.id.singer_profile_modify_et_standard)
-    EditText standardView;
+    EditText standardInput;
 
     @BindView(R.id.singer_profile_modify_sp_location)
     Spinner locationSpinner;
@@ -93,29 +93,30 @@ public class SingerProfileModifyFragment extends Fragment {
     }
 
     @OnItemSelected(R.id.singer_profile_modify_sp_location)
-    void onLocationItemSelected(int position){
-        singer.setLocation((int) locationSpinner.getSelectedItemId());
+    void onLocationItemSelected(int position) {
+        
     }
 
     @OnItemSelected(R.id.singer_profile_modify_sp_composition)
-    void onCompositionSelected(int position){
-        singer.setComposition((int) compositionSpinner.getSelectedItemId());
+    void onCompositionSelected(int position) {
+
     }
 
     @OnItemSelected(R.id.singer_profile_modify_sp_theme)
-    void onThemeItemSelected(int position){
-        singer.setTheme((int) themeSpinner.getSelectedItemId());
-    }
+    void onThemeItemSelected(int position) {
 
-    Singer singer = new Singer();
+    }
 
     @OnClick(R.id.singer_profile_modify_btn_apply)
     public void onApplyClick() {
 
-        singer.setComment(commentView.getText().toString());
-        singer.setDescription(introView.getText().toString());
-        singer.setSpecial(Integer.parseInt(specialView.getText().toString()));
-        singer.setStandard(Integer.parseInt(standardView.getText().toString()));
+        singer.setComment(commentInput.getText().toString());
+        singer.setDescription(descriptionInput.getText().toString());
+        singer.setSpecial(Integer.parseInt(specialInput.getText().toString()));
+        singer.setStandard(Integer.parseInt(standardInput.getText().toString()));
+        singer.setLocation(locationSpinner.getSelectedItemPosition());
+        singer.setComposition(compositionSpinner.getSelectedItemPosition());
+        singer.setTheme(themeSpinner.getSelectedItemPosition());
 
         SingerProfileSettingRequest request = new SingerProfileSettingRequest(getContext(), singer);
 
@@ -138,12 +139,15 @@ public class SingerProfileModifyFragment extends Fragment {
 
     }
 
+    Singer singer = new Singer();
+    Singer singerGet = new Singer();
+
     @OnClick(R.id.singer_profile_modify_btn_cancel)
     public void onCancelClick() {
         getActivity().finish();
     }
 
-    private void initData(){
+    private void initData() {
         locationAdapter.clear();
         compositionAdapter.clear();
         themeAdapter.clear();
@@ -154,6 +158,45 @@ public class SingerProfileModifyFragment extends Fragment {
         compositionAdapter.addAll(items);
         items = getResources().getStringArray(R.array.theme);
         themeAdapter.addAll(items);
+
+        SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
+                singerGet.setSingerName(result.getResult().getSingerName());
+                singerGet.setComment(result.getResult().getComment());
+                singerGet.setLocation(result.getResult().getLocation());
+                singerGet.setComposition(result.getResult().getComposition());
+                singerGet.setTheme(result.getResult().getTheme());
+                singerGet.setDescription(result.getResult().getDescription());
+                singerGet.setSpecial(result.getResult().getSpecial());
+                singerGet.setStandard(result.getResult().getStandard());
+                singerGet.setSongs(result.getResult().getSongs());
+
+                Toast.makeText(getActivity(), "loca : " + result.getResult().getLocation() + "comp : " + result.getResult().getComposition() + "theme : " + result.getResult().getTheme(), Toast.LENGTH_SHORT).show();
+
+                // 가격에 , 찍기
+                NumberFormat nf = NumberFormat.getInstance();
+
+                commentInput.setText(singerGet.getComment());
+                locationSpinner.setSelection(singerGet.getLocation());
+                compositionSpinner.setSelection(singerGet.getComposition());
+                themeSpinner.setSelection(singerGet.getTheme());
+                descriptionInput.setText(singerGet.getDescription());
+                specialInput.setText("" + singerGet.getSpecial());
+                standardInput.setText("" + singerGet.getStandard());
+//                specialInput.setText(nf.format(singerGet.getSpecial()));
+//                standardInput.setText(nf.format(singerGet.getStandard()));
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override

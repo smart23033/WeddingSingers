@@ -11,16 +11,16 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 /**
- * Created by Tacademy on 2016-08-23.
+ * Created by Tacademy on 2016-09-09.
  */
-public class LogOutRequest extends AbstractRequest<NetworkResult<String>> {
+public class LeaveRequest extends AbstractRequest<NetworkResult<String>> {
 
     Request request;
 
-    public LogOutRequest(Context context) {
+    public LeaveRequest(Context context) {
         HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("auth")
-                .addPathSegment("logout")
+                .addPathSegment("users")
+                .addPathSegment("me")
                 .build();
 
         request = new Request.Builder()
@@ -40,3 +40,4 @@ public class LogOutRequest extends AbstractRequest<NetworkResult<String>> {
         return request;
     }
 }
+

@@ -21,8 +21,12 @@ import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
 import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
 import com.weddingsingers.wsapp.function.mypage.statistic.StatisticActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.manager.PropertyManager;
+import com.weddingsingers.wsapp.request.LeaveRequest;
+import com.weddingsingers.wsapp.request.LogOutRequest;
 import com.weddingsingers.wsapp.request.MyPageRequest;
 
 import butterknife.BindView;
@@ -104,7 +108,7 @@ public class SingerMyPageFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "SingerMyPageFragment fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "SingerMyPageFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -114,7 +118,7 @@ public class SingerMyPageFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
             Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
             initData();
         }
@@ -139,6 +143,55 @@ public class SingerMyPageFragment extends Fragment {
     @OnClick(R.id.singer_my_page_rl_account)
     void onAccountMgmClick() {
         getContext().startActivity(new Intent(getActivity(), AccountMgmActivity.class));
+    }
+
+    @OnClick(R.id.singer_my_page_btn_logout)
+    void onLogOutClick() {
+
+        LogOutRequest logOutRequest = new LogOutRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(logOutRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                PropertyManager.getInstance().setEmail("");
+                PropertyManager.getInstance().setPassword("");
+                PropertyManager.getInstance().setFacebookId("");
+                //LoginManager.getInstance().logOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "Logout request fail.. - " + errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @OnClick(R.id.singer_my_page_btn_leave)
+    void onLeaveClick() {
+
+        LeaveRequest leaveRequest = new LeaveRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(leaveRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                PropertyManager.getInstance().setEmail("");
+                PropertyManager.getInstance().setPassword("");
+                PropertyManager.getInstance().setFacebookId("");
+                //LoginManager.getInstance().logOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "Leave request fail..", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

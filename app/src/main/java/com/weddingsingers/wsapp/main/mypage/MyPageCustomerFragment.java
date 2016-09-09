@@ -19,6 +19,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
 import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
@@ -26,9 +27,16 @@ import com.weddingsingers.wsapp.function.mypage.myinquiry.MyInquiryActivity;
 import com.weddingsingers.wsapp.function.mypage.mypage.UserInfoActivity;
 import com.weddingsingers.wsapp.function.mypage.mypoint.MyPointActivity;
 import com.weddingsingers.wsapp.function.mypage.pointstore.PointStoreActivity;
+import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.manager.PropertyManager;
+import com.weddingsingers.wsapp.request.LeaveRequest;
+import com.weddingsingers.wsapp.request.LogOutRequest;
 import com.weddingsingers.wsapp.request.MyPageRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
+
+import java.text.NumberFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -143,5 +151,54 @@ public class MyPageCustomerFragment extends Fragment {
         getContext().startActivity(new Intent(getActivity(), MyPointActivity.class));
     }
 
+    @OnClick(R.id.my_page_customer_btn_logout)
+    void onLogOutClick() {
+
+        LogOutRequest logOutRequest = new LogOutRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(logOutRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                PropertyManager.getInstance().setEmail("");
+                PropertyManager.getInstance().setPassword("");
+                PropertyManager.getInstance().setFacebookId("");
+                //LoginManager.getInstance().logOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "Logout request fail..", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    @OnClick(R.id.my_page_customer_btn_leave)
+    void onLeaveClick() {
+
+        LeaveRequest leaveRequest = new LeaveRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(leaveRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                PropertyManager.getInstance().setEmail("");
+                PropertyManager.getInstance().setPassword("");
+                PropertyManager.getInstance().setFacebookId("");
+                //LoginManager.getInstance().logOut();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "Leave request fail..", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
 }

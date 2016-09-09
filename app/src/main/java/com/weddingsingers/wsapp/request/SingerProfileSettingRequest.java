@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -25,6 +26,12 @@ public class SingerProfileSettingRequest  extends AbstractRequest<NetworkResult<
     Request request;
 
     public SingerProfileSettingRequest(Context context, Singer singer) {
+
+        Log.i("SingerProfile location" , String.valueOf(singer.getLocation()) );
+        Log.i("SingerProfile compose " , String.valueOf(singer.getComposition()) );
+        Log.i("SingerProfile theme - " , String.valueOf(singer.getTheme()) );
+
+
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("singers")
                 .addPathSegment("me");
