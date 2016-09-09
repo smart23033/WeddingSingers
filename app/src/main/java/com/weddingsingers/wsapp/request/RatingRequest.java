@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -21,6 +22,8 @@ public class RatingRequest extends AbstractRequest<NetworkResult<Rating>> {
     Request request;
 
     public RatingRequest(Context context, int singerId, int rating) {
+
+        Log.i("RatingRequest","singerId : " + singerId + ", rating : " + rating);
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reviews")
                 .addQueryParameter("sid", String.valueOf(singerId))

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,13 +37,13 @@ import com.weddingsingers.wsapp.request.ReservationRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 
@@ -87,7 +86,7 @@ public class ReservationFragment extends Fragment {
     ProfileView singerProfileView;
 
 
-    ReservationSpinnerAdapter priceSpinnerAdapter;
+    ReservationSpinnerAdapter songSpinnerAdapter;
     ReservationSpinnerAdapter locationSpinnerAdapter;
 
     private static final String KEY_SINGER_ID = "singerId";
@@ -116,43 +115,18 @@ public class ReservationFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        priceSpinnerAdapter = new ReservationSpinnerAdapter();
+        songSpinnerAdapter = new ReservationSpinnerAdapter();
         locationSpinnerAdapter = new ReservationSpinnerAdapter();
 
         standardRadioBtn.setChecked(true);
 
-        standardSpinner.setAdapter(priceSpinnerAdapter);
+        standardSpinner.setAdapter(songSpinnerAdapter);
         locationSpinner.setAdapter(locationSpinnerAdapter);
 
-        initSingerProfile();
-        initData();
+        init();
 
         return view;
     }
-
-
-    private void initSingerProfile(){
-        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId,ARG_SIMPLE);
-        NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
-                String singerName = result.getResult().getSingerName();
-                String singerImage = result.getResult().getSingerImage();
-                String comment = result.getResult().getComment();
-
-                singerProfileView.setSingerId(singerId);
-                singerProfileView.setComment(comment);
-                singerProfileView.setSingerName(singerName);
-                singerProfileView.setSingerImage(singerImage);
-            }
-
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
-
-            }
-        });
-    }
-
 
     @OnClick(R.id.reservation_tv_date)
     void onDateClick() {
@@ -213,14 +187,15 @@ public class ReservationFragment extends Fragment {
         type = TYPE_SPECIAL;
     }
 
+    long time = System.currentTimeMillis();
+    SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+    String writeDate = dayTime.format(new Date(time));
 
     @OnClick(R.id.reservation_btn_reserve)
     void onReserveBtnClick() {
         String special = (specialInput.getText().toString() != null) ?  specialInput.getText().toString() : "none" ;
 
-        long time = System.currentTimeMillis();
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String writeDate = dayTime.format(new Date(time));
+
 
         String reservationDate = dateView.getText().toString();
         String reservationTime = timeView.getText().toString();
@@ -291,15 +266,48 @@ public class ReservationFragment extends Fragment {
         }
     }
 
-    private void initData() {
-        priceSpinnerAdapter.clear();
+    private void init() {
+        songSpinnerAdapter.clear();
         locationSpinnerAdapter.clear();
 
-        String[] items = getResources().getStringArray(R.array.song);
-        priceSpinnerAdapter.addAll(items);
+//        String[] items = getResources().getStringArray(R.array.song);
+//        songSpinnerAdapter.addAll(items);
+//
+//        items = getResources().getStringArray(R.array.location);
+//        locationSpinnerAdapter.addAll(items);
 
-        items = getResources().getStringArray(R.array.location);
-        locationSpinnerAdapter.addAll(items);
+        String[] dtime = writeDate.split(" ");
+        dateView.setText(dtime[0]);
+        timeView.setText(dtime[1].substring(0, 5));
+
+        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId);
+        NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+                String singerName = result.getResult().getSingerName();
+                String singerImage = result.getResult().getSingerImage();
+                String comment = result.getResult().getComment();
+
+                int location = result.getResult().getLocation();
+                ArrayList<String> songs = result.getResult().getSongs();
+
+                String[] items = getResources().getStringArray(R.array.location);
+                locationSpinnerAdapter.add(items[location]);
+                songSpinnerAdapter.addAll(songs);
+
+                singerProfileView.setSingerId(singerId);
+                singerProfileView.setComment(comment);
+                singerProfileView.setSingerName(singerName);
+                singerProfileView.setSingerImage(singerImage);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
+
     }
 
     private void moveReservationMgmFragment() {

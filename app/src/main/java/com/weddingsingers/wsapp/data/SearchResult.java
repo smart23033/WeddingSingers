@@ -23,8 +23,16 @@ public class SearchResult implements Serializable {
     @SerializedName("favorite_cnt")
     private int favorite;
 
+    @SerializedName("singer_id")
+    private int singerId;
 
+    public int getSingerId() {
+        return singerId;
+    }
 
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
 
     public int getId() {
         return id;

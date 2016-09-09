@@ -60,7 +60,7 @@ public class VideoListFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
-                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, videoList);
+                intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, videoList);
 
                 startActivity(intent);
             }

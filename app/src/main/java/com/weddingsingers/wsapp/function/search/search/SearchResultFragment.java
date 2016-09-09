@@ -21,6 +21,7 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Search;
 import com.weddingsingers.wsapp.data.SearchResult;
+import com.weddingsingers.wsapp.data.Video;
 import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -94,8 +95,11 @@ public class SearchResultFragment extends Fragment {
             public void onAdapterItemClick(View view, SearchResult searchResult, int position) {
                 Toast.makeText(getContext(), "SearchResult : " + searchResult.getId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getContext(), VideoActivity.class);
-                intent.putExtra(VideoActivity.EXTRA_SEARCH_RESULT, searchResult.getId());
+                intent.putExtra(VideoActivity.EXTRA_SINGER_ID, searchResult.getSingerId());
+                intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, searchResult.getId());
                 startActivity(intent);
+
+                Log.i("SearchResultFragment","singerId : "+ searchResult.getSingerId());
             }
         });
 
@@ -118,6 +122,7 @@ public class SearchResultFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<List<SearchResult>>> request, NetworkResult<List<SearchResult>> result) {
                 for (SearchResult sr : result.getResult()) {
                     SearchResult searchResult = new SearchResult();
+                    searchResult.setSingerId(sr.getSingerId());
                     searchResult.setDate(sr.getDate());
                     searchResult.setTitle(sr.getTitle());
                     searchResult.setFavorite(sr.getFavorite());
@@ -125,6 +130,8 @@ public class SearchResultFragment extends Fragment {
                     searchResult.setId(sr.getId());
                     searchResult.setSingerName(sr.getSingerName());
                     searchResult.setThumbnail(sr.getThumbnail());
+
+                    Log.i("SearchResultFragment","searchResult.getSingerId() : "+ searchResult.getSingerId());
                     mAdapter.add(searchResult);
                 }
 

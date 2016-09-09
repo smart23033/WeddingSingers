@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -19,6 +20,8 @@ public class FavoriteRequest extends AbstractRequest<NetworkResult<String>> {
     Request request;
 
     public FavoriteRequest(Context context, int videoId) {
+        Log.i("FavoriteRequest","videoId : " + videoId);
+
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("favorites");
 

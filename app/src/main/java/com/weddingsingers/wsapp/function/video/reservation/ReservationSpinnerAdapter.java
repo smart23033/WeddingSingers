@@ -16,8 +16,13 @@ import java.util.List;
 public class ReservationSpinnerAdapter extends BaseAdapter {
     List<String> items = new ArrayList<>();
 
-    public void addAll(String[] items){
-        this.items.addAll(Arrays.asList(items));
+    public void addAll(ArrayList<String> items){
+        this.items.addAll(items);
+        notifyDataSetChanged();
+    }
+
+    public void add(String item){
+        this.items.add(item);
         notifyDataSetChanged();
     }
 

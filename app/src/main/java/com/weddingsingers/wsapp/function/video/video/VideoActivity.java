@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -23,7 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class VideoActivity extends AppCompatActivity {
-    public static final String EXTRA_SEARCH_RESULT = "searchResult";
+    public static final String EXTRA_VIDEO_ID = "videoId";
+    public static final String EXTRA_SINGER_ID = "singerId";
+
+    public static final int DEFAULT_VALUE = 0;
 
     @BindView(R.id.video_toolbar)
     Toolbar toolbar;
@@ -41,11 +45,15 @@ public class VideoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         Intent intent = getIntent();
-        int videoId = intent.getIntExtra(EXTRA_SEARCH_RESULT, 0);
+        int videoId = intent.getIntExtra(EXTRA_VIDEO_ID, DEFAULT_VALUE);
+        int singerId = intent.getIntExtra(EXTRA_SINGER_ID, DEFAULT_VALUE);
+
+        Log.i("VideoActivity","videoId : " + videoId);
+        Log.i("VideoActivity","singerId : " + singerId);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        VideoFragment videoFragment = VideoFragment.newInstance(videoId);
+        VideoFragment videoFragment = VideoFragment.newInstance(videoId, singerId);
         ft.add(R.id.act_video_fl_container,videoFragment);
         ft.commit();
 

@@ -91,6 +91,7 @@ public class ProfileView extends FrameLayout {
 //    videoFragment를 위한 별도 setter
     public void setStandard(int standard) {
         this.standard = standard;
+
     }
 
     //    videoFragment를 위한 별도 setter
