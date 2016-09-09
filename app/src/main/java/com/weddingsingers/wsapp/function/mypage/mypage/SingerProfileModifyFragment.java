@@ -66,8 +66,6 @@ public class SingerProfileModifyFragment extends Fragment {
     FilterSpinnerAdapter compositionAdapter;
     FilterSpinnerAdapter themeAdapter;
 
-    SingerProfileModifyAdapter mAdapter;
-
     public SingerProfileModifyFragment() {
         // Required empty public constructor
     }

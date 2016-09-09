@@ -20,12 +20,15 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Review;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.WriteReviewRequest;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -39,13 +42,11 @@ import butterknife.OnClick;
  */
 public class WriteReviewFragment extends Fragment {
 
-    @BindView(R.id.singer_profile_modify_sp_theme)
-    Spinner themeSpinner;
+    @BindView(R.id.write_review_sp_detail_bill_num)
+    Spinner billSpinner;
 
     @BindView(R.id.singer_profile_modify_et_songs)
     EditText songsInput;
-
-    FilterSpinnerAdapter locationAdapter;
 
     final static int FRAG_MY_PAGE = 200;
 
@@ -54,6 +55,8 @@ public class WriteReviewFragment extends Fragment {
 
     @BindView(R.id.write_review_rb_rating)
     RatingBar reviewRatingBar;
+
+    FilterSpinnerAdapter billAdapter;
 
     public WriteReviewFragment() {
         // Required empty public constructor
@@ -73,10 +76,45 @@ public class WriteReviewFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        billAdapter = new FilterSpinnerAdapter();
+        billSpinner.setAdapter(billAdapter);
+
+        initData();
+
         return view;
     }
 
     Review review;
+
+    public void initData() {
+        billAdapter.clear();
+
+        SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
+//                singerGet.setSingerName(result.getResult().getSingerName());
+//                singerGet.setComment(result.getResult().getComment());
+//                singerGet.setLocation(result.getResult().getLocation());
+//                singerGet.setComposition(result.getResult().getComposition());
+//                singerGet.setTheme(result.getResult().getTheme());
+//                singerGet.setDescription(result.getResult().getDescription());
+//                singerGet.setSpecial(result.getResult().getSpecial());
+//                singerGet.setStandard(result.getResult().getStandard());
+//                singerGet.setSongs(result.getResult().getSongs());
+
+                String[] items = getResources().getStringArray(R.array.location);
+                billAdapter.addAll(items);
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
     @OnClick(R.id.write_review_btn_write)
     void onWriteBtnClick() {
