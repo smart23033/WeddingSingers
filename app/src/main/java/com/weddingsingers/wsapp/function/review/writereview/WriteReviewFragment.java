@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Review;
 import com.weddingsingers.wsapp.data.Singer;
@@ -25,30 +27,30 @@ import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.EstimateListRequest;
 import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.WriteReviewRequest;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnItemSelected;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class WriteReviewFragment extends Fragment {
 
+    final static int FRAG_MY_PAGE = 200;
+
     @BindView(R.id.write_review_sp_detail_bill_num)
     Spinner billSpinner;
-
-    @BindView(R.id.singer_profile_modify_et_songs)
-    EditText songsInput;
-
-    final static int FRAG_MY_PAGE = 200;
 
     @BindView(R.id.write_review_et_content)
     EditText contentInput;
@@ -85,35 +87,54 @@ public class WriteReviewFragment extends Fragment {
     }
 
     Review review;
+    int[] reservationIds;
+    int reservationId;
+
+    @OnItemSelected(R.id.write_review_sp_detail_bill_num)
+    void onBillSelected(int position) {
+        reservationId = reservationIds[billSpinner.getSelectedItemPosition()];
+    }
 
     public void initData() {
+
+        String dTime = "";
+        SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+        dTime = dateFormatGmt.format(new Date()).toString();
+        Toast.makeText(getActivity(), dTime, Toast.LENGTH_SHORT).show();
+
         billAdapter.clear();
 
-        SingerMyProfileRequest request = new SingerMyProfileRequest(getContext());
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
-            @Override
-            public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), 2);
+        NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 
-//                singerGet.setSingerName(result.getResult().getSingerName());
-//                singerGet.setComment(result.getResult().getComment());
-//                singerGet.setLocation(result.getResult().getLocation());
-//                singerGet.setComposition(result.getResult().getComposition());
-//                singerGet.setTheme(result.getResult().getTheme());
-//                singerGet.setDescription(result.getResult().getDescription());
-//                singerGet.setSpecial(result.getResult().getSpecial());
-//                singerGet.setStandard(result.getResult().getStandard());
-//                singerGet.setSongs(result.getResult().getSongs());
+                        String[] items = new String[result.getResult().size()];
 
-                String[] items = getResources().getStringArray(R.array.location);
-                billAdapter.addAll(items);
-            }
+                        int i = 0;
+                        for (Estimate e : result.getResult()) {
+                            Estimate estimate = new Estimate();
+                            estimate.setId(e.getId());
+                            estimate.setSingerId(e.getSingerId());
+                            estimate.setSingerName(e.getSingerName());
+                            estimate.setDate(e.getDate());
 
-            @Override
-            public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getActivity(), "SingerProfileFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+                            items[i] = estimate.getDate() + " - " + estimate.getSingerName();
+                            reservationIds[i] = estimate.getId();
+                            i++;
+                        }
 
-            }
-        });
+                        billAdapter.addAll(items);
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request, int errorCode, String errorMessage, Throwable e) {
+
+                    }
+                }
+        );
+
     }
 
     @OnClick(R.id.write_review_btn_write)
@@ -125,8 +146,7 @@ public class WriteReviewFragment extends Fragment {
         dTime = dateFormatGmt.format(new Date()).toString();
 
         review = new Review();
-        review.setReservationId(16);
-        review.setSingerId(1);
+        review.setReservationId(reservationId);
         review.setPoint("" + reviewRatingBar.getRating());
         review.setContent(contentInput.getText().toString());
         review.setWrtieDTime(dTime);
