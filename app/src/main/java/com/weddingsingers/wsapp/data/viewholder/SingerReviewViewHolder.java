@@ -50,7 +50,6 @@ public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
 
         Glide.with(context)
                 .load(review.getThumbnail())
-                //.load("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQg7S3iXqkm3eh5jVd6Or7tlCF7iAv3XeDwWwxqSsVyCBPng0inR9Pn9H0")
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.ic_nav_logout))

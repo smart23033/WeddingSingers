@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,16 +19,34 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Review;
+import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.function.mypage.singervideomgm.VideoAddFragment;
 import com.weddingsingers.wsapp.function.review.writereview.WriteReviewActivity;
 import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
+import com.weddingsingers.wsapp.function.video.singerreview.SingerReviewAdapter;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.MyReviewRequest;
+import com.weddingsingers.wsapp.request.SingerProfileRequest;
+import com.weddingsingers.wsapp.request.SingerReviewRequest;
+
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReviewFragment extends Fragment {
 
+    @BindView(R.id.review_rv_list)
+    RecyclerView recyclerView;
+
+    SingerReviewAdapter mAdapter;
 
     public ReviewFragment() {
         // Required empty public constructor
@@ -43,13 +63,41 @@ public class ReviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_review, container, false);
 
-        Toast.makeText(getActivity(), "review", Toast.LENGTH_SHORT).show();
+        ButterKnife.bind(this, view);
+
+        mAdapter = new SingerReviewAdapter();
+        recyclerView.setAdapter(mAdapter);
+
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
+
+        initData();
 
         return view;
     }
 
     public void initData() {
 
+        MyReviewRequest request = new MyReviewRequest(getContext());
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<Review>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<Review>>> request, NetworkResult<List<Review>> result) {
+//
+                for (int i = 0; i < result.getResult().size(); i++) {
+                    Review review = new Review();
+                    review.setThumbnail(result.getResult().get(i).getThumbnail());
+                    review.setContent(result.getResult().get(i).getContent());
+                    review.setCustomerName(result.getResult().get(i).getCustomerName());
+                    review.setPoint(result.getResult().get(i).getPoint());
+                    mAdapter.add(review);
+                }
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<Review>>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -58,6 +106,7 @@ public class ReviewFragment extends Fragment {
 
         if(requestCode == 1 && resultCode == Activity.RESULT_OK) {
             Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
+            mAdapter.clear();
             initData();
         }
     }

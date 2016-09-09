@@ -25,6 +25,11 @@ public class SingerReviewAdapter extends RecyclerView.Adapter<SingerReviewViewHo
         notifyDataSetChanged();
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public SingerReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_singer_review, parent,false);

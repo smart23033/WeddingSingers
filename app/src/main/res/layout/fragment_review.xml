@@ -8,4 +8,11 @@
     android:layout_marginBottom="@dimen/fragment_vertical_margin"
     tools:context=".main.review.ReviewFragment">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/review_rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

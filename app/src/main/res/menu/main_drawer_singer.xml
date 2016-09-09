@@ -11,10 +11,6 @@
             android:icon="@drawable/nav_ic_my_page"
             android:title="@string/nav_my_page" />
         <item
-            android:id="@+id/nav_review"
-            android:icon="@drawable/nav_ic_rate"
-            android:title="@string/nav_review" />
-        <item
             android:id="@+id/nav_reservation_mgm"
             android:icon="@drawable/nav_ic_reservation"
             android:title="@string/nav_reservation_mgm" />

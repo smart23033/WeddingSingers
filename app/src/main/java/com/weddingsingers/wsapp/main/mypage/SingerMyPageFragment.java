@@ -94,10 +94,9 @@ public class SingerMyPageFragment extends Fragment {
 
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
-                        //.load("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQg7S3iXqkm3eh5jVd6Or7tlCF7iAv3XeDwWwxqSsVyCBPng0inR9Pn9H0")
                         .centerCrop()
                         .crossFade()
-                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
+                        .placeholder(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
                         .into(pictureView);
 
                 nameView.setText(user.getName());

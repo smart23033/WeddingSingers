@@ -43,9 +43,7 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class VideoFragment extends Fragment {
-    final static String KEY_VIDEO_ID = "videoId";
-    final static String KEY_SINGER_ID = "singerId";
-
+    final static String KEY_VIDEO_ID = "VideoId";
     final static int ARG_SIMPLE = 1;
     final static int ARG_RATING = 1;
 
@@ -85,17 +83,15 @@ public class VideoFragment extends Fragment {
     VideoView videoView;
 
 
-    public static VideoFragment newInstance(int videoId,int singerId) {
+    public static VideoFragment newInstance(int videoId) {
         VideoFragment fragment = new VideoFragment();
         Bundle b = new Bundle();
-        b.putInt(KEY_VIDEO_ID, videoId);
-        b.putInt(KEY_SINGER_ID, singerId);
+        b.putInt(KEY_VIDEO_ID,videoId);
         fragment.setArguments(b);
         return fragment;
     }
 
     int videoId;
-    int singerId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -103,8 +99,6 @@ public class VideoFragment extends Fragment {
         setHasOptionsMenu(true);
         if (getArguments() != null) {
             videoId = getArguments().getInt(KEY_VIDEO_ID);
-            singerId = getArguments().getInt(KEY_SINGER_ID);
-            Log.i("VideoFragment","onCreate에서 singerId : " + singerId);
         }
     }
 
@@ -112,9 +106,9 @@ public class VideoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_video, container, false);
+        View view =  inflater.inflate(R.layout.fragment_video, container, false);
 
-        ButterKnife.bind(this, view);
+        ButterKnife.bind(this,view);
 
         videoView.setVideoPath("https://www.youtube.com/watch?v=zQhZUGNR6l4");
         final MediaController mediaController = new MediaController(getContext());
@@ -122,15 +116,13 @@ public class VideoFragment extends Fragment {
 
         initData();
 
-        return view;
+        return  view;
 
     }
-
-
+    int singerId;
     int isFavorite;
-
-    private void initData() {
-        VideoRequest videoRequest = new VideoRequest(getContext(), videoId);
+    private void initData(){
+        VideoRequest videoRequest = new VideoRequest(getContext(),videoId);
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
@@ -143,6 +135,7 @@ public class VideoFragment extends Fragment {
                 video.setTitle(result.getResult().getTitle());
                 video.setUrl(result.getResult().getUrl());
                 isFavorite = result.getResult().getIsFavorite();
+                singerId = result.getResult().getSingerId();
 
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
@@ -150,18 +143,18 @@ public class VideoFragment extends Fragment {
                 hitView.setText("" + video.getHit());
 
             }
-
             @Override
             public void onFail(NetworkRequest<NetworkResult<Video>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "videoReqeust fail", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "videoReqeust fail", Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        Log.i("VideoFragment","SingerProifleRequest 앞에 singerId : " + singerId);
-        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(), singerId, ARG_SIMPLE);
+        SingerProfileRequest singerProfileRequest = new SingerProfileRequest(getContext(),singerId,ARG_SIMPLE);
         NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
+
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
 
@@ -171,6 +164,7 @@ public class VideoFragment extends Fragment {
                 int standard = result.getResult().getStandard();
                 int special = result.getResult().getSpecial();
 
+                singerProfileView.setSingerId(singerId);
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
@@ -182,18 +176,21 @@ public class VideoFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Singer>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.i("VideoFragment", "SingerProfileRequest Simple Fail : " + errorMessage);
+
             }
         });
 
-        Log.i("VideoFragment","RatingRequest 앞에 singerId : " + singerId);
-        RatingRequest ratingRequest = new RatingRequest(getContext(), singerId, ARG_RATING);
+
+        RatingRequest ratingRequest = new RatingRequest(getContext(),singerId,ARG_RATING);
         NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Rating>> request, NetworkResult<Rating> result) {
-                Log.i("VideoFragment", "RatingRequest Simple success");
+
                 int reviewCnt = result.getResult().getReviewCnt();
                 float reviewPoint = result.getResult().getReviewPoint();
+
+                Log.i("VideoFragment","reviewCnt : " + reviewCnt);
+                Log.i("VideoFragment","reviewPoint : " + reviewPoint);
 
                 reviewView.setText("" + reviewCnt);
                 ratingBar.setRating(reviewPoint);
@@ -201,21 +198,20 @@ public class VideoFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Rating>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.i("VideoFragment", "RatingRequest Simple Fail : " + errorMessage);
+
             }
         });
-
     }
 
     @OnClick(R.id.view_profile_btn_reserve)
-    void onReserveBtnClick() {
+    void onReserveBtnClick(){
         Intent intent = new Intent(new Intent(getContext(), ReservationActivity.class));
-        intent.putExtra(ReservationActivity.EXTRA_SINGER_ID, singerId);
+        intent.putExtra(ReservationActivity.EXTRA_SINGER_ID,singerId);
         startActivity(intent);
     }
 
     @OnClick(R.id.view_profile_rl_profile)
-    void onProfileClick() {
+    void onProfileClick(){
         startActivity(new Intent(getActivity(), SingerInfoActivity.class));
     }
 
@@ -227,35 +223,34 @@ public class VideoFragment extends Fragment {
                 return true;
             }
             case R.id.video_menu_favorite: {
-                if (!item.isChecked()) {
-                    Log.i("VideoFragment","FavoriteRequest 앞에 videoId : " + videoId);
-                    FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(), videoId);
+                if(!item.isChecked()){
+                    FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(),videoId);
                     NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
                         @Override
                         public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                            Toast.makeText(getContext(), "I like this", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"I like this",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                            Toast.makeText(getContext(), "favoriteRequest fail : " + errorMessage, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"favoriteRequest fail : " +errorMessage,Toast.LENGTH_SHORT).show();
                         }
                     });
 
                     item.setChecked(true);
                     item.setIcon(R.drawable.search_ic_favorite_on);
-                } else {
+                }else{
 
-                    CancelFavoriteRequest favoriteRequest = new CancelFavoriteRequest(getContext(), videoId);
+                    CancelFavoriteRequest favoriteRequest = new CancelFavoriteRequest(getContext(),videoId);
                     NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
                         @Override
                         public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                            Toast.makeText(getContext(), "cancel favorite", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"cancel favorite",Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                            Toast.makeText(getContext(), "cancelFavoriteRequest fail : " + errorMessage, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"cancelFavoriteRequest fail : " +errorMessage,Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -272,13 +267,13 @@ public class VideoFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.video_menu, menu);
+        inflater.inflate(R.menu.video_menu,menu);
 
         MenuItem item = menu.findItem(R.id.video_menu_favorite);
 
-        if (isFavorite == 1) {
+        if(isFavorite == 1){
             item.setChecked(true);
-        } else {
+        }else{
             item.setChecked(false);
         }
     }

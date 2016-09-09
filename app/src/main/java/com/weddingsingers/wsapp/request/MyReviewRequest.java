@@ -24,11 +24,12 @@ public class MyReviewRequest extends AbstractRequest<NetworkResult<List<Review>>
 
     Request request;
 
-    public MyReviewRequest(Context context, Review review) {
+    public MyReviewRequest(Context context) {
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reviews")
                 .addPathSegment("me")
                 .build();
+
         request = new Request.Builder()
                 .url(url)
                 .tag(context)

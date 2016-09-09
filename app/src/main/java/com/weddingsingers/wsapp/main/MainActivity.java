@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
 
+    int userId;
+    int userType;
+    String userName;
+    String userEmail;
 
     @BindView(R.id.main_drawer)
     DrawerLayout drawer;
@@ -171,10 +175,10 @@ public class MainActivity extends AppCompatActivity
 
         if (fragmentName != DEFAULT_VALUE) {
 
-            int userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
-            int userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
-            String userName = intent.getStringExtra(EXTRA_USER_NAME);
-            String userEmail = intent.getStringExtra(EXTRA_USER_EMAIL);
+            userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
+            userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
+            userName = intent.getStringExtra(EXTRA_USER_NAME);
+            userEmail = intent.getStringExtra(EXTRA_USER_EMAIL);
 
             loginBtn.setVisibility(View.GONE);
 
@@ -221,7 +225,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_my_page: {
-                if (false) { // 수요자 true /공급자 false
+                if (userType == TYPE_CUSTOMER) { // 수요자 TYPE_CUSTOMER /공급자 TYPE_SINGER
                     changeNavMenu(new MyPageCustomerFragment());
                 } else {
                     changeNavMenu(new MyPageSingerFragment());

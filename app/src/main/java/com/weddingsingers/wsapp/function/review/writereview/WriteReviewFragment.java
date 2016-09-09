@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.function.review.writereview;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,11 +12,25 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.Review;
+import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.WriteReviewRequest;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,8 +39,21 @@ import butterknife.OnClick;
  */
 public class WriteReviewFragment extends Fragment {
 
+    @BindView(R.id.singer_profile_modify_sp_theme)
+    Spinner themeSpinner;
+
+    @BindView(R.id.singer_profile_modify_et_songs)
+    EditText songsInput;
+
+    FilterSpinnerAdapter locationAdapter;
+
     final static int FRAG_MY_PAGE = 200;
 
+    @BindView(R.id.write_review_et_content)
+    EditText contentInput;
+
+    @BindView(R.id.write_review_rb_rating)
+    RatingBar reviewRatingBar;
 
     public WriteReviewFragment() {
         // Required empty public constructor
@@ -48,9 +76,45 @@ public class WriteReviewFragment extends Fragment {
         return view;
     }
 
+    Review review;
+
     @OnClick(R.id.write_review_btn_write)
-    void onWriteBtnClick(){
-        AlertDialog dialog;
+    void onWriteBtnClick() {
+
+        String dTime = "";
+        SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT+9"));
+        dTime = dateFormatGmt.format(new Date()).toString();
+
+        review = new Review();
+        review.setReservationId(16);
+        review.setSingerId(1);
+        review.setPoint("" + reviewRatingBar.getRating());
+        review.setContent(contentInput.getText().toString());
+        review.setWrtieDTime(dTime);
+
+        WriteReviewRequest request = new WriteReviewRequest(getContext(), review);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+
+                Toast.makeText(getActivity(), "success code : " + result.getCode(), Toast.LENGTH_SHORT).show();
+
+                getActivity().setResult(Activity.RESULT_OK, new Intent());
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getActivity(), "SingerMyPageFragment fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        getActivity().setResult(Activity.RESULT_OK, new Intent());
+        getActivity().finish();
+
+        /*AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Write Success")
                 .setMessage("Write Success,\nyou can check your benefit point in my page")
@@ -70,7 +134,7 @@ public class WriteReviewFragment extends Fragment {
         });
 
         dialog = builder.create();
-        dialog.show();
+        dialog.show();*/
     }
 
     @Override

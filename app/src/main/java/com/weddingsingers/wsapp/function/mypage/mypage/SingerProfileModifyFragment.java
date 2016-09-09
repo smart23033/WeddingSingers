@@ -189,9 +189,15 @@ public class SingerProfileModifyFragment extends Fragment {
 
                 String song = "";
 
+                int i = 0;
+                String comma = ",";
                 for (String item : singerGet.getSongs())
                 {
-                    song += item + ",";
+                    if(i == (singerGet.getSongs().size() - 1)) {
+                        comma = "";
+                    }
+                    song += item + comma;
+                    i++;
                 }
 
                 // 가격에 , 찍기
