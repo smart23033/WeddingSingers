@@ -48,9 +48,6 @@ public class VideoActivity extends AppCompatActivity {
         int videoId = intent.getIntExtra(EXTRA_VIDEO_ID, DEFAULT_VALUE);
         int singerId = intent.getIntExtra(EXTRA_SINGER_ID, DEFAULT_VALUE);
 
-        Log.i("VideoActivity","videoId : " + videoId);
-        Log.i("VideoActivity","singerId : " + singerId);
-
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         VideoFragment videoFragment = VideoFragment.newInstance(videoId, singerId);
