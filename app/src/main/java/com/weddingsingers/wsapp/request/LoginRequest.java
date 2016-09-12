@@ -19,7 +19,7 @@ import okhttp3.RequestBody;
 public class LoginRequest extends AbstractRequest<NetworkResult<User>>{
     Request request;
 
-    public LoginRequest(Context context, String email, String password,int type) {
+    public LoginRequest(Context context, String email, String password, int type) {
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("auth")
                 .addPathSegment("local")

@@ -1,12 +1,9 @@
 package com.weddingsingers.wsapp.login;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +17,7 @@ import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.manager.PropertyManager;
+import com.weddingsingers.wsapp.request.LoginRequest;
 import com.weddingsingers.wsapp.request.SignUpRequest;
 
 import butterknife.BindView;
@@ -84,18 +82,20 @@ public class SignUpSecondFragment extends Fragment {
         user.setPhone(phoneInput.getText().toString());
 //      구글GCM 토근 아직 안받아옴
         String regToken = "1234";
-        SignUpRequest request = new SignUpRequest(getContext(), user, regToken);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+        SignUpRequest signUpRequest = new SignUpRequest(getContext(), user, regToken);
+        NetworkManager.getInstance().getNetworkData(signUpRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                PropertyManager.getInstance().setEmail(user.getEmail());
-                PropertyManager.getInstance().setPassword(user.getPassword());
+//                PropertyManager.getInstance().setEmail(user.getEmail());
+//                PropertyManager.getInstance().setPassword(user.getPassword());
 
                 int id = result.getResult().getId();
-                int type = result.getResult().getType();
-                String email = result.getResult().getEmail();
-                String name = result.getResult().getName();
-                moveMainActivity(id,type,name,email);
+                int type = user.getType();
+                String email = user.getEmail();
+                String name = user.getName();
+                String password = user.getPassword();
+
+                loginAndMoveMainActivity(id, type, name, email, password);
 
             }
             @Override
@@ -103,11 +103,26 @@ public class SignUpSecondFragment extends Fragment {
                     Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-    private void moveMainActivity(int id,int type,String name, String email){
+    private void loginAndMoveMainActivity(int id, int type, String name, String email, String password){
+
+        LoginRequest loginRequest = new LoginRequest(getContext(),email,password, type);
+
+        NetworkManager.getInstance().getNetworkData(loginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+                PropertyManager.getInstance().setEmail(user.getEmail());
+                PropertyManager.getInstance().setPassword(user.getPassword());
+                Toast.makeText(getContext(), "SignUp and Login Success", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
+
         Intent intent = new Intent(getActivity(),MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_USER_ID, id);
         intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
