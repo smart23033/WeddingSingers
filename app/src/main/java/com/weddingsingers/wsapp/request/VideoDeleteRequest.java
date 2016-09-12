@@ -28,15 +28,8 @@ public class VideoDeleteRequest extends AbstractRequest<NetworkResult<String>> {
 
         FormBody.Builder formBuilder = new FormBody.Builder();
 
-        ArrayList<String> videoIds = new ArrayList<>();
-
-        for (int i = 0; i < videoId.size(); i++) {
-            Log.i("delete request", String.valueOf(videoId.get(i)));
-            videoIds.add(String.valueOf(videoId.get(i)));
-        }
-
-        for (String item : videoIds) {
-            formBuilder.add("vid", item);
+        for (int item : videoId) {
+            formBuilder.add("vid", String.valueOf(item));
         }
 
         RequestBody body = formBuilder.build();
