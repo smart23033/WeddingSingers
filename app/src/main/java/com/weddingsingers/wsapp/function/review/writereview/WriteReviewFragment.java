@@ -2,8 +2,6 @@ package com.weddingsingers.wsapp.function.review.writereview;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,16 +20,12 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Review;
-import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.function.search.search.FilterSpinnerAdapter;
-import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
-import com.weddingsingers.wsapp.request.SingerMyProfileRequest;
 import com.weddingsingers.wsapp.request.WriteReviewRequest;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +42,7 @@ import butterknife.OnItemSelected;
 public class WriteReviewFragment extends Fragment {
 
     final static int FRAG_MY_PAGE = 200;
+    private static final int TAB_RESERVED_ONE = 2;
 
     @BindView(R.id.write_review_sp_detail_bill_num)
     Spinner billSpinner;
@@ -81,6 +76,15 @@ public class WriteReviewFragment extends Fragment {
         billAdapter = new FilterSpinnerAdapter();
         billSpinner.setAdapter(billAdapter);
 
+        reviewRatingBar.setStepSize(1);
+        reviewRatingBar.setRating(5);
+        reviewRatingBar.setIsIndicator(false);
+        /*reviewRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+            }
+        });*/
         initData();
 
         return view;
@@ -101,16 +105,16 @@ public class WriteReviewFragment extends Fragment {
         SimpleDateFormat dateFormatGmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT+9"));
         dTime = dateFormatGmt.format(new Date()).toString();
-        Toast.makeText(getActivity(), dTime, Toast.LENGTH_SHORT).show();
 
         billAdapter.clear();
 
-        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), 2);
+        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_RESERVED_ONE);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 
                         String[] items = new String[result.getResult().size()];
+                        reservationIds = new int[result.getResult().size()];
 
                         int i = 0;
                         for (Estimate e : result.getResult()) {
@@ -122,6 +126,7 @@ public class WriteReviewFragment extends Fragment {
 
                             items[i] = estimate.getDate() + " - " + estimate.getSingerName();
                             reservationIds[i] = estimate.getId();
+
                             i++;
                         }
 
@@ -147,9 +152,11 @@ public class WriteReviewFragment extends Fragment {
 
         review = new Review();
         review.setReservationId(reservationId);
-        review.setPoint("" + reviewRatingBar.getRating());
+        review.setIntPoint((int) reviewRatingBar.getRating());
         review.setContent(contentInput.getText().toString());
-        review.setWrtieDTime(dTime);
+        review.setWriteDTime(dTime);
+
+        Log.i("write review ----", reservationId + "-"+ reviewRatingBar.getRating() + "-"+ contentInput.getText().toString() + "-"+ dTime);
 
         WriteReviewRequest request = new WriteReviewRequest(getContext(), review);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {

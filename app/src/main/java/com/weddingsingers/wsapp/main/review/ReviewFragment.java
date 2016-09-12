@@ -2,14 +2,13 @@ package com.weddingsingers.wsapp.main.review;
 
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,17 +20,11 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Review;
-import com.weddingsingers.wsapp.data.Singer;
-import com.weddingsingers.wsapp.data.VideoList;
-import com.weddingsingers.wsapp.function.mypage.singervideomgm.VideoAddFragment;
 import com.weddingsingers.wsapp.function.review.writereview.WriteReviewActivity;
-import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
 import com.weddingsingers.wsapp.function.video.singerreview.SingerReviewAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.MyReviewRequest;
-import com.weddingsingers.wsapp.request.SingerProfileRequest;
-import com.weddingsingers.wsapp.request.SingerReviewRequest;
 
 import java.util.List;
 
@@ -65,7 +58,7 @@ public class ReviewFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new SingerReviewAdapter();
+        mAdapter = new SingerReviewAdapter(2);
         recyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -87,7 +80,8 @@ public class ReviewFragment extends Fragment {
                     Review review = new Review();
                     review.setThumbnail(result.getResult().get(i).getThumbnail());
                     review.setContent(result.getResult().get(i).getContent());
-                    review.setCustomerName(result.getResult().get(i).getCustomerName());
+                    review.setSingerName(result.getResult().get(i).getSingerName());
+                    review.setWriteDTime(result.getResult().get(i).getWriteDTime());
                     review.setPoint(result.getResult().get(i).getPoint());
                     mAdapter.add(review);
                 }

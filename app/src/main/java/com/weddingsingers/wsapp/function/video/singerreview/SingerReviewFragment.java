@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +19,9 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Rating;
 import com.weddingsingers.wsapp.data.Review;
 import com.weddingsingers.wsapp.data.Singer;
-import com.weddingsingers.wsapp.data.VideoList;
 import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
-import com.weddingsingers.wsapp.request.FavoriteVideoListRequest;
 import com.weddingsingers.wsapp.request.RatingRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
 import com.weddingsingers.wsapp.request.SingerReviewRequest;
@@ -41,6 +38,8 @@ public class SingerReviewFragment extends Fragment {
 
     final static int ARG_RATING = 1;
     final static int ARG_SIMPLE = 1;
+    final static float DEFAULT_RATING_STEP = (float) 0.1;
+    public final static String EXTRA_SINGER_ID = "singerId";
 
     @BindView(R.id.singer_review_pv_profile)
     ProfileView singerProfileView;
@@ -50,6 +49,9 @@ public class SingerReviewFragment extends Fragment {
 
     @BindView(R.id.singer_review_rb_rating)
     RatingBar ratingBar;
+
+    @BindView(R.id.singer_review_tv_rating)
+    TextView ratingView;
 
     @BindView(R.id.singer_review_rv_list)
     RecyclerView recyclerView;
@@ -74,18 +76,22 @@ public class SingerReviewFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new SingerReviewAdapter();
+        mAdapter = new SingerReviewAdapter(2);
         recyclerView.setAdapter(mAdapter);
+
+        ratingBar.setStepSize(DEFAULT_RATING_STEP);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
+
+        singerId = getActivity().getIntent().getIntExtra(EXTRA_SINGER_ID, 0);
 
         initData();
 
         return view;
     }
 
-    int singerId = 3;
+    int singerId = 0;
 
     private void initData() {
 
@@ -119,6 +125,7 @@ public class SingerReviewFragment extends Fragment {
                 float reviewPoint = result.getResult().getReviewPoint();
 
                 countView.setText("" + reviewCnt);
+                ratingView.setText("" + reviewPoint);
                 ratingBar.setRating(reviewPoint);
             }
 
@@ -138,6 +145,7 @@ public class SingerReviewFragment extends Fragment {
                     review.setThumbnail(result.getResult().get(i).getThumbnail());
                     review.setContent(result.getResult().get(i).getContent());
                     review.setCustomerName(result.getResult().get(i).getCustomerName());
+                    review.setWriteDTime(result.getResult().get(i).getWriteDTime());
                     mAdapter.add(review);
                 }
             }

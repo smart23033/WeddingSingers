@@ -213,7 +213,9 @@ public class VideoFragment extends Fragment {
 
     @OnClick(R.id.view_profile_rl_profile)
     void onProfileClick() {
-        startActivity(new Intent(getActivity(), SingerInfoActivity.class));
+        Intent intent = new Intent(getActivity(), SingerInfoActivity.class);
+        intent.putExtra(KEY_SINGER_ID, singerId);
+        startActivity(intent);
     }
 
     @Override

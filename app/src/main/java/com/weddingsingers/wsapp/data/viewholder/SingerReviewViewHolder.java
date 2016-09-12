@@ -3,8 +3,8 @@ package com.weddingsingers.wsapp.data.viewholder;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -12,7 +12,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Review;
-import com.weddingsingers.wsapp.data.VideoList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +22,9 @@ import butterknife.ButterKnife;
 public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
 
     Context context = MyApplication.getContext();
+    public static final int TYPE_SINGER = 1;
+    public static final int TYPE_CUSTOMER = 2;
+    int type = 0;
 
     @BindView(R.id.view_singer_review_riv_picture)
     RoundedImageView thumbnailImageView;
@@ -30,13 +32,18 @@ public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.view_singer_review_tv_name)
     TextView nameView;
 
+    @BindView(R.id.view_singer_review_tv_data)
+    TextView dateView;
+
     @BindView(R.id.view_singer_review_tv_review)
     TextView contentView;
 
-    public SingerReviewViewHolder(View itemView) {
+    public SingerReviewViewHolder(View itemView , int type) {
         super(itemView);
 
         ButterKnife.bind(this, itemView);
+
+        this.type = type;
 
         thumbnailImageView.mutateBackground(true);
         thumbnailImageView.setOval(true);
@@ -46,6 +53,15 @@ public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
     Review review;
 
     public void setReview(Review review) {
+
+        Log.i("review viewholder ----", "" + type + review.getWriteDTime());
+
+        String userName = "";
+        if (type == TYPE_SINGER) {
+            userName = review.getCustomerName();
+        } else {
+            userName = review.getSingerName();
+        }
         this.review = review;
 
         Glide.with(context)
@@ -54,9 +70,9 @@ public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.ic_nav_logout))
                 .into(thumbnailImageView);
-        nameView.setText(review.getCustomerName());
+        nameView.setText(userName);
+        dateView.setText(review.getWriteDTime());
         contentView.setText(review.getContent());
-//        dateView.setText(review.getDate());
     }
 
 }

@@ -25,11 +25,10 @@ public class WriteReviewRequest extends AbstractRequest<NetworkResult<String>>{
         builder.addPathSegment("reviews");
 
         RequestBody body = new FormBody.Builder()
-                .add("rid", String.valueOf(review.getReservationId()))
-                .add("sid", String.valueOf(review.getSingerId()))
+                .add("rid", "" + review.getReservationId())
                 .add("content", review.getContent())
-                .add("point", String.valueOf(review.getPoint()))
-                .add("write_dtime", review.getWrtieDTime())
+                .add("point", "" + review.getIntPoint())
+                .add("write_dtime", review.getWriteDTime())
                 .build();
 
         request = new Request.Builder()

@@ -33,6 +33,8 @@ import butterknife.ButterKnife;
  */
 public class OtherVideoFragment extends Fragment {
 
+    public final static String EXTRA_SINGER_ID = "singerId";
+
     @BindView(R.id.other_video_rv_list)
     RecyclerView recyclerView;
 
@@ -71,12 +73,14 @@ public class OtherVideoFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
+        singerId = getActivity().getIntent().getIntExtra(EXTRA_SINGER_ID, 0);
+
         initData();
 
         return view;
     }
 
-    int singerId = 3;
+    int singerId = 0;
     public void initData() {
 
         SingerVideoMgmRequest request = new SingerVideoMgmRequest(getContext(), singerId);

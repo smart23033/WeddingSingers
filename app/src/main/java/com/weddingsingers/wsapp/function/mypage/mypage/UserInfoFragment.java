@@ -179,8 +179,8 @@ public class UserInfoFragment extends Fragment {
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
                         //.load("https://www.ethos3.com/wp-content/uploads/2015/11/humor-public-speaking.jpg")
+                        .asBitmap()
                         .centerCrop()
-                        .crossFade()
                         .placeholder(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
                         .into(userImageView);
 

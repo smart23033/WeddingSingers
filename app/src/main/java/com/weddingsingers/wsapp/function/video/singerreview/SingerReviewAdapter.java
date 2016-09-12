@@ -19,6 +19,7 @@ import java.util.List;
 public class SingerReviewAdapter extends RecyclerView.Adapter<SingerReviewViewHolder> {
 
     List<Review> items = new ArrayList<>();
+    int type = 0;
 
     public void add(Review review) {
         items.add(review);
@@ -30,10 +31,14 @@ public class SingerReviewAdapter extends RecyclerView.Adapter<SingerReviewViewHo
         notifyDataSetChanged();
     }
 
+    public SingerReviewAdapter(int type) {
+        this.type = type;
+    }
+
     @Override
     public SingerReviewViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_singer_review, parent,false);
-        SingerReviewViewHolder holder = new SingerReviewViewHolder(view);
+        SingerReviewViewHolder holder = new SingerReviewViewHolder(view, type);
 //        holder.setOnVideoListItemClickListener(this);
 
         return holder;

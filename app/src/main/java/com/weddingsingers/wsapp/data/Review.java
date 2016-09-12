@@ -13,7 +13,7 @@ public class Review implements Serializable {
 
     private int singerId;
 
-    @SerializedName("customer_photoURL")
+    @SerializedName("singer_photoURL")
     private String thumbnail;
 
     @SerializedName("customer_name")
@@ -22,13 +22,18 @@ public class Review implements Serializable {
     @SerializedName("singer_name")
     private String SingerName;
 
+    // 싱어 리뷰 조회 평점
     private String point;
+
+    // 리뷰 작성 시 평점
+    private int intPoint;
 
     private String content;
 
     @SerializedName("write_dtime")
+    private String writeDTime;
 
-    private String wrtieDTime;
+
 
     public int getReservationId() {
         return reservationId;
@@ -78,6 +83,14 @@ public class Review implements Serializable {
         this.point = point;
     }
 
+    public int getIntPoint() {
+        return intPoint;
+    }
+
+    public void setIntPoint(int intPoint) {
+        this.intPoint = intPoint;
+    }
+
     public String getContent() {
         return content;
     }
@@ -86,11 +99,11 @@ public class Review implements Serializable {
         this.content = content;
     }
 
-    public String getWrtieDTime() {
-        return wrtieDTime;
+    public String getWriteDTime() {
+        return writeDTime;
     }
 
-    public void setWrtieDTime(String wrtieDTime) {
-        this.wrtieDTime = wrtieDTime;
+    public void setWriteDTime(String writeDTime) {
+        this.writeDTime = writeDTime;
     }
 }

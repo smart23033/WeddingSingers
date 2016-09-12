@@ -29,7 +29,7 @@
             android:layout_below="@+id/singer_review_tv_review"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="@dimen/video_rb_rating_margin_top"
-            android:text="4.0"
+            android:text="0"
             android:textSize="@dimen/video_tv_rating_text_size" />
 
         <RatingBar

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Singer;
+import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.function.video.othervideo.OtherVideoActivity;
 import com.weddingsingers.wsapp.function.video.singerreview.SingerReviewActivity;
@@ -35,6 +36,7 @@ import butterknife.OnClick;
 public class SingerInfoFragment extends Fragment {
 
     final static int ARG_SIMPLE = 1;
+    public final static String EXTRA_SINGER_ID = "singerId";
 
     @BindView(R.id.singer_info_pv_profile)
     ProfileView singerProfileView;
@@ -69,12 +71,14 @@ public class SingerInfoFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        singerId = getActivity().getIntent().getIntExtra(EXTRA_SINGER_ID, 0);
+
         initData();
         return view;
     }
 
     Singer singer;
-    int singerId = 3;
+    int singerId = 0;
 
     public void initData() {
 

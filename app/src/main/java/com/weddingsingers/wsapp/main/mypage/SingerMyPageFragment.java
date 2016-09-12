@@ -94,8 +94,8 @@ public class SingerMyPageFragment extends Fragment {
 
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
+                        .asBitmap()
                         .centerCrop()
-                        .crossFade()
                         .placeholder(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
                         .into(pictureView);
 

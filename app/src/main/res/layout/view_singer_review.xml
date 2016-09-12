@@ -31,6 +31,15 @@
         android:text="singer name" />
 
     <TextView
+        android:id="@+id/view_singer_review_tv_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+        android:layout_toRightOf="@id/view_singer_review_tv_name"
+        android:text="date" />
+
+    <TextView
         android:id="@+id/view_singer_review_tv_review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
