@@ -25,14 +25,14 @@ import butterknife.ButterKnife;
 public class CustomerListViewHolder extends RecyclerView.ViewHolder {
 
 //    노랑
-    private final static int TYPE_WAIT = 20;
+    private final static int TYPE_WAIT = 10;
 
 //    초록
-    private final static int TYPE_ACCEPT = 30;
+    private final static int TYPE_ACCEPT = 20;
 
 //    빨강
-    private final static int TYPE_REJECT = 21;
-    private final static int TYPE_CANCEL = 31;
+    private final static int TYPE_REJECT = 11;
+    private final static int TYPE_CANCEL = 21;
 
     Context context = MyApplication.getContext();
 
@@ -134,7 +134,6 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder {
         Log.i("CustomerListViewHolder","status : " + status);
 
         switch (status) {
-//            결제완료
             case TYPE_ACCEPT: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
 
@@ -143,7 +142,6 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder {
                 notificationView.setVisibility(View.GONE);
                 break;
             }
-//            응답대기
             case TYPE_WAIT: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorWait));
 
@@ -152,7 +150,6 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder {
                 notificationView.setVisibility(View.GONE);
                 break;
             }
-
             case TYPE_REJECT:
             case TYPE_CANCEL: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));

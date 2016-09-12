@@ -45,7 +45,7 @@ public class PaymentFragment extends Fragment {
     public static final String FRAG_RESERVED_CUSTOMER = "ReservedCustomerFragment";
 
     //    싱어가 고객의 예약에 대한 수락으로 보증금 지불할 때
-    private static final int TYPE_ACCEPT_RESERVATION = 30;
+    private static final int TYPE_ACCEPT_RESERVATION = 20;
 
     //    고객이 예약하고나서 싱어가 수락해가지고 실제 금액 지불할 때
     private static final int TYPE_PAYMENT_SUCCESS = 30;
