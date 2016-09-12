@@ -21,6 +21,7 @@ import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateRequest;
@@ -53,6 +54,8 @@ public class PaymentFragment extends Fragment {
     @BindView(R.id.payment_ev_profile)
     EstimateView estimateView;
 
+    ReservationListAdapter mAdapter;
+
     public PaymentFragment() {
         // Required empty public constructor
     }
@@ -74,6 +77,7 @@ public class PaymentFragment extends Fragment {
             fragmentName = getArguments().getString(ARG_FRAG_NAME);
             estimateId = getArguments().getInt(ARG_ESTIMATE_ID);
         }
+        mAdapter = new ReservationListAdapter();
     }
 
     @Override
@@ -161,6 +165,8 @@ public class PaymentFragment extends Fragment {
                         }
                         else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
+                            Log.i("PaymentFragment","estimateId : " + estimateId);
+                            mAdapter.remove(estimateId);
                             moveReservedOneFragment();
                         }
                     }

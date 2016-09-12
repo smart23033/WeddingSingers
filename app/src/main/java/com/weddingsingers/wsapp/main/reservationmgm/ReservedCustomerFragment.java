@@ -165,6 +165,7 @@ public class ReservedCustomerFragment extends Fragment {
 
 //        ReservedCustomerFragment로 돌아와라!
         intent.putExtra(PaymentActivity.FRAG_NAME,"ReservedCustomerFragment");
+        intent.putExtra(PaymentActivity.EXTRA_ESTIMATE_ID, estimateId);
         startActivity(intent);
     }
 

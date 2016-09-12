@@ -145,7 +145,11 @@ public class MainActivity extends AppCompatActivity
                     break;
                 }
                 case FRAG_MY_PAGE: {
-                    changeFragment(new SingerMyPageFragment());
+                    if(userType == TYPE_SINGER) {
+                        changeFragment(new SingerMyPageFragment());
+                    }else if(userType == TYPE_CUSTOMER){
+                        changeFragment(new MyPageCustomerFragment());
+                    }
                     titleTextView.setText(getResources().getString(R.string.nav_my_page));
                     break;
                 }
@@ -240,7 +244,7 @@ public class MainActivity extends AppCompatActivity
             }
             case R.id.nav_reservation_mgm: {
 //               수요자의 예약관리
-                if(userType==TYPE_CUSTOMER) {
+                if(userType == TYPE_CUSTOMER) {
                     changeNavMenu(new ReservationMgmFragment());
                 }
 //                공급자의 예약관리

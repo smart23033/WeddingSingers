@@ -28,6 +28,15 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
         notifyDataSetChanged();
     }
 
+    public void remove(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.remove(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
     @Override
     public SingerListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserved_singer,parent,false);
