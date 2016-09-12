@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-31.
  */
-public class CustomerListViewHolder extends RecyclerView.ViewHolder{
+public class CustomerListViewHolder extends RecyclerView.ViewHolder {
 
     private final static int TYPE_WAIT = 20;
     private final static int TYPE_ACCEPT = 30;
@@ -48,11 +49,8 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
     @BindView(R.id.view_reserved_customer_tv_detail_songs)
     TextView songsView;
 
-    @BindView(R.id.view_reserved_customer_btn_accept)
-    Button acceptBtn;
-
-    @BindView(R.id.view_reserved_customer_btn_cancel)
-    Button cancelBtn;
+    @BindView(R.id.view_reserved_customer_btn_response)
+    Button responseBtn;
 
     @BindView(R.id.view_reserved_customer_btn_chat)
     Button chatBtn;
@@ -60,14 +58,14 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
     @BindView(R.id.view_reserved_customer_tv_notification)
     TextView notificationView;
 
-    public interface OnAcceptBtnClickListener {
-        public void onAcceptBtnClick(View view, Estimate estimate, int position);
+    public interface OnResponseBtnClickListener {
+        public void onResponseBtnClick(View view, Estimate estimate, int position);
     }
 
-    OnAcceptBtnClickListener acceptBtnListener;
+    OnResponseBtnClickListener responseBtnListener;
 
-    public void setOnAcceptBtnClickListener(OnAcceptBtnClickListener acceptBtnkListener) {
-        this.acceptBtnListener = acceptBtnkListener;
+    public void setOnResponseBtnClickListener(OnResponseBtnClickListener responseBtnkListener) {
+        this.responseBtnListener = responseBtnkListener;
     }
 
     public interface OnChatBtnClickListener {
@@ -80,18 +78,6 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
         this.chatBtnListener = chatBtnListener;
     }
 
-
-    public interface OnCancelBtnClickListener {
-        public void onCancelBtnClick(View view, Estimate estimate, int position);
-    }
-
-    OnCancelBtnClickListener cancelBtnListener;
-
-    public void setOnCancelBtnClickListener(OnCancelBtnClickListener cancelBtnListener) {
-        this.cancelBtnListener = cancelBtnListener;
-    }
-
-
     public CustomerListViewHolder(View itemView) {
         super(itemView);
 
@@ -102,11 +88,11 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
         customerImageView.setBackgroundColor(Color.LTGRAY);
 
 
-        acceptBtn.setOnClickListener(new View.OnClickListener() {
+        responseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (acceptBtnListener != null) {
-                    acceptBtnListener.onAcceptBtnClick(view, estimate, getAdapterPosition());
+                if (responseBtnListener != null) {
+                    responseBtnListener.onResponseBtnClick(view, estimate, getAdapterPosition());
                 }
             }
         });
@@ -119,16 +105,6 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
                 }
             }
         });
-
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (cancelBtnListener != null) {
-                    cancelBtnListener.onCancelBtnClick(view, estimate, getAdapterPosition());
-                }
-            }
-        });
-
 
     }
 
@@ -150,14 +126,15 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
 
         int status = estimate.getStatus();
 
-        switch (status){
+        Log.i("CustomerListViewHolder","status : " + status);
+
+        switch (status) {
 //            결제완료
-            case TYPE_ACCEPT:{
+            case TYPE_ACCEPT: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
 
-                cancelBtn.setVisibility(View.VISIBLE);
                 chatBtn.setVisibility(View.VISIBLE);
-                acceptBtn.setVisibility(View.GONE);
+                responseBtn.setVisibility(View.GONE);
                 notificationView.setVisibility(View.GONE);
                 break;
             }
@@ -165,20 +142,18 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
             case TYPE_WAIT: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorWait));
 
-                cancelBtn.setVisibility(View.VISIBLE);
                 chatBtn.setVisibility(View.VISIBLE);
-                acceptBtn.setVisibility(View.VISIBLE);
+                responseBtn.setVisibility(View.VISIBLE);
                 notificationView.setVisibility(View.GONE);
                 break;
             }
+
             case TYPE_REJECT:
-            case TYPE_CANCEL:
-            {
+            case TYPE_CANCEL: {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));
 
-                cancelBtn.setVisibility(View.GONE);
                 chatBtn.setVisibility(View.GONE);
-                acceptBtn.setVisibility(View.GONE);
+                responseBtn.setVisibility(View.GONE);
                 notificationView.setVisibility(View.VISIBLE);
                 break;
             }

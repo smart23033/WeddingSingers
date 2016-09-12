@@ -157,8 +157,7 @@
             android:layout_marginLeft="@dimen/view_reserved_singer_btn_margin_left"
             android:padding="@dimen/view_reserved_singer_btn_padding"
             android:text="pay"
-            android:textSize="@dimen/view_reserved_singer_btn_text_size"
-            android:visibility="gone"/>
+            android:textSize="@dimen/view_reserved_singer_btn_text_size"/>
 
         <TextView
             android:id="@+id/view_reserved_singer_tv_notification"

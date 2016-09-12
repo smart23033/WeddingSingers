@@ -72,20 +72,36 @@ public class ReservedCustomerFragment extends Fragment {
             }
         });
 
-        mAdapter.setOnAdapterAcceptBtnClickListener(new ReservedCustomerListAdapter.OnAdapterAcceptBtnClickListener() {
+        mAdapter.setOnAdapterResponseBtnClickListener(new ReservedCustomerListAdapter.OnAdapterResponseBtnClickListener() {
             @Override
-            public void onAdapterAcceptBtnClick(View view, Estimate estimate, int position) {
-                Toast.makeText(getContext(), "reservation accepted", Toast.LENGTH_SHORT).show();
+            public void onAdapterResponseBtnClick(View view, Estimate estimate, int position) {
+
+//                다이얼로그!!
                 estimateId = estimate.getId();
-                movePaymentActivity();
 
-            }
-        });
 
-        mAdapter.setOnAdapterCancelBtnClickListener(new ReservedCustomerListAdapter.OnAdapterCancelBtnClickListener() {
-            @Override
-            public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
-                Log.i("ReservedCustomerFragment", "Cancel Btn Click");
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Response")
+                        .setMessage("Will you accept customer's request? or not?")
+                        .setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                movePaymentActivity();
+                            }
+                        });
+
+                builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(), "reservation rejected", Toast.LENGTH_SHORT).show();
+//                        취소 요청
+                    }
+                });
+
+                dialog = builder.create();
+                dialog.show();
+
             }
         });
 
@@ -98,7 +114,7 @@ public class ReservedCustomerFragment extends Fragment {
         return view;
     }
 
-    private void acceptReservation(int type) {
+    private void RespondReservation(int type) {
         PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
@@ -129,6 +145,7 @@ public class ReservedCustomerFragment extends Fragment {
                             estimate.setLocation(e.getLocation());
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
+                            estimate.setStatus(e.getStatus());
                             mAdapter.add(estimate);
 
                         }
@@ -144,7 +161,6 @@ public class ReservedCustomerFragment extends Fragment {
         );
 
     }
-
 
     private void movePaymentActivity() {
         Intent intent = new Intent(getActivity(), PaymentActivity.class);

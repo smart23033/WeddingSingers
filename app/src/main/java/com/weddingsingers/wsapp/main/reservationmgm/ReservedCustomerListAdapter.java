@@ -17,8 +17,7 @@ import java.util.List;
  */
 public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerListViewHolder> implements
     CustomerListViewHolder.OnChatBtnClickListener,
-        CustomerListViewHolder.OnAcceptBtnClickListener,
-    CustomerListViewHolder.OnCancelBtnClickListener{
+        CustomerListViewHolder.OnResponseBtnClickListener{
 
     List<Estimate> items = new ArrayList<>();
 
@@ -46,9 +45,8 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
     public CustomerListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserved_customer,parent,false);
         CustomerListViewHolder holder = new CustomerListViewHolder(view);
-        holder.setOnCancelBtnClickListener(this);
         holder.setOnChatBtnClickListener(this);
-        holder.setOnAcceptBtnClickListener(this);
+        holder.setOnResponseBtnClickListener(this);
 
         return holder;
     }
@@ -72,13 +70,13 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
         this.chatBtnListener = chatBtnListener;
     }
 
-    public interface OnAdapterAcceptBtnClickListener {
-        public void onAdapterAcceptBtnClick(View view, Estimate estimate, int position);
+    public interface OnAdapterResponseBtnClickListener {
+        public void onAdapterResponseBtnClick(View view, Estimate estimate, int position);
     }
 
-    OnAdapterAcceptBtnClickListener acceptBtnClickListener;
-    public void setOnAdapterAcceptBtnClickListener(OnAdapterAcceptBtnClickListener acceptBtnClickListener){
-        this.acceptBtnClickListener = acceptBtnClickListener;
+    OnAdapterResponseBtnClickListener responseBtnClickListener;
+    public void setOnAdapterResponseBtnClickListener(OnAdapterResponseBtnClickListener responseBtnClickListener){
+        this.responseBtnClickListener = responseBtnClickListener;
     }
 
     @Override
@@ -89,25 +87,11 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
     }
 
     @Override
-    public void onAcceptBtnClick(View view, Estimate estimate, int position) {
-        if(acceptBtnClickListener != null){
-            acceptBtnClickListener.onAdapterAcceptBtnClick(view,estimate,position);
+    public void onResponseBtnClick(View view, Estimate estimate, int position) {
+        if(responseBtnClickListener != null){
+            responseBtnClickListener.onAdapterResponseBtnClick(view,estimate,position);
         }
     }
 
-    public interface OnAdapterCancelBtnClickListener{
-        public void onAdapterCancelBtnClick(View view, Estimate estimate, int position);
-    }
 
-    OnAdapterCancelBtnClickListener cancelBtnListener;
-    public void setOnAdapterCancelBtnClickListener(OnAdapterCancelBtnClickListener cancelBtnListener){
-        this.cancelBtnListener = cancelBtnListener;
-    }
-
-    @Override
-    public void onCancelBtnClick(View view, Estimate estimate, int position) {
-        if(cancelBtnListener != null){
-            cancelBtnListener.onAdapterCancelBtnClick(view,estimate,position);
-        }
-    }
 }

@@ -179,6 +179,9 @@ public class PaymentFragment extends Fragment {
 
                         if (fragmentName.equals("ReservedCustomerFragment")) {
                             makePayment(TYPE_ACCEPT_RESERVATION);
+                            reservedCustomerListAdapter.remove(estimateId);
+//                          디테일일정어댑터에 아이템이 하나 추가되어야 함.
+                            getActivity().finish();
                         } else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
                             reservationListAdapter.remove(estimateId);

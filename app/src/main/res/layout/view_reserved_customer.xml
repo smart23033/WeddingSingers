@@ -129,16 +129,6 @@
         android:gravity="right">
 
         <Button
-            android:id="@+id/view_reserved_customer_btn_cancel"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="@dimen/view_reserved_customer_btn_width"
-            android:layout_height="@dimen/view_reserved_customer_btn_height"
-            android:layout_marginLeft="@dimen/view_reserved_customer_margin_left"
-            android:padding="@dimen/view_reserved_customer_btn_padding"
-            android:text="cancel"
-            android:textSize="@dimen/view_reserved_customer_btn_text_size" />
-
-        <Button
             android:id="@+id/view_reserved_customer_btn_chat"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="@dimen/view_reserved_customer_btn_width"
@@ -150,15 +140,14 @@
 
 
         <Button
-            android:id="@+id/view_reserved_customer_btn_accept"
+            android:id="@+id/view_reserved_customer_btn_response"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="@dimen/view_reserved_customer_btn_width"
             android:layout_height="@dimen/view_reserved_customer_btn_height"
             android:layout_marginLeft="@dimen/view_reserved_customer_btn_margin_left"
             android:padding="@dimen/view_reserved_customer_btn_padding"
-            android:text="accept"
-            android:textSize="@dimen/view_reserved_customer_btn_text_size"
-            android:visibility="gone" />
+            android:text="response"
+            android:textSize="@dimen/view_reserved_customer_btn_text_size"/>
 
         <TextView
             android:id="@+id/view_reserved_customer_tv_notification"
