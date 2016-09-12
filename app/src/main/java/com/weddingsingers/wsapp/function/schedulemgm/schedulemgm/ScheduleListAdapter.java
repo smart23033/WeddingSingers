@@ -27,6 +27,20 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
         notifyDataSetChanged();
     }
 
+    public void add(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.add(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public ScheduleListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_detail_schedule,parent,false);

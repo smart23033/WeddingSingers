@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.weddingsingers.wsapp.R;
 
@@ -34,6 +35,8 @@ public class DayOffActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int singerId = intent.getIntExtra(EXTRA_SINGER_ID, DEFAULT_VALUE);
+
+        Log.i("DayOffActivity","singerId : " + singerId);
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();

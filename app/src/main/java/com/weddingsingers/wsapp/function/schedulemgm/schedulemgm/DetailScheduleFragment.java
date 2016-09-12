@@ -128,7 +128,7 @@ public class DetailScheduleFragment extends Fragment {
 
 
     private void init() {
-
+        mAdapter.clear();
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override

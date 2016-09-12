@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
+import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.ScheduleListAdapter;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerListAdapter;
@@ -37,12 +39,13 @@ import butterknife.OnClick;
  */
 public class PaymentFragment extends Fragment {
 
-    private static final String ARG_FRAG_NAME = "fragmentName";
-    private static final String ARG_ESTIMATE_ID = "estimateId";
+    public static final String ARG_FRAG_NAME = "fragmentName";
+    public static final String ARG_ESTIMATE_ID = "estimateId";
+    public static final String FRAG_RESERVED_ONE = "ReservedOneFragment";
+    public static final String FRAG_RESERVED_CUSTOMER = "ReservedCustomerFragment";
 
     //    싱어가 고객의 예약에 대한 수락으로 보증금 지불할 때
-    private static final int TYPE_ACCEPT_RESERVATION = 20;
-
+    private static final int TYPE_ACCEPT_RESERVATION = 30;
 
     //    고객이 예약하고나서 싱어가 수락해가지고 실제 금액 지불할 때
     private static final int TYPE_PAYMENT_SUCCESS = 30;
@@ -58,6 +61,7 @@ public class PaymentFragment extends Fragment {
     ReservationListAdapter reservationListAdapter;
     ReservedOneAdapter reservedOneAdapter;
     ReservedCustomerListAdapter reservedCustomerListAdapter;
+    ScheduleListAdapter scheduleListAdapter;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -83,6 +87,8 @@ public class PaymentFragment extends Fragment {
         reservationListAdapter = new ReservationListAdapter();
         reservedOneAdapter = new ReservedOneAdapter();
         reservedCustomerListAdapter = new ReservedCustomerListAdapter();
+        scheduleListAdapter = new ScheduleListAdapter();
+
     }
 
     @Override
@@ -104,8 +110,15 @@ public class PaymentFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
 //               이미지 나중에
-                estimateView.setUserImage(result.getResult().getSingerImage());
-                estimateView.setUserName(result.getResult().getSingerName());
+                Log.i("PaymentFragment","fragName : " + fragmentName);
+                if(fragmentName.equals(FRAG_RESERVED_CUSTOMER)) {
+                    estimateView.setUserImage(result.getResult().getCustomerImage());
+                    estimateView.setUserName(result.getResult().getCustomerName());
+                } else if(fragmentName.equals(FRAG_RESERVED_ONE)) {
+                    estimateView.setUserImage(result.getResult().getSingerImage());
+                    estimateView.setUserName(result.getResult().getSingerName());
+                }
+
                 estimateView.setLocation(result.getResult().getLocation());
                 estimateView.setDate(result.getResult().getDate());
                 estimateView.setSong(result.getResult().getSongs());
@@ -139,18 +152,10 @@ public class PaymentFragment extends Fragment {
 //                            moveDetailScheduleFragment();
 //                        } else {}
 
-                        if (fragmentName.equals("ReservedCustomerFragment")) {
+                        if (fragmentName.equals(FRAG_RESERVED_CUSTOMER)) {
                             makePayment(TYPE_ACCEPT_RESERVATION);
-                            reservedCustomerListAdapter.remove(estimateId);
-//                          디테일일정어댑터에 아이템이 하나 추가되어야 함.
-                            getActivity().finish();
-
                         } else {
-//                        고객 - 예약리스트 - 초록일때 결제
                             makePayment(TYPE_PAYMENT_SUCCESS);
-                            reservationListAdapter.remove(estimateId);
-                            reservedOneAdapter.add(estimateId);
-                            moveReservedOneFragment();
                         }
 
                     }
@@ -177,16 +182,10 @@ public class PaymentFragment extends Fragment {
 //                            moveDetailScheduleFragment();
 //                        }
 
-                        if (fragmentName.equals("ReservedCustomerFragment")) {
+                        if (fragmentName.equals(FRAG_RESERVED_CUSTOMER)) {
                             makePayment(TYPE_ACCEPT_RESERVATION);
-                            reservedCustomerListAdapter.remove(estimateId);
-//                          디테일일정어댑터에 아이템이 하나 추가되어야 함.
-                            getActivity().finish();
                         } else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
-                            reservationListAdapter.remove(estimateId);
-                            reservedOneAdapter.add(estimateId);
-                            moveReservedOneFragment();
                         }
 
                     }
@@ -201,8 +200,15 @@ public class PaymentFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Toast.makeText(getContext(), "Payment Request Success", Toast.LENGTH_SHORT).show();
-                reservationListAdapter.remove(estimateId);
-                getActivity().finish();
+                if(fragmentName.equals(FRAG_RESERVED_CUSTOMER)){
+                    reservedCustomerListAdapter.remove(estimateId);
+                    scheduleListAdapter.add(estimateId);
+                    getActivity().finish();
+                }else if (fragmentName.equals(FRAG_RESERVED_ONE)){
+                    reservationListAdapter.remove(estimateId);
+                    reservedOneAdapter.add(estimateId);
+                    moveReservedOneFragment();
+                }
             }
 
             @Override

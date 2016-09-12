@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 }
                 case FRAG_SCHEDULE_MGM: {
-                    changeFragment(new ScheduleMgmFragment());
+                    changeFragment(ScheduleMgmFragment.newInstance(userId));
                     titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
                     break;
                 }
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.nav_schedule_mgm: {
-                changeNavMenu(new ScheduleMgmFragment());
+                changeNavMenu(ScheduleMgmFragment.newInstance(userId));
                 titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
                 return true;
             }

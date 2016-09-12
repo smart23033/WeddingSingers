@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,6 +55,7 @@ public class ScheduleMgmFragment extends Fragment {
         setHasOptionsMenu(true);
         if (getArguments() != null) {
            singerId = getArguments().getInt(KEY_SINGER_ID);
+            Log.i("ScheduleMgmFragment","singerId : " + singerId);
         }
     }
 
@@ -98,7 +100,7 @@ public class ScheduleMgmFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.schedule_menu_plus){
             Intent intent = new Intent(getActivity(), DayOffActivity.class);
-            intent.putExtra(DayOffActivity.EXTRA_SINGER_ID,singerId);
+            intent.putExtra(DayOffActivity.EXTRA_SINGER_ID, singerId);
             getActivity().startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

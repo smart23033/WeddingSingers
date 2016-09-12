@@ -101,6 +101,7 @@ public class DayOffFragment extends Fragment implements
         NetworkManager.getInstance().getNetworkData(dayOffRequest, new NetworkManager.OnResultListener<NetworkResult<Schedule>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Schedule>> request, NetworkResult<Schedule> result) {
+
                 for (String date : result.getResult().getDayOff()) {
                     try {
 
@@ -150,6 +151,7 @@ public class DayOffFragment extends Fragment implements
         NetworkManager.getInstance().getNetworkData(reservationDateRequest, new NetworkManager.OnResultListener<NetworkResult<Schedule>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Schedule>> request, NetworkResult<Schedule> result) {
+
                 for (String date : result.getResult().getReservationDate()) {
                     try {
 

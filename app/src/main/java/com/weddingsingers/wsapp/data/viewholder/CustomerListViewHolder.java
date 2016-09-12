@@ -24,8 +24,13 @@ import butterknife.ButterKnife;
  */
 public class CustomerListViewHolder extends RecyclerView.ViewHolder {
 
+//    노랑
     private final static int TYPE_WAIT = 20;
+
+//    초록
     private final static int TYPE_ACCEPT = 30;
+
+//    빨강
     private final static int TYPE_REJECT = 21;
     private final static int TYPE_CANCEL = 31;
 
