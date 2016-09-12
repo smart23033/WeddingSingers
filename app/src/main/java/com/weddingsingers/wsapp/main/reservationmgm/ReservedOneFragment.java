@@ -98,19 +98,12 @@ public class ReservedOneFragment extends Fragment {
                 for(Estimate e : result.getResult()){
                     Estimate estimate = new Estimate();
                     estimate.setSingerImage(e.getSingerImage());
-                    estimate.setUserName(e.getSingerName());
-                    estimate.setSingerName(e.getSingerImage());
+                    estimate.setSingerName(e.getSingerName());
                     estimate.setDate(e.getDate());
                     estimate.setLocation(e.getLocation());
                     estimate.setSongs(e.getSongs());
                     estimate.setSpecial(e.getSpecial());
                     estimate.setId(e.getId());
-
-                    Log.i("ReservedOneFragment","e.getSingerImage() : " + e.getSingerImage());
-                    Log.i("ReservedOneFragment","e.getSingerName() : " + e.getSingerName());
-
-                    Log.i("ReservedOneFragment","estimate.getUserImage() : " + estimate.getUserImage());
-                    Log.i("ReservedOneFragment","estimate.getUserName() : " + estimate.getUserName());
 
                     mAdapter.add(estimate);
 

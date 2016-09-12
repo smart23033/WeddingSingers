@@ -131,11 +131,6 @@ public class ReservedCustomerFragment extends Fragment {
                             estimate.setSpecial(e.getSpecial());
                             mAdapter.add(estimate);
 
-                            Log.i("ReservedCustomerFragment","e.getCustomerName : " + e.getCustomerName());
-                            Log.i("ReservedCustomerFragment","e.getCustomerImage : " + e.getCustomerImage());
-
-                            Log.i("ReservedCustomerFragment","estimate.getCustomerName : " + estimate.getCustomerName());
-                            Log.i("ReservedCustomerFragment","estimate.getCustomerImage : " + estimate.getCustomerImage());
                         }
                     }
 

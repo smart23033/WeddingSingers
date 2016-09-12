@@ -137,12 +137,12 @@ public class CustomerListViewHolder extends RecyclerView.ViewHolder{
     public void setCustomerList(Estimate estimate) {
         this.estimate = estimate;
         Glide.with(context)
-                .load(estimate.getSingerImage())
+                .load(estimate.getCustomerImage())
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.view_profile_ic_person))
                 .into(customerImageView);
-        customerNameView.setText(estimate.getSingerName());
+        customerNameView.setText(estimate.getCustomerName());
         locationView.setText(estimate.getLocation());
         dateView.setText(estimate.getDate());
         songsView.setText(estimate.getSongs());
