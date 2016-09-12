@@ -17,12 +17,27 @@ import java.util.List;
  */
 public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerListViewHolder> implements
     CustomerListViewHolder.OnChatBtnClickListener,
-    CustomerListViewHolder.OnResponseBtnClickListener{
+        CustomerListViewHolder.OnAcceptBtnClickListener,
+    CustomerListViewHolder.OnCancelBtnClickListener{
 
     List<Estimate> items = new ArrayList<>();
 
     public void add(Estimate p){
         items.add(p);
+        notifyDataSetChanged();
+    }
+
+    public void remove(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.remove(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void clear(){
+        items.clear();
         notifyDataSetChanged();
     }
 
@@ -33,6 +48,8 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
         CustomerListViewHolder holder = new CustomerListViewHolder(view);
         holder.setOnCancelBtnClickListener(this);
         holder.setOnChatBtnClickListener(this);
+        holder.setOnAcceptBtnClickListener(this);
+
         return holder;
     }
 
@@ -50,20 +67,20 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
         public void onAdapterChatBtnClick(View view, Estimate estimate, int position);
     }
 
-
     OnAdapterChatBtnClickListener chatBtnListener;
     public void setOnAdapterChatBtnClickListener(OnAdapterChatBtnClickListener chatBtnListener){
         this.chatBtnListener = chatBtnListener;
     }
 
-    public interface OnAdapterResponseBtnClickListener{
-        public void onAdapterResponseBtnClick(View view, Estimate estimate, int position);
+    public interface OnAdapterAcceptBtnClickListener {
+        public void onAdapterAcceptBtnClick(View view, Estimate estimate, int position);
     }
 
-    OnAdapterResponseBtnClickListener responseBtnClickListener;
-    public void setOnAdapterResponseBtnClickListener(OnAdapterResponseBtnClickListener responseBtnClickListener){
-        this.responseBtnClickListener = responseBtnClickListener;
+    OnAdapterAcceptBtnClickListener acceptBtnClickListener;
+    public void setOnAdapterAcceptBtnClickListener(OnAdapterAcceptBtnClickListener acceptBtnClickListener){
+        this.acceptBtnClickListener = acceptBtnClickListener;
     }
+
     @Override
     public void onChatBtnClick(View view, Estimate estimate, int position) {
         if(chatBtnListener != null){
@@ -72,9 +89,25 @@ public class ReservedCustomerListAdapter extends RecyclerView.Adapter<CustomerLi
     }
 
     @Override
-    public void onResponseBtnClick(View view, Estimate estimate, int position) {
-        if(responseBtnClickListener != null){
-            responseBtnClickListener.onAdapterResponseBtnClick(view,estimate,position);
+    public void onAcceptBtnClick(View view, Estimate estimate, int position) {
+        if(acceptBtnClickListener != null){
+            acceptBtnClickListener.onAdapterAcceptBtnClick(view,estimate,position);
+        }
+    }
+
+    public interface OnAdapterCancelBtnClickListener{
+        public void onAdapterCancelBtnClick(View view, Estimate estimate, int position);
+    }
+
+    OnAdapterCancelBtnClickListener cancelBtnListener;
+    public void setOnAdapterCancelBtnClickListener(OnAdapterCancelBtnClickListener cancelBtnListener){
+        this.cancelBtnListener = cancelBtnListener;
+    }
+
+    @Override
+    public void onCancelBtnClick(View view, Estimate estimate, int position) {
+        if(cancelBtnListener != null){
+            cancelBtnListener.onAdapterCancelBtnClick(view,estimate,position);
         }
     }
 }

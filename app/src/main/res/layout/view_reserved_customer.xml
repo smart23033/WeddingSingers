@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/view_vertical_margin"
     android:layout_marginLeft="@dimen/view_horizontal_margin"
     android:layout_marginRight="@dimen/view_horizontal_margin"
-    android:layout_marginBottom="@dimen/view_vertical_margin"
     android:layout_marginTop="@dimen/view_vertical_margin">
 
     <ImageView
@@ -149,25 +150,24 @@
 
 
         <Button
-            android:id="@+id/view_reserved_customer_btn_pay"
+            android:id="@+id/view_reserved_customer_btn_accept"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="@dimen/view_reserved_customer_btn_width"
             android:layout_height="@dimen/view_reserved_customer_btn_height"
             android:layout_marginLeft="@dimen/view_reserved_customer_btn_margin_left"
             android:padding="@dimen/view_reserved_customer_btn_padding"
-            android:text="pay"
+            android:text="accept"
             android:textSize="@dimen/view_reserved_customer_btn_text_size"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/view_reserved_customer_tv_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="* It will be removed after 24 hour"
-            android:textSize="12sp"
-            android:visibility="gone"
             android:textColor="@android:color/darker_gray"
-            />
+            android:textSize="12sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 

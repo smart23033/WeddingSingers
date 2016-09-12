@@ -19,9 +19,6 @@ import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
-import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
-import com.weddingsingers.wsapp.main.MainActivity;
-import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
@@ -45,11 +42,18 @@ public class ReservedCustomerFragment extends Fragment {
 
     ReservedCustomerListAdapter mAdapter;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+
     public ReservedCustomerFragment() {
         // Required empty public constructor
     }
 
     private int estimateId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,32 +72,20 @@ public class ReservedCustomerFragment extends Fragment {
             }
         });
 
-        mAdapter.setOnAdapterResponseBtnClickListener(new ReservedCustomerListAdapter.OnAdapterResponseBtnClickListener() {
+        mAdapter.setOnAdapterAcceptBtnClickListener(new ReservedCustomerListAdapter.OnAdapterAcceptBtnClickListener() {
             @Override
-            public void onAdapterResponseBtnClick(View view, Estimate estimate, int position) {
+            public void onAdapterAcceptBtnClick(View view, Estimate estimate, int position) {
+                Toast.makeText(getContext(), "reservation accepted", Toast.LENGTH_SHORT).show();
                 estimateId = estimate.getId();
-                AlertDialog dialog;
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Response")
-                        .setMessage("Will you accept customer's request?")
-                        .setPositiveButton("ACCEPT", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Toast.makeText(getContext(), "reservation accepted", Toast.LENGTH_SHORT).show();
-                                movePaymentActivity();
+                movePaymentActivity();
 
-                            }
-                        });
+            }
+        });
 
-                builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        respondReservation(TYPE_REJECT_RESERVATION);
-                        Toast.makeText(getContext(), "reservation rejected", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                dialog = builder.create();
-                dialog.show();
+        mAdapter.setOnAdapterCancelBtnClickListener(new ReservedCustomerListAdapter.OnAdapterCancelBtnClickListener() {
+            @Override
+            public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
+                Log.i("ReservedCustomerFragment", "Cancel Btn Click");
             }
         });
 
@@ -103,28 +95,26 @@ public class ReservedCustomerFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
 
-        initData();
-
         return view;
     }
 
-    private void respondReservation(int type) {
+    private void acceptReservation(int type) {
         PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                Log.i("ReservedCustomerFragment","result : " + result.getResult().toString());
+                Log.i("ReservedCustomerFragment", "result : " + result.getResult().toString());
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.i("ReservedCustomerFragment","errorMessage : " + errorMessage);
+                Log.i("ReservedCustomerFragment", "errorMessage : " + errorMessage);
             }
         });
     }
 
-    private void initData() {
-
+    private void init() {
+        mAdapter.clear();
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override
@@ -132,6 +122,7 @@ public class ReservedCustomerFragment extends Fragment {
 
                         for (Estimate e : result.getResult()) {
                             Estimate estimate = new Estimate();
+                            Log.i("ReservedCustomerFragment","e.getCustomerName : " + e.getCustomerName());
                             estimate.setId(e.getId());
                             estimate.setCustomerName(e.getCustomerName());
                             estimate.setCustomerImage(e.getCustomerImage());
@@ -139,7 +130,7 @@ public class ReservedCustomerFragment extends Fragment {
                             estimate.setLocation(e.getLocation());
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
-                            mAdapter.add(e);
+                            mAdapter.add(estimate);
                         }
                     }
 
@@ -164,7 +155,7 @@ public class ReservedCustomerFragment extends Fragment {
 
 
 //        ReservedCustomerFragment로 돌아와라!
-        intent.putExtra(PaymentActivity.FRAG_NAME,"ReservedCustomerFragment");
+        intent.putExtra(PaymentActivity.FRAG_NAME, "ReservedCustomerFragment");
         intent.putExtra(PaymentActivity.EXTRA_ESTIMATE_ID, estimateId);
         startActivity(intent);
     }

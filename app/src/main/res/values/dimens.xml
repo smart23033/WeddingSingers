@@ -198,6 +198,13 @@
     <dimen name="reservation_list_tv_margin_left">10dp</dimen>
     <dimen name="reservation_list_tv_margin_right">50dp</dimen>
 
+    <!--fragment_reserved_customer.xml-->
+    <dimen name="reserved_customer_rl_color_info_margin">15dp</dimen>
+    <dimen name="reserved_customer_iv_width">20dp</dimen>
+    <dimen name="reserved_customer_iv_height">20dp</dimen>
+    <dimen name="reserved_customer_tv_margin_left">10dp</dimen>
+    <dimen name="reserved_customer_tv_margin_right">50dp</dimen>
+
     <!--view_reserved_singer.xml-->
     <dimen name="view_reserved_singer_margin_left">10dp</dimen>
     <dimen name="view_reserved_singer_margin_right">4dp</dimen>

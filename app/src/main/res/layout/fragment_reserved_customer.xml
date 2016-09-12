@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,9 +8,72 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context=".main.reservationmgm.ReservedCustomerFragment">
 
+
+
+    <RelativeLayout
+        android:id="@+id/reserved_customer_rl_color_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/reserved_customer_rl_color_info_margin"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/reserved_customer_iv_accept"
+            android:layout_width="@dimen/reserved_customer_iv_width"
+            android:layout_height="@dimen/reserved_customer_iv_height"
+            android:background="@android:color/holo_green_dark" />
+
+        <TextView
+            android:id="@+id/reserved_customer_tv_accept"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reserved_customer_tv_margin_left"
+            android:layout_marginRight="@dimen/reserved_customer_tv_margin_right"
+            android:layout_toRightOf="@id/reserved_customer_iv_accept"
+            android:text="accept" />
+
+        <ImageView
+            android:id="@+id/reserved_customer_iv_wait"
+            android:layout_width="@dimen/reserved_customer_iv_width"
+            android:layout_height="@dimen/reserved_customer_iv_height"
+            android:layout_toRightOf="@id/reserved_customer_tv_accept"
+            android:background="@android:color/holo_orange_light" />
+
+        <TextView
+            android:id="@+id/reserved_customer_tv_wait"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reserved_customer_tv_margin_left"
+            android:layout_marginRight="@dimen/reserved_customer_tv_margin_right"
+            android:layout_toRightOf="@id/reserved_customer_iv_wait"
+            android:text="wait" />
+
+        <ImageView
+            android:id="@+id/reserved_customer_iv_reject"
+            android:layout_width="@dimen/reserved_customer_iv_width"
+            android:layout_height="@dimen/reserved_customer_iv_height"
+            android:layout_toRightOf="@id/reserved_customer_tv_wait"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
+            android:id="@+id/reserved_customer_tv_reject"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/reserved_customer_tv_margin_left"
+            android:layout_toRightOf="@id/reserved_customer_iv_reject"
+            android:text="reject" />
+
+    </RelativeLayout>
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reserved_customer_rv_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reserved_customer_rl_color_info"
+        />
 
-</FrameLayout>
+</RelativeLayout>

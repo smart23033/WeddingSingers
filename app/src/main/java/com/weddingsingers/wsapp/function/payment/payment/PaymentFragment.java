@@ -21,6 +21,7 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerListAdapter;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -56,6 +57,7 @@ public class PaymentFragment extends Fragment {
 
     ReservationListAdapter reservationListAdapter;
     ReservedOneAdapter reservedOneAdapter;
+    ReservedCustomerListAdapter reservedCustomerListAdapter;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -80,6 +82,7 @@ public class PaymentFragment extends Fragment {
         }
         reservationListAdapter = new ReservationListAdapter();
         reservedOneAdapter = new ReservedOneAdapter();
+        reservedCustomerListAdapter = new ReservedCustomerListAdapter();
     }
 
     @Override
@@ -134,13 +137,22 @@ public class PaymentFragment extends Fragment {
 //                        if (fragmentName.equals("DetailScheduleFragment")) {
 //                            makePayment(TYPE_ACCEPT_RESERVATION);
 //                            moveDetailScheduleFragment();
-//                        } else {
-//                        일단 고객 - 예약리스트 - 초록일때 결제
-                        makePayment(TYPE_PAYMENT_SUCCESS);
-                        reservationListAdapter.remove(estimateId);
-                        reservedOneAdapter.add(estimateId);
-                        moveReservedOneFragment();
-//                        }
+//                        } else {}
+
+                        if (fragmentName.equals("ReservedCustomerFragment")) {
+                            makePayment(TYPE_ACCEPT_RESERVATION);
+                            reservedCustomerListAdapter.remove(estimateId);
+//                          디테일일정어댑터에 아이템이 하나 추가되어야 함.
+                            getActivity().finish();
+
+                        } else {
+//                        고객 - 예약리스트 - 초록일때 결제
+                            makePayment(TYPE_PAYMENT_SUCCESS);
+                            reservationListAdapter.remove(estimateId);
+                            reservedOneAdapter.add(estimateId);
+                            moveReservedOneFragment();
+                        }
+
                     }
                 });
         dialog = builder.create();
@@ -164,14 +176,16 @@ public class PaymentFragment extends Fragment {
 //                            makePayment(TYPE_ACCEPT_RESERVATION);
 //                            moveDetailScheduleFragment();
 //                        }
+
                         if (fragmentName.equals("ReservedCustomerFragment")) {
                             makePayment(TYPE_ACCEPT_RESERVATION);
-                            getActivity().finish();
                         } else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
                             reservationListAdapter.remove(estimateId);
+                            reservedOneAdapter.add(estimateId);
                             moveReservedOneFragment();
                         }
+
                     }
                 });
         dialog = builder.create();
@@ -185,12 +199,13 @@ public class PaymentFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Toast.makeText(getContext(), "Payment Request Success", Toast.LENGTH_SHORT).show();
                 reservationListAdapter.remove(estimateId);
-
+                getActivity().finish();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "Payment Request Fail", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
             }
         });
     }

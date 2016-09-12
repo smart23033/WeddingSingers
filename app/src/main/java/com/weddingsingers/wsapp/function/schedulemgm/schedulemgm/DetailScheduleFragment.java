@@ -143,7 +143,7 @@ public class DetailScheduleFragment extends Fragment {
                             estimate.setLocation(e.getLocation());
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
-                            mAdapter.add(e);
+                            mAdapter.add(estimate);
 
                             //멀티타입으로 날자까지 받을 것이냐.
                         }

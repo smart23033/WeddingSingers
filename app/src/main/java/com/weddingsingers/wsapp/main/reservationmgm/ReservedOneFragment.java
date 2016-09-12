@@ -105,7 +105,7 @@ public class ReservedOneFragment extends Fragment {
                     estimate.setSongs(e.getSongs());
                     estimate.setSpecial(e.getSpecial());
                     estimate.setId(e.getId());
-                    mAdapter.add(e);
+                    mAdapter.add(estimate);
 
                 }
 
