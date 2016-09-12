@@ -122,7 +122,6 @@ public class ReservedCustomerFragment extends Fragment {
 
                         for (Estimate e : result.getResult()) {
                             Estimate estimate = new Estimate();
-                            Log.i("ReservedCustomerFragment","e.getCustomerName : " + e.getCustomerName());
                             estimate.setId(e.getId());
                             estimate.setCustomerName(e.getCustomerName());
                             estimate.setCustomerImage(e.getCustomerImage());
@@ -131,6 +130,12 @@ public class ReservedCustomerFragment extends Fragment {
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
                             mAdapter.add(estimate);
+
+                            Log.i("ReservedCustomerFragment","e.getCustomerName : " + e.getCustomerName());
+                            Log.i("ReservedCustomerFragment","e.getCustomerImage : " + e.getCustomerImage());
+
+                            Log.i("ReservedCustomerFragment","estimate.getCustomerName : " + estimate.getCustomerName());
+                            Log.i("ReservedCustomerFragment","estimate.getCustomerImage : " + estimate.getCustomerImage());
                         }
                     }
 
