@@ -1,5 +1,6 @@
 package com.weddingsingers.wsapp.function.reservation.cancelreservation;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import butterknife.ButterKnife;
 
 public class CancelReservationActivity extends AppCompatActivity {
 
+    public static final String EXTRA_ESTIMATE_ID = "estimateId";
+    public static final int DEFAULT_VALUE = 0;
 
     @BindView(R.id.cancel_reservation_toolbar)
     Toolbar toolbar;
@@ -32,9 +35,12 @@ public class CancelReservationActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
+        Intent intent = getIntent();
+        int estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, DEFAULT_VALUE);
+
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        CancelReservationFragment cancelReservationFragment = new CancelReservationFragment();
+        CancelReservationFragment cancelReservationFragment = CancelReservationFragment.newInstance(estimateId);
         ft.add(R.id.act_cancel_reservation_fl_container,cancelReservationFragment);
         ft.commit();
     }

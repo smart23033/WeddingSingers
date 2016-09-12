@@ -37,6 +37,11 @@ public class ReservationListAdapter extends RecyclerView.Adapter<SingerListViewH
         }
     }
 
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
     @Override
     public SingerListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_reserved_singer,parent,false);

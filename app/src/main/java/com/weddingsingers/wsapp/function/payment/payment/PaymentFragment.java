@@ -133,7 +133,9 @@ public class PaymentFragment extends Fragment {
 //                            makePayment(TYPE_ACCEPT_RESERVATION);
 //                            moveDetailScheduleFragment();
 //                        } else {
+//                        일단 고객 - 예약리스트 - 초록일때 결제
                             makePayment(TYPE_PAYMENT_SUCCESS);
+                            mAdapter.remove(estimateId);
                             moveReservedOneFragment();
 //                        }
                     }
@@ -165,7 +167,6 @@ public class PaymentFragment extends Fragment {
                         }
                         else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
-                            Log.i("PaymentFragment","estimateId : " + estimateId);
                             mAdapter.remove(estimateId);
                             moveReservedOneFragment();
                         }

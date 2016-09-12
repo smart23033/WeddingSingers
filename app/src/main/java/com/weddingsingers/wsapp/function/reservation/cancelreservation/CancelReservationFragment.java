@@ -16,6 +16,7 @@ import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateRequest;
@@ -36,6 +37,8 @@ public class CancelReservationFragment extends Fragment {
     @BindView(R.id.cancel_reservation_ev_profile)
     EstimateView estimateView;
 
+    ReservationListAdapter mAdapter;
+
     public CancelReservationFragment() {
         // Required empty public constructor
     }
@@ -54,6 +57,7 @@ public class CancelReservationFragment extends Fragment {
         if (getArguments() != null) {
             estimateId = getArguments().getInt(ARG_ESTIMATE_ID);
         }
+        mAdapter = new ReservationListAdapter();
     }
 
     @Override
@@ -100,8 +104,9 @@ public class CancelReservationFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        mAdapter.remove(estimateId);
                         cancelReservation();
-                        moveMainActivity();
+                        getActivity().finish();
                     }
                 });
         dialog = builder.create();

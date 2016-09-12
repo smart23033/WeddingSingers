@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     private final static int TYPE_WAIT = 10;
     private final static int TYPE_ACCEPT = 20;
     private final static int TYPE_REJECT = 11;
+    private final static int TYPE_CANCEL = 21;
 
     Context context = MyApplication.getContext();
 
@@ -59,11 +61,15 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.view_reserved_singer_btn_chat)
     Button chatBtn;
 
+    @BindView(R.id.view_reserved_singer_tv_notification)
+    TextView notificationView;
+
     public interface OnPayBtnClickListener {
         public void onPayBtnClick(View view, Estimate estimate, int position);
     }
 
     OnPayBtnClickListener payBtnListener;
+
     public void setOnPayBtnClickListener(OnPayBtnClickListener payBtnListener) {
         this.payBtnListener = payBtnListener;
     }
@@ -73,6 +79,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     }
 
     OnChatBtnClickListener chatBtnListener;
+
     public void setOnChatBtnClickListener(OnChatBtnClickListener chatBtnListener) {
         this.chatBtnListener = chatBtnListener;
     }
@@ -83,6 +90,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     }
 
     OnCancelBtnClickListener cancelBtnListener;
+
     public void setOnCancelBtnClickListener(OnCancelBtnClickListener cancelBtnListener) {
         this.cancelBtnListener = cancelBtnListener;
     }
@@ -96,6 +104,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         singerImageView.mutateBackground(true);
         singerImageView.setOval(true);
         singerImageView.setBackgroundColor(Color.LTGRAY);
+
 
         payBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,8 +138,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
 
     Estimate estimate;
 
-    @TargetApi(Build.VERSION_CODES.M)
-    public void setSingerList(Estimate estimate){
+    public void setSingerList(Estimate estimate) {
         this.estimate = estimate;
         Glide.with(context)
                 .load(estimate.getSingerImage())
@@ -143,13 +151,39 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
         dateView.setText(estimate.getDate());
         songsView.setText(estimate.getSongs());
 
+
         int status = estimate.getStatus();
-        if (status == TYPE_WAIT) {
-            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorWait));
-        }else if(status == TYPE_ACCEPT){
-            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
-        }else if(status == TYPE_REJECT){
-            statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));
+
+        switch (status){
+            case TYPE_ACCEPT:{
+                statusView.setBackgroundColor(context.getResources().getColor(R.color.colorAccept));
+
+                cancelBtn.setVisibility(View.VISIBLE);
+                chatBtn.setVisibility(View.VISIBLE);
+                payBtn.setVisibility(View.VISIBLE);
+                notificationView.setVisibility(View.GONE);
+                break;
+            }
+            case TYPE_WAIT: {
+                statusView.setBackgroundColor(context.getResources().getColor(R.color.colorWait));
+
+                cancelBtn.setVisibility(View.VISIBLE);
+                chatBtn.setVisibility(View.VISIBLE);
+                payBtn.setVisibility(View.GONE);
+                notificationView.setVisibility(View.GONE);
+                break;
+            }
+            case TYPE_REJECT:
+            case TYPE_CANCEL:
+            {
+                statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));
+
+                cancelBtn.setVisibility(View.GONE);
+                chatBtn.setVisibility(View.GONE);
+                payBtn.setVisibility(View.GONE);
+                notificationView.setVisibility(View.VISIBLE);
+                break;
+            }
         }
     }
 }

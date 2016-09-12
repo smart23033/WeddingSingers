@@ -60,6 +60,12 @@ public class ReservationListFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        init();
+    }
+    int estimateId;
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -72,7 +78,7 @@ public class ReservationListFragment extends Fragment {
         mAdapter.setOnAdapterPayBtnClickListener(new ReservationListAdapter.OnAdapterPayBtnClickListener() {
             @Override
             public void onAdapterPayBtnClick(View view, Estimate estimate, int position) {
-                int estimateId;
+
                 estimateId = estimate.getId();
                 ((ReservationMgmFragment) getParentFragment()).startPaymentActivity(estimateId);
             }
@@ -90,6 +96,8 @@ public class ReservationListFragment extends Fragment {
             @Override
             public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), CancelReservationActivity.class);
+                estimateId = estimate.getId();
+                intent.putExtra(CancelReservationActivity.EXTRA_ESTIMATE_ID, estimateId);
                 startActivity(intent);
             }
         });
@@ -99,13 +107,13 @@ public class ReservationListFragment extends Fragment {
 
         recyclerView.setLayoutManager(manager);
 
-        initData();
+//        init();
 
         return view;
     }
 
-    private void initData() {
-
+    private void init() {
+        mAdapter.clear();
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_RESERVATION_LIST);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
                     @Override

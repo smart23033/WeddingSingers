@@ -116,21 +116,24 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/view_reserved_singer_rl_btn_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/view_reserved_singer_rl_detail_info"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignStart="@id/view_reserved_singer_rl_detail_info"
         android:layout_below="@id/view_reserved_singer_rl_detail_info"
-        android:layout_marginLeft="@dimen/view_reserved_singer_rl_btn_group_margin_left"
-        android:layout_marginTop="@dimen/view_reserved_singer_rl_btn_group_margin_top">
+        android:layout_marginTop="@dimen/view_reserved_singer_rl_btn_group_margin_top"
+        android:gravity="right">
 
         <Button
             android:id="@+id/view_reserved_singer_btn_cancel"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="@dimen/view_reserved_singer_btn_width"
             android:layout_height="@dimen/view_reserved_singer_btn_height"
+            android:layout_marginLeft="@dimen/view_reserved_singer_margin_left"
             android:padding="@dimen/view_reserved_singer_btn_padding"
             android:text="cancel"
             android:textSize="@dimen/view_reserved_singer_btn_text_size" />
@@ -141,10 +144,10 @@
             android:layout_width="@dimen/view_reserved_singer_btn_width"
             android:layout_height="@dimen/view_reserved_singer_btn_height"
             android:layout_marginLeft="@dimen/view_reserved_singer_btn_margin_left"
-            android:layout_toRightOf="@id/view_reserved_singer_btn_cancel"
             android:padding="@dimen/view_reserved_singer_btn_padding"
             android:text="chat"
             android:textSize="10sp" />
+
 
         <Button
             android:id="@+id/view_reserved_singer_btn_pay"
@@ -152,10 +155,20 @@
             android:layout_width="@dimen/view_reserved_singer_btn_width"
             android:layout_height="@dimen/view_reserved_singer_btn_height"
             android:layout_marginLeft="@dimen/view_reserved_singer_btn_margin_left"
-            android:layout_toRightOf="@id/view_reserved_singer_btn_chat"
             android:padding="@dimen/view_reserved_singer_btn_padding"
             android:text="pay"
-            android:textSize="@dimen/view_reserved_singer_btn_text_size" />
-    </RelativeLayout>
+            android:textSize="@dimen/view_reserved_singer_btn_text_size"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/view_reserved_singer_tv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* will be removed after 24 hour"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:textColor="@android:color/darker_gray"
+            />
+    </LinearLayout>
 
 </RelativeLayout>

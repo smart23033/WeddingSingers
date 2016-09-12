@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity
                 case FRAG_MAIN : {
                     changeFragment(new MainFragment());
                     titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
-
                 }
                 default:
                     break;
