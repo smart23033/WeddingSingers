@@ -17,6 +17,7 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateRequest;
@@ -37,7 +38,7 @@ public class CancelReservationFragment extends Fragment {
     @BindView(R.id.cancel_reservation_ev_profile)
     EstimateView estimateView;
 
-    ReservationListAdapter mAdapter;
+    ReservedOneAdapter mAdapter;
 
     public CancelReservationFragment() {
         // Required empty public constructor
@@ -57,7 +58,7 @@ public class CancelReservationFragment extends Fragment {
         if (getArguments() != null) {
             estimateId = getArguments().getInt(ARG_ESTIMATE_ID);
         }
-        mAdapter = new ReservationListAdapter();
+        mAdapter = new ReservedOneAdapter();
     }
 
     @Override
@@ -104,9 +105,7 @@ public class CancelReservationFragment extends Fragment {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mAdapter.remove(estimateId);
                         cancelReservation();
-                        getActivity().finish();
                     }
                 });
         dialog = builder.create();
@@ -119,11 +118,17 @@ public class CancelReservationFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Toast.makeText(getContext(), "cancelReservation Request Success", Toast.LENGTH_SHORT).show();
+                mAdapter.remove(estimateId);
+                Intent intent = new Intent();
+                intent.putExtra(CancelReservationActivity.FRAG_NAME, "ReservationListFragment");
+                getActivity().setResult(CancelReservationActivity.RESULT_OK, intent);
+                getActivity().finish();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
                 Toast.makeText(getContext(), "cancelReservation Request Fail", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
             }
         });
     }

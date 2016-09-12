@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +21,7 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationListAdapter;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedOneAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateRequest;
@@ -39,7 +39,7 @@ public class PaymentFragment extends Fragment {
     private static final String ARG_FRAG_NAME = "fragmentName";
     private static final String ARG_ESTIMATE_ID = "estimateId";
 
-//    싱어가 고객의 예약에 대한 수락으로 보증금 지불할 때
+    //    싱어가 고객의 예약에 대한 수락으로 보증금 지불할 때
     private static final int TYPE_ACCEPT_RESERVATION = 20;
 
 
@@ -54,7 +54,8 @@ public class PaymentFragment extends Fragment {
     @BindView(R.id.payment_ev_profile)
     EstimateView estimateView;
 
-    ReservationListAdapter mAdapter;
+    ReservationListAdapter reservationListAdapter;
+    ReservedOneAdapter reservedOneAdapter;
 
     public PaymentFragment() {
         // Required empty public constructor
@@ -77,7 +78,8 @@ public class PaymentFragment extends Fragment {
             fragmentName = getArguments().getString(ARG_FRAG_NAME);
             estimateId = getArguments().getInt(ARG_ESTIMATE_ID);
         }
-        mAdapter = new ReservationListAdapter();
+        reservationListAdapter = new ReservationListAdapter();
+        reservedOneAdapter = new ReservedOneAdapter();
     }
 
     @Override
@@ -134,9 +136,10 @@ public class PaymentFragment extends Fragment {
 //                            moveDetailScheduleFragment();
 //                        } else {
 //                        일단 고객 - 예약리스트 - 초록일때 결제
-                            makePayment(TYPE_PAYMENT_SUCCESS);
-                            mAdapter.remove(estimateId);
-                            moveReservedOneFragment();
+                        makePayment(TYPE_PAYMENT_SUCCESS);
+                        reservationListAdapter.remove(estimateId);
+                        reservedOneAdapter.add(estimateId);
+                        moveReservedOneFragment();
 //                        }
                     }
                 });
@@ -161,13 +164,12 @@ public class PaymentFragment extends Fragment {
 //                            makePayment(TYPE_ACCEPT_RESERVATION);
 //                            moveDetailScheduleFragment();
 //                        }
-                        if(fragmentName.equals("ReservedCustomerFragment")){
+                        if (fragmentName.equals("ReservedCustomerFragment")) {
                             makePayment(TYPE_ACCEPT_RESERVATION);
                             getActivity().finish();
-                        }
-                        else {
+                        } else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
-                            mAdapter.remove(estimateId);
+                            reservationListAdapter.remove(estimateId);
                             moveReservedOneFragment();
                         }
                     }
@@ -182,6 +184,8 @@ public class PaymentFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Toast.makeText(getContext(), "Payment Request Success", Toast.LENGTH_SHORT).show();
+                reservationListAdapter.remove(estimateId);
+
             }
 
             @Override

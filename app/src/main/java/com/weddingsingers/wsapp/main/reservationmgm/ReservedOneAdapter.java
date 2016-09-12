@@ -27,6 +27,30 @@ public class ReservedOneAdapter extends RecyclerView.Adapter<EstimateViewHolder>
         notifyDataSetChanged();
     }
 
+    public void add(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.add(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void remove(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.remove(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
+
+
     @Override
     public EstimateViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_estimate,parent,false);

@@ -1,5 +1,6 @@
 package com.weddingsingers.wsapp.function.schedulemgm.schedulemgm;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import butterknife.ButterKnife;
 
 public class CancelScheduleActivity extends AppCompatActivity {
 
+    public static final String EXTRA_ESTIMATE_ID = "estimateId";
+    public static final int DEFAULT_VALUE = 0;
 
     @BindView(R.id.cancel_schedule_toolbar)
     Toolbar toolbar;
@@ -29,9 +32,12 @@ public class CancelScheduleActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        Intent intent = getIntent();
+        int estimateId = intent.getIntExtra(EXTRA_ESTIMATE_ID, DEFAULT_VALUE);
+
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        CancelScheduleFragment cancelScheduleFragment = new CancelScheduleFragment();
+        CancelScheduleFragment cancelScheduleFragment = CancelScheduleFragment.newInstance(estimateId);
         ft.add(R.id.act_cancel_schedule_fl_container,cancelScheduleFragment);
         ft.commit();
 

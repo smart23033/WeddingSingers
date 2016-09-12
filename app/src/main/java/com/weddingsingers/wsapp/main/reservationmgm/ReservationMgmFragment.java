@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
+import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +24,11 @@ import butterknife.ButterKnife;
  */
 public class ReservationMgmFragment extends Fragment {
 
-    public static final int FRAG_RESERVATION_MGM = 310;
+    public static final int FRAG_RESERVATION_MGM = 320;
+    public static final int FRAG_RESERVATION_LIST = 321;
+    public static final int FRAG_RESERVED_ONE = 322;
+    public static final int TAB_RESERVATION_LIST = 0;
+    public static final int TAB_RESERVED_ONE = 1;
 
     @BindView(R.id.reservation_mgm_tabs)
     TabLayout tabs;
@@ -59,16 +64,32 @@ public class ReservationMgmFragment extends Fragment {
     public void startPaymentActivity(int estimateId) {
         Intent intent = new Intent(getContext(), PaymentActivity.class);
         intent.putExtra(PaymentActivity.FRAG_NAME, "ReservedOneFragment");
-        intent.putExtra(PaymentActivity.EXTRA_ESTIMATE_ID,estimateId);
-        startActivityForResult(intent, FRAG_RESERVATION_MGM);
+        intent.putExtra(PaymentActivity.EXTRA_ESTIMATE_ID, estimateId);
+        startActivityForResult(intent, FRAG_RESERVED_ONE);
+    }
+
+    public void startCancelReservationActivity(int estimateId) {
+        Intent intent = new Intent(getContext(), CancelReservationActivity.class);
+        intent.putExtra(CancelReservationActivity.FRAG_NAME, "ReservationListFragment");
+        intent.putExtra(CancelReservationActivity.EXTRA_ESTIMATE_ID, estimateId);
+        startActivityForResult(intent, FRAG_RESERVATION_LIST);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == FRAG_RESERVATION_MGM){
+        Log.i("ReservationMgmFragment", "requestCode : " + requestCode);
+        if(requestCode == FRAG_RESERVATION_LIST){
             if(resultCode == Activity.RESULT_OK){
-               pager.setCurrentItem(1);
+                Log.i("ReservationMgmFragment","cancelReservationFrag로부터 result_ok 왔다");
+               pager.setCurrentItem(TAB_RESERVATION_LIST);
+            }else{
+                Log.i("ReservationMgmFragment","FragmentName 못받았다");
+            }
+        } else if(requestCode == FRAG_RESERVED_ONE){
+            if(resultCode == Activity.RESULT_OK){
+                Log.i("ReservationMgmFragment","paymentFrag로부터 result_ok 왔다");
+                pager.setCurrentItem(TAB_RESERVED_ONE);
             }else{
                 Log.i("ReservationMgmFragment","FragmentName 못받았다");
             }

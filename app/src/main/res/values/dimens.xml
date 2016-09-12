@@ -306,12 +306,32 @@
 
 
     <!--view_reserved_customer.xml-->
+    <!--view_reserved_singer.xml-->
+    <dimen name="view_reserved_customer_margin_left">10dp</dimen>
+    <dimen name="view_reserved_customer_margin_right">4dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_width">55dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_height">55dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_margin_right">16dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_margin_bottom">5dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_margin_top">10dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_padding_top">0dp</dimen>
+    <dimen name="view_reserved_customer_riv_profile_corner_radius">30dp</dimen>
+    <dimen name="view_reserved_customer_iv_color_width">10dp</dimen>
+    <dimen name="view_reserved_customer_iv_color_height">100dp</dimen>
+    <dimen name="view_reserved_customer_rl_profile_margin_left">10dp</dimen>
+    <dimen name="view_reserved_customer_rl_profile_margin_right">10dp</dimen>
+    <dimen name="view_reserved_customer_rl_info_margin_right">10dp</dimen>
+    <dimen name="view_reserved_customer_rl_info_margin_top">10dp</dimen>
+    <dimen name="view_reserved_customer_tv_text_size">12sp</dimen>
+    <dimen name="view_reserved_customer_tv__margin_top">2dp</dimen>
+    <dimen name="view_reserved_customer_rl_detail_info_margin_top">10dp</dimen>
+    <dimen name="view_reserved_customer_rl_btn_group_margin_left">10dp</dimen>
+    <dimen name="view_reserved_customer_rl_btn_group_margin_top">5dp</dimen>
+    <dimen name="view_reserved_customer_btn_padding">0dp</dimen>
+    <dimen name="view_reserved_customer_btn_text_size">10sp</dimen>
     <dimen name="view_reserved_customer_btn_width">60dp</dimen>
     <dimen name="view_reserved_customer_btn_height">30dp</dimen>
     <dimen name="view_reserved_customer_btn_margin_left">5dp</dimen>
-    <dimen name="view_reserved_customer_btn_padding">0dp</dimen>
-    <dimen name="view_reserved_customer_btn_text_size">10sp</dimen>
-    <dimen name="view_reserved_customer_ev_profile_margin_top">10dp</dimen>
 
 
     <!--fragment_cancel_schedule.xml-->

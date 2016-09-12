@@ -40,7 +40,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
-        PaymentFragment paymentFragment = PaymentFragment.newInstance(fragmentName,estimateId);
+        PaymentFragment paymentFragment = PaymentFragment.newInstance(fragmentName, estimateId);
         ft.add(R.id.act_payment_fl_container,paymentFragment);
         ft.commit();
     }

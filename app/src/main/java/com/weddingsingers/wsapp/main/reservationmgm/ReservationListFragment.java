@@ -1,6 +1,8 @@
 package com.weddingsingers.wsapp.main.reservationmgm;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
@@ -20,6 +23,7 @@ import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelRes
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
+import com.weddingsingers.wsapp.request.PaymentRequest;
 
 import java.util.List;
 
@@ -33,8 +37,7 @@ public class ReservationListFragment extends Fragment {
 
     private static final int TAB_RESERVATION_LIST = 1;
     private static final String ARG_MESSAGE = "param1";
-    private String message;
-    private static ReservationListFragment instance;
+    public static final int TYPE_CANCEL_RESERVATION = 21;
 
     public ReservationListFragment() {
         // Required empty public constructor
@@ -44,14 +47,6 @@ public class ReservationListFragment extends Fragment {
     RecyclerView recyclerView;
 
     ReservationListAdapter mAdapter;
-
-    public static ReservationListFragment newInstance(String message) {
-        ReservationListFragment fragment = new ReservationListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,10 +90,31 @@ public class ReservationListFragment extends Fragment {
         mAdapter.setOnAdapterCancelBtnClickListener(new ReservationListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
             public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
-                Intent intent = new Intent(getContext(), CancelReservationActivity.class);
+//                Intent intent = new Intent(getContext(), CancelReservationActivity.class);
+//                estimateId = estimate.getId();
+//                intent.putExtra(CancelReservationActivity.EXTRA_ESTIMATE_ID, estimateId);
+//                startActivity(intent);
                 estimateId = estimate.getId();
-                intent.putExtra(CancelReservationActivity.EXTRA_ESTIMATE_ID, estimateId);
-                startActivity(intent);
+
+                AlertDialog dialog;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Cancel complete")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                cancelReservation();
+                            }
+                        });
+
+                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                dialog = builder.create();
+                dialog.show();
+
             }
         });
 
@@ -110,6 +126,23 @@ public class ReservationListFragment extends Fragment {
 //        init();
 
         return view;
+    }
+
+
+    private void cancelReservation() {
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, TYPE_CANCEL_RESERVATION);
+        NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Toast.makeText(getContext(), "cancelReservation Request Success", Toast.LENGTH_SHORT).show();
+                init();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "cancelReservation Request Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void init() {

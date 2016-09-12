@@ -48,10 +48,9 @@ public class ReservationMgmPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case RESERVATION_LIST:
-                //아마 아이디를 파라미터로 넣어야 할 것이다.
-                return ReservationListFragment.newInstance("temp");
+                return new ReservationListFragment();
             case RESERVED_ONE:
-                return ReservedOneFragment.newInstance("temp");
+                return new ReservedOneFragment();
             default:
                 return null;
         }

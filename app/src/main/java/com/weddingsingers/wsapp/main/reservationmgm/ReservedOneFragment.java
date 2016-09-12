@@ -35,28 +35,22 @@ public class ReservedOneFragment extends Fragment {
 
     private static final int TAB_RESERVED_ONE = 2;
 
-    private static final String ARG_MESSAGE = "param1";
-    private static ReservedOneFragment instance;
-
-
-
     @BindView(R.id.reserved_one_rv_list)
     RecyclerView recyclerView;
 
     ReservedOneAdapter mAdapter;
 
-
     public ReservedOneFragment() {
         // Required empty public constructor
     }
 
-    public static ReservedOneFragment newInstance(String message) {
-        ReservedOneFragment fragment = new ReservedOneFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_MESSAGE, message);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
     }
+
+    int estimateId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,9 +74,8 @@ public class ReservedOneFragment extends Fragment {
         mAdapter.setOnAdapterCancelBtnClickListener(new ReservedOneAdapter.OnAdapterCancelBtnClickListener() {
             @Override
             public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
-                Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
-                startActivity(intent);
-                getActivity().finish();
+                estimateId = estimate.getId();
+                ((ReservationMgmFragment) getParentFragment()).startCancelReservationActivity(estimateId);
             }
         });
 
@@ -92,12 +85,11 @@ public class ReservedOneFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
 
-        init();
-
         return view;
     }
 
     void init(){
+        mAdapter.clear();
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_RESERVED_ONE);
         NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
             @Override
@@ -112,6 +104,7 @@ public class ReservedOneFragment extends Fragment {
                     estimate.setLocation(e.getLocation());
                     estimate.setSongs(e.getSongs());
                     estimate.setSpecial(e.getSpecial());
+                    estimate.setId(e.getId());
                     mAdapter.add(e);
 
                 }
