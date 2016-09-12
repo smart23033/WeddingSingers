@@ -19,7 +19,7 @@ public class Estimate implements Serializable {
     @SerializedName("singer_user_id")
     private int singerId;
 
-    @SerializedName("photoURL")
+    @SerializedName("singer_photoURL")
     private String singerImage;
 
     @SerializedName("singer_name")

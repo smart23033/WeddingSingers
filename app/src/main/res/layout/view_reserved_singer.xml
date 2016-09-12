@@ -164,7 +164,7 @@
             android:id="@+id/view_reserved_singer_tv_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="* will be removed after 24 hour"
+            android:text="* It will be removed after 24 hour"
             android:textSize="12sp"
             android:visibility="gone"
             android:textColor="@android:color/darker_gray"
