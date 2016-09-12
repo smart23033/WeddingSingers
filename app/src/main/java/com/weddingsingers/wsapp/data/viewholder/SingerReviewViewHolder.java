@@ -54,18 +54,25 @@ public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
 
     public void setReview(Review review) {
 
-        Log.i("review viewholder ----", "" + type + review.getWriteDTime());
-
         String userName = "";
+        String thumbnail = "";
+
+
+
         if (type == TYPE_SINGER) {
             userName = review.getCustomerName();
+            thumbnail = review.getCustomerThumbnail();
         } else {
             userName = review.getSingerName();
+            thumbnail = review.getThumbnail();
         }
+
+        Log.i("setReview - ", type + " - " + userName +" - " + thumbnail);
+
         this.review = review;
 
         Glide.with(context)
-                .load(review.getThumbnail())
+                .load(thumbnail)
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.ic_nav_logout))

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +41,8 @@ public class SingerReviewFragment extends Fragment {
     final static int ARG_SIMPLE = 1;
     final static float DEFAULT_RATING_STEP = (float) 0.1;
     public final static String EXTRA_SINGER_ID = "singerId";
+    public static final int TYPE_SINGER = 1;
+    public static final int TYPE_CUSTOMER = 2;
 
     @BindView(R.id.singer_review_pv_profile)
     ProfileView singerProfileView;
@@ -76,7 +79,7 @@ public class SingerReviewFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new SingerReviewAdapter(2);
+        mAdapter = new SingerReviewAdapter(TYPE_SINGER);
         recyclerView.setAdapter(mAdapter);
 
         ratingBar.setStepSize(DEFAULT_RATING_STEP);
@@ -142,10 +145,11 @@ public class SingerReviewFragment extends Fragment {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
                 for (int i = 0; i < result.getResult().size(); i++) {
                     Review review = new Review();
-                    review.setThumbnail(result.getResult().get(i).getThumbnail());
+                    review.setCustomerThumbnail(result.getResult().get(i).getCustomerThumbnail());
                     review.setContent(result.getResult().get(i).getContent());
                     review.setCustomerName(result.getResult().get(i).getCustomerName());
                     review.setWriteDTime(result.getResult().get(i).getWriteDTime());
+                    Log.i("singer Review - ", result.getResult().get(i).getCustomerThumbnail() + " - " + result.getResult().get(i).getCustomerName());
                     mAdapter.add(review);
                 }
             }

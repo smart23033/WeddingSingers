@@ -76,7 +76,6 @@ public class EventListFragment extends Fragment {
     private void initData(){
         for(int i = 0; i < 20; i++){
             EventList eventList = new EventList();
-            //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
             eventList.setTitle("Event title " + i);
             eventList.setDate("2016. 4. 24");
             mAdapter.add(eventList);

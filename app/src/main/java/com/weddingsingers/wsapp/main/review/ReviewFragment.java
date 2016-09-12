@@ -36,6 +36,9 @@ import butterknife.ButterKnife;
  */
 public class ReviewFragment extends Fragment {
 
+    public static final int TYPE_SINGER = 1;
+    public static final int TYPE_CUSTOMER = 2;
+
     @BindView(R.id.review_rv_list)
     RecyclerView recyclerView;
 
@@ -58,7 +61,7 @@ public class ReviewFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mAdapter = new SingerReviewAdapter(2);
+        mAdapter = new SingerReviewAdapter(TYPE_CUSTOMER);
         recyclerView.setAdapter(mAdapter);
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext());

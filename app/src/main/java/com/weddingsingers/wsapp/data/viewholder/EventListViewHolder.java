@@ -51,7 +51,6 @@ public class EventListViewHolder extends RecyclerView.ViewHolder{
 
     public void setEventList(EventList eventList) {
         this.eventList = eventList;
-        //thumbnailImageView.setImageBitmap(eventList.getThumbnail());
         titleView.setText(eventList.getTitle());
         dateView.setText(eventList.getDate());
     }

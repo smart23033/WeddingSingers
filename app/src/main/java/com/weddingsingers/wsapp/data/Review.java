@@ -16,11 +16,14 @@ public class Review implements Serializable {
     @SerializedName("singer_photoURL")
     private String thumbnail;
 
-    @SerializedName("customer_name")
-    private String customerName;
+    @SerializedName("customer_photoURL")
+    private String customerThumbnail;
 
     @SerializedName("singer_name")
     private String SingerName;
+
+    @SerializedName("customer_name")
+    private String customerName;
 
     // 싱어 리뷰 조회 평점
     private String point;
@@ -59,12 +62,12 @@ public class Review implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerThumbnail() {
+        return customerThumbnail;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerThumbnail(String customerThumbnail) {
+        this.customerThumbnail = customerThumbnail;
     }
 
     public String getSingerName() {
@@ -73,6 +76,14 @@ public class Review implements Serializable {
 
     public void setSingerName(String singerName) {
         SingerName = singerName;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getPoint() {

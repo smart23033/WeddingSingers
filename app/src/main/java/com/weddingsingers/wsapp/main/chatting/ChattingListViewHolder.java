@@ -54,7 +54,6 @@ public class ChattingListViewHolder extends RecyclerView.ViewHolder {
 
     public void setChattingList(ChattingList chattingList) {
         this.chattingList= chattingList;
-        //pictureView.setImageBitmap(chattingList.getThumbnail());
         nameView.setText(chattingList.getName());
         msgView.setText(chattingList.getMsg());
     }
