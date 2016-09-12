@@ -1,7 +1,9 @@
 package com.weddingsingers.wsapp.function.mypage.singervideomgm;
 
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,9 +25,12 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
 import com.weddingsingers.wsapp.data.VideoList;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.SingerProfileSettingRequest;
 import com.weddingsingers.wsapp.request.SingerVideoMgmRequest;
+import com.weddingsingers.wsapp.request.VideoDeleteRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +74,12 @@ public class SingerVideoMgmFragment extends Fragment {
         mAdapter.setOnAdapterItemClickListener(new SingerVideoMgmAdapter.OnAdapterItemClickLIstener() {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {
-                videoList.setSelected(true);
-                Toast.makeText(getActivity(), "person : " + position + "-" + videoList.getTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), VideoActivity.class);
+                intent.putExtra(VideoActivity.EXTRA_SINGER_ID, videoList.getSingerId());
+                intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, videoList.getVideoId());
+                startActivity(intent);
+
             }
         });
         recyclerView.setAdapter(mAdapter);
@@ -91,6 +101,8 @@ public class SingerVideoMgmFragment extends Fragment {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
                 for (int i = 0; i < result.getResult().size(); i++) {
                     VideoList videoList = new VideoList();
+                    videoList.setVideoId(result.getResult().get(i).getVideoId());
+                    videoList.setSingerId(result.getResult().get(i).getSingerId());
                     videoList.setThumbnail(result.getResult().get(i).getThumbnail());
                     videoList.setTitle(result.getResult().get(i).getTitle());
                     videoList.setDate(result.getResult().get(i).getDate());
@@ -107,15 +119,6 @@ public class SingerVideoMgmFragment extends Fragment {
             }
         });
 
-/*        for(int i = 0; i < 20; i++){
-            VideoList videoList = new VideoList();
-            videoList.setTitle("video title " + i);
-            videoList.setDate("2016. 4. 24");
-            videoList.setHit(123);
-            videoList.setFavorite(4123);
-            videoList.setSelected(false);
-            items.add(videoList);
-        }*/
     }
 
     @Override
@@ -141,23 +144,39 @@ public class SingerVideoMgmFragment extends Fragment {
             }
             case R.id.video_add_delete: {
 
-                StringBuilder stringBuilder = new StringBuilder();
-                for (VideoList vItem : items) {
-                    if (vItem.isSelected()) {
-                        if (stringBuilder.length() > 0)
-                            stringBuilder.append(", ");
-                        stringBuilder.append(vItem.getTitle());
-                    }
+                String data = "";
+                List<VideoList> videoList = mAdapter.items;
+
+                if (videoList.size() <= 0) {
+                    Toast.makeText(getActivity(), "삭제할 동영상을 선택하세요", Toast.LENGTH_SHORT).show();
+                    return false;
                 }
-                Toast.makeText(getActivity(), stringBuilder.toString(), Toast.LENGTH_LONG).show();
-                int cnt = 0;
-                for (VideoList vItem : items) {
-                    if (vItem.isSelected()) {
-                        cnt++;
+
+                ArrayList<Integer> deleteList = new ArrayList<Integer>();
+
+                for (int i = 0; i < videoList.size(); i++) {
+                    if (videoList.get(i).isSelected()) {
+                        deleteList.add(videoList.get(i).getVideoId());
                     }
                 }
 
-                Toast.makeText(getActivity(), "count : " + cnt, Toast.LENGTH_SHORT).show();
+                VideoDeleteRequest request = new VideoDeleteRequest(getContext(), deleteList);
+                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+
+                        Toast.makeText(getActivity(), "success code : " + result.getCode() + " - " + result.getResult(), Toast.LENGTH_SHORT).show();
+                        mAdapter.clear();
+                        initData();
+
+                    }
+
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(getActivity(), "VideoDeleteRequest fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
                 return true;
             }

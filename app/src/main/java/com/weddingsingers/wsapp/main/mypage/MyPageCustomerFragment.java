@@ -83,9 +83,6 @@ public class MyPageCustomerFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
 
-                pictureView.mutateBackground(true);
-                pictureView.setOval(true);
-
                 User user = new User();
                 user.setPhotoURL(result.getResult().getPhotoURL());
                 user.setName(result.getResult().getName());
@@ -103,13 +100,11 @@ public class MyPageCustomerFragment extends Fragment {
                 emailView.setText(user.getEmail());
                 pointView.setText(user.getPoint() + "P");
 
-                pictureView.mutateBackground(true);
-                pictureView.setOval(true);
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "SingerMyPageFragment failure", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "MypageCusomterFragment failure", Toast.LENGTH_SHORT).show();
 
             }
         });

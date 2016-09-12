@@ -120,7 +120,6 @@ public class WriteReviewFragment extends Fragment {
                         for (Estimate e : result.getResult()) {
                             Estimate estimate = new Estimate();
                             estimate.setId(e.getId());
-                            estimate.setSingerId(e.getSingerId());
                             estimate.setSingerName(e.getSingerName());
                             estimate.setDate(e.getDate());
 

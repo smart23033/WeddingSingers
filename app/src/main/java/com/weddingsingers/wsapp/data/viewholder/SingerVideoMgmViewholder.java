@@ -20,8 +20,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-31.
  */
-public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder
-    implements Checkable {
+public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
 
     Context context = MyApplication.getContext();
 
@@ -85,21 +84,4 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder
         favoriteView.setText("" + videoList.getFavorite());
     }
 
-    boolean isChecked;
-    @Override
-    public void setChecked(boolean checked) {
-        if (isChecked != checked) {
-            isChecked = checked;
-        }
-    }
-
-    @Override
-    public boolean isChecked() {
-        return isChecked;
-    }
-
-    @Override
-    public void toggle() {
-        setChecked(!isChecked);
-    }
 }

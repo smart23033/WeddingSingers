@@ -85,7 +85,7 @@ public class VideoFragment extends Fragment {
     VideoView videoView;
 
 
-    public static VideoFragment newInstance(int videoId,int singerId) {
+    public static VideoFragment newInstance(int videoId, int singerId) {
         VideoFragment fragment = new VideoFragment();
         Bundle b = new Bundle();
         b.putInt(KEY_VIDEO_ID, videoId);
@@ -124,7 +124,6 @@ public class VideoFragment extends Fragment {
         return view;
 
     }
-
 
     int isFavorite;
 

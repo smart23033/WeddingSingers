@@ -16,9 +16,6 @@ import java.io.Serializable;
 public class Estimate implements Serializable {
     private int id;
 
-    @SerializedName("singer_user_id")
-    private int singerId;
-
     @SerializedName("singer_photoURL")
     private String singerImage;
 
@@ -78,14 +75,6 @@ public class Estimate implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getSingerId() {
-        return singerId;
-    }
-
-    public void setSingerId(int singerId) {
-        this.singerId = singerId;
     }
 
     public int getType() {
