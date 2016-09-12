@@ -30,10 +30,10 @@ import butterknife.OnClick;
 
 public class CancelReservationFragment extends Fragment {
 
-    private static final String ARG_ESTIMATE_ID = "estimateId";
-    private static CancelReservationFragment instance;
-    private int estimateId;
-    private static final int TYPE_CANCEL_RESERVATION = 21;
+    public static final String ARG_ESTIMATE_ID = "estimateId";
+    public static CancelReservationFragment instance;
+    public int estimateId;
+    public static final int TYPE_CANCEL_RESERVATION = 21;
 
     @BindView(R.id.cancel_reservation_ev_profile)
     EstimateView estimateView;
@@ -127,6 +127,7 @@ public class CancelReservationFragment extends Fragment {
 
     private void moveMainActivity() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         getActivity().finish();

@@ -125,13 +125,13 @@ public class PaymentFragment extends Fragment {
 //                        왜냐하면 싱어가 수락을 한다고해도, 고객이 예약목록에서 초록불인 싱어를 선택해서 최종 결제가 나는 것이기 때문에 싱어일정에 추가가 되지 않는다.
 //                         나중에 지우자..
 
-                        if (fragmentName.equals("DetailScheduleFragment")) {
-                            makePayment(TYPE_ACCEPT_RESERVATION);
-                            moveDetailScheduleFragment();
-                        } else {
+//                        if (fragmentName.equals("DetailScheduleFragment")) {
+//                            makePayment(TYPE_ACCEPT_RESERVATION);
+//                            moveDetailScheduleFragment();
+//                        } else {
                             makePayment(TYPE_PAYMENT_SUCCESS);
                             moveReservedOneFragment();
-                        }
+//                        }
                     }
                 });
         dialog = builder.create();
@@ -184,7 +184,7 @@ public class PaymentFragment extends Fragment {
         });
     }
 
-    //    프레그먼트 이동 + 액티비티 하나 띄워줘야 함.
+    //    프레그먼트 이동 + 액티비티 하나 띄워줘야 함. deprecated
     private void moveDetailScheduleFragment() {
         Intent intent = new Intent();
         intent.putExtra(MainActivity.FRAG_NAME, "DetailScheduleFragment");

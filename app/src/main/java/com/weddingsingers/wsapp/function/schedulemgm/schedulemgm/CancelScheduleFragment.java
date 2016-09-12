@@ -75,7 +75,7 @@ public class CancelScheduleFragment extends Fragment {
     private void moveMyPageFragment(){
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra(MainActivity.FRAG_NAME, FRAG_MY_PAGE);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
         getActivity().finish();
     }
@@ -83,7 +83,7 @@ public class CancelScheduleFragment extends Fragment {
     private void moveMainActivity() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         getActivity().finish();
     }
 

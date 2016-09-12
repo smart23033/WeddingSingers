@@ -154,6 +154,11 @@ public class MainActivity extends AppCompatActivity
                     titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
                     break;
                 }
+                case FRAG_MAIN : {
+                    changeFragment(new MainFragment());
+                    titleTextView.setText(getResources().getString(R.string.nav_schedule_mgm));
+
+                }
                 default:
                     break;
             }
@@ -235,9 +240,13 @@ public class MainActivity extends AppCompatActivity
             }
             case R.id.nav_reservation_mgm: {
 //               수요자의 예약관리
-//                changeNavMenu(new ReservationMgmFragment());
+                if(userType==TYPE_CUSTOMER) {
+                    changeNavMenu(new ReservationMgmFragment());
+                }
 //                공급자의 예약관리
-                changeNavMenu(new ReservedCustomerFragment());
+                else if (userType == TYPE_SINGER) {
+                    changeNavMenu(new ReservedCustomerFragment());
+                }
                 titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                 return true;
             }
