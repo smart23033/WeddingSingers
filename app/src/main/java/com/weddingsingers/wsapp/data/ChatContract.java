@@ -12,6 +12,7 @@ public class ChatContract {
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_EMAIL = "email";
         public static final String COLUMN_DATE = "date";
+        public static final String COLUMN_PROFILE_IMAGE = "profileimageurl";
         public static final String COLUMN_LAST_MESSAGE = "lasMsg";
         public static final String COLUMN_LAST_MESSAGE_ID = "lastid";
     }

@@ -16,6 +16,9 @@ import java.io.Serializable;
 public class Estimate implements Serializable {
     private int id;
 
+    @SerializedName("user_id")
+    private int userId;
+
     @SerializedName("singer_photoURL")
     private String singerImage;
 

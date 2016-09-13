@@ -4,6 +4,7 @@ package com.weddingsingers.wsapp.main.reservationmgm;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +16,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.ChatContract;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.function.payment.payment.PaymentActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
@@ -67,8 +70,15 @@ public class ReservedCustomerFragment extends Fragment {
         mAdapter.setOnAdapterChatBtnClickListener(new ReservedCustomerListAdapter.OnAdapterChatBtnClickListener() {
             @Override
             public void onAdapterChatBtnClick(View view, Estimate estimate, int position) {
-                Intent intent = new Intent(getContext(), ChattingActivity.class);
+                Cursor cursor = (Cursor)mAdapter.items.get(position);
+                User user = new User();
+                //user.setUserId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+                user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
+                user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+                Intent intent = new Intent(getContext(),ChattingActivity.class);
+                intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.ChattingList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,10 +16,17 @@ import java.util.List;
 public class ChattingListAdapter extends RecyclerView.Adapter<ChattingListViewHolder>
         implements ChattingListViewHolder.OnChattingListItemClickListener {
 
-    List<ChattingList> items = new ArrayList<>();
+    /*List<ChattingList> items = new ArrayList<>();
 
     public void add(ChattingList chattingList) {
         items.add(chattingList);
+        notifyDataSetChanged();
+    }*/
+
+    List<ChattingList> items;
+
+    public void setData( List<ChattingList> items) {
+        this.items = items;
         notifyDataSetChanged();
     }
 

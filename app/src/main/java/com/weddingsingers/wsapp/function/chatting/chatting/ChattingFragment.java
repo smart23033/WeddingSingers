@@ -22,6 +22,7 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.ChatContract;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.gcm.MyGcmListenerService;
 import com.weddingsingers.wsapp.manager.DBManager;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -82,7 +83,7 @@ public class ChattingFragment extends Fragment {
         final String message = inputView.getText().toString();
         DBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
         updateMessage();
-        /*MessageSendRequest request = new MessageSendRequest(getContext(), user, message);
+        MessageSendRequest request = new MessageSendRequest(getContext(), user, message);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
@@ -93,7 +94,7 @@ public class ChattingFragment extends Fragment {
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
             }
-        });*/
+        });
     }
 
     private void updateMessage() {
@@ -111,16 +112,16 @@ public class ChattingFragment extends Fragment {
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-//            User u = (User) intent.getSerializableExtra(MyGcmListenerService.EXTRA_CHAT_USER);
-//            if (u.getId() == user.getId()) {
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        updateMessage();
-//                    }
-//                });
-//                intent.putExtra(MyGcmListenerService.EXTRA_RESULT, true);
-//            }
+            User u = (User) intent.getSerializableExtra(MyGcmListenerService.EXTRA_CHAT_USER);
+            if (u.getId() == user.getId()) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateMessage();
+                    }
+                });
+                intent.putExtra(MyGcmListenerService.EXTRA_RESULT, true);
+            }
         }
     };
 

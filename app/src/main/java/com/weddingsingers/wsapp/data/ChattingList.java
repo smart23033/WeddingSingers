@@ -6,22 +6,23 @@ import java.io.Serializable;
  * Created by Tacademy on 2016-09-02.
  */
 public class ChattingList  implements Serializable {
-    private long id;
+    private int id;
     private String thumbnail;
     private String name;
     private String msg;
+    private String dTime;
     private int type;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getThumbnail() {
-        return name;
+        return thumbnail;
     }
 
     public void setThumbnail(String thumbnail) {
@@ -44,4 +45,19 @@ public class ChattingList  implements Serializable {
         this.msg = msg;
     }
 
+    public String getdTime() {
+        return dTime;
+    }
+
+    public void setdTime(String dTime) {
+        this.dTime = dTime;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 }
