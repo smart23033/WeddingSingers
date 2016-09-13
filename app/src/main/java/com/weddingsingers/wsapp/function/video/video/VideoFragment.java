@@ -149,8 +149,6 @@ public class VideoFragment extends Fragment {
                 isFavorite = result.getResult().getIsFavorite();
                 userType = result.getResult().getUserType();
 
-                Log.i("VideoFragment", "userType : " + userType);
-
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
