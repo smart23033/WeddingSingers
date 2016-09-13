@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="facebook_app_id">929786000467092</string>
+
     <string name="app_name">웨딩 싱어즈</string>
 
     <!-- TODO: Remove or change this placeholder text -->
