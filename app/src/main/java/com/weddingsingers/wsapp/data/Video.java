@@ -32,6 +32,17 @@ public class Video implements Serializable {
     @SerializedName("favorite_check")
     private int isFavorite;
 
+    @SerializedName("user_type")
+    private int userType;
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
     public int getIsFavorite() {
         return isFavorite;
     }

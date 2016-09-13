@@ -107,7 +107,10 @@ public class LoginIntroFragment extends Fragment {
         mLoginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getContext(), "login manager...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "login success", Toast.LENGTH_SHORT).show();
+
+
+
             }
 
             @Override

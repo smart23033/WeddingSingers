@@ -92,7 +92,7 @@
         android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/view_profile_btn_reserve"
+            android:id="@+id/video_btn_reserve"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

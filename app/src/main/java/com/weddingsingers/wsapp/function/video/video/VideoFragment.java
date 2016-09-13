@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.MediaController;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ import butterknife.OnClick;
 public class VideoFragment extends Fragment {
     final static String KEY_VIDEO_ID = "videoId";
     final static String KEY_SINGER_ID = "singerId";
+    final static int TYPE_CUSTOMER = 2;
 
     final static int ARG_SIMPLE = 1;
     final static int ARG_RATING = 1;
@@ -75,6 +77,9 @@ public class VideoFragment extends Fragment {
 
     @BindView(R.id.video_pv_profile)
     ProfileView singerProfileView;
+
+    @BindView(R.id.video_btn_reserve)
+    Button reserveBtn;
 
     public VideoFragment() {
         // Required empty public constructor
@@ -119,15 +124,16 @@ public class VideoFragment extends Fragment {
         final MediaController mediaController = new MediaController(getContext());
         videoView.setMediaController(mediaController);
 
-        initData();
+        init();
 
         return view;
 
     }
 
     int isFavorite;
+    int userType;
 
-    private void initData() {
+    private void init() {
         VideoRequest videoRequest = new VideoRequest(getContext(), videoId);
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
             @Override
@@ -141,12 +147,19 @@ public class VideoFragment extends Fragment {
                 video.setTitle(result.getResult().getTitle());
                 video.setUrl(result.getResult().getUrl());
                 isFavorite = result.getResult().getIsFavorite();
+                userType = result.getResult().getUserType();
+
+                Log.i("VideoFragment", "userType : " + userType);
 
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
                 hitView.setText("" + video.getHit());
 
+                if (userType != TYPE_CUSTOMER) {
+                    reserveBtn.setVisibility(View.GONE);
+                    favoriteMenuItem.setVisible(false);
+                }
             }
 
             @Override
@@ -187,7 +200,6 @@ public class VideoFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Rating>> request, NetworkResult<Rating> result) {
-                Log.i("VideoFragment", "RatingRequest Simple success");
                 int reviewCnt = result.getResult().getReviewCnt();
                 float reviewPoint = result.getResult().getReviewPoint();
 
@@ -203,7 +215,7 @@ public class VideoFragment extends Fragment {
 
     }
 
-    @OnClick(R.id.view_profile_btn_reserve)
+    @OnClick(R.id.video_btn_reserve)
     void onReserveBtnClick() {
         Intent intent = new Intent(new Intent(getContext(), ReservationActivity.class));
         intent.putExtra(ReservationActivity.EXTRA_SINGER_ID, singerId);
@@ -265,18 +277,18 @@ public class VideoFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    MenuItem favoriteMenuItem;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.video_menu, menu);
 
-        MenuItem item = menu.findItem(R.id.video_menu_favorite);
+       favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
 
         if (isFavorite == 1) {
-            item.setChecked(true);
+            favoriteMenuItem.setChecked(true);
         } else {
-            item.setChecked(false);
+            favoriteMenuItem.setChecked(false);
         }
     }
 }
