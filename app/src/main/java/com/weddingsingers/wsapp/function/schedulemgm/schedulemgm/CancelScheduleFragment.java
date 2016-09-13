@@ -37,7 +37,10 @@ import butterknife.OnClick;
 public class CancelScheduleFragment extends Fragment {
 
     public final static int FRAG_MY_PAGE = 200;
+    public static final String KEY_FRAG_NAME = "fragmentName";
     public final static String KEY_ESTIMATE_ID = "estimateId";
+
+    public static final int TYPE_CANCEL_SCHEDULE = 31;
 
     public CancelScheduleFragment() {
         // Required empty public constructor
@@ -54,6 +57,7 @@ public class CancelScheduleFragment extends Fragment {
 
 
     int estimateId;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,7 @@ public class CancelScheduleFragment extends Fragment {
         if (getArguments() != null) {
             estimateId = getArguments().getInt(KEY_ESTIMATE_ID);
         }
+        scheduleListAdapter = new ScheduleListAdapter();
     }
 
 
@@ -72,7 +77,6 @@ public class CancelScheduleFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-
         init();
 
         return view;
@@ -82,20 +86,19 @@ public class CancelScheduleFragment extends Fragment {
     @BindView(R.id.cancel_schedule_ev_profile)
     EstimateView estimateView;
 
+    ScheduleListAdapter scheduleListAdapter;
 
-    void init(){
+    void init() {
         EstimateRequest estimateRequest = new EstimateRequest(getContext(), estimateId);
         NetworkManager.getInstance().getNetworkData(estimateRequest, new NetworkManager.OnResultListener<NetworkResult<Estimate>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
-//               이미지 나중에
-                estimateView.setUserImage(result.getResult().getSingerImage());
-                estimateView.setUserName(result.getResult().getSingerName());
+                estimateView.setUserImage(result.getResult().getCustomerImage());
+                estimateView.setUserName(result.getResult().getCustomerName());
                 estimateView.setLocation(result.getResult().getLocation());
                 estimateView.setDate(result.getResult().getDate());
                 estimateView.setSong(result.getResult().getSongs());
                 estimateView.setSpecial(result.getResult().getSpecial());
-
             }
 
             @Override
@@ -109,19 +112,19 @@ public class CancelScheduleFragment extends Fragment {
     void onCancelBtnClick() {
         AlertDialog dialog;
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Cancel complete")
-                .setMessage("Cancel complete,\nyou can check your penalty in my page")
-                .setPositiveButton("GO MY PAGE", new DialogInterface.OnClickListener() {
+        builder.setTitle("Cancel Schedule")
+                .setMessage("Are you sure? You will get penalty")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        moveMyPageFragment();
+                        cancelSchedule(TYPE_CANCEL_SCHEDULE);
                     }
                 });
 
-        builder.setNegativeButton("GO MAIN", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                moveMainActivity();
+                Toast.makeText(getContext(),"cancel",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,7 +132,24 @@ public class CancelScheduleFragment extends Fragment {
         dialog.show();
     }
 
-    private void moveMyPageFragment(){
+    private void cancelSchedule(int type) {
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
+        NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                Toast.makeText(getContext(), "CancelSchedule Request Success", Toast.LENGTH_SHORT).show();
+                scheduleListAdapter.remove(estimateId);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(), "CancelSchedule Request Fail", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void moveMyPageFragment() {
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.putExtra(MainActivity.FRAG_NAME, FRAG_MY_PAGE);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);

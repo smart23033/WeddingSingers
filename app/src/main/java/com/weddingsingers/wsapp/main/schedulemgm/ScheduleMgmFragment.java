@@ -55,7 +55,6 @@ public class ScheduleMgmFragment extends Fragment {
         setHasOptionsMenu(true);
         if (getArguments() != null) {
            singerId = getArguments().getInt(KEY_SINGER_ID);
-            Log.i("ScheduleMgmFragment","singerId : " + singerId);
         }
     }
 
@@ -78,6 +77,7 @@ public class ScheduleMgmFragment extends Fragment {
             public void onAdapterItemClick(View view, CalendarList calendarList, int position) {
                 int month = calendarList.getMonth();
                 int year = calendarList.getYear();
+
                 Intent intent = new Intent(getActivity(), DetailScheduleActivity.class);
                 intent.putExtra(DetailScheduleActivity.EXTRA_YEAR, year);
                 intent.putExtra(DetailScheduleActivity.EXTRA_MONTH, month);
@@ -127,6 +127,7 @@ public class ScheduleMgmFragment extends Fragment {
 
             CalendarList calendarList = new CalendarList();
             calendarList.setMonth(month);
+            calendarList.setYear(year);
             mAdapter.add(calendarList);
             month++;
         }

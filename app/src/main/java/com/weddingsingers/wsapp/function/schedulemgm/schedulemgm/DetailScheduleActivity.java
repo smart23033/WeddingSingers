@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ public class DetailScheduleActivity extends AppCompatActivity {
 
     public final static String EXTRA_YEAR = "extraYear";
     public final static String EXTRA_MONTH = "extraMonth";
+
     public final static int DEFAULT_VALUE = 0;
 
     @BindView(R.id.detail_schedule_toolbar)

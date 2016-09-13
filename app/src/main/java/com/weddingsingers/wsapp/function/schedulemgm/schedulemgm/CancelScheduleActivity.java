@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
 
 public class CancelScheduleActivity extends AppCompatActivity {
 
+    public final static String FRAG_NAME = "fragmentName";
     public static final String EXTRA_ESTIMATE_ID = "estimateId";
     public static final int DEFAULT_VALUE = 0;
 

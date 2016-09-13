@@ -35,6 +35,14 @@ public class ScheduleListAdapter extends RecyclerView.Adapter<ScheduleListViewHo
             }
         }
     }
+    public void remove(int estimateId){
+        for(Estimate e : items){
+            if(e.getId() == estimateId) {
+                items.remove(e);
+                notifyDataSetChanged();
+            }
+        }
+    }
 
     public void clear(){
         items.clear();

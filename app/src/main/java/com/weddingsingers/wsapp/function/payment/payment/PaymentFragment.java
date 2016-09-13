@@ -39,8 +39,8 @@ import butterknife.OnClick;
  */
 public class PaymentFragment extends Fragment {
 
-    public static final String ARG_FRAG_NAME = "fragmentName";
-    public static final String ARG_ESTIMATE_ID = "estimateId";
+    public static final String KEY_FRAG_NAME = "fragmentName";
+    public static final String KEY_ESTIMATE_ID = "estimateId";
     public static final String FRAG_RESERVED_ONE = "ReservedOneFragment";
     public static final String FRAG_RESERVED_CUSTOMER = "ReservedCustomerFragment";
 
@@ -70,8 +70,8 @@ public class PaymentFragment extends Fragment {
     public static PaymentFragment newInstance(String fragmentName, int estimateId) {
         PaymentFragment fragment = new PaymentFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_FRAG_NAME, fragmentName);
-        args.putInt(ARG_ESTIMATE_ID, estimateId);
+        args.putString(KEY_FRAG_NAME, fragmentName);
+        args.putInt(KEY_ESTIMATE_ID, estimateId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -81,8 +81,8 @@ public class PaymentFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         if (getArguments() != null) {
-            fragmentName = getArguments().getString(ARG_FRAG_NAME);
-            estimateId = getArguments().getInt(ARG_ESTIMATE_ID);
+            fragmentName = getArguments().getString(KEY_FRAG_NAME);
+            estimateId = getArguments().getInt(KEY_ESTIMATE_ID);
         }
         reservationListAdapter = new ReservationListAdapter();
         reservedOneAdapter = new ReservedOneAdapter();

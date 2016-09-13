@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity
                 }
                 case FRAG_MY_PAGE: {
                     if(userType == TYPE_SINGER) {
-                        changeFragment(new SingerMyPageFragment());
+                        changeFragment(new MyPageSingerFragment());
                     }else if(userType == TYPE_CUSTOMER){
                         changeFragment(new MyPageCustomerFragment());
                     }

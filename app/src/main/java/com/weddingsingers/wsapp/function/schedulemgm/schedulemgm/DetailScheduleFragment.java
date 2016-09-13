@@ -20,6 +20,7 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.DetailScheduleRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
 
 import java.util.List;
@@ -68,7 +69,14 @@ public class DetailScheduleFragment extends Fragment {
         if (getArguments() != null) {
             year = getArguments().getInt(ARG_YEAR);
             month = getArguments().getInt(ARG_MONTH);
+
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        init();
     }
 
     @Override
@@ -85,12 +93,14 @@ public class DetailScheduleFragment extends Fragment {
 
         mAdapter = new ScheduleListAdapter();
 
+
         mAdapter.setOnAdapterCancelBtnClickListener(new ScheduleListAdapter.OnAdapterCancelBtnClickListener() {
             @Override
             public void onAdapterCancelBtnClick(View view, Estimate estimate, int position) {
                 Intent intent = new Intent(getContext(), CancelScheduleActivity.class);
+                intent.putExtra(CancelScheduleActivity.EXTRA_ESTIMATE_ID, estimateId);
+
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -109,8 +119,6 @@ public class DetailScheduleFragment extends Fragment {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(mAdapter);
 
-        init();
-
         return view;
     }
 
@@ -126,38 +134,39 @@ public class DetailScheduleFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-
+    int estimateId;
     private void init() {
         mAdapter.clear();
-        EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_ESTIMATE_LIST);
-        NetworkManager.getInstance().getNetworkData(estimateListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 
-                        for (Estimate e : result.getResult()) {
-                            Estimate estimate = new Estimate();
-                            estimate.setId(e.getId());
-                            estimate.setCustomerName(e.getCustomerName());
-                            estimate.setCustomerImage(e.getCustomerImage());
-                            estimate.setDate(e.getDate());
-                            estimate.setLocation(e.getLocation());
-                            estimate.setSongs(e.getSongs());
-                            estimate.setSpecial(e.getSpecial());
-                            mAdapter.add(estimate);
+        DetailScheduleRequest detailScheduleRequest = new DetailScheduleRequest(getContext(), year, month);
+        NetworkManager.getInstance().getNetworkData(detailScheduleRequest, new NetworkManager.OnResultListener<NetworkResult<List<Estimate>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<Estimate>>> request, NetworkResult<List<Estimate>> result) {
 
-                            //멀티타입으로 날자까지 받을 것이냐.
-                        }
+                for (Estimate e : result.getResult()) {
+                    Log.i("DetailScheduleFragment","e.getCustomerName() : " + e.getCustomerName());
+                    Estimate estimate = new Estimate();
+                    estimate.setId(e.getId());
+                    estimate.setCustomerName(e.getCustomerName());
+                    estimate.setCustomerImage(e.getCustomerImage());
+                    estimate.setDate(e.getDate());
+                    estimate.setLocation(e.getLocation());
+                    estimate.setSongs(e.getSongs());
+                    estimate.setStatus(e.getStatus());
+                    mAdapter.add(estimate);
 
-                    }
-
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request,
-                                       int errorCode, String errorMessage, Throwable e) {
-
-                    }
+                    estimateId = estimate.getId();
                 }
 
-        );
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<Estimate>>> request, int errorCode, String errorMessage, Throwable e) {
+
+
+            }
+        });
+
     }
 
 }
