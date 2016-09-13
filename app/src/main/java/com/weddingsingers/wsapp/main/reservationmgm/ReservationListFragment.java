@@ -19,7 +19,6 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
-import com.weddingsingers.wsapp.function.reservation.cancelreservation.CancelReservationActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;

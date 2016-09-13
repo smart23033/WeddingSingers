@@ -94,8 +94,8 @@ public class ReservedCustomerFragment extends Fragment {
                 builder.setNegativeButton("REJECT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getContext(), "reservation rejected", Toast.LENGTH_SHORT).show();
 //                        취소 요청
+                        rejectReservation(TYPE_REJECT_RESERVATION);
                     }
                 });
 
@@ -114,12 +114,13 @@ public class ReservedCustomerFragment extends Fragment {
         return view;
     }
 
-    private void RespondReservation(int type) {
+    private void rejectReservation(int type) {
         PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
-                Log.i("ReservedCustomerFragment", "result : " + result.getResult().toString());
+                Log.i("ReservedCustomerFragment", "results : " + result.getResult().toString());
+                init();
             }
 
             @Override
