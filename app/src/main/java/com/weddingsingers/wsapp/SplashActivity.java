@@ -27,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
-        }, 3000);
+        }, 1500);
     }
 
     Handler mHandler = new Handler(Looper.getMainLooper());
