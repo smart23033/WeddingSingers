@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +26,11 @@ import com.facebook.login.LoginBehavior;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.FacebookLoginRequest;
 
 import java.util.Arrays;
 
@@ -48,9 +53,6 @@ public class LoginIntroFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
-//    @BindView(R.id.login_intro_btn_facebook_login)
-//    LoginButton facebookLoginBtn;
-
     CallbackManager callbackManager;
     LoginManager mLoginManager;
 
@@ -69,36 +71,7 @@ public class LoginIntroFragment extends Fragment {
         mLoginManager = LoginManager.getInstance();
         callbackManager = CallbackManager.Factory.create();
 
-        setButtonLabel();
-
         return view;
-    }
-
-    AccessTokenTracker mTracker;
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mTracker == null) {
-            mTracker = new AccessTokenTracker() {
-                @Override
-                protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                    setButtonLabel();
-                }
-            };
-        } else {
-            mTracker.startTracking();
-        }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mTracker.stopTracking();
-    }
-
-    private void logoutFacebook() {
-        mLoginManager.logOut();
     }
 
     private void loginFacebook() {
@@ -107,9 +80,19 @@ public class LoginIntroFragment extends Fragment {
         mLoginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getContext(), "login success", Toast.LENGTH_SHORT).show();
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(getContext(),accessToken.getToken());
+                NetworkManager.getInstance().getNetworkData(facebookLoginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+                    @Override
+                    public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+                        Toast.makeText(getContext(),"FacebookLoginRequest success",Toast.LENGTH_LONG).show();
+                    }
 
-
+                    @Override
+                    public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+                        Toast.makeText(getContext(),"FacebookLoginRequest fail : " + errorMessage,Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
 
@@ -127,26 +110,9 @@ public class LoginIntroFragment extends Fragment {
         mLoginManager.logInWithReadPermissions(this, Arrays.asList("email"));
     }
 
-    private boolean isLogin() {
-        AccessToken token = AccessToken.getCurrentAccessToken();
-        return token != null;
-    }
-
     @OnClick(R.id.login_intro_btn_facebook_login)
     void onFacebookLoginBtnClick(){
-        if(isLogin()){
-            logoutFacebook();
-        }else{
             loginFacebook();
-        }
-    }
-
-    private void setButtonLabel() {
-        if (isLogin()) {
-            facebookLoginBtn.setText("LOGOUT");
-        } else {
-            facebookLoginBtn.setText("FACEBOOK LOGIN");
-        }
     }
 
     @OnClick(R.id.login_intro_btn_login)

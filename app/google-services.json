@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "737285842796",
+    "firebase_url": "https://weddingsingers-141204.firebaseio.com",
+    "project_id": "weddingsingers-141204",
+    "storage_bucket": "weddingsingers-141204.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737285842796:android:b6ce9336cd1a3131",
+        "android_client_info": {
+          "package_name": "com.weddingsingers.wsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737285842796-nbrctvbqeejvdketlirpgeta9loes9k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdI-bpA2pBwhlh0wwwcGZqP5TRwhcaCno"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

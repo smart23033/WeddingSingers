@@ -14,6 +14,15 @@ public class User implements Serializable{
     private String phone;
     private int point;
     private int type;
+    private int flag;
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
 
     public int getId() {
         return id;
