@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by Tacademy on 2016-09-13.
  */
-
+// 공통 함수
 public class Utils {
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
