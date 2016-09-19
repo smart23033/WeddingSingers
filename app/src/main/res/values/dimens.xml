@@ -385,6 +385,7 @@
 
 
     <!--fragment_my_page_customer.xml-->
+    <!--fragment_singer_my_page.xml-->
     <dimen name="my_page_customer_riv_picture_size">100dp</dimen>
     <dimen name="my_page_customer_riv_picture_riv_corner_radius">30dp</dimen>
     <dimen name="my_page_customer_tv_name_margin_top">8dp</dimen>
@@ -404,9 +405,16 @@
     <dimen name="my_page_customer_tv_title_margin_left">10dp</dimen>
 
 
-    <!--fragment_singer_my_page.xml-->
-
-
+    <!--fragment_user_info.xml-->
+    <dimen name="user_info_divider_name_margin_top">10dp</dimen>
+    <dimen name="user_info_riv_picture_size">100dp</dimen>
+    <dimen name="user_info_riv_picture_corner_radius">30dp</dimen>
+    <dimen name="user_info_btn_padding">0dp</dimen>
+    <dimen name="user_info_btn_cancel_margin_left">10dp</dimen>
+    <dimen name="user_info_tv_width">60dp</dimen>
+    <dimen name="user_info_rl_height">35dp</dimen>
+    <dimen name="user_info_rl_btn_margin_top">25dp</dimen>
+    <dimen name="user_info_et_width">200dp</dimen>
 
 
 </resources>

@@ -20,11 +20,12 @@
     <color name="write_review_tv_rating_text_color">#FF6666</color>
     <color name="write_review_tv_content_text_color">#FF6666</color>
 
-    <!--fragment_my_page_customer-->
+    <!--fragment_my_page_customer.xml-->
     <color name="my_page_customer_tv_point_text_color">#FF6666</color>
     <color name="my_page_customer_divider_color">#BBBBBB</color>
     <color name="my_page_customer_btn_text_color">#FFFFFF</color>
 
-
+    <!--fragment_user_info.xml-->
+    <color name="user_info_tv_text_color">#FF6666</color>
 
 </resources>
