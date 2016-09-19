@@ -20,7 +20,7 @@ import okhttp3.RequestBody;
 public class FacebookLoginRequest extends AbstractRequest<NetworkResult<User>> {
     Request request;
 
-    public FacebookLoginRequest(Context context, String  token) {
+    public FacebookLoginRequest(Context context, String  token, String regId) {
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("auth")
                 .addPathSegment("facebook")
@@ -29,6 +29,7 @@ public class FacebookLoginRequest extends AbstractRequest<NetworkResult<User>> {
 
         RequestBody body = new FormBody.Builder()
                 .add("access_token", token)
+                .add("registration_token",regId)
                 .build();
 
         request = new Request.Builder()

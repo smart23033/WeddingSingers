@@ -29,7 +29,7 @@ public class LoginRequest extends AbstractRequest<NetworkResult<User>>{
         RequestBody body = new FormBody.Builder()
                 .add("email",email)
                 .add("password",password)
-                .add("regId",regId)
+                .add("registration_token",regId)
                 .build();
 
         request = new Request.Builder()

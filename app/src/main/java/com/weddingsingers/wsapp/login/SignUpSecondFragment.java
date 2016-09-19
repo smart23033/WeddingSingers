@@ -103,6 +103,9 @@ public class SignUpSecondFragment extends Fragment {
                 String email = user.getEmail();
                 String name = user.getName();
 
+                //조심해라 지금 집중안되는 상태에서 만들어서 틀린부분일 수도 있다.
+                PropertyManager.getInstance().setFacebookId(result.getResult().getEmail());
+
                 Intent intent = new Intent(getActivity(),MainActivity.class);
                 intent.putExtra(MainActivity.EXTRA_USER_ID, id);
                 intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
