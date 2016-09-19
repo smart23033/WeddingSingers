@@ -74,7 +74,8 @@
         <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
         <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
         <activity android:name=".function.video.othervideo.OtherVideoActivity" />
-        <activity android:name=".function.review.writereview.WriteReviewActivity"></activity>
+        <activity android:name=".function.review.writereview.WriteReviewActivity"
+            android:exported="true"></activity>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"

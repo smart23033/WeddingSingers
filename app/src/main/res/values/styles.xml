@@ -19,11 +19,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="CustomRatingBar" parent="@android:style/Widget.RatingBar">
-        <item name="android:progressDrawable">@drawable/all_ic_14_on</item>
-        <item name="android:indeterminateDrawable">@drawable/all_ic_14_off</item>
-        <item name="android:minHeight">25dp</item>
-        <item name="android:maxHeight">25dp</item>
-    </style>
-
 </resources>

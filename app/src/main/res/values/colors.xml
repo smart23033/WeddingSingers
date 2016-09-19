@@ -15,4 +15,16 @@
     <color name="main_toolbar_background">#ffffff</color>
     <color name="main_nv_nav_item_color">#f27980</color>
 
+    <!--fragment_write_review.xml-->
+    <color name="write_review_tv_bill_num_text_color">#FF6666</color>
+    <color name="write_review_tv_rating_text_color">#FF6666</color>
+    <color name="write_review_tv_content_text_color">#FF6666</color>
+
+    <!--fragment_my_page_customer-->
+    <color name="my_page_customer_tv_point_text_color">#FF6666</color>
+    <color name="my_page_customer_divider_color">#BBBBBB</color>
+    <color name="my_page_customer_btn_text_color">#FFFFFF</color>
+
+
+
 </resources>

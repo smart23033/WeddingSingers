@@ -1,95 +1,82 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/fragment_vertical_margin"
-    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
-    android:layout_marginRight="@dimen/fragment_horizontal_margin"
-    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:padding="@dimen/relative_layout_padding"
     tools:context=".function.review.writereview.WriteReviewFragment">
 
-    <RelativeLayout
-        android:id="@+id/write_review_rl_bill"
+    <TextView
+        android:id="@+id/write_review_tv_bill_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="@dimen/write_review_tv_bill_num_margin_top"
+        android:text="@string/write_review_tv_bill_num_text"
+        android:textColor="@color/write_review_tv_bill_num_text_color"
+        android:textSize="@dimen/write_review_tv_bill_num_text_size" />
 
-        <TextView
-            android:id="@+id/write_review_tv_bill_num"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="서비스 내역"
-            android:textColor="#ff6666"
-            android:textSize="12sp" />
+    <Spinner
+        android:id="@+id/write_review_sp_detail_bill_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/write_review_tv_bill_num"
+        android:spinnerMode="dropdown" />
 
-        <Spinner
-            android:id="@+id/write_review_sp_detail_bill_num"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@+id/write_review_tv_bill_num"
-            android:spinnerMode="dropdown" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/write_review_rl_write"
+    <TextView
+        android:id="@+id/write_review_tv_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/write_review_rl_bill"
-        android:layout_marginTop="20dp">
+        android:text="@string/write_review_tv_rating_text"
+        android:layout_marginTop="@dimen/write_review_tv_rating_margin_top"
+        android:layout_below="@+id/write_review_sp_detail_bill_num"
+        android:textColor="@color/write_review_tv_rating_text_color"
+        android:textSize="@dimen/write_review_tv_rating_text_size" />
 
-        <TextView
-            android:id="@+id/write_review_tv_rating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="별점"
-            android:textColor="#ff6666"
-            android:textSize="12sp" />
+    <RatingBar
+        android:id="@+id/write_review_rb_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/write_review_tv_rating"
+        android:layout_marginLeft="@dimen/write_review_rb_rating_margin_left"
+        android:layout_marginTop="@dimen/write_review_rb_rating_margin_top"
+        android:numStars="5"
+        android:progressTint="@color/colorPrimaryPink" />
 
-        <RatingBar
-            android:id="@+id/write_review_rb_rating"
-            style="@style/CustomRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/write_review_tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/write_review_rb_rating"
+        android:layout_marginTop="@dimen/write_review_tv_content_margin_top"
+        android:text="@string/write_review_tv_content_text"
+        android:textColor="@color/write_review_tv_content_text_color"
+        android:textSize="@dimen/write_review_tv_content_text_size" />
 
-            android:layout_below="@id/write_review_tv_rating"
-            android:progressTint="@color/colorPrimaryPink"
-            android:layout_marginTop="10dp"
-            android:numStars="5" />
+    <EditText
+        android:id="@+id/write_review_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/write_review_tv_content"
+        android:layout_marginTop="@dimen/write_review_et_content_margin_top"
+        android:background="@drawable/fragment_write_review_edittext_border"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:maxWidth="@dimen/write_review_et_content_max_width"
+        android:minWidth="@dimen/write_review_et_content_minWidth"
+        android:padding="@dimen/write_review_et_content_padding"
+        android:scrollHorizontally="false"
+        android:textColor="#555555" />
 
-        <View
-            android:id="@+id/write_review_divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/write_review_rb_rating"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/colorPrimaryPink" />
-
-
-        <EditText
-            android:id="@+id/write_review_et_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/write_review_divider"
-            android:gravity="top|left"
-            android:inputType="textMultiLine"
-            android:lines="10"
-            android:maxWidth="180dp"
-            android:minWidth="10dp"
-            android:scrollHorizontally="false" />
-
-        <Button
-            android:id="@+id/write_review_btn_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/write_review_et_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="write" />
-
-    </RelativeLayout>
+    <ImageButton
+        android:id="@+id/write_review_btn_write"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/write_review_et_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/write_review_btn_write_margin_top"
+        android:padding="@dimen/write_review_btn_write_padding"
+        android:src="@drawable/all_btn_09" />
 
 </RelativeLayout>

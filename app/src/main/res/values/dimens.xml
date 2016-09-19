@@ -348,8 +348,7 @@
 
     <!--nav_main_header.xml-->
     <dimen name="nav_header_height">147dp</dimen>
-    <dimen name="nav_header_picture_width">60dp</dimen>
-    <dimen name="nav_header_picture_height">60dp</dimen>
+    <dimen name="nav_header_picture_size">60dp</dimen>
     <dimen name="nav_header_picture_margin_left">10dp</dimen>
     <dimen name="nav_header_picture_margin_top">10dp</dimen>
     <dimen name="nav_header_bell_width">30dp</dimen>
@@ -368,6 +367,46 @@
 
 
     <!--fragment_write_review.xml-->
+    <dimen name="relative_layout_padding">16dp</dimen>
+    <dimen name="write_review_tv_bill_num_margin_top">20dp</dimen>
+    <dimen name="write_review_tv_bill_num_text_size">12sp</dimen>
+    <dimen name="write_review_tv_rating_margin_top">10dp</dimen>
+    <dimen name="write_review_tv_rating_text_size">12sp</dimen>
+    <dimen name="write_review_rb_rating_margin_top">10dp</dimen>
+    <dimen name="write_review_rb_rating_margin_left">10dp</dimen>
+    <dimen name="write_review_tv_content_margin_top">20dp</dimen>
+    <dimen name="write_review_tv_content_text_size">12sp</dimen>
+    <dimen name="write_review_et_content_margin_top">10dp</dimen>
+    <dimen name="write_review_et_content_max_width">180dp</dimen>
+    <dimen name="write_review_et_content_minWidth">10dp</dimen>
+    <dimen name="write_review_et_content_padding">10dp</dimen>
+    <dimen name="write_review_btn_write_margin_top">36dp</dimen>
+    <dimen name="write_review_btn_write_padding">0dp</dimen>
+
+
+    <!--fragment_my_page_customer.xml-->
+    <dimen name="my_page_customer_riv_picture_size">100dp</dimen>
+    <dimen name="my_page_customer_riv_picture_riv_corner_radius">30dp</dimen>
+    <dimen name="my_page_customer_tv_name_margin_top">8dp</dimen>
+    <dimen name="my_page_customer_tv_email_margin_top">2dp</dimen>
+    <dimen name="my_page_customer_rl_point_my_height">30dp</dimen>
+    <dimen name="my_page_customer_rl_point_my_margin_top">8dp</dimen>
+    <dimen name="my_page_customer_tv_point_text_margin_left">15dp</dimen>
+    <dimen name="my_page_customer_tv_point_text_margin_right">10dp</dimen>
+    <dimen name="my_page_customer_tv_point_margin_right">15dp</dimen>
+    <dimen name="my_page_customer_img_btn_modify_size">48dp</dimen>
+    <dimen name="my_page_customer_divider_height">2dp</dimen>
+    <dimen name="my_page_customer_divider_inquiry_margin_top">10dp</dimen>
+    <dimen name="my_page_customer_btn_padding">0dp</dimen>
+    <dimen name="my_page_customer_btn_leave_margin_left">10dp</dimen>
+    <dimen name="my_page_customer_rl_btn_height">70dp</dimen>
+    <dimen name="my_page_customer_rl_btn_margin_top">10dp</dimen>
+    <dimen name="my_page_customer_tv_title_margin_left">10dp</dimen>
+
+
+    <!--fragment_singer_my_page.xml-->
+
+
 
 
 </resources>

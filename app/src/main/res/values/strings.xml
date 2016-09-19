@@ -46,4 +46,23 @@
 
     <!--search_menu.xml-->
     <string name="search_menu_filter">filter</string>
+
+    <!--fragmnet_write_review.xml-->
+    <string name="write_review_tv_bill_num_text">내역 선택</string>
+    <string name="write_review_tv_rating_text">별점</string>
+    <string name="write_review_tv_content_text">내용</string>
+
+    <!--fragment_my_page_customer.xml-->
+    <!--fragment_singer_my_page.xml-->
+    <string name="my_page_my_point_text">마이 포인트</string>
+    <string name="my_page_my_penalty_text">마이 페널티</string>
+    <string name="my_page_inquiry_text">1:1문의 답변</string>
+    <string name="my_page_favor_text">찜한 영상</string>
+    <string name="my_page_account_text">환불계좌 관리</string>
+    <string name="my_page_point_store_text">포인트 상점</string>
+    <string name="my_page_point_text">포인트 관리</string>
+    <string name="my_page_statistic_text">통계/분석</string>
+    <string name="my_page_btn_logout_text">로그 아웃</string>
+    <string name="my_page_btn_leave_text">회원 탈퇴</string>
+
 </resources>
