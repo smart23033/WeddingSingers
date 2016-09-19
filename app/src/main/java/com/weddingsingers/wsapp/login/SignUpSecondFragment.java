@@ -3,7 +3,10 @@ package com.weddingsingers.wsapp.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.manager.PropertyManager;
+import com.weddingsingers.wsapp.request.FacebookSignUpRequest;
 import com.weddingsingers.wsapp.request.LoginRequest;
 import com.weddingsingers.wsapp.request.SignUpRequest;
 
@@ -25,6 +29,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SignUpSecondFragment extends Fragment {
+
+    public final static String TYPE_FACEBOOK = "facebookSignUp";
+    public final static String TYPE_LOCAL = "localSignUp";
 
     public SignUpSecondFragment() {
         // Required empty public constructor
@@ -53,6 +60,9 @@ public class SignUpSecondFragment extends Fragment {
     @BindView(R.id.sign_up_second_et_phone)
     EditText phoneInput;
 
+    @BindView(R.id.sign_up_second_text_password)
+    TextInputLayout passwordInputLayout;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,8 @@ public class SignUpSecondFragment extends Fragment {
         }
     }
 
+    String userType;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,17 +83,46 @@ public class SignUpSecondFragment extends Fragment {
 
         ButterKnife.bind(this,view);
 
+        userType = user.getLoginType();
+
+        if(userType != null && userType.equals(TYPE_FACEBOOK)) {
+            passwordInputLayout.setVisibility(View.GONE);
+            passwordInput.setVisibility(View.GONE);
+        }
+
         return view;
     }
 
-    @OnClick(R.id.sign_up_second_btn_sign_up)
-    void onSignUpClick(){
-        user.setEmail(emailInput.getText().toString());
-        user.setPassword(passwordInput.getText().toString());
-        user.setName(nameInput.getText().toString());
-        user.setPhone(phoneInput.getText().toString());
-//      구글GCM 토근 아직 안받아옴
-        String regToken = "1234";
+    private void facebookSignUp(String regToken){
+        FacebookSignUpRequest facebookSignUpRequest = new FacebookSignUpRequest(getContext(), user, regToken);
+        NetworkManager.getInstance().getNetworkData(facebookSignUpRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+                int id = result.getResult().getId();
+                int type = user.getType();
+                String email = user.getEmail();
+                String name = user.getName();
+
+                Intent intent = new Intent(getActivity(),MainActivity.class);
+                intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+                intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+                intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
+                intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
+                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                getActivity().finish();
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void localSignUp(String regToken){
         SignUpRequest signUpRequest = new SignUpRequest(getContext(), user, regToken);
         NetworkManager.getInstance().getNetworkData(signUpRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
@@ -100,9 +141,28 @@ public class SignUpSecondFragment extends Fragment {
             }
             @Override
             public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                    Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),errorMessage,Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @OnClick(R.id.sign_up_second_btn_sign_up)
+    void onSignUpClick(){
+        user.setEmail(emailInput.getText().toString());
+        user.setPassword(passwordInput.getText().toString());
+        user.setName(nameInput.getText().toString());
+        user.setPhone(phoneInput.getText().toString());
+//      구글GCM 토근 아직 안받아옴
+        String regToken = "1234";
+
+
+
+        if(userType != null && userType.equals(TYPE_FACEBOOK)) {
+            facebookSignUp(regToken);
+        }else{
+            localSignUp(regToken);
+        }
+
     }
 
     private void loginAndMoveMainActivity(int id, int type, String name, String email, String password){

@@ -28,6 +28,7 @@ import com.facebook.login.LoginResult;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.FacebookLoginRequest;
@@ -42,6 +43,8 @@ import butterknife.OnClick;
  * A simple {@link Fragment} subclass.
  */
 public class LoginIntroFragment extends Fragment {
+
+    public final static int INITIAL_LOGIN = 0;
 
     public LoginIntroFragment() {
         // Required empty public constructor
@@ -86,6 +89,40 @@ public class LoginIntroFragment extends Fragment {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                         Toast.makeText(getContext(),"FacebookLoginRequest success",Toast.LENGTH_LONG).show();
+
+                        int flag = result.getResult().getFlag();
+
+                        if(flag == INITIAL_LOGIN) {
+                            user = new User();
+                            user.setLoginType(SignUpFirstFragment.TYPE_FACEBOOK);
+
+                            Log.i("LoginIntroFragment", "flag : " + flag);
+                            Log.i("LoginIntroFragment", "loginType : " + user.getLoginType());
+
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager()
+                                    .beginTransaction();
+                            SignUpFirstFragment signUpFirstFragment = SignUpFirstFragment.newInstance(user);
+                            ft.add(R.id.act_login_container, signUpFirstFragment);
+                            ft.addToBackStack(null);
+                            ft.commit();
+                        }else{
+                            int id = result.getResult().getId();
+                            int type = result.getResult().getType();
+                            String email = result.getResult().getEmail();
+                            String name = result.getResult().getName();
+
+                            Intent intent = new Intent(getActivity(),MainActivity.class);
+                            intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+                            intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+                            intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
+                            intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
+                            intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            getActivity().finish();
+
+                        }
+
                     }
 
                     @Override
@@ -130,10 +167,11 @@ public class LoginIntroFragment extends Fragment {
     @OnClick(R.id.login_intro_btn_sign_up)
     void onSignUpBtnClick() {
         user = new User();
+        user.setLoginType(SignUpFirstFragment.TYPE_LOCAL);
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         SignUpFirstFragment signUpFirstFragment = SignUpFirstFragment.newInstance(user);
-        ft.add(R.id.act_login_container, signUpFirstFragment);
+        ft.add(R.id.act_login_container, signUpFirstFragment, SignUpFirstFragment.TYPE_LOCAL);
         ft.addToBackStack(null);
         ft.commit();
     }

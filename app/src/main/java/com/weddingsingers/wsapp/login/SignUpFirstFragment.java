@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,8 +24,11 @@ import butterknife.OnClick;
  */
 public class SignUpFirstFragment extends Fragment {
 
-    final static int TYPE_SINGER = 1;
-    final static int TYPE_CUSTOMER = 2;
+    public final static int TYPE_SINGER = 1;
+    public final static int TYPE_CUSTOMER = 2;
+
+    public final static String TYPE_FACEBOOK = "facebookSignUp";
+    public final static String TYPE_LOCAL = "localSignUp";
 
     public SignUpFirstFragment() {
         // Required empty public constructor
@@ -59,6 +63,8 @@ public class SignUpFirstFragment extends Fragment {
 
         ButterKnife.bind(this,view);
 
+        Log.i("SignUpFirstFragment", "loginType : " + user.getLoginType());
+
         return view;
     }
 
@@ -79,7 +85,7 @@ public class SignUpFirstFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         SignUpSecondFragment signUpSecondFragment = SignUpSecondFragment.newInstance(user);
-        ft.add(R.id.act_login_container,signUpSecondFragment,LoginActivity.FRAG_SIGN_UP_SECOND);
+        ft.add(R.id.act_login_container, signUpSecondFragment, LoginActivity.FRAG_SIGN_UP_SECOND);
         ft.addToBackStack(null);
         ft.commit();
     }

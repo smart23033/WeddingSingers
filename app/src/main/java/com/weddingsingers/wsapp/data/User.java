@@ -15,6 +15,15 @@ public class User implements Serializable{
     private int point;
     private int type;
     private int flag;
+    private String loginType;
+
+    public String getLoginType() {
+        return loginType;
+    }
+
+    public void setLoginType(String loginType) {
+        this.loginType = loginType;
+    }
 
     public int getFlag() {
         return flag;
