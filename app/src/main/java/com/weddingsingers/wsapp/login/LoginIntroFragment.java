@@ -84,7 +84,8 @@ public class LoginIntroFragment extends Fragment {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(getContext(),accessToken.getToken());
+                String regId = "1234";
+                FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(getContext(),accessToken.getToken(), regId);
                 NetworkManager.getInstance().getNetworkData(facebookLoginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
