@@ -367,5 +367,8 @@
     <dimen name="nav_btn_login_margin_top">190dp</dimen>
 
 
+    <!--fragment_write_review.xml-->
+
+
 </resources>
 

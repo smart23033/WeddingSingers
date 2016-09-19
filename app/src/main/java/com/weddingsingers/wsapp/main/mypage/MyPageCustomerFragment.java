@@ -109,7 +109,7 @@ public class MyPageCustomerFragment extends Fragment {
                         .load(user.getPhotoURL())
                         .asBitmap()
                         .centerCrop()
-                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
+                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.login_ic_01))
                         .into(pictureView);
 
                 nameView.setText(user.getName());

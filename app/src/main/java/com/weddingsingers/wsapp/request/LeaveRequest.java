@@ -7,8 +7,10 @@ import com.weddingsingers.wsapp.data.NetworkResult;
 
 import java.lang.reflect.Type;
 
+import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 
 /**
  * Created by Tacademy on 2016-09-09.
@@ -18,13 +20,17 @@ public class LeaveRequest extends AbstractRequest<NetworkResult<String>> {
     Request request;
 
     public LeaveRequest(Context context) {
-        HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("users")
-                .addPathSegment("me")
+        HttpUrl.Builder builder = getBaseUrlBuilder();
+        builder.addPathSegment("users")
+                .addPathSegment("me");
+
+
+        RequestBody body = new FormBody.Builder()
                 .build();
 
         request = new Request.Builder()
-                .url(url)
+                .url(builder.build())
+                .delete(body)
                 .tag(context)
                 .build();
     }

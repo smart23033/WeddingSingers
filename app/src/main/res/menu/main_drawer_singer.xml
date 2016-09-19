@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/nav_ic_home"
+            android:icon="@drawable/menu_ic_01"
             android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_my_page"
-            android:icon="@drawable/nav_ic_my_page"
+            android:icon="@drawable/menu_ic_02"
             android:title="@string/nav_my_page" />
         <item
             android:id="@+id/nav_reservation_mgm"
-            android:icon="@drawable/nav_ic_reservation"
+            android:icon="@drawable/menu_ic_03"
             android:title="@string/nav_reservation_mgm" />
         <item
             android:id="@+id/nav_schedule_mgm"
-            android:icon="@drawable/nav_ic_schedule"
+            android:icon="@drawable/menu_ic_09"
             android:title="@string/nav_schedule_mgm" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/nav_ic_chatting"
+            android:icon="@drawable/menu_ic_05"
             android:title="@string/nav_chat" />
         <item
             android:id="@+id/nav_community"
-            android:icon="@drawable/nav_ic_community"
+            android:icon="@drawable/menu_ic_06"
             android:title="@string/nav_community" />
         <item
             android:id="@+id/nav_qna"
-            android:icon="@drawable/nav_ic_qna"
+            android:icon="@drawable/menu_ic_07"
             android:title="@string/nav_qna" />
-
-
     </group>
-
-
 </menu>
