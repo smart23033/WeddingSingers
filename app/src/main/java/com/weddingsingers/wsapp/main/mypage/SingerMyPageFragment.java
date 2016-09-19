@@ -106,8 +106,6 @@ public class SingerMyPageFragment extends Fragment {
 
                 loginType = result.getResult().getLoginType();
 
-                Log.i("SingerMyPageFragment", "loginType : " + loginType);
-
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
                         .asBitmap()
