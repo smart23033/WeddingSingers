@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +25,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
-import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
@@ -34,7 +32,6 @@ import com.weddingsingers.wsapp.main.community.PostListFragment;
 import com.weddingsingers.wsapp.main.home.MainFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageCustomerFragment;
 import com.weddingsingers.wsapp.main.mypage.MyPageSingerFragment;
-import com.weddingsingers.wsapp.main.mypage.SingerMyPageFragment;
 import com.weddingsingers.wsapp.main.qna.QNAFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
@@ -42,7 +39,7 @@ import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
-import com.weddingsingers.wsapp.request.MyPageRequest;
+import com.weddingsingers.wsapp.request.ProfileRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
 
-    public static Boolean IS_PICTURE_CHANGED = false;
+    Boolean isPictureChanged = false;
 
     int userId;
     int userType;
@@ -203,7 +200,7 @@ public class MainActivity extends AppCompatActivity
 
         if (fragmentName != DEFAULT_VALUE) {
 
-            IS_PICTURE_CHANGED = true;
+            isPictureChanged = true;
 
             userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
             userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
@@ -332,7 +329,7 @@ public class MainActivity extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
-                if (IS_PICTURE_CHANGED) {
+                if (isPictureChanged) {
                     setPictureView();
                 }
                 drawer.openDrawer(GravityCompat.START);
@@ -346,7 +343,7 @@ public class MainActivity extends AppCompatActivity
     public void setPictureView() {
         Log.i("MAIN_ACTIVITY_DRAWER_OPEN", "setPictureView");
 
-        MyPageRequest request = new MyPageRequest(this);
+        ProfileRequest request = new ProfileRequest(this);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
@@ -360,7 +357,7 @@ public class MainActivity extends AppCompatActivity
                         .centerCrop()
                         .error(ContextCompat.getDrawable(MainActivity.this, R.drawable.login_ic_01))
                         .into(pictureView);
-                IS_PICTURE_CHANGED = false;
+                isPictureChanged = false;
 
             }
 

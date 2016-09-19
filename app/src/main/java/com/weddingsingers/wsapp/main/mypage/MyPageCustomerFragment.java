@@ -2,7 +2,6 @@ package com.weddingsingers.wsapp.main.mypage;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,10 +17,8 @@ import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.makeramen.roundedimageview.RoundedImageView;
-import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
-import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.function.mypage.accountmgm.AccountMgmActivity;
 import com.weddingsingers.wsapp.function.mypage.favoritevideo.FavoriteVideoActivity;
@@ -36,10 +32,7 @@ import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.manager.PropertyManager;
 import com.weddingsingers.wsapp.request.LeaveRequest;
 import com.weddingsingers.wsapp.request.LogOutRequest;
-import com.weddingsingers.wsapp.request.MyPageRequest;
-import com.weddingsingers.wsapp.request.SingerProfileRequest;
-
-import java.text.NumberFormat;
+import com.weddingsingers.wsapp.request.ProfileRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -90,7 +83,7 @@ public class MyPageCustomerFragment extends Fragment {
 
     private void initData() {
 
-        MyPageRequest request = new MyPageRequest(getContext());
+        ProfileRequest request = new ProfileRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {

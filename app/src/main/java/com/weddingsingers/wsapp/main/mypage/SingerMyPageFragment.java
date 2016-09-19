@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +29,7 @@ import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.manager.PropertyManager;
 import com.weddingsingers.wsapp.request.LeaveRequest;
 import com.weddingsingers.wsapp.request.LogOutRequest;
-import com.weddingsingers.wsapp.request.MyPageRequest;
+import com.weddingsingers.wsapp.request.ProfileRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -93,7 +92,7 @@ public class SingerMyPageFragment extends Fragment {
 
     private void initData() {
 
-        MyPageRequest request = new MyPageRequest(getContext());
+        ProfileRequest request = new ProfileRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
