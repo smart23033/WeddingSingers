@@ -171,7 +171,7 @@ public class LoginIntroFragment extends Fragment {
         FragmentTransaction ft = getActivity().getSupportFragmentManager()
                 .beginTransaction();
         SignUpFirstFragment signUpFirstFragment = SignUpFirstFragment.newInstance(user);
-        ft.add(R.id.act_login_container, signUpFirstFragment, SignUpFirstFragment.TYPE_LOCAL);
+        ft.add(R.id.act_login_container, signUpFirstFragment);
         ft.addToBackStack(null);
         ft.commit();
     }

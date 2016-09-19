@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -40,6 +43,9 @@ public class SingerMyPageFragment extends Fragment {
 
     private static final String ARG_MESSAGE = "param1";
 
+    public final static int TYPE_LOCAL = 1;
+    public final static int TYPE_FACEBOOK = 2;
+
     @BindView(R.id.singer_my_page_riv_picture)
     RoundedImageView pictureView;
 
@@ -51,6 +57,8 @@ public class SingerMyPageFragment extends Fragment {
 
     @BindView(R.id.singer_my_page_tv_point_value)
     TextView pointView;
+
+    LoginManager mLoginManager;
 
     public SingerMyPageFragment() {
         // Required empty public constructor
@@ -71,6 +79,8 @@ public class SingerMyPageFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        mLoginManager = LoginManager.getInstance();
+
         pictureView.mutateBackground(true);
         pictureView.setOval(true);
 
@@ -78,6 +88,8 @@ public class SingerMyPageFragment extends Fragment {
 
         return view;
     }
+
+    int loginType;
 
     private void initData() {
 
@@ -91,6 +103,10 @@ public class SingerMyPageFragment extends Fragment {
                 user.setName(result.getResult().getName());
                 user.setEmail(result.getResult().getEmail());
                 user.setPoint(result.getResult().getPoint());
+
+                loginType = result.getResult().getLoginType();
+
+                Log.i("SingerMyPageFragment", "loginType : " + loginType);
 
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
@@ -144,26 +160,34 @@ public class SingerMyPageFragment extends Fragment {
         getContext().startActivity(new Intent(getActivity(), AccountMgmActivity.class));
     }
 
+    private boolean isLogin() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        return token != null;
+    }
+
     @OnClick(R.id.singer_my_page_btn_logout)
     void onLogOutClick() {
-
         LogOutRequest logOutRequest = new LogOutRequest(getContext());
         NetworkManager.getInstance().getNetworkData(logOutRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                if (loginType == TYPE_FACEBOOK && isLogin()) {
+                    mLoginManager.logOut();
+                }
+
                 PropertyManager.getInstance().setEmail("");
                 PropertyManager.getInstance().setPassword("");
                 PropertyManager.getInstance().setFacebookId("");
-                //LoginManager.getInstance().logOut();
+
                 Intent intent = new Intent(getContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 getActivity().finish();
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getActivity(), "Logout request fail.. - " + errorMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Logout request fail..", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,5 +1,7 @@
 package com.weddingsingers.wsapp.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -15,13 +17,15 @@ public class User implements Serializable{
     private int point;
     private int type;
     private int flag;
-    private String loginType;
 
-    public String getLoginType() {
+    @SerializedName("login_type")
+    private int loginType;
+
+    public int getLoginType() {
         return loginType;
     }
 
-    public void setLoginType(String loginType) {
+    public void setLoginType(int loginType) {
         this.loginType = loginType;
     }
 

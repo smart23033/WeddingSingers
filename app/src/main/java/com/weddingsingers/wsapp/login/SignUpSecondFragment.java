@@ -30,8 +30,8 @@ import butterknife.OnClick;
 
 public class SignUpSecondFragment extends Fragment {
 
-    public final static String TYPE_FACEBOOK = "facebookSignUp";
-    public final static String TYPE_LOCAL = "localSignUp";
+    public final static int TYPE_FACEBOOK = 2;
+    public final static int TYPE_LOCAL = 1;
 
     public SignUpSecondFragment() {
         // Required empty public constructor
@@ -73,7 +73,7 @@ public class SignUpSecondFragment extends Fragment {
         }
     }
 
-    String userType;
+    int userType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +85,7 @@ public class SignUpSecondFragment extends Fragment {
 
         userType = user.getLoginType();
 
-        if(userType != null && userType.equals(TYPE_FACEBOOK)) {
+        if(userType == TYPE_FACEBOOK) {
             passwordInputLayout.setVisibility(View.GONE);
             passwordInput.setVisibility(View.GONE);
         }
@@ -157,7 +157,7 @@ public class SignUpSecondFragment extends Fragment {
 
 
 
-        if(userType != null && userType.equals(TYPE_FACEBOOK)) {
+        if(userType == TYPE_FACEBOOK) {
             facebookSignUp(regToken);
         }else{
             localSignUp(regToken);

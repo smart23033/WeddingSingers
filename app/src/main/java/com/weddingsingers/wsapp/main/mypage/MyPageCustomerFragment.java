@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
@@ -45,6 +48,9 @@ import butterknife.OnClick;
 
 public class MyPageCustomerFragment extends Fragment {
 
+    public final static int TYPE_LOCAL = 1;
+    public final static int TYPE_FACEBOOK = 2;
+
     @BindView(R.id.my_page_customer_riv_picture)
     RoundedImageView pictureView;
 
@@ -57,6 +63,8 @@ public class MyPageCustomerFragment extends Fragment {
     @BindView(R.id.my_page_customer_tv_point)
     TextView pointView;
 
+    LoginManager mLoginManager;
+
     public MyPageCustomerFragment() {
         // Required empty public constructor
     }
@@ -68,6 +76,8 @@ public class MyPageCustomerFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
+        mLoginManager = LoginManager.getInstance();
+
         pictureView.mutateBackground(true);
         pictureView.setOval(true);
 
@@ -75,6 +85,8 @@ public class MyPageCustomerFragment extends Fragment {
 
         return view;
     }
+
+    int loginType;
 
     private void initData() {
 
@@ -88,6 +100,10 @@ public class MyPageCustomerFragment extends Fragment {
                 user.setName(result.getResult().getName());
                 user.setEmail(result.getResult().getEmail());
                 user.setPoint(result.getResult().getPoint());
+
+                loginType = result.getResult().getLoginType();
+
+                Log.i("MyPageCustomerFragment", "loginType : " + loginType);
 
                 Glide.with(getActivity())
                         .load(user.getPhotoURL())
@@ -151,6 +167,11 @@ public class MyPageCustomerFragment extends Fragment {
         getContext().startActivity(new Intent(getActivity(), MyPointActivity.class));
     }
 
+    private boolean isLogin() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        return token != null;
+    }
+
     @OnClick(R.id.my_page_customer_btn_logout)
     void onLogOutClick() {
 
@@ -158,12 +179,17 @@ public class MyPageCustomerFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(logOutRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                if (loginType == TYPE_FACEBOOK && isLogin()) {
+                    mLoginManager.logOut();
+
+                }
+
                 PropertyManager.getInstance().setEmail("");
                 PropertyManager.getInstance().setPassword("");
                 PropertyManager.getInstance().setFacebookId("");
-                //LoginManager.getInstance().logOut();
+
                 Intent intent = new Intent(getContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -173,6 +199,7 @@ public class MyPageCustomerFragment extends Fragment {
                 Toast.makeText(getActivity(), "Logout request fail..", Toast.LENGTH_SHORT).show();
             }
         });
+
 
     }
 

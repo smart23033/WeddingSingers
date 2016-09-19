@@ -27,8 +27,8 @@ public class SignUpFirstFragment extends Fragment {
     public final static int TYPE_SINGER = 1;
     public final static int TYPE_CUSTOMER = 2;
 
-    public final static String TYPE_FACEBOOK = "facebookSignUp";
-    public final static String TYPE_LOCAL = "localSignUp";
+    public final static int TYPE_LOCAL = 1;
+    public final static int TYPE_FACEBOOK = 2;
 
     public SignUpFirstFragment() {
         // Required empty public constructor
