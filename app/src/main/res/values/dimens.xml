@@ -39,12 +39,6 @@
     <dimen name="sign_up_second_et_horizontal_margin">30dp</dimen>
     <dimen name="sign_up_second_et_margin_top">0dp</dimen>
 
-
-    <!--네비게이션 드로워-->
-    <dimen name="nav_header_padding_top">8dp</dimen>
-    <dimen name="nav_header_height">160dp</dimen>
-    <dimen name="nav_rl_login_margin_top">200dp</dimen>
-
     <!--activity_search.xml과 그 하위 프래그먼트 통합. 나중에 나눠야됨 -->
     <dimen name="search_et_margin_top">20dp</dimen>
     <dimen name="search_et_search_margin_left">50dp</dimen>
@@ -350,5 +344,28 @@
     <dimen name="cancel_schedule_tv_special_min_width">10dp</dimen>
     <dimen name="cancel_schedule_tv_caution_margin_top">10dp</dimen>
     <dimen name="cancel_schedule_btn_cancel_margin_top">40dp</dimen>
+
+
+    <!--nav_main_header.xml-->
+    <dimen name="nav_header_height">147dp</dimen>
+    <dimen name="nav_header_picture_width">60dp</dimen>
+    <dimen name="nav_header_picture_height">60dp</dimen>
+    <dimen name="nav_header_picture_margin_left">10dp</dimen>
+    <dimen name="nav_header_picture_margin_top">10dp</dimen>
+    <dimen name="nav_header_bell_width">30dp</dimen>
+    <dimen name="nav_header_bell_height">30dp</dimen>
+    <dimen name="nav_header_bell_margin_right">10dp</dimen>
+    <dimen name="nav_header_bell_margin_top">10dp</dimen>
+    <dimen name="nav_header_name_margin_left">10dp</dimen>
+    <dimen name="nav_header_name_margin_top">8dp</dimen>
+    <dimen name="nav_header_email_margin_left">10dp</dimen>
+
+
+    <!--activity_main.xml-->
+    <dimen name="nav_btn_login_width">240dp</dimen>
+    <dimen name="nav_btn_login_height">36dp</dimen>
+    <dimen name="nav_btn_login_margin_top">190dp</dimen>
+
+
 </resources>
 

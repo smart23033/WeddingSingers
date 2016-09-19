@@ -96,7 +96,7 @@ public class SingerMyPageFragment extends Fragment {
                         .load(user.getPhotoURL())
                         .asBitmap()
                         .centerCrop()
-                        .placeholder(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
+                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
                         .into(pictureView);
 
                 nameView.setText(user.getName());

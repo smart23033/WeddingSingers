@@ -181,12 +181,14 @@ public class UserInfoFragment extends Fragment {
                         //.load("https://www.ethos3.com/wp-content/uploads/2015/11/humor-public-speaking.jpg")
                         .asBitmap()
                         .centerCrop()
-                        .placeholder(ContextCompat.getDrawable(getActivity(), R.drawable.ic_nav_logout))
+                        .error(ContextCompat.getDrawable(getActivity(), R.drawable.login_ic_01))
                         .into(userImageView);
 
                 nameView.setText(user.getName());
                 emailView.setText(user.getEmail());
                 phoneView.setText(user.getPhone());
+
+                MainActivity.IS_PICTURE_CHANGED = true;
 
             }
 

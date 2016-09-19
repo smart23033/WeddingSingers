@@ -83,6 +83,7 @@ public class LoginFragment extends Fragment {
                 int type = result.getResult().getType();
                 String email = result.getResult().getEmail();
                 String name = result.getResult().getName();
+                String photoURL = result.getResult().getPhotoURL();
                 moveMainActivity(id,type,name,email);
 
             }
@@ -98,8 +99,8 @@ public class LoginFragment extends Fragment {
         Intent intent = new Intent(getActivity(),MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_USER_ID, id);
         intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
-        intent.putExtra(MainActivity.EXTRA_USER_NAME,name);
-        intent.putExtra(MainActivity.EXTRA_USER_EMAIL,email);
+        intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
+        intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
         intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

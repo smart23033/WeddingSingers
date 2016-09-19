@@ -21,7 +21,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.NetworkResult;
+import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.function.review.writereview.WriteReviewFragment;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
@@ -36,6 +40,9 @@ import com.weddingsingers.wsapp.main.reservationmgm.ReservationMgmFragment;
 import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
 import com.weddingsingers.wsapp.main.review.ReviewFragment;
 import com.weddingsingers.wsapp.main.schedulemgm.ScheduleMgmFragment;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.MyPageRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,10 +77,13 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
 
+    public static Boolean IS_PICTURE_CHANGED = false;
+
     int userId;
     int userType;
     String userName;
     String userEmail;
+    String photoURL;
 
     @BindView(R.id.main_drawer)
     DrawerLayout drawer;
@@ -87,6 +97,7 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.main_tv_toolbar)
     TextView titleTextView;
 
+    View headerView;
 
     boolean isBackPressed = false;
 
@@ -114,6 +125,7 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.navi_ic_hamburger);
 
         naviView.setNavigationItemSelectedListener(this);
+        headerView = naviView.inflateHeaderView(R.layout.nav_main_header);
 
         if (savedInstanceState == null) {
             changeFragment(new MainFragment());
@@ -168,25 +180,44 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    RoundedImageView pictureView;
+    ImageButton alarmBtn;
+    TextView nameView;
+    TextView emailView;
+    Button loginBtn;
+
     //로그아웃상태의 네비게이션 드로워, 인자 없으면 로그아웃 상태임.
     private void isLogin(Intent intent) {
         naviView.getMenu().clear();
 
-        View headerView = naviView.inflateHeaderView(R.layout.nav_main_header);
-        ImageButton alarmBtn = (ImageButton) headerView.findViewById(R.id.nav_header_bell);
-        ImageView pictureBtn = (ImageView) headerView.findViewById(R.id.nav_header_picture);
-        TextView nameView = (TextView) headerView.findViewById(R.id.nav_header_name);
-        TextView emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
-        Button loginBtn = (Button) findViewById(R.id.nav_btn_login);
+        pictureView = (RoundedImageView) headerView.findViewById(R.id.nav_header_picture);
+        alarmBtn = (ImageButton) headerView.findViewById(R.id.nav_header_bell);
+        nameView = (TextView) headerView.findViewById(R.id.nav_header_name);
+        emailView = (TextView) headerView.findViewById(R.id.nav_header_email);
+        loginBtn = (Button) findViewById(R.id.nav_btn_login);
+
+        pictureView.mutateBackground(true);
+        pictureView.setOval(true);
 
         int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
 
         if (fragmentName != DEFAULT_VALUE) {
 
+            IS_PICTURE_CHANGED = true;
+
             userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
             userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
             userName = intent.getStringExtra(EXTRA_USER_NAME);
             userEmail = intent.getStringExtra(EXTRA_USER_EMAIL);
+
+            nameView.setText(userName);
+            emailView.setText(userEmail);
+            Glide.with(this)
+                    .load(photoURL)
+                    .asBitmap()
+                    .centerCrop()
+                    .error(ContextCompat.getDrawable(this, R.drawable.login_ic_01))
+                    .into(pictureView);
 
             loginBtn.setVisibility(View.GONE);
 
@@ -206,7 +237,7 @@ public class MainActivity extends AppCompatActivity
             });
         } else {
             alarmBtn.setVisibility(View.INVISIBLE);
-            pictureBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_nav_logout));
+            pictureView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.login_ic_01));
             nameView.setVisibility(View.INVISIBLE);
             emailView.setVisibility(View.INVISIBLE);
 
@@ -301,11 +332,44 @@ public class MainActivity extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
+                if (IS_PICTURE_CHANGED) {
+                    setPictureView();
+                }
                 drawer.openDrawer(GravityCompat.START);
             }
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // 프로필 이미지 다시 불러오기(마이페이지에서 사진 변경)
+    public void setPictureView() {
+        Log.i("MAIN_ACTIVITY_DRAWER_OPEN", "setPictureView");
+
+        MyPageRequest request = new MyPageRequest(this);
+        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
+
+                User user = new User();
+                user.setPhotoURL(result.getResult().getPhotoURL());
+
+                Glide.with(MainActivity.this)
+                        .load(user.getPhotoURL())
+                        .asBitmap()
+                        .centerCrop()
+                        .error(ContextCompat.getDrawable(MainActivity.this, R.drawable.login_ic_01))
+                        .into(pictureView);
+                IS_PICTURE_CHANGED = false;
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
+                Toast.makeText(MainActivity.this, "UserInfoFragment failure", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     @Override
