@@ -135,8 +135,9 @@ public class SignUpSecondFragment extends Fragment {
                 String email = user.getEmail();
                 String name = user.getName();
                 String password = user.getPassword();
+                String regId = "1234";
 
-                loginAndMoveMainActivity(id, type, name, email, password);
+                loginAndMoveMainActivity(id, type, name, email, password, regId);
 
             }
             @Override
@@ -155,8 +156,6 @@ public class SignUpSecondFragment extends Fragment {
 //      구글GCM 토근 아직 안받아옴
         String regToken = "1234";
 
-
-
         if(userType == TYPE_FACEBOOK) {
             facebookSignUp(regToken);
         }else{
@@ -165,15 +164,17 @@ public class SignUpSecondFragment extends Fragment {
 
     }
 
-    private void loginAndMoveMainActivity(int id, int type, String name, String email, String password){
+    private void loginAndMoveMainActivity(int id, int type, String name, String email, String password, String regId){
 
-        LoginRequest loginRequest = new LoginRequest(getContext(),email,password, type);
+        LoginRequest loginRequest = new LoginRequest(getContext(),email,password, regId);
 
         NetworkManager.getInstance().getNetworkData(loginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 PropertyManager.getInstance().setEmail(user.getEmail());
                 PropertyManager.getInstance().setPassword(user.getPassword());
+                PropertyManager.getInstance().setRegistrationId("1234");
+
                 Toast.makeText(getContext(), "SignUp and Login Success", Toast.LENGTH_SHORT).show();
             }
 

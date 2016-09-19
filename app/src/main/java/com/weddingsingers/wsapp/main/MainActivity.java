@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
 
-    Boolean isPictureChanged = false;
+    public static Boolean IS_PICTURE_CHANGED = false;
 
     int userId;
     int userType;
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity
 
         if (fragmentName != DEFAULT_VALUE) {
 
-            isPictureChanged = true;
+            IS_PICTURE_CHANGED = true;
 
             userId = intent.getIntExtra(EXTRA_USER_ID, DEFAULT_VALUE);
             userType = intent.getIntExtra(EXTRA_USER_TYPE, DEFAULT_VALUE);
@@ -232,7 +232,8 @@ public class MainActivity extends AppCompatActivity
                     changeNavMenu(new AlarmFragment());
                 }
             });
-        } else {
+        } else { //로그아웃 상태
+
             alarmBtn.setVisibility(View.INVISIBLE);
             pictureView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.login_ic_01));
             nameView.setVisibility(View.INVISIBLE);
@@ -244,10 +245,10 @@ public class MainActivity extends AppCompatActivity
                     startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 }
             });
+
         }
 
     }
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -329,7 +330,7 @@ public class MainActivity extends AppCompatActivity
             if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
             } else {
-                if (isPictureChanged) {
+                if (IS_PICTURE_CHANGED) {
                     setPictureView();
                 }
                 drawer.openDrawer(GravityCompat.START);
@@ -357,7 +358,7 @@ public class MainActivity extends AppCompatActivity
                         .centerCrop()
                         .error(ContextCompat.getDrawable(MainActivity.this, R.drawable.login_ic_01))
                         .into(pictureView);
-                isPictureChanged = false;
+                IS_PICTURE_CHANGED = false;
 
             }
 

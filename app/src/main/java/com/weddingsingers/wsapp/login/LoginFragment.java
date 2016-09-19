@@ -70,15 +70,17 @@ public class LoginFragment extends Fragment {
         final String password = passwordInput.getText().toString();
 
         //잠깐 temp로 넣어놓음 1이면 싱어로그인, 2면 고객로그인
-        int type = 1;
+        String regId = "1234";
 
-        LoginRequest request = new LoginRequest(getContext(),email,password,type);
+        LoginRequest request = new LoginRequest(getContext(),email,password, regId);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 Toast.makeText(getContext(),result.getResult().getEmail(),Toast.LENGTH_SHORT).show();
                 PropertyManager.getInstance().setEmail(email);
                 PropertyManager.getInstance().setPassword(password);
+                PropertyManager.getInstance().setRegistrationId("1234");
+
                 int id = result.getResult().getId();
                 int type = result.getResult().getType();
                 String email = result.getResult().getEmail();
