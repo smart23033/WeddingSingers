@@ -25,6 +25,7 @@ public class SplashActivity extends AppCompatActivity {
     String email;
     String name;
     String photoURL;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +43,7 @@ public class SplashActivity extends AppCompatActivity {
                 name = result.getResult().getName();
                 photoURL = result.getResult().getPhotoURL();
 
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-                intent.putExtra(MainActivity.EXTRA_USER_ID, id);
-                intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
-                intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
-                intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
-                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
-                moveMainActivity(intent);
+                moveMainActivity();
 
             }
 
@@ -62,21 +57,19 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-    private void moveMainActivity(final Intent intent) {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(intent);
-                finish();
-            }
-        }, 500);
-    }
-
     private void moveMainActivity() {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+                if(!TextUtils.isEmpty(email)) {
+                    intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+                    intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+                    intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
+                    intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
+                    intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                }
+                startActivity(intent);
                 finish();
             }
         }, 500);
