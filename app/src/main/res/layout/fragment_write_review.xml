@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,9 +25,9 @@
         android:id="@+id/write_review_tv_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/write_review_tv_rating_text"
-        android:layout_marginTop="@dimen/write_review_tv_rating_margin_top"
         android:layout_below="@+id/write_review_sp_detail_bill_num"
+        android:layout_marginTop="@dimen/write_review_tv_rating_margin_top"
+        android:text="@string/write_review_tv_rating_text"
         android:textColor="@color/write_review_tv_rating_text_color"
         android:textSize="@dimen/write_review_tv_rating_text_size" />
 
@@ -40,8 +39,7 @@
         android:layout_below="@id/write_review_tv_rating"
         android:layout_marginLeft="@dimen/write_review_rb_rating_margin_left"
         android:layout_marginTop="@dimen/write_review_rb_rating_margin_top"
-        android:numStars="5"
-        android:progressTint="@color/colorPrimaryPink" />
+        android:numStars="5" />
 
     <TextView
         android:id="@+id/write_review_tv_content"
@@ -59,8 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/write_review_tv_content"
         android:layout_marginTop="@dimen/write_review_et_content_margin_top"
-        android:background="@drawable/fragment_write_review_edittext_border"
-        android:gravity="top|left"
+        android:background="@drawable/custom_edittext_border"
+        android:gravity="top"
         android:inputType="textMultiLine"
         android:lines="10"
         android:maxWidth="@dimen/write_review_et_content_max_width"
@@ -77,6 +75,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/write_review_btn_write_margin_top"
         android:padding="@dimen/write_review_btn_write_padding"
+        android:contentDescription="@string/write_review_btn_write_description"
         android:src="@drawable/all_btn_09" />
 
 </RelativeLayout>

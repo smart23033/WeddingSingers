@@ -34,7 +34,7 @@ public class OtherVideoActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         OtherVideoFragment otherVideoFragment = new OtherVideoFragment();
-        ft.add(R.id.act_other_video_fl_container, otherVideoFragment);
+        ft.replace(R.id.act_other_video_fl_container, otherVideoFragment);
         ft.commit();
 
     }

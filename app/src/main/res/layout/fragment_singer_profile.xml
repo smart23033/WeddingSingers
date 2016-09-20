@@ -1,166 +1,227 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/fragment_vertical_margin"
-    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
-    android:layout_marginRight="@dimen/fragment_horizontal_margin"
-    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:padding="@dimen/fragment_vertical_margin"
     tools:context=".main.mypage.SingerProfileFragment">
 
     <ImageButton
         android:id="@+id/singer_profile_img_btn_modify"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/singer_profile_img_btn_modify_size"
+        android:layout_height="@dimen/singer_profile_img_btn_modify_size"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
         android:background="@android:color/transparent"
         android:scaleType="fitXY"
-        android:src="@drawable/my_page_btn_modify" />
+        android:src="@drawable/mypage_ic_01" />
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_basic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/singer_profile_rl_margin_top"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_info"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/singer_profile_tv_title_width"
             android:layout_height="wrap_content"
-            android:text="기본 정보"
-            android:textColor="@color/colorLightPink" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_profile_tv_title_left"
+            android:text="@string/singer_profile_tv_basic_info_text"
+            android:textColor="@color/singer_profile_tv_title_color" />
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:text="블랙넛" />
+            android:text="name" />
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/singer_profile_tv_basic_name"
+            android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
             android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:text="축가 전문 개고수!" />
+            android:text="comment" />
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/singer_profile_tv_basic_comment"
+            android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
             android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:text="지역 : 서울" />
+            android:text="location" />
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_composition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_profile_tv_basic_location"
-            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:text="구성 : 듀엣" />
+            android:layout_below="@+id/singer_profile_tv_basic_comment"
+            android:layout_marginLeft="@dimen/singer_profile_tv_basic_left"
+            android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_location"
+            android:text="composition" />
 
         <TextView
             android:id="@+id/singer_profile_tv_basic_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_profile_tv_basic_composition"
-            android:layout_toRightOf="@+id/singer_profile_tv_basic_info"
-            android:text="테마 : 발라드" />
+            android:layout_below="@+id/singer_profile_tv_basic_comment"
+            android:layout_marginLeft="@dimen/singer_profile_tv_basic_left"
+            android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
+            android:layout_toRightOf="@+id/singer_profile_tv_basic_composition"
+            android:text="theme" />
 
     </RelativeLayout>
+
+    <View
+        android:id="@+id/singer_profile_divider_intro"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_profile_divider_height"
+        android:layout_below="@+id/singer_profile_rl_basic"
+        android:layout_marginTop="@dimen/singer_profile_divider_margin_top"
+        android:background="@color/singer_profile_divider_color" />
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_intro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_basic"
-        android:layout_marginTop="10dp">
+        android:layout_below="@id/singer_profile_divider_intro"
+        android:layout_marginTop="@dimen/singer_profile_rl_margin_top"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/singer_profile_intro_tv_title"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/singer_profile_tv_title_width"
             android:layout_height="wrap_content"
-            android:text="자기 소개"
-            android:textColor="@color/colorLightPink" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_profile_tv_title_left"
+            android:text="@string/singer_profile_intro_tv_title_text"
+            android:textColor="@color/singer_profile_tv_title_color" />
 
         <TextView
             android:id="@+id/singer_profile_intro_tv_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/singer_profile_intro_tv_title"
-            android:text="마치 제가 사랑하는 사람에게 노래를 부르는 것처럼 진심을 담아 부르겠습니다. 기호 1번 꼭 뽑아주십시오!" />
+            android:text="introduce" />
 
     </RelativeLayout>
+
+    <View
+        android:id="@+id/singer_profile_divider_price"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_profile_divider_height"
+        android:layout_below="@+id/singer_profile_rl_intro"
+        android:layout_marginTop="@dimen/singer_profile_divider_margin_top"
+        android:background="@color/singer_profile_divider_color" />
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_intro"
-        android:layout_marginTop="10dp">
+        android:layout_below="@id/singer_profile_divider_price"
+        android:layout_marginTop="@dimen/singer_profile_rl_margin_top"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/singer_profile_price_tv_title"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/singer_profile_tv_title_width"
             android:layout_height="wrap_content"
-            android:text="가격 정보"
-            android:textColor="@color/colorLightPink" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_profile_tv_title_left"
+            android:text="@string/singer_profile_price_tv_title_text"
+            android:textColor="@color/singer_profile_tv_title_color" />
 
-        <TextView
-            android:id="@+id/singer_profile_price_tv_special"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/singer_profile_rl_special"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
             android:layout_toRightOf="@id/singer_profile_price_tv_title"
-            android:text="special" />
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/singer_profile_price_tv_special_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
-            android:layout_toRightOf="@id/singer_profile_price_tv_special"
-            android:text="￦ 300,000" />
+            <TextView
+                android:id="@+id/singer_profile_price_tv_special"
+                android:layout_width="@dimen/singer_profile_price_tv_width"
+                android:layout_height="@dimen/singer_profile_price_tv_height"
+                android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+                android:background="@drawable/custom_price_text_radius"
+                android:gravity="center"
+                android:padding="@dimen/singer_profile_price_tv_padding"
+                android:text="@string/singer_profile_price_tv_special_text"
+                android:textColor="@color/singer_profile_tv_title_color" />
 
-        <TextView
-            android:id="@+id/singer_profile_price_tv_std"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/singer_profile_price_tv_special_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+                android:layout_toRightOf="@id/singer_profile_price_tv_special" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/singer_profile_rl_standard"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_profile_price_tv_special"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+            android:layout_below="@+id/singer_profile_rl_special"
             android:layout_toRightOf="@id/singer_profile_price_tv_title"
-            android:text="standard" />
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/singer_profile_price_tv_std_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_profile_price_tv_special_price"
-            android:layout_marginRight="@dimen/video_tv_standard_margin_right"
-            android:layout_toRightOf="@id/singer_profile_price_tv_std"
-            android:text="￦ 100,000" />
+            <TextView
+                android:id="@+id/singer_profile_price_tv_std"
+                android:layout_width="@dimen/singer_profile_price_tv_width"
+                android:layout_height="@dimen/singer_profile_price_tv_height"
+                android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+                android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
+                android:background="@drawable/custom_price_text_radius"
+                android:gravity="center"
+                android:padding="@dimen/singer_profile_price_tv_padding"
+                android:text="@string/singer_profile_price_tv_standard_text"
+                android:textColor="@color/singer_profile_tv_title_color" />
+
+            <TextView
+                android:id="@+id/singer_profile_price_tv_std_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/video_tv_standard_margin_right"
+                android:layout_marginTop="@dimen/singer_profile_tv_margin_top"
+                android:layout_toRightOf="@id/singer_profile_price_tv_std" />
+        </RelativeLayout>
 
     </RelativeLayout>
+
+    <View
+        android:id="@+id/singer_profile_divider_song"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_profile_divider_height"
+        android:layout_below="@+id/singer_profile_rl_price"
+        android:layout_marginTop="@dimen/singer_profile_divider_margin_top"
+        android:background="@color/singer_profile_divider_color" />
 
     <RelativeLayout
         android:id="@+id/singer_profile_rl_song"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_price"
-        android:layout_marginTop="10dp">
+        android:layout_below="@id/singer_profile_divider_song"
+        android:layout_marginTop="@dimen/singer_profile_rl_margin_top"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/singer_profile_song_tv_title"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/singer_profile_tv_title_width"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_profile_tv_title_left"
             android:text="곡목록"
-            android:textColor="@color/colorLightPink" />
+            android:textColor="@color/singer_profile_tv_title_color" />
 
         <TextView
             android:id="@+id/singer_profile_song_tv_song"
@@ -172,29 +233,39 @@
 
     </RelativeLayout>
 
+    <View
+        android:id="@+id/singer_profile_divider_my_video"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_profile_divider_height"
+        android:layout_below="@+id/singer_profile_rl_song"
+        android:layout_marginTop="@dimen/singer_profile_divider_margin_top"
+        android:background="@color/singer_profile_divider_color" />
+
     <RelativeLayout
         android:id="@+id/singer_profile_rl_my_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/singer_profile_rl_song"
-        android:layout_marginTop="10dp"
-        android:clickable="true">
+        android:layout_below="@id/singer_profile_divider_my_video"
+        android:clickable="true"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/singer_profile_my_video_tv_title"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/singer_profile_tv_title_width"
             android:layout_height="wrap_content"
-            android:text="동영상 관리"
-            android:textColor="@color/colorLightPink" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_profile_tv_title_left"
+            android:text="@string/singer_profile_my_video_tv_title"
+            android:textColor="@color/singer_profile_tv_title_color" />
 
         <ImageButton
             android:id="@+id/singer_profile_my_video_iv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_detail_arrow" />
+            android:src="@drawable/all_ic_15" />
+
     </RelativeLayout>
 
 </RelativeLayout>

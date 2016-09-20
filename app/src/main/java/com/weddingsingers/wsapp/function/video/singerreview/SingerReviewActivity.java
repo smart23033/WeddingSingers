@@ -31,7 +31,7 @@ public class SingerReviewActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         SingerReviewFragment singerReviewFragment = new SingerReviewFragment();
-        ft.add(R.id.act_singer_review_fl_container, singerReviewFragment);
+        ft.replace(R.id.act_singer_review_fl_container, singerReviewFragment);
         ft.commit();
     }
 }

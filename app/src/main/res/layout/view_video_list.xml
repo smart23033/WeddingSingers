@@ -2,100 +2,98 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/view_vertical_margin"
     android:layout_marginBottom="@dimen/view_vertical_margin"
     android:layout_marginLeft="@dimen/view_horizontal_margin"
     android:layout_marginRight="@dimen/view_horizontal_margin"
-    >
+    android:layout_marginTop="@dimen/view_vertical_margin">
 
     <ImageView
+        android:id="@+id/view_video_list_iv_thumbnail"
         android:layout_width="@dimen/view_video_list_iv_thumbnail_width"
         android:layout_height="@dimen/view_video_list_iv_thumbnail_height"
-        android:id="@+id/view_video_list_iv_thumbnail"
-        android:src="@mipmap/ic_launcher"
         android:layout_marginRight="@dimen/view_video_list_iv_thumbnail_margin_right"
-        />
+        android:src="@mipmap/ic_launcher" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/view_video_list_tv_title"
-        android:text="title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
         android:layout_toRightOf="@id/view_video_list_iv_thumbnail"
-        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
-        />
+        android:text="title" />
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/view_video_list_tv_divider"-->
-        <!--android:text="|"-->
-        <!--android:layout_toRightOf="@id/view_video_list_tv_title"-->
-        <!--android:layout_marginTop="@dimen/view_video_list_tv_margin_top"-->
-        <!--android:layout_marginLeft="@dimen/view_video_list_tv_divider_horizontal_margin"-->
-        <!--android:layout_marginRight="@dimen/view_video_list_tv_divider_horizontal_margin"-->
-        <!--/>-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/view_video_list_tv_divider"-->
+    <!--android:text="|"-->
+    <!--android:layout_toRightOf="@id/view_video_list_tv_title"-->
+    <!--android:layout_marginTop="@dimen/view_video_list_tv_margin_top"-->
+    <!--android:layout_marginLeft="@dimen/view_video_list_tv_divider_horizontal_margin"-->
+    <!--android:layout_marginRight="@dimen/view_video_list_tv_divider_horizontal_margin"-->
+    <!--/>-->
 
     <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/view_video_list_tv_singer_name"-->
-        <!--android:text="singer name"-->
-        <!--android:layout_toRightOf="@id/view_video_list_tv_divider"-->
-        <!--android:layout_marginTop="@dimen/view_video_list_tv_margin_top"-->
-        <!--/>-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/view_video_list_tv_singer_name"-->
+    <!--android:text="singer name"-->
+    <!--android:layout_toRightOf="@id/view_video_list_tv_divider"-->
+    <!--android:layout_marginTop="@dimen/view_video_list_tv_margin_top"-->
+    <!--/>-->
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/view_video_list_tv_date"
-        android:text="2016. 05. 24"
-        android:layout_alignStart="@+id/view_video_list_tv_title"
-        android:layout_alignLeft="@id/view_video_list_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
+        android:layout_toRightOf="@+id/view_video_list_iv_thumbnail"
         android:layout_below="@id/view_video_list_tv_title"
-        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
-        />
+        android:text="2016. 05. 24" />
 
-    <ImageView
-        android:layout_width="@dimen/view_video_list_iv_favorite_width"
-        android:layout_height="@dimen/view_video_list_iv_favorite_height"
-        android:id="@+id/view_video_list_iv_favorite"
-        android:src="@drawable/search_ic_num_of_favorite"
-        android:layout_alignStart="@id/view_video_list_tv_date"
-        android:layout_alignLeft="@id/view_video_list_tv_date"
-        android:layout_below="@id/view_video_list_tv_date"
-        android:layout_marginTop="@dimen/view_video_list_iv_margin_top"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/view_video_list_tv_favorite"
-        android:text="112"
-        android:layout_toRightOf="@id/view_video_list_iv_favorite"
         android:layout_below="@id/view_video_list_tv_date"
-        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
-        android:layout_marginLeft="@dimen/view_video_list_tv_num_of_favorite_margin_left"/>
+        android:layout_toRightOf="@+id/view_video_list_iv_thumbnail">
 
-    <ImageView
-        android:layout_width="@dimen/view_video_list_iv_hit_width"
-        android:layout_height="@dimen/view_video_list_iv_hit_height"
-        android:id="@+id/view_video_list_iv_hit"
-        android:src="@drawable/search_ic_hit"
-        android:layout_marginLeft="@dimen/view_video_list_iv_hit_margin_left"
-        android:layout_below="@id/view_video_list_tv_date"
-        android:layout_marginTop="@dimen/view_video_list_iv_margin_top"
-        android:layout_toRightOf="@id/view_video_list_tv_favorite"
-        />
+        <ImageView
+            android:id="@+id/view_video_list_iv_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/view_video_list_iv_margin_top"
+            android:src="@drawable/all_ic_10" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/view_video_list_tv_hit"
-        android:text="350"
-        android:layout_toRightOf="@+id/view_video_list_iv_hit"
-        android:layout_below="@id/view_video_list_tv_date"
-        android:layout_marginTop="@dimen/view_video_list_tv_margin_top"
-        android:layout_marginLeft="@dimen/view_video_list_tv_hit_margin_left"/>
+        <TextView
+            android:id="@+id/view_video_list_tv_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/view_video_list_tv_num_of_favorite_margin_left"
+            android:layout_toRightOf="@id/view_video_list_iv_favorite"
+            android:text="0" />
+
+        <ImageView
+            android:id="@+id/view_video_list_iv_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/view_video_list_iv_hit_margin_left"
+            android:layout_toRightOf="@id/view_video_list_tv_favorite"
+            android:src="@drawable/all_ic_09" />
+
+        <TextView
+            android:id="@+id/view_video_list_tv_hit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/view_video_list_tv_hit_margin_left"
+            android:layout_toRightOf="@+id/view_video_list_iv_hit"
+            android:text="0" />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

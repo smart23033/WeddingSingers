@@ -30,7 +30,7 @@ public class SingerProfileModifyActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         SingerProfileModifyFragment singerProfileModifyFragment = new SingerProfileModifyFragment();
-        ft.add(R.id.act_singer_video_profile_modify_fl_container, singerProfileModifyFragment);
+        ft.replace(R.id.act_singer_video_profile_modify_fl_container, singerProfileModifyFragment);
         ft.commit();
     }
 }

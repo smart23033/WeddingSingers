@@ -32,8 +32,11 @@ import com.weddingsingers.wsapp.request.SingerProfileSettingRequest;
 import com.weddingsingers.wsapp.request.SingerVideoMgmRequest;
 import com.weddingsingers.wsapp.request.VideoDeleteRequest;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -147,11 +150,6 @@ public class SingerVideoMgmFragment extends Fragment {
                 String data = "";
                 List<VideoList> videoList = mAdapter.items;
 
-                if (videoList.size() <= 0) {
-                    Toast.makeText(getActivity(), "삭제할 동영상을 선택하세요", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-
                 ArrayList<Integer> deleteList = new ArrayList<Integer>();
 
                 for (int i = 0; i < videoList.size(); i++) {
@@ -160,25 +158,30 @@ public class SingerVideoMgmFragment extends Fragment {
                     }
                 }
 
-                VideoDeleteRequest request = new VideoDeleteRequest(getContext(), deleteList);
-                NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
-                    @Override
-                    public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
+                if (deleteList.size() <= 0) {
+                    Toast.makeText(getActivity(), "삭제할 동영상을 선택하세요", Toast.LENGTH_SHORT).show();
+                    return false;
+                } else {
 
-                        Toast.makeText(getActivity(), "success code : " + result.getCode() + " - " + result.getResult(), Toast.LENGTH_SHORT).show();
-                        mAdapter.clear();
-                        initData();
+                    VideoDeleteRequest request = new VideoDeleteRequest(getContext(), deleteList);
+                    NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<String>>() {
+                        @Override
+                        public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
 
-                    }
+                            Toast.makeText(getActivity(), "success code : " + result.getCode() + " - " + result.getResult(), Toast.LENGTH_SHORT).show();
+                            mAdapter.clear();
+                            initData();
 
-                    @Override
-                    public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                        Toast.makeText(getActivity(), "VideoDeleteRequest fail - " + errorMessage, Toast.LENGTH_SHORT).show();
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
+                            Toast.makeText(getActivity(), "VideoDeleteRequest fail - " + errorMessage, Toast.LENGTH_SHORT).show();
 
-                return true;
+                        }
+                    });
+                    return true;
+                }
             }
 
         }

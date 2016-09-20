@@ -32,7 +32,7 @@ public class SingerVideoMgmActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         SingerVideoMgmFragment singerVideoMgmFragment = new SingerVideoMgmFragment();
-        ft.add(R.id.act_singer_video_mgm_fl_container, singerVideoMgmFragment);
+        ft.replace(R.id.act_singer_video_mgm_fl_container, singerVideoMgmFragment);
         ft.commit();
     }
 

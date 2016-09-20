@@ -348,16 +348,16 @@
 
     <!--nav_main_header.xml-->
     <dimen name="nav_header_height">147dp</dimen>
-    <dimen name="nav_header_picture_size">60dp</dimen>
+    <dimen name="nav_header_picture_size">70dp</dimen>
     <dimen name="nav_header_picture_margin_left">10dp</dimen>
     <dimen name="nav_header_picture_margin_top">10dp</dimen>
     <dimen name="nav_header_bell_width">30dp</dimen>
     <dimen name="nav_header_bell_height">30dp</dimen>
     <dimen name="nav_header_bell_margin_right">10dp</dimen>
     <dimen name="nav_header_bell_margin_top">10dp</dimen>
-    <dimen name="nav_header_name_margin_left">10dp</dimen>
+    <dimen name="nav_header_name_margin_left">15dp</dimen>
     <dimen name="nav_header_name_margin_top">8dp</dimen>
-    <dimen name="nav_header_email_margin_left">10dp</dimen>
+    <dimen name="nav_header_email_margin_left">15dp</dimen>
 
 
     <!--activity_main.xml-->
@@ -386,6 +386,8 @@
 
     <!--fragment_my_page_customer.xml-->
     <!--fragment_singer_my_page.xml-->
+    <dimen name="singer_my_page_rl_profile_margin_top">10dp</dimen>
+    <dimen name="my_page_customer_rl_profile_margin_bottom">5dp</dimen>
     <dimen name="my_page_customer_riv_picture_size">100dp</dimen>
     <dimen name="my_page_customer_riv_picture_riv_corner_radius">30dp</dimen>
     <dimen name="my_page_customer_tv_name_margin_top">8dp</dimen>
@@ -396,7 +398,7 @@
     <dimen name="my_page_customer_tv_point_text_margin_right">10dp</dimen>
     <dimen name="my_page_customer_tv_point_margin_right">15dp</dimen>
     <dimen name="my_page_customer_img_btn_modify_size">48dp</dimen>
-    <dimen name="my_page_customer_divider_height">2dp</dimen>
+    <dimen name="my_page_customer_divider_height">1dp</dimen>
     <dimen name="my_page_customer_divider_inquiry_margin_top">10dp</dimen>
     <dimen name="my_page_customer_btn_padding">0dp</dimen>
     <dimen name="my_page_customer_btn_leave_margin_left">10dp</dimen>
@@ -411,10 +413,71 @@
     <dimen name="user_info_riv_picture_corner_radius">30dp</dimen>
     <dimen name="user_info_btn_padding">0dp</dimen>
     <dimen name="user_info_btn_cancel_margin_left">10dp</dimen>
-    <dimen name="user_info_tv_width">60dp</dimen>
-    <dimen name="user_info_rl_height">35dp</dimen>
-    <dimen name="user_info_rl_btn_margin_top">25dp</dimen>
+    <dimen name="user_info_tv_width">90dp</dimen>
+    <dimen name="user_info_rl_height">45dp</dimen>
+    <dimen name="user_info_rl_btn_margin_top">10dp</dimen>
     <dimen name="user_info_et_width">200dp</dimen>
+    <dimen name="user_info_rl_btn_height">60dp</dimen>
+
+
+    <!--fragment_singer_profile.xml-->
+    <dimen name="singer_profile_img_btn_modify_size">48dp</dimen>
+    <dimen name="singer_profile_rl_margin_top">15dp</dimen>
+    <dimen name="singer_profile_divider_margin_top">15dp</dimen>
+    <dimen name="singer_profile_divider_height">1dp</dimen>
+    <dimen name="singer_profile_tv_title_width">80dp</dimen>
+    <dimen name="singer_profile_tv_title_left">6dp</dimen>
+    <dimen name="singer_profile_tv_margin_top">5dp</dimen>
+    <dimen name="singer_profile_tv_basic_left">25dp</dimen>
+    <dimen name="singer_profile_price_tv_width">70dp</dimen>
+    <dimen name="singer_profile_price_tv_height">25dp</dimen>
+    <dimen name="singer_profile_price_tv_padding">3dp</dimen>
+
+
+    <!--fragment_singer_profile_modify.xml-->
+    <dimen name="singer_profile_modify_rl_fix_height">45dp</dimen>
+    <dimen name="singer_profile_modify_tv_width">80dp</dimen>
+    <dimen name="singer_profile_modify_divider_height">1dp</dimen>
+    <dimen name="singer_profile_modify_sp_width">200dp</dimen>
+    <dimen name="singer_profile_modify_sp_height">30dp</dimen>
+    <dimen name="singer_profile_modify_tv_price_width">60dp</dimen>
+    <dimen name="singer_profile_modify_rl_btn_height">80dp</dimen>
+    <dimen name="singer_profile_modify_btn_cancel_margin_left">20dp</dimen>
+
+
+    <!--fragment_video_add.xml-->
+    <dimen name="video_add_rl_title_bar_height">50dp</dimen>
+    <dimen name="video_add_rl_contents_padding">10dp</dimen>
+    <dimen name="video_add_rl_margin">10dp</dimen>
+    <dimen name="video_add_tv_width">70dp</dimen>
+    <dimen name="video_add_divider_height">1dp</dimen>
+    <dimen name="video_add_rl_btn_height">70dp</dimen>
+    <dimen name="video_add_btn_padding">0dp</dimen>
+    <dimen name="video_add_btn_cancel_margin_left">10dp</dimen>
+
+
+    <!--view_singer_video_mgm.xml-->
+    <dimen name="view_singer_video_mgm_iv_thumbnail_width">100dp</dimen>
+    <dimen name="view_singer_video_mgm_iv_thumbnail_height">80dp</dimen>
+    <dimen name="view_singer_video_mgm_tv_title_margin_top">10dp</dimen>
+    <dimen name="view_singer_video_mgm_tv_title_margin_left">10dp</dimen>
+    <dimen name="view_singer_video_mgm_tv_date_margin_top">5dp</dimen>
+    <dimen name="view_singer_video_mgm_tv_date_margin_left">10dp</dimen>
+    <dimen name="view_singer_video_mgm_tv_margin_left">5dp</dimen>
+    <dimen name="view_singer_video_mgm_iv_hit_margin_left">20dp</dimen>
+    <dimen name="view_singer_video_mgm_divider_height">1dp</dimen>
+    <dimen name="view_singer_video_mgm_divider_margin_vertical">4dp</dimen>
+    <dimen name="view_singer_video_mgm_divider_margin_horizontal">8dp</dimen>
+
+    <!--view_singer_review.xml-->
+    <dimen name="view_singer_review_riv_picture_size">55dp</dimen>
+    <dimen name="view_singer_review_riv_picture_margin">8dp</dimen>
+    <dimen name="view_singer_review_tv_margin_top">12dp</dimen>
+    <dimen name="view_singer_review_riv_picture_padding">0dp</dimen>
+    <dimen name="view_singer_review_tv_data_margin_left">15dp</dimen>
+    <dimen name="view_singer_review_tv_review_margin_top">5dp</dimen>
+
+
 
 
 </resources>

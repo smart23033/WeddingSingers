@@ -75,7 +75,7 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
                 .load(videoList.getThumbnail())
                 .centerCrop()
                 .crossFade()
-                .error(ContextCompat.getDrawable(context, R.drawable.ic_nav_logout))
+                .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))
                 .into(thumbnailImageView);
 
         titleView.setText(videoList.getTitle());

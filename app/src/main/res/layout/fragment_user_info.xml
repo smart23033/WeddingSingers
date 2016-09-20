@@ -29,17 +29,17 @@
     <View
         android:id="@+id/user_info_divider_name"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/user_info_divider_name_margin_top"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_picture"
-        android:background="@color/my_page_customer_divider_color" />
+        android:layout_marginTop="@dimen/user_info_divider_name_margin_top"
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_name"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_info_rl_height"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/user_info_divider_name">
+        android:layout_below="@+id/user_info_divider_name"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/user_info_tv_name"
@@ -53,8 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/user_info_tv_name"
-            android:text="name"
-            android:textColor="@color/user_info_tv_text_color" />
+            android:text="name" />
 
     </RelativeLayout>
 
@@ -63,14 +62,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_name"
-        android:background="@color/my_page_customer_divider_color" />
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_email"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_info_rl_height"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/user_info_divider_email">
+        android:layout_below="@+id/user_info_divider_email"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/user_info_tv_email"
@@ -84,8 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/user_info_tv_email"
-            android:text="email"
-            android:textColor="@color/user_info_tv_text_color" />
+            android:text="email" />
 
     </RelativeLayout>
 
@@ -94,14 +92,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_email"
-        android:background="@color/my_page_customer_divider_color" />
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_phone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_info_rl_height"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/user_info_divider_phone">
+        android:layout_below="@+id/user_info_divider_phone"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/user_info_tv_phone"
@@ -115,8 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/user_info_tv_phone"
-            android:text="010-0000-0000"
-            android:textColor="@color/user_info_tv_text_color" />
+            android:text="010-0000-0000" />
 
     </RelativeLayout>
 
@@ -125,14 +122,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_phone"
-        android:background="@color/my_page_customer_divider_color" />
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_info_rl_height"
-        android:gravity="center_vertical"
-        android:layout_below="@+id/user_info_divider_password">
+        android:layout_below="@+id/user_info_divider_password"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/user_info_tv_password"
@@ -156,14 +153,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_password"
-        android:background="@color/my_page_customer_divider_color" />
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_password_confirm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_info_rl_height"
-        android:gravity="center_vertical"
         android:layout_below="@+id/user_info_divider_password_confirm"
+        android:gravity="center_vertical"
         android:textColor="@color/user_info_tv_text_color">
 
         <TextView
@@ -188,12 +185,12 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/my_page_customer_divider_height"
         android:layout_below="@+id/user_info_rl_password_confirm"
-        android:background="@color/my_page_customer_divider_color" />
+        android:background="@color/user_info_divider_color" />
 
     <RelativeLayout
         android:id="@+id/user_info_rl_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/user_info_rl_btn_height"
         android:layout_below="@+id/user_info_divider_btn"
         android:layout_marginTop="@dimen/user_info_rl_btn_margin_top"
         android:gravity="center">
@@ -204,7 +201,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/custom_btn_radius"
             android:padding="@dimen/user_info_btn_padding"
-            android:text="@string/user_info_btn_apply_text" />
+            android:text="@string/user_info_btn_apply_text"
+            android:textColor="@color/user_info_rl_btn_text_color" />
 
         <Button
             android:id="@+id/user_info_btn_cancel"
@@ -214,7 +212,8 @@
             android:layout_toRightOf="@+id/user_info_btn_apply"
             android:background="@drawable/custom_btn_radius"
             android:padding="@dimen/user_info_btn_padding"
-            android:text="@string/user_info_btn_cancel_text" />
+            android:text="@string/user_info_btn_cancel_text"
+            android:textColor="@color/user_info_rl_btn_text_color" />
 
     </RelativeLayout>
 

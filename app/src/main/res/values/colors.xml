@@ -21,11 +21,30 @@
     <color name="write_review_tv_content_text_color">#FF6666</color>
 
     <!--fragment_my_page_customer.xml-->
+    <!--fragment_singer_my_page.xml-->
     <color name="my_page_customer_tv_point_text_color">#FF6666</color>
-    <color name="my_page_customer_divider_color">#BBBBBB</color>
+    <color name="my_page_customer_divider_color">#F8AFA2</color>
     <color name="my_page_customer_btn_text_color">#FFFFFF</color>
+    <color name="my_page_menu_text_color">#FF6666</color>
 
     <!--fragment_user_info.xml-->
     <color name="user_info_tv_text_color">#FF6666</color>
+    <color name="user_info_rl_btn_text_color">#FFFFFF</color>
+    <color name="user_info_divider_color">#F8AFA2</color>
 
+    <!--fragment_singer_profile.xml-->
+    <color name="singer_profile_tv_title_color">#FF6666</color>
+    <color name="singer_profile_divider_color">#F8AFA2</color>
+
+    <!--fragment_singer_profile_modify.xml-->
+    <color name="singer_profile_modify_tv_title_color">#FF6666</color>
+    <color name="singer_profile_modify_divider_color">#F8AFA2</color>
+    <color name="singer_profile_modify_btn_color">#FFFFFF</color>
+
+    <!--fragment_video_add.xml-->
+    <color name="video_add_tv_title_bar_text_color">#FFFFFF</color>
+    <color name="video_add_btn_text_color">#FFFFFF</color>
+
+    <!--view_singer_video_mgm.xml-->
+    <color name="view_singer_video_mgm_divider_color">#CCCCCC</color>
 </resources>

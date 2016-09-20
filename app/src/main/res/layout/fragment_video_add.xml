@@ -8,126 +8,179 @@
     <RelativeLayout
         android:id="@+id/video_add_rl_title_bar"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorPrimaryPink">
+        android:layout_height="@dimen/video_add_rl_title_bar_height"
+        android:background="@color/colorPrimaryPink"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/video_add_tv_title_bar"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:textColor="#FFFFFF"
-            android:text="동영상 추가" />
+            android:text="@string/video_add_tv_title_bar_text"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/video_add_tv_title_bar_text_color" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/video_add_rl_title"
+        android:id="@+id/video_add_rl_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video_add_rl_title_bar"
-        android:layout_margin="10dp">
+        android:paddingLeft="@dimen/video_add_rl_contents_padding"
+        android:paddingRight="@dimen/video_add_rl_contents_padding">
 
-        <TextView
-            android:id="@+id/video_add_tv_title"
-            android:layout_width="100dp"
+        <RelativeLayout
+            android:id="@+id/video_add_rl_title"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="제목" />
+            android:layout_margin="@dimen/video_add_rl_margin">
 
-        <EditText
-            android:id="@+id/video_add_et_title"
-            android:layout_width="200dp"
+            <TextView
+                android:id="@+id/video_add_tv_title"
+                android:layout_width="@dimen/video_add_tv_width"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/video_add_tv_title_text" />
+
+            <EditText
+                android:id="@+id/video_add_et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/video_add_tv_title" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/video_add_divider_url"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_add_divider_height"
+            android:layout_below="@+id/video_add_rl_title"
+            android:background="@color/my_page_customer_divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/video_add_rl_url"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/video_add_tv_title" />
+            android:layout_below="@+id/video_add_divider_url"
+            android:layout_margin="@dimen/video_add_rl_margin">
+
+            <TextView
+                android:id="@+id/video_add_tv_url"
+                android:layout_width="@dimen/video_add_tv_width"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/video_add_tv_url_text" />
+
+            <EditText
+                android:id="@+id/video_add_et_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/video_add_tv_url" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/video_add_divider_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_add_divider_height"
+            android:layout_below="@+id/video_add_rl_url"
+            android:background="@color/my_page_customer_divider_color"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/video_add_rl_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_add_divider_content"
+            android:layout_margin="@dimen/video_add_rl_margin"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/video_add_tv_content"
+                android:layout_width="@dimen/video_add_tv_width"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/video_add_tv_content_text" />
+
+            <EditText
+                android:id="@+id/video_add_et_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/video_add_tv_content" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/video_add_divider_hashtag"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_add_divider_height"
+            android:layout_below="@+id/video_add_rl_url"
+            android:background="@color/my_page_customer_divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/video_add_rl_hashtag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/video_add_divider_hashtag"
+            android:layout_margin="@dimen/video_add_rl_margin">
+
+            <TextView
+                android:id="@+id/video_add_tv_hashtag"
+                android:layout_width="@dimen/video_add_tv_width"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/video_add_tv_hashtag_text" />
+
+            <EditText
+                android:id="@+id/video_add_et_hahstag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/video_add_tv_hashtag" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/video_add_divider_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_add_divider_height"
+            android:layout_below="@+id/video_add_rl_hashtag"
+            android:background="@color/my_page_customer_divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/video_add_rl_btn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/video_add_rl_btn_height"
+            android:layout_below="@+id/video_add_divider_btn"
+            android:layout_margin="@dimen/video_add_rl_margin"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/video_add_btn_apply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_btn_radius"
+                android:padding="@dimen/video_add_btn_padding"
+                android:text="@string/video_add_btn_apply_text"
+                android:textColor="@color/video_add_btn_text_color" />
+
+            <Button
+                android:id="@+id/video_add_btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/video_add_btn_cancel_margin_left"
+                android:layout_toRightOf="@+id/video_add_btn_apply"
+                android:background="@drawable/custom_btn_radius"
+                android:padding="@dimen/video_add_btn_padding"
+                android:text="@string/video_add_btn_cancel_text"
+                android:textColor="@color/video_add_btn_text_color" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/video_add_rl_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/video_add_rl_title"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/video_add_tv_url"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="동영상 주소" />
-
-        <EditText
-            android:id="@+id/video_add_et_url"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/video_add_tv_url" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/video_add_rl_content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/video_add_rl_url"
-        android:visibility="gone"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/video_add_tv_content"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="설명" />
-
-        <EditText
-            android:id="@+id/video_add_et_content"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/video_add_tv_content" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/video_add_rl_hashtag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/video_add_rl_content"
-        android:layout_margin="10dp">
-
-        <TextView
-            android:id="@+id/video_add_tv_hashtag"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="해시태그" />
-
-        <EditText
-            android:id="@+id/video_add_et_hahstag"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/video_add_tv_hashtag" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/video_add_rl_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/video_add_rl_hashtag"
-        android:layout_margin="10dp">
-
-        <Button
-            android:id="@+id/video_add_btn_apply"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="83dp"
-            android:layout_marginStart="83dp"
-            android:text="추가" />
-
-        <Button
-            android:id="@+id/video_add_btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/video_add_btn_apply"
-            android:layout_toRightOf="@+id/video_add_btn_apply"
-            android:text="취소" />
-    </RelativeLayout>
 </RelativeLayout>

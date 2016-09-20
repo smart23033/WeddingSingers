@@ -11,12 +11,10 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/view_singer_review_riv_picture"
-        android:layout_width="@dimen/view_profile_riv_profile_width"
-        android:layout_height="@dimen/view_profile_riv_profile_height"
-        android:layout_marginBottom="@dimen/view_profile_riv_profile_vertical_margin"
-        android:layout_marginRight="@dimen/view_profile_riv_profile_margin_right"
-        android:layout_marginTop="@dimen/view_profile_riv_profile_vertical_margin"
-        android:paddingTop="@dimen/view_profile_riv_profile_padding_top"
+        android:layout_width="@dimen/view_singer_review_riv_picture_size"
+        android:layout_height="@dimen/view_singer_review_riv_picture_size"
+        android:layout_margin="@dimen/view_singer_review_riv_picture_margin"
+        android:padding="@dimen/view_singer_review_riv_picture_padding"
         android:scaleType="fitCenter"
         android:src="@drawable/view_profile_ic_person"
         app:riv_corner_radius="@dimen/view_profile_riv_profile_corner_radius"
@@ -26,7 +24,7 @@
         android:id="@+id/view_singer_review_tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+        android:layout_marginTop="@dimen/view_singer_review_tv_margin_top"
         android:layout_toRightOf="@id/view_singer_review_riv_picture"
         android:text="singer name" />
 
@@ -34,20 +32,18 @@
         android:id="@+id/view_singer_review_tv_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="@dimen/view_profile_tv_singer_name_margin_top"
+        android:layout_marginLeft="@dimen/view_singer_review_tv_data_margin_left"
+        android:layout_marginTop="@dimen/view_singer_review_tv_margin_top"
         android:layout_toRightOf="@id/view_singer_review_tv_name"
         android:text="date" />
 
     <TextView
         android:id="@+id/view_singer_review_tv_review"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/view_singer_review_tv_name"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/view_singer_review_tv_review_margin_top"
         android:layout_toRightOf="@id/view_singer_review_riv_picture"
-        android:maxLines="2"
-        android:maxWidth="@dimen/view_profile_tv_comment_max_width"
         android:text="default review"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

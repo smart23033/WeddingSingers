@@ -108,10 +108,14 @@ public class SingerProfileFragment extends Fragment {
 
                 // 곡목록 배열 -> string 으로
                 String songList = "";
+                int i = 0;
                 for (String song : singer.getSongs())
                 {
-                    Log.i("Song List ----", song);
-                    songList += song + "\n";
+                    songList += song;
+                    if (i < (singer.getSongs().size() - 1)) {
+                        songList += "\n";
+                    }
+                    i++;
                 }
 
                 // 가격에 , 찍기
@@ -127,8 +131,8 @@ public class SingerProfileFragment extends Fragment {
                 compositionView.setText(compositionItems[singer.getComposition()]);
                 themeView.setText(themeItems[singer.getTheme()]);
                 introView.setText(singer.getDescription());
-                specialPriceView.setText(nf.format(singer.getSpecial()));
-                standardPriceView.setText(nf.format(singer.getStandard()));
+                specialPriceView.setText("￦ " + nf.format(singer.getSpecial()));
+                standardPriceView.setText("￦ " + nf.format(singer.getStandard()));
                 songView.setText(songList);
 
             }

@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/fragment_vertical_margin"
-    android:layout_marginLeft="@dimen/fragment_horizontal_margin"
-    android:layout_marginRight="@dimen/fragment_horizontal_margin"
-    android:layout_marginTop="@dimen/fragment_vertical_margin"
+    android:padding="@dimen/fragment_vertical_margin"
     tools:context=".main.mypage.SingerMyPageFragment">
 
     <RelativeLayout
         android:id="@+id/singer_my_page_rl_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/video_rl_video_info">
+        android:layout_below="@+id/video_rl_video_info"
+        android:layout_marginTop="@dimen/singer_my_page_rl_profile_margin_top">
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/singer_my_page_riv_picture"
@@ -114,7 +112,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/my_page_customer_tv_title_margin_left"
             android:layout_toRightOf="@+id/singer_my_page_iv_inquiry_ic"
-            android:text="@string/my_page_inquiry_text" />
+            android:text="@string/my_page_inquiry_text"
+            android:textColor="@color/my_page_menu_text_color" />
 
         <ImageView
             android:id="@+id/singer_my_page_iv_inquiry_detail"
@@ -154,7 +153,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/my_page_customer_tv_title_margin_left"
             android:layout_toRightOf="@+id/singer_my_page_iv_statistic_ic"
-            android:text="@string/my_page_statistic_text" />
+            android:text="@string/my_page_statistic_text"
+            android:textColor="@color/my_page_menu_text_color" />
 
         <ImageView
             android:id="@+id/singer_my_page_iv_statistic_detail"
@@ -194,7 +194,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/my_page_customer_tv_title_margin_left"
             android:layout_toRightOf="@+id/singer_my_page_iv_account_ic"
-            android:text="@string/my_page_account_text" />
+            android:text="@string/my_page_account_text"
+            android:textColor="@color/my_page_menu_text_color" />
 
         <ImageView
             android:id="@+id/singer_my_page_iv_account_detail"

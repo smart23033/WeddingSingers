@@ -32,7 +32,7 @@ public class UserInfoActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         UserInfoFragment userInfoFragment = new UserInfoFragment();
-        ft.add(R.id.act_user_info_fl_container, userInfoFragment);
+        ft.replace(R.id.act_user_info_fl_container, userInfoFragment);
         ft.commit();
     }
 
