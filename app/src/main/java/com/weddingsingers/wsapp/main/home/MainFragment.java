@@ -142,7 +142,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        initData(VIDEO_POPULAR);
+        initData(tabHost.getCurrentTabTag());
     }
 
     private void initData(String tabId) {
