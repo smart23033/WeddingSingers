@@ -114,6 +114,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onAdapterItemClick(View view, VideoList videoList, int position) {
                 Intent intent = new Intent(getContext(), VideoActivity.class);
+
                 intent.putExtra(VideoActivity.EXTRA_SINGER_ID, videoList.getSingerId());
                 intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, videoList.getVideoId());
 
@@ -171,7 +172,7 @@ public class MainFragment extends Fragment {
                 eventListAdapter.clear();
                 for (int i = 0; i < 20; i++) {
                     EventList eventList = new EventList();
-                    //eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
+//                    eventList.setThumbnail(ContextCompat.getDrawable(getContext(),R.mipmap.ic_launcher));
                     eventList.setTitle("Event title " + i);
                     eventList.setDate("2016. 4. 24");
                     eventListAdapter.add(eventList);

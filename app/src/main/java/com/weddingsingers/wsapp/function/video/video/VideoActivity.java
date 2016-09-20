@@ -76,7 +76,12 @@ public class VideoActivity extends AppCompatActivity implements YouTubePlayer.On
         ft.replace(R.id.act_video_fl_container,videoFragment);
         ft.commit();
 
+    }
 
+    YouTubePlayer youTubePlayer;
+
+    public void setYouTubePlayer(YouTubePlayer youTubePlayer) {
+        this.youTubePlayer = youTubePlayer;
     }
 
     @Override
@@ -90,6 +95,11 @@ public class VideoActivity extends AppCompatActivity implements YouTubePlayer.On
 
                 url = result.getResult().getUrl();
                 url = url.substring(url.indexOf('=')+1);
+
+                Log.i("VideoActivity","VideoRequest url : " + url);
+                if(youTubePlayer != null) {
+                    youTubePlayer.cueVideo(url);
+                }
 
             }
 
@@ -106,7 +116,11 @@ public class VideoActivity extends AppCompatActivity implements YouTubePlayer.On
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
             //I assume the below String value is your video id
-            youTubePlayer.cueVideo(url);
+            Log.i("VideoActivity","onInitializationSuccess url : " + url);
+            if(url != null) {
+                youTubePlayer.cueVideo(url);
+            }
+            setYouTubePlayer(youTubePlayer);
         }
     }
 
