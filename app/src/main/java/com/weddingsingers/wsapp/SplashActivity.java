@@ -62,7 +62,6 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
                 startActivity(intent);
                 finish();
             }
@@ -91,10 +90,13 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loginSharedPreference() {
         if (isFacebookLogin()) {
+            Log.i("SplashActivity","isFacebookLogin");
             processFacebookLogin();
         } else if (isAutoLogin()) {
+            Log.i("SplashActivity","isAutoLogin, processAutoLogin");
             processAutoLogin();
         } else {
+            Log.i("SplashActivity","moveMain");
             moveMainActivity();
         }
     }
