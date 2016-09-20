@@ -82,8 +82,6 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_btn_reserve)
     Button reserveBtn;
 
-    MenuItem favoriteMenuItem;
-
     public VideoFragment() {
         // Required empty public constructor
 
@@ -103,6 +101,7 @@ public class VideoFragment extends Fragment {
 
     int isFavorite;
     int userType;
+
     Video video;
     String singerName;
     String singerImage;
@@ -140,6 +139,8 @@ public class VideoFragment extends Fragment {
 
     }
 
+    MenuItem favoriteMenuItem;
+
     private void init() {
 
         VideoRequest videoRequest = new VideoRequest(getContext(), videoId);
@@ -168,16 +169,10 @@ public class VideoFragment extends Fragment {
 
                 if (userType != TYPE_CUSTOMER) {
                     reserveBtn.setVisibility(View.GONE);
-                    favoriteMenuItem.setVisible(false);
-                } else {
-                    if (isFavorite == FAVORITE_CHECKED) {
-                        favoriteMenuItem.setChecked(true);
-                        favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_on);
-                    } else {
-                        favoriteMenuItem.setChecked(false);
-                        favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_off);
-                    }
+//                    favoriteMenuItem.setVisible(false);
                 }
+
+                setFavoriteMenuItem();
 
             }
 
@@ -301,9 +296,44 @@ public class VideoFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+
         inflater.inflate(R.menu.video_menu, menu);
 
         favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
 
+        Log.i("VideoFragment","onCreateOptionsMenu userType : " + userType);
+        Log.i("VideoFragment","onCreateOptionsMenu isFavorite : " + isFavorite);
+
+        setFavoriteMenuItem();
+
+
     }
+
+    private void setFavoriteMenuItem() {
+        Log.i("VideoFragment","call setFavoriteMenuItem");
+
+        if (favoriteMenuItem == null){
+            Log.i("VideoFragment","favoriteMenuItem is null");
+            return;
+        }
+
+        Log.i("VideoFragment","setFavoriteMenuItem userType : " + userType);
+        Log.i("VideoFragment","setFavoriteMenuItem isFavorite : " + isFavorite);
+
+        if (userType != TYPE_CUSTOMER) {
+            favoriteMenuItem.setVisible(false);
+        } else {
+            favoriteMenuItem.setVisible(true);
+
+            if (isFavorite == FAVORITE_CHECKED) {
+                favoriteMenuItem.setChecked(true);
+                favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_on);
+            } else {
+                favoriteMenuItem.setChecked(false);
+                favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_off);
+            }
+        }
+    }
+
+
 }
