@@ -89,6 +89,7 @@ public class VideoActivity extends AppCompatActivity implements YouTubePlayer.On
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
 
                 url = result.getResult().getUrl();
+                url = url.substring(url.indexOf('=')+1);
 
             }
 
@@ -105,7 +106,7 @@ public class VideoActivity extends AppCompatActivity implements YouTubePlayer.On
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         if (!wasRestored) {
             //I assume the below String value is your video id
-            youTubePlayer.cueVideo("zQhZUGNR6l4");
+            youTubePlayer.cueVideo(url);
         }
     }
 

@@ -25,6 +25,7 @@ import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Rating;
 import com.weddingsingers.wsapp.data.Singer;
+import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.data.Video;
 import com.weddingsingers.wsapp.data.view.ProfileView;
 import com.weddingsingers.wsapp.function.video.reservation.ReservationActivity;
@@ -33,8 +34,10 @@ import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.CancelFavoriteRequest;
 import com.weddingsingers.wsapp.request.FavoriteRequest;
+import com.weddingsingers.wsapp.request.ProfileRequest;
 import com.weddingsingers.wsapp.request.RatingRequest;
 import com.weddingsingers.wsapp.request.SingerProfileRequest;
+import com.weddingsingers.wsapp.request.UserTypeRequest;
 import com.weddingsingers.wsapp.request.VideoRequest;
 
 import java.text.NumberFormat;
@@ -86,6 +89,7 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_btn_reserve)
     Button reserveBtn;
 
+    MenuItem favoriteMenuItem;
 
     public VideoFragment() {
         // Required empty public constructor
@@ -167,10 +171,19 @@ public class VideoFragment extends Fragment {
                 hitView.setText("" + video.getHit());
 
                 Log.i("VideoFragment", "videoRequest userType : " + userType);
+                Log.i("VideoFragment", "videoRequest isFavorite : " + isFavorite);
 
                 if (userType != TYPE_CUSTOMER) {
                     reserveBtn.setVisibility(View.GONE);
-//                    favoriteMenuItem.setVisible(false);
+                    favoriteMenuItem.setVisible(false);
+                } else {
+                    if (isFavorite == FAVORITE_CHECKED) {
+                        favoriteMenuItem.setChecked(true);
+                        favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_on);
+                    } else {
+                        favoriteMenuItem.setChecked(false);
+                        favoriteMenuItem.setIcon(R.drawable.search_ic_favorite_off);
+                    }
                 }
 
             }
@@ -291,7 +304,6 @@ public class VideoFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    MenuItem favoriteMenuItem;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -300,17 +312,5 @@ public class VideoFragment extends Fragment {
 
         favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
 
-        Log.i("VideoFragment", "onCreateOptionsMenu userType : " + userType);
-
-
-        if (userType != TYPE_CUSTOMER) {
-            favoriteMenuItem.setVisible(false);
-        }
-
-        if (isFavorite == FAVORITE_CHECKED) {
-            favoriteMenuItem.setChecked(true);
-        } else {
-            favoriteMenuItem.setChecked(false);
-        }
     }
 }
