@@ -106,8 +106,17 @@
     <string name="video_add_btn_apply_text">추가</string>
     <string name="video_add_btn_cancel_text">취소</string>
 
+    <!--fragment_singer_info.xml-->
+    <string name="singer_info_tv_basic_info_text">기본 정보</string>
+    <string name="singer_info_intro_tv_title_text">자기 소개</string>
+    <string name="singer_info_price_tv_title_text">가격 정보</string>
+    <string name="singer_info_price_tv_special_text">스페셜</string>
+    <string name="singer_info_price_tv_standard_text">스탠다드</string>
+    <string name="singer_info_review_tv_title_text">싱어 리뷰</string>
+    <string name="singer_info_other_tv_title_text">다른 동영상</string>
 
-
-
+    <!--fragment_singer_review.xml-->
+    <string name="singer_review_tv_review_text">평점</string>
+    <string name="singer_review_tv_review_title_text">리뷰</string>
 
 </resources>

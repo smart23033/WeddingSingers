@@ -119,7 +119,7 @@
     <dimen name="video_iv_margin_top">6dp</dimen>
 
     <!--view_profile.xml-->
-    <dimen name="view_profile_margin_left">10dp</dimen>
+    <dimen name="view_profile_margin_left">4dp</dimen>
     <dimen name="view_profile_margin_right">4dp</dimen>
     <dimen name="view_profile_riv_profile_width">55dp</dimen>
     <dimen name="view_profile_riv_profile_height">55dp</dimen>
@@ -127,7 +127,7 @@
     <dimen name="view_profile_riv_profile_vertical_margin">8dp</dimen>
     <dimen name="view_profile_riv_profile_padding_top">0dp</dimen>
     <dimen name="view_profile_riv_profile_corner_radius">30dp</dimen>
-    <dimen name="view_profile_tv_singer_name_margin_top">6dp</dimen>
+    <dimen name="view_profile_tv_singer_name_margin_top">12dp</dimen>
     <dimen name="view_profile_tv_comment_max_width">180dp</dimen>
     <dimen name="view_profile_btn_reserve_margin_left">20dp</dimen>
     <dimen name="view_profile_btn_reserve_margin_top">10dp</dimen>
@@ -478,6 +478,26 @@
     <dimen name="view_singer_review_tv_review_margin_top">5dp</dimen>
 
 
+    <!--fragment_singer_info.xml-->
+    <dimen name="singer_info_pv_profile_margin_left">10dp</dimen>
+    <dimen name="singer_info_divider_height">1dp</dimen>
+    <dimen name="singer_info_divider_margin_top">15dp</dimen>
+    <dimen name="singer_info_tv_title_width">80dp</dimen>
+    <dimen name="singer_info_tv_title_left">6dp</dimen>
+    <dimen name="singer_info_tv_margin_top">5dp</dimen>
+    <dimen name="singer_info_tv_basic_left">25dp</dimen>
+    <dimen name="singer_info_rl_margin_top">15dp</dimen>
+    <dimen name="singer_info_price_tv_width">70dp</dimen>
+    <dimen name="singer_info_price_tv_height">25dp</dimen>
+    <dimen name="singer_info_price_tv_padding">3dp</dimen>
+
+
+    <!--fragment_singer_review.xml-->
+    <dimen name="singer_review_pv_profile_margin_left">2dp</dimen>
+    <dimen name="singer_review_divider_height">1dp</dimen>
+    <dimen name="singer_review_rl_margin_top">20dp</dimen>
+    <dimen name="singer_review_tv_title_margin_left">6dp</dimen>
+    <dimen name="singer_review_tv_content_margin_left">15dp</dimen>
 
 
 </resources>

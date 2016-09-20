@@ -30,7 +30,7 @@ public class SingerInfoActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         SingerInfoFragment singerInfoFragment = new SingerInfoFragment();
-        ft.add(R.id.act_singer_info_fl_container, singerInfoFragment);
+        ft.replace(R.id.act_singer_info_fl_container, singerInfoFragment);
         ft.commit();
 
     }

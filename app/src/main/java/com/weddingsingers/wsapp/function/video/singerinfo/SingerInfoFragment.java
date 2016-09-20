@@ -41,6 +41,15 @@ public class SingerInfoFragment extends Fragment {
     @BindView(R.id.singer_info_pv_profile)
     ProfileView singerProfileView;
 
+    @BindView(R.id.singer_info_tv_basic_location)
+    TextView locationView;
+
+    @BindView(R.id.singer_info_tv_basic_composition)
+    TextView compositionView;
+
+    @BindView(R.id.singer_info_tv_basic_theme)
+    TextView themeView;
+
     @BindView(R.id.singer_info_intro_tv_content)
     TextView descriptionView;
 
@@ -89,24 +98,15 @@ public class SingerInfoFragment extends Fragment {
 
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
-
-                String singerName = result.getResult().getSingerName();
-                String singerImage = result.getResult().getSingerImage();
-                String comment = result.getResult().getComment();
-                int standard = result.getResult().getStandard();
-                int special = result.getResult().getSpecial();
-
-                singerProfileView.setSingerImage(singerImage);
-                singerProfileView.setSingerId(singerId);
-                singerProfileView.setComment(comment);
-                singerProfileView.setSingerName(singerName);
-                singerProfileView.setSingerImage(singerImage);
-
-                standardView.setText(nf.format(standard));
-                specialView.setText(nf.format(special));
+                // 지역, 구성, 테마 배열 가져오기
+                String[] locationItems = getResources().getStringArray(R.array.location);
+                String[] compositionItems = getResources().getStringArray(R.array.composition);
+                String[] themeItems = getResources().getStringArray(R.array.theme);
 
                 singer = new Singer();
+                singer.setId(result.getResult().getId());
                 singer.setSingerName(result.getResult().getSingerName());
+                singer.setSingerImage(result.getResult().getSingerImage());
                 singer.setComment(result.getResult().getComment());
                 singer.setLocation(result.getResult().getLocation());
                 singer.setComposition(result.getResult().getComposition());
@@ -116,14 +116,28 @@ public class SingerInfoFragment extends Fragment {
                 singer.setStandard(result.getResult().getStandard());
                 singer.setSongs(result.getResult().getSongs());
 
+                singerProfileView.setSingerId(singer.getId());
+                singerProfileView.setSingerName(singer.getSingerName());
+                singerProfileView.setSingerImage(singer.getSingerImage());
+                singerProfileView.setComment(singer.getComment());
+                locationView.setText(locationItems[singer.getLocation()]);
+                compositionView.setText(compositionItems[singer.getComposition()]);
+                themeView.setText(themeItems[singer.getTheme()]);
+                standardView.setText(nf.format(singer.getStandard()));
+                specialView.setText(nf.format(singer.getSpecial()));
+                descriptionView.setText(singer.getDescription());
+
                 // 곡목록 배열 -> string 으로
                 String songList = "";
+                int i = 0;
                 for (String song : singer.getSongs())
                 {
-                    songList += song + "\n";
+                    songList += song;
+                    if (i < (singer.getSongs().size() - 1)) {
+                        songList +=  "\n";
+                    }
+                    i++;
                 }
-
-                descriptionView.setText(singer.getDescription());
                 songView.setText(songList);
 
             }

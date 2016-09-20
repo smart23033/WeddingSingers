@@ -47,4 +47,15 @@
 
     <!--view_singer_video_mgm.xml-->
     <color name="view_singer_video_mgm_divider_color">#CCCCCC</color>
+
+    <!--fragment_singer_info.xml-->
+    <color name="singer_info_divider_color">#F8AFA2</color>
+    <color name="singer_info_tv_title_color">#FF6666</color>
+
+    <!--fragment_singer_review.xml-->
+    <color name="singer_review_divider_color">#F8AFA2</color>
+    <color name="singer_review_tv_text_color">#FF6666</color>
+
+
+
 </resources>

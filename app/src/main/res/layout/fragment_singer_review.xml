@@ -2,85 +2,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/fragment_vertical_margin"
     tools:context=".function.video.singerreview.SingerReviewFragment">
 
     <com.weddingsingers.wsapp.data.view.ProfileView
         android:id="@+id/singer_review_pv_profile"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/singer_review_pv_profile_margin_left" />
+
+    <View
+        android:id="@+id/singer_review_divider_rating"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_review_divider_height"
+        android:layout_below="@+id/singer_review_pv_profile"
+        android:background="@color/singer_review_divider_color" />
 
     <RelativeLayout
         android:id="@+id/singer_review_rl_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/singer_review_pv_profile">
+        android:layout_below="@+id/singer_review_divider_rating"
+        android:layout_marginTop="@dimen/singer_review_rl_margin_top">
 
         <TextView
             android:id="@+id/singer_review_tv_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/video_tv_review_margin_right"
-            android:text="평점" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_review_tv_title_margin_left"
+            android:text="@string/singer_review_tv_review_text"
+            android:textColor="@color/singer_review_tv_text_color" />
 
         <TextView
             android:id="@+id/singer_review_tv_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_review_tv_review"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="@dimen/video_rb_rating_margin_top"
-            android:text="0"
-            android:textSize="@dimen/video_tv_rating_text_size" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_review_tv_content_margin_left"
+            android:layout_toRightOf="@+id/singer_review_tv_review"
+            android:text="0" />
 
         <RatingBar
             android:id="@+id/singer_review_rb_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_review_tv_review"
-            android:layout_marginLeft="@dimen/view_profile_margin_left"
-            android:layout_marginRight="@dimen/video_rb_rating_margin_right"
-            android:layout_marginTop="@dimen/video_rb_rating_margin_top"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/singer_review_tv_content_margin_left"
             android:layout_toRightOf="@+id/singer_review_tv_rating"
-            android:numStars="5" />
+            android:numStars="5"
+            android:stepSize="0.1" />
 
-        <ImageView
-            android:id="@+id/singer_review_iv_num_of_person"
-            android:layout_width="@dimen/video_iv_num_of_person_width"
-            android:layout_height="@dimen/video_iv_num_of_person_height"
-            android:layout_below="@+id/singer_review_tv_review"
-            android:layout_marginRight="@dimen/video_iv_num_of_person_margin_right"
-            android:layout_marginTop="@dimen/video_iv_num_of_person_margin_top"
-            android:layout_toRightOf="@id/singer_review_rb_rating"
-            android:src="@drawable/video_ic_num_of_person" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/singer_review_divider_review"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/singer_review_divider_height"
+        android:layout_below="@+id/singer_review_rl_rating"
+        android:layout_marginTop="@dimen/singer_review_rl_margin_top"
+        android:background="@color/singer_review_divider_color" />
+
+    <RelativeLayout
+        android:id="@+id/singer_review_rl_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_review_divider_review"
+        android:layout_marginTop="@dimen/singer_review_rl_margin_top">
+
+        <TextView
+            android:id="@+id/singer_review_tv_review_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/singer_review_tv_title_margin_left"
+            android:text="@string/singer_review_tv_review_title_text"
+            android:textColor="@color/singer_review_tv_text_color" />
 
         <TextView
             android:id="@+id/singer_review_tv_num_of_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/singer_review_tv_review"
-            android:layout_marginTop="@dimen/video_tv_num_of_person_margin_top"
-            android:layout_toRightOf="@id/singer_review_iv_num_of_person"
+            android:layout_marginLeft="@dimen/singer_review_tv_content_margin_left"
+            android:layout_toRightOf="@id/singer_review_tv_review_title"
             android:text="0" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/singer_review_rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/singer_review_tv_review_title"
+            android:layout_marginLeft="@dimen/singer_review_tv_title_margin_left"
+            android:layout_marginTop="@dimen/singer_review_tv_content_margin_left">
+
+        </android.support.v7.widget.RecyclerView>
+
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/singer_review_tv_review_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="리뷰"
-       android:layout_below="@+id/singer_review_rl_rating"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/singer_review_rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/singer_review_tv_review_title">
-
-
-    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

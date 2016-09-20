@@ -13,6 +13,9 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="@dimen/video_vv_video_height" />-->
 
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
     <RelativeLayout
         android:id="@+id/video_rl_video_info"
