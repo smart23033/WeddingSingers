@@ -18,6 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.Rating;
@@ -47,6 +50,8 @@ public class VideoFragment extends Fragment {
     final static String KEY_VIDEO_ID = "videoId";
     final static String KEY_SINGER_ID = "singerId";
     final static int TYPE_CUSTOMER = 2;
+
+    final static int FAVORITE_CHECKED = 1;
 
     final static int ARG_SIMPLE = 1;
     final static int ARG_RATING = 1;
@@ -81,14 +86,11 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_btn_reserve)
     Button reserveBtn;
 
+
     public VideoFragment() {
         // Required empty public constructor
 
     }
-
-    @BindView(R.id.video_vv_video)
-    VideoView videoView;
-
 
     public static VideoFragment newInstance(int videoId, int singerId) {
         VideoFragment fragment = new VideoFragment();
@@ -102,6 +104,18 @@ public class VideoFragment extends Fragment {
     int videoId;
     int singerId;
 
+    int isFavorite;
+    int userType;
+    Video video;
+    String singerName;
+    String singerImage;
+    String comment;
+    int standard;
+    int special;
+    int reviewCnt;
+    float reviewPoint;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +124,10 @@ public class VideoFragment extends Fragment {
             videoId = getArguments().getInt(KEY_VIDEO_ID);
             singerId = getArguments().getInt(KEY_SINGER_ID);
         }
+
     }
+
+    NumberFormat nf = NumberFormat.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,51 +137,47 @@ public class VideoFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        videoView.setVideoPath("https://www.youtube.com/watch?v=zQhZUGNR6l4");
-        final MediaController mediaController = new MediaController(getContext());
-        videoView.setMediaController(mediaController);
-
         init();
 
         return view;
 
     }
 
-    int isFavorite;
-    int userType;
-
     private void init() {
+
         VideoRequest videoRequest = new VideoRequest(getContext(), videoId);
         NetworkManager.getInstance().getNetworkData(videoRequest, new NetworkManager.OnResultListener<NetworkResult<Video>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Video>> request, NetworkResult<Video> result) {
-                Video video = new Video();
+
+                video = new Video();
 
                 video.setDate(result.getResult().getDate());
                 video.setId(result.getResult().getId());
                 video.setFavorite(result.getResult().getFavorite());
                 video.setHit(result.getResult().getHit());
                 video.setTitle(result.getResult().getTitle());
-                video.setUrl(result.getResult().getUrl());
+//                video.setUrl(result.getResult().getUrl());
                 isFavorite = result.getResult().getIsFavorite();
                 userType = result.getResult().getUserType();
-
-                Log.i("VideoFragment","userType : " + userType);
 
                 titleView.setText(video.getTitle());
                 dateView.setText(video.getDate());
                 favoriteView.setText("" + video.getFavorite());
                 hitView.setText("" + video.getHit());
 
+                Log.i("VideoFragment", "videoRequest userType : " + userType);
+
                 if (userType != TYPE_CUSTOMER) {
                     reserveBtn.setVisibility(View.GONE);
-                    favoriteMenuItem.setVisible(false);
+//                    favoriteMenuItem.setVisible(false);
                 }
+
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Video>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "videoReqeust fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "videoRequest fail", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -172,21 +185,19 @@ public class VideoFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(singerProfileRequest, new NetworkManager.OnResultListener<NetworkResult<Singer>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Singer>> request, NetworkResult<Singer> result) {
-                // 가격에 , 찍기
-                NumberFormat nf = NumberFormat.getInstance();
 
-                String singerName = result.getResult().getSingerName();
-                String singerImage = result.getResult().getSingerImage();
-                String comment = result.getResult().getComment();
-                int standard = result.getResult().getStandard();
-                int special = result.getResult().getSpecial();
+                singerName = result.getResult().getSingerName();
+                singerImage = result.getResult().getSingerImage();
+                comment = result.getResult().getComment();
+                standard = result.getResult().getStandard();
+                special = result.getResult().getSpecial();
 
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
-
                 standardView.setText(nf.format(standard));
                 specialView.setText(nf.format(special));
+
 
             }
 
@@ -200,8 +211,8 @@ public class VideoFragment extends Fragment {
         NetworkManager.getInstance().getNetworkData(ratingRequest, new NetworkManager.OnResultListener<NetworkResult<Rating>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Rating>> request, NetworkResult<Rating> result) {
-                int reviewCnt = result.getResult().getReviewCnt();
-                float reviewPoint = result.getResult().getReviewPoint();
+                reviewCnt = result.getResult().getReviewCnt();
+                reviewPoint = result.getResult().getReviewPoint();
 
                 reviewView.setText("" + reviewCnt);
                 ratingBar.setRating(reviewPoint);
@@ -212,6 +223,8 @@ public class VideoFragment extends Fragment {
                 Log.i("VideoFragment", "RatingRequest Simple Fail : " + errorMessage);
             }
         });
+
+        Log.i("VideoFragment", "init userType : " + userType);
 
     }
 
@@ -277,15 +290,24 @@ public class VideoFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
     MenuItem favoriteMenuItem;
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.video_menu, menu);
 
-       favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
+        favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
 
-        if (isFavorite == 1) {
+        Log.i("VideoFragment", "onCreateOptionsMenu userType : " + userType);
+
+
+        if (userType != TYPE_CUSTOMER) {
+            favoriteMenuItem.setVisible(false);
+        }
+
+        if (isFavorite == FAVORITE_CHECKED) {
             favoriteMenuItem.setChecked(true);
         } else {
             favoriteMenuItem.setChecked(false);

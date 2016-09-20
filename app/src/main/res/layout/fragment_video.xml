@@ -8,16 +8,16 @@
     android:layout_marginTop="@dimen/fragment_vertical_margin"
     tools:context="com.weddingsingers.wsapp.function.video.video.VideoFragment">
 
-    <VideoView
-        android:id="@+id/video_vv_video"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/video_vv_video_height" />
+    <!--<VideoView-->
+        <!--android:id="@+id/video_vv_video"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/video_vv_video_height" />-->
+
 
     <RelativeLayout
         android:id="@+id/video_rl_video_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/video_vv_video"
         android:layout_marginLeft="@dimen/video_rl_video_info_horizontal_margin"
         android:layout_marginRight="@dimen/video_rl_video_info_horizontal_margin">
 

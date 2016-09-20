@@ -27,12 +27,6 @@ import com.weddingsingers.wsapp.request.ProfileRequest;
 
 public class SplashActivity extends AppCompatActivity {
 
-    int id;
-    int type;
-    String email;
-    String name;
-    String photoURL;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,40 +36,51 @@ public class SplashActivity extends AppCompatActivity {
         NetworkManager.getInstance().getNetworkData(profileRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                Log.i("SplashActivity","profileRequest success");
+                Log.i("SplashActivity", "profileRequest success");
 
-                id = result.getResult().getId();
-                type = result.getResult().getType();
-                email = result.getResult().getEmail();
-                name = result.getResult().getName();
-                photoURL = result.getResult().getPhotoURL();
+                int id = result.getResult().getId();
+                int type = result.getResult().getType();
+                String email = result.getResult().getEmail();
+                String name = result.getResult().getName();
+                String photoURL = result.getResult().getPhotoURL();
 
-                moveMainActivity();
+                moveMainActivity(id, email, name, type);
 
             }
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                Log.i("SplashActivity","profileRequest fail");
+                Log.i("SplashActivity", "profileRequest fail");
                 loginSharedPreference();
             }
         });
 
     }
 
-
     private void moveMainActivity() {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-                if(!TextUtils.isEmpty(email)) {
-                    intent.putExtra(MainActivity.EXTRA_USER_ID, id);
-                    intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
-                    intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
-                    intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
-                    intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
-                }
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                startActivity(intent);
+                finish();
+            }
+        }, 500);
+    }
+
+
+    private void moveMainActivity(final int id, final String email, final String name, final int type) {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+
+                intent.putExtra(MainActivity.EXTRA_USER_ID, id);
+                intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
+                intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
+                intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
+                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
                 startActivity(intent);
                 finish();
             }
@@ -109,11 +114,12 @@ public class SplashActivity extends AppCompatActivity {
                 NetworkManager.getInstance().getNetworkData(facebookLoginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
                     @Override
                     public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                        if (result.getCode() == 1) {
-                            moveMainActivity();
-                        } else {
-                            resetFacebookAndMoveMainActivity();
-                        }
+                        int id = result.getResult().getId();
+                        int type = result.getResult().getType();
+                        String email = result.getResult().getEmail();
+                        String name = result.getResult().getName();
+
+                        moveMainActivity(id, email, name, type);
                     }
 
                     @Override
@@ -156,15 +162,16 @@ public class SplashActivity extends AppCompatActivity {
         if (accessToken != null) {
             String token = accessToken.getToken();
             String regId = PropertyManager.getInstance().getRegistrationId();
-            FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(this, token, regId );
+            FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(this, token, regId);
             NetworkManager.getInstance().getNetworkData(facebookLoginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
                 @Override
                 public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                    if (result.getCode() == 1) {
-                        moveMainActivity();
-                    } else {
-                        resetFacebookAndMoveMainActivity();
-                    }
+                        int id = result.getResult().getId();
+                        int type = result.getResult().getType();
+                        String email = result.getResult().getEmail();
+                        String name = result.getResult().getName();
+
+                        moveMainActivity(id, email, name, type);
                 }
 
                 @Override
@@ -187,26 +194,32 @@ public class SplashActivity extends AppCompatActivity {
 
     private boolean isAutoLogin() {
         String email = PropertyManager.getInstance().getEmail();
-        Log.i("SplashActivity","email : " + email);
+        Log.i("SplashActivity", "email : " + email);
         return !TextUtils.isEmpty(email);
     }
 
-    private void processAutoLogin(){
+    private void processAutoLogin() {
         String email = PropertyManager.getInstance().getEmail();
-        if(!TextUtils.isEmpty(email)){
+        if (!TextUtils.isEmpty(email)) {
             String password = PropertyManager.getInstance().getPassword();
             String regId = PropertyManager.getInstance().getRegistrationId();
             LoginRequest loginRequest = new LoginRequest(this, email, password, regId);
             NetworkManager.getInstance().getNetworkData(loginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
                 @Override
                 public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
-                    Toast.makeText(SplashActivity.this,"AutoLogin success",Toast.LENGTH_SHORT).show();
-                    moveMainActivity();
+                    Toast.makeText(SplashActivity.this, "AutoLogin success", Toast.LENGTH_SHORT).show();
+
+                    int id = result.getResult().getId();
+                    int type = result.getResult().getType();
+                    String email = result.getResult().getEmail();
+                    String name = result.getResult().getName();
+
+                    moveMainActivity(id, email, name, type);
                 }
 
                 @Override
                 public void onFail(NetworkRequest<NetworkResult<User>> request, int errorCode, String errorMessage, Throwable e) {
-                    Toast.makeText(SplashActivity.this,"AutoLogin fail",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashActivity.this, "AutoLogin fail", Toast.LENGTH_SHORT).show();
                     moveMainActivity();
                 }
             });

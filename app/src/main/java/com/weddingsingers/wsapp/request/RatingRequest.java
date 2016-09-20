@@ -23,7 +23,6 @@ public class RatingRequest extends AbstractRequest<NetworkResult<Rating>> {
 
     public RatingRequest(Context context, int singerId, int rating) {
 
-        Log.i("RatingRequest","singerId : " + singerId + ", rating : " + rating);
         HttpUrl url = getBaseUrlBuilder()
                 .addPathSegment("reviews")
                 .addQueryParameter("sid", String.valueOf(singerId))

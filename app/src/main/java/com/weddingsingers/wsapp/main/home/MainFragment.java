@@ -133,9 +133,15 @@ public class MainFragment extends Fragment {
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(manager);
 
-        initData(VIDEO_POPULAR);
+
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData(VIDEO_POPULAR);
     }
 
     private void initData(String tabId) {

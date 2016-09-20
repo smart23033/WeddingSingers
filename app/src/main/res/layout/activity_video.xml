@@ -24,12 +24,24 @@
 
     </FrameLayout>
 
+    <fragment
+        android:id="@+id/video_frag_player"
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/video_vv_video_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/video_fl_toolbar" />
+
     <FrameLayout
         android:id="@+id/act_video_fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/video_fl_toolbar" />
+        android:layout_below="@id/video_frag_player" />
+
 
 </RelativeLayout>

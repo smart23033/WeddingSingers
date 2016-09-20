@@ -342,7 +342,6 @@ public class MainActivity extends AppCompatActivity
 
     // 프로필 이미지 다시 불러오기(마이페이지에서 사진 변경)
     public void setPictureView() {
-        Log.i("MAIN_ACTIVITY_DRAWER_OPEN", "setPictureView");
 
         ProfileRequest request = new ProfileRequest(this);
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<User>>() {
