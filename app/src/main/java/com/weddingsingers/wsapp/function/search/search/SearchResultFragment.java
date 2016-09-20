@@ -116,8 +116,8 @@ public class SearchResultFragment extends Fragment {
 
     private void initData() {
 
-        SearchRequest request = new SearchRequest(getContext(), search);
-        NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<SearchResult>>>() {
+        SearchRequest searchRequest = new SearchRequest(getContext(), search);
+        NetworkManager.getInstance().getNetworkData(searchRequest, new NetworkManager.OnResultListener<NetworkResult<List<SearchResult>>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<List<SearchResult>>> request, NetworkResult<List<SearchResult>> result) {
                 for (SearchResult sr : result.getResult()) {

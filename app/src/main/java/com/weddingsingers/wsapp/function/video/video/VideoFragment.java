@@ -164,9 +164,6 @@ public class VideoFragment extends Fragment {
                 favoriteView.setText("" + video.getFavorite());
                 hitView.setText("" + video.getHit());
 
-                Log.i("VideoFragment", "videoRequest userType : " + userType);
-                Log.i("VideoFragment", "videoRequest isFavorite : " + isFavorite);
-
                 if (userType != TYPE_CUSTOMER) {
                     reserveBtn.setVisibility(View.GONE);
 //                    favoriteMenuItem.setVisible(false);
@@ -224,8 +221,6 @@ public class VideoFragment extends Fragment {
                 Log.i("VideoFragment", "RatingRequest Simple Fail : " + errorMessage);
             }
         });
-
-        Log.i("VideoFragment", "init userType : " + userType);
 
     }
 
@@ -301,24 +296,17 @@ public class VideoFragment extends Fragment {
 
         favoriteMenuItem = menu.findItem(R.id.video_menu_favorite);
 
-        Log.i("VideoFragment","onCreateOptionsMenu userType : " + userType);
-        Log.i("VideoFragment","onCreateOptionsMenu isFavorite : " + isFavorite);
-
         setFavoriteMenuItem();
 
 
     }
 
     private void setFavoriteMenuItem() {
-        Log.i("VideoFragment","call setFavoriteMenuItem");
 
         if (favoriteMenuItem == null){
-            Log.i("VideoFragment","favoriteMenuItem is null");
             return;
         }
 
-        Log.i("VideoFragment","setFavoriteMenuItem userType : " + userType);
-        Log.i("VideoFragment","setFavoriteMenuItem isFavorite : " + isFavorite);
 
         if (userType != TYPE_CUSTOMER) {
             favoriteMenuItem.setVisible(false);

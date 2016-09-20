@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
@@ -25,7 +26,7 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
 
 
     @BindView(R.id.view_search_result_iv_thumbnail)
-    ImageView thumbnailImageView;
+    public YouTubeThumbnailView thumbnailImageView;
 
     @BindView(R.id.view_search_result_tv_title)
     TextView titleView;
@@ -67,12 +68,19 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     }
 
     SearchResult searchResult;
+    String url;
+
+    public String getUrl() {
+        return url;
+    }
 
     public void setSearchResult(SearchResult searchResult){
         this.searchResult = searchResult;
-//        thumbnailImageView.setImageDrawable();
+
+        url = searchResult.getThumbnail().substring(searchResult.getThumbnail().indexOf('=') + 1);
+
         Glide.with(context)
-                .load(searchResult.getThumbnail())
+                .load(url)
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))

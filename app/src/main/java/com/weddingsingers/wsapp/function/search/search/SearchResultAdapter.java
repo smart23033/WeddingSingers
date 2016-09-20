@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SearchResult;
 import com.weddingsingers.wsapp.data.Singer;
@@ -18,6 +21,10 @@ import java.util.List;
  */
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultViewHolder>
         implements SearchResultViewHolder.OnSearchResultItemClickListener{
+
+    private static final String DEVELOPER_KEY = "AIzaSyBE7cGgtf2Dts693vD_JKXM0c_WDVtwg1M";
+
+
     List<SearchResult> items = new ArrayList<>();
 
     public void add(SearchResult searchResult) {
@@ -35,8 +42,34 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultViewHo
     }
 
     @Override
-    public void onBindViewHolder(SearchResultViewHolder holder, int position) {
+    public void onBindViewHolder(final SearchResultViewHolder holder, final int position) {
         holder.setSearchResult(items.get(position));
+
+        final YouTubeThumbnailLoader.OnThumbnailLoadedListener onThumbnailLoadedListener = new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
+            @Override
+            public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
+                youTubeThumbnailView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
+
+            }
+        };
+
+        holder.thumbnailImageView.initialize(DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
+                youTubeThumbnailLoader.setVideo(holder.getUrl());
+                youTubeThumbnailLoader.setOnThumbnailLoadedListener(onThumbnailLoadedListener);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        });
+
     }
 
     @Override

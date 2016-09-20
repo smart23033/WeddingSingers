@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.VideoList;
@@ -26,7 +27,7 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
     Context context = MyApplication.getContext();
 
     @BindView(R.id.view_video_list_iv_thumbnail)
-    ImageView thumbnailImageView;
+    public YouTubeThumbnailView thumbnailImageView;
 
     @BindView(R.id.view_video_list_tv_title)
     TextView titleView;
@@ -64,13 +65,19 @@ public class VideoListViewHolder extends RecyclerView.ViewHolder {
     }
 
     VideoList videoList;
+    String url;
+
+    public String getUrl() {
+        return url;
+    }
 
     public void setVideoList(VideoList videoList) {
-
         this.videoList = videoList;
 
+        url = videoList.getThumbnail().substring(videoList.getThumbnail().indexOf('=') + 1);
+
         Glide.with(context)
-                .load(videoList.getThumbnail())
+                .load(url)
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))

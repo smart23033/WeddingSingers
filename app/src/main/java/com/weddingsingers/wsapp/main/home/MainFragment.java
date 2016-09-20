@@ -189,7 +189,7 @@ public class MainFragment extends Fragment {
 //                    여기에 어댑터에 들어갈 놈들이 쌓여야 한다.
                 for (int i = 0; i < result.getResult().size(); i++) {
                     VideoList videoList = new VideoList();
-//                    videoList.setThumbnail(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
+                    videoList.setThumbnail(result.getResult().get(i).getThumbnail());
                     videoList.setTitle(result.getResult().get(i).getTitle());
                     videoList.setDate(result.getResult().get(i).getDate());
                     videoList.setHit(result.getResult().get(i).getHit());
