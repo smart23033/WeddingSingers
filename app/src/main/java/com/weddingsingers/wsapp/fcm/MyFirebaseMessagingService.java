@@ -28,12 +28,19 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.SplashActivity;
 import com.weddingsingers.wsapp.main.MainActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
 
+    private static final String TYPE_RESERVE = "10";
+    private static final String TYPE_REJECT = "11";
+    private static final String TYPE_ACCEPT = "20";
+    private static final String TYPE_CANCEL = "21";
+    private static final String TYPE_PAY = "30";
+    private static final String TYPE_CANCEL_SCHEDULE = "31";
 
     /**
      * Called when message is received.
@@ -55,20 +62,50 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        Log.d(TAG, "From: " + remoteMessage.getFrom());
+        Log.i(TAG, "From: " + remoteMessage.getFrom());
+        Log.i(TAG, "remoteMessage.getData().size : " + remoteMessage.getData().size());
 
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            Log.i(TAG, "Message data payload: " + remoteMessage.getData());
+            Log.i(TAG, "getData : " + remoteMessage.getData().get("type"));
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
+            Log.i(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
+//
+//        switch (remoteMessage.getData().get("type")){
+//            case TYPE_RESERVE : {
+//
+//                break;
+//            }
+//            case TYPE_ACCEPT : {
+//
+//                break;
+//            }
+//            case TYPE_REJECT : {
+//
+//                break;
+//            }
+//            case TYPE_CANCEL : {
+//
+//                break;
+//            }
+//            case TYPE_PAY : {
+//
+//                break;
+//            }
+//            case TYPE_CANCEL_SCHEDULE : {
+//
+//                break;
+//            }
+//        }
+
     }
     // [END receive_message]
 
@@ -78,10 +115,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-                PendingIntent.FLAG_ONE_SHOT);
+        Intent intent = new Intent(this, SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)

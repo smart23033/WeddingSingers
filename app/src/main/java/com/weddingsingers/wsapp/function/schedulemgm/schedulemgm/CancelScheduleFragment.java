@@ -19,6 +19,7 @@ import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.view.EstimateView;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerListAdapter;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.EstimateListRequest;
@@ -87,6 +88,7 @@ public class CancelScheduleFragment extends Fragment {
     EstimateView estimateView;
 
     ScheduleListAdapter scheduleListAdapter;
+    ReservedCustomerListAdapter reservedCustomerListAdapter;
 
     void init() {
         EstimateRequest estimateRequest = new EstimateRequest(getContext(), estimateId);
