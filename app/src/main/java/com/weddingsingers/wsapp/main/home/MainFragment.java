@@ -96,9 +96,9 @@ public class MainFragment extends Fragment {
 
         tabHost.setup();
 
-        tabHost.addTab(tabHost.newTabSpec(VIDEO_POPULAR).setIndicator("TAB1").setContent(dummyFactory));
-        tabHost.addTab(tabHost.newTabSpec(VIDEO_LATEST).setIndicator("TAB2").setContent(dummyFactory));
-        tabHost.addTab(tabHost.newTabSpec(EVENT_LIST).setIndicator("TAB3").setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(VIDEO_POPULAR).setIndicator(getString(R.string.main_tab_popular)).setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(VIDEO_LATEST).setIndicator(getString(R.string.main_tab_new)).setContent(dummyFactory));
+        tabHost.addTab(tabHost.newTabSpec(EVENT_LIST).setIndicator(getString(R.string.main_tab_event)).setContent(dummyFactory));
 
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override

@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/singer_info_tv_margin_top"
+            android:layout_marginTop="@dimen/singer_info_rl_standard_margin_top"
             android:layout_toRightOf="@+id/singer_info_tv_basic_info"
             android:text="location" />
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/singer_info_tv_basic_left"
-            android:layout_marginTop="@dimen/singer_info_tv_margin_top"
+            android:layout_marginTop="@dimen/singer_info_rl_standard_margin_top"
             android:layout_toRightOf="@+id/singer_info_tv_basic_location"
             android:text="composition" />
 
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/singer_info_tv_basic_left"
-            android:layout_marginTop="@dimen/singer_info_tv_margin_top"
+            android:layout_marginTop="@dimen/singer_info_rl_standard_margin_top"
             android:layout_toRightOf="@+id/singer_info_tv_basic_composition"
             android:text="theme" />
 
@@ -120,7 +120,7 @@
             android:textColor="@color/singer_info_tv_title_color" />
 
         <RelativeLayout
-            android:id="@+id/singer_info_rl_special"
+            android:id="@+id/video_rl_special"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/singer_info_price_tv_title"
@@ -143,15 +143,17 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/video_tv_standard_margin_right"
-                android:layout_toRightOf="@id/singer_info_price_tv_special" />
+                android:layout_toRightOf="@id/singer_info_price_tv_special"
+                android:text="0" />
 
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/singer_info_rl_standard"
+            android:id="@+id/video_rl_standard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/singer_info_rl_special"
+            android:layout_marginTop="@dimen/singer_info_rl_standard_margin_top"
+            android:layout_below="@+id/video_rl_special"
             android:layout_toRightOf="@id/singer_info_price_tv_title"
             android:gravity="center_vertical">
 
@@ -160,7 +162,6 @@
                 android:layout_width="@dimen/singer_info_price_tv_width"
                 android:layout_height="@dimen/singer_info_price_tv_height"
                 android:layout_marginRight="@dimen/video_tv_standard_margin_right"
-                android:layout_marginTop="@dimen/singer_info_tv_margin_top"
                 android:background="@drawable/custom_price_text_radius"
                 android:gravity="center"
                 android:padding="@dimen/singer_info_price_tv_padding"
@@ -173,8 +174,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/video_tv_standard_margin_right"
-                android:layout_marginTop="@dimen/singer_info_tv_margin_top"
-                android:layout_toRightOf="@id/singer_info_price_tv_std" />
+                android:layout_toRightOf="@id/singer_info_price_tv_std"
+                android:text="0" />
+
         </RelativeLayout>
 
     </RelativeLayout>

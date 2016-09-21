@@ -123,8 +123,8 @@ public class SingerInfoFragment extends Fragment {
                 locationView.setText(locationItems[singer.getLocation()]);
                 compositionView.setText(compositionItems[singer.getComposition()]);
                 themeView.setText(themeItems[singer.getTheme()]);
-                standardView.setText(nf.format(singer.getStandard()));
-                specialView.setText(nf.format(singer.getSpecial()));
+                standardView.setText("￦ " + nf.format(singer.getStandard()));
+                specialView.setText("￦ " + nf.format(singer.getSpecial()));
                 descriptionView.setText(singer.getDescription());
 
                 // 곡목록 배열 -> string 으로

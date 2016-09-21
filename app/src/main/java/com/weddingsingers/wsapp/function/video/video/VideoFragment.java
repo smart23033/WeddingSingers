@@ -70,6 +70,9 @@ public class VideoFragment extends Fragment {
     @BindView(R.id.video_rb_rating)
     RatingBar ratingBar;
 
+    @BindView(R.id.video_tv_rating)
+    TextView ratingView;
+
     @BindView(R.id.video_tv_num_of_person)
     TextView reviewView;
 
@@ -193,8 +196,8 @@ public class VideoFragment extends Fragment {
                 singerProfileView.setComment(comment);
                 singerProfileView.setSingerName(singerName);
                 singerProfileView.setSingerImage(singerImage);
-                standardView.setText(nf.format(standard));
-                specialView.setText(nf.format(special));
+                standardView.setText("￦ " + nf.format(standard));
+                specialView.setText("￦ " + nf.format(special));
 
 
             }
@@ -213,6 +216,7 @@ public class VideoFragment extends Fragment {
                 reviewPoint = result.getResult().getReviewPoint();
 
                 reviewView.setText("" + reviewCnt);
+                ratingView.setText("" + reviewPoint);
                 ratingBar.setRating(reviewPoint);
             }
 

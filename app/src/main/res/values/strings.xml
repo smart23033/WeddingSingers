@@ -14,7 +14,7 @@
     <!-- 메인 탭 이름 -->
     <string name="main_tab_popular">인기 동영상</string>
     <string name="main_tab_new">신규 싱어 영상</string>
-    <string name="main_tab_event">이벤트/프로모션</string>
+    <string name="main_tab_event">이벤트</string>
 
     <!-- 싱어 마이페이지 탭 이름 -->
     <string name="my_page_singer_tab_mypage">마이 페이지</string>
@@ -118,5 +118,12 @@
     <!--fragment_singer_review.xml-->
     <string name="singer_review_tv_review_text">평점</string>
     <string name="singer_review_tv_review_title_text">리뷰</string>
+
+    <!--fragment_video.xml-->
+    <string name="video_video_btn_reserve_text">요청하기</string>
+    <string name="video_tv_price_info_text">가격 정보</string>
+    <string name="video_tv_special_text">스페셜</string>
+    <string name="video_tv_standard_text">스탠다드</string>
+    <string name="video_tv_review_text">싱어 평가</string>
 
 </resources>

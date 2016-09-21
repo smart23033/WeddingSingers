@@ -56,6 +56,8 @@
     <color name="singer_review_divider_color">#F8AFA2</color>
     <color name="singer_review_tv_text_color">#FF6666</color>
 
-
+    <!--fragment_video.xml-->
+    <color name="video_divider_color">#F8AFA2</color>
+    <color name="video_tv_text_color">#FF6666</color>
 
 </resources>
