@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * Created by Tacademy on 2016-09-21.
  */
-public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListViewHolder> {
+public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListViewHolder> implements
+    AlarmListViewHolder.OnItemClickListener{
 
     List<Alarm> items = new ArrayList<>();
 
@@ -34,8 +35,6 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListViewHolder> 
     public AlarmListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_alarm, parent,false);
         AlarmListViewHolder holder = new AlarmListViewHolder(view);
-
-
         return holder;
     }
 
@@ -47,5 +46,21 @@ public class AlarmListAdapter extends RecyclerView.Adapter<AlarmListViewHolder> 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public interface OnAdapterItemClickListener{
+        public void onAdapterItemClick(View view, Alarm alarm, int position);
+    }
+
+    OnAdapterItemClickListener listener;
+    public void setOnAdapterItemClickListener(OnAdapterItemClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onItemClick(View view, Alarm alarm, int position) {
+        if(listener != null){
+            listener.onAdapterItemClick(view,alarm,position);
+        }
     }
 }

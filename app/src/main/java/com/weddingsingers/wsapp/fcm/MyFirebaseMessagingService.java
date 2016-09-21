@@ -51,6 +51,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TYPE_CANCEL = "21";
     private static final String TYPE_PAY = "30";
     private static final String TYPE_CANCEL_SCHEDULE = "31";
+    private static final String TYPE_FAVORITE = "50";
+    private static final String TYPE_REVIEW = "60";
+
 
     /**
      * Called when message is received.
@@ -109,6 +112,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                             break;
                         }
                         case TYPE_CANCEL_SCHEDULE : {
+
+                            break;
+                        }
+                        case TYPE_FAVORITE : {
+
+                            break;
+                        }
+                        case TYPE_REVIEW : {
 
                             break;
                         }

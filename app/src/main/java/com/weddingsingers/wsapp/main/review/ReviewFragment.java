@@ -73,7 +73,7 @@ public class ReviewFragment extends Fragment {
     }
 
     public void initData() {
-
+        mAdapter.clear();
         MyReviewRequest request = new MyReviewRequest(getContext());
         NetworkManager.getInstance().getNetworkData(request, new NetworkManager.OnResultListener<NetworkResult<List<Review>>>() {
             @Override
@@ -103,7 +103,6 @@ public class ReviewFragment extends Fragment {
 
         if(requestCode == 1 && resultCode == Activity.RESULT_OK) {
             Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
-            mAdapter.clear();
             initData();
         }
     }

@@ -58,4 +58,14 @@ public class AlarmListViewHolder extends RecyclerView.ViewHolder {
         messageView.setText(alarm.getMessage());
 
     }
+
+    public interface OnItemClickListener {
+        public void onItemClick(View view, Alarm alarm, int position);
+    }
+
+    OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 }

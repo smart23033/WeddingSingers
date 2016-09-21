@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity
             alarmBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    changeNavMenu(new AlarmFragment());
+                    changeNavMenu(AlarmFragment.newInstance(userType));
                 }
             });
         } else { //로그아웃 상태

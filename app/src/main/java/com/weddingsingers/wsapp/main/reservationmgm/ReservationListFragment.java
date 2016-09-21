@@ -61,6 +61,7 @@ public class ReservationListFragment extends Fragment {
         super.onResume();
         init();
     }
+
     int estimateId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
