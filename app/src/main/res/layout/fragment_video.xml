@@ -135,7 +135,6 @@
             android:id="@+id/video_rl_special"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/video_rl_special_margin_top"
             android:layout_toRightOf="@id/video_tv_price_info">
 
             <TextView
@@ -165,6 +164,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/video_rl_special"
+            android:layout_marginTop="@dimen/video_rl_special_margin_top"
             android:layout_toRightOf="@id/video_tv_price_info">
 
             <TextView
