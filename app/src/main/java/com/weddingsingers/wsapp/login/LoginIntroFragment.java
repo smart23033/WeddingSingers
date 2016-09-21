@@ -31,6 +31,7 @@ import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.manager.PropertyManager;
 import com.weddingsingers.wsapp.request.FacebookLoginRequest;
 
 import java.util.Arrays;
@@ -84,7 +85,7 @@ public class LoginIntroFragment extends Fragment {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                String regId = "1234";
+                String regId = PropertyManager.getInstance().getRegistrationId();
                 FacebookLoginRequest facebookLoginRequest = new FacebookLoginRequest(getContext(),accessToken.getToken(), regId);
                 NetworkManager.getInstance().getNetworkData(facebookLoginRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
                     @Override

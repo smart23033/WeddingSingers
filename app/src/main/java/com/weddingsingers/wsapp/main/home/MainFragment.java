@@ -230,4 +230,5 @@ public class MainFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.main_menu, menu);
     }
+
 }

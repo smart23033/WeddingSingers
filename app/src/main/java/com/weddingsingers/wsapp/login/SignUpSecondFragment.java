@@ -93,8 +93,8 @@ public class SignUpSecondFragment extends Fragment {
         return view;
     }
 
-    private void facebookSignUp(String regToken){
-        FacebookSignUpRequest facebookSignUpRequest = new FacebookSignUpRequest(getContext(), user, regToken);
+    private void facebookSignUp(String regId){
+        FacebookSignUpRequest facebookSignUpRequest = new FacebookSignUpRequest(getContext(), user, regId);
         NetworkManager.getInstance().getNetworkData(facebookSignUpRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
@@ -125,8 +125,8 @@ public class SignUpSecondFragment extends Fragment {
         });
     }
 
-    private void localSignUp(String regToken){
-        SignUpRequest signUpRequest = new SignUpRequest(getContext(), user, regToken);
+    private void localSignUp(final String regId){
+        SignUpRequest signUpRequest = new SignUpRequest(getContext(), user, regId);
         NetworkManager.getInstance().getNetworkData(signUpRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
@@ -138,7 +138,6 @@ public class SignUpSecondFragment extends Fragment {
                 String email = user.getEmail();
                 String name = user.getName();
                 String password = user.getPassword();
-                String regId = "1234";
 
                 loginAndMoveMainActivity(id, type, name, email, password, regId);
 
@@ -156,13 +155,12 @@ public class SignUpSecondFragment extends Fragment {
         user.setPassword(passwordInput.getText().toString());
         user.setName(nameInput.getText().toString());
         user.setPhone(phoneInput.getText().toString());
-//      구글GCM 토근 아직 안받아옴
-        String regToken = "1234";
+        String regId = PropertyManager.getInstance().getRegistrationId();
 
         if(userType == TYPE_FACEBOOK) {
-            facebookSignUp(regToken);
+            facebookSignUp(regId);
         }else{
-            localSignUp(regToken);
+            localSignUp(regId);
         }
 
     }
@@ -176,7 +174,6 @@ public class SignUpSecondFragment extends Fragment {
             public void onSuccess(NetworkRequest<NetworkResult<User>> request, NetworkResult<User> result) {
                 PropertyManager.getInstance().setEmail(user.getEmail());
                 PropertyManager.getInstance().setPassword(user.getPassword());
-                PropertyManager.getInstance().setRegistrationId("1234");
 
                 Toast.makeText(getContext(), "SignUp and Login Success", Toast.LENGTH_SHORT).show();
             }

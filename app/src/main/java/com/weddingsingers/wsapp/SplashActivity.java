@@ -1,8 +1,15 @@
 package com.weddingsingers.wsapp;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,8 +22,11 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.fcm.MyFirebaseInstanceIDService;
 import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -27,11 +37,61 @@ import com.weddingsingers.wsapp.request.ProfileRequest;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
+
+    LoginManager loginManager;
+    CallbackManager callbackManager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        loginManager = LoginManager.getInstance();
+        callbackManager = CallbackManager.Factory.create();
+
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.i("SplashActivity","onReceive doRealStart");
+                doRealStart();
+            }
+        };
+        setUpIfNeeded();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
+                new IntentFilter(MyFirebaseInstanceIDService.REGISTRATION_COMPLETE));
+    }
+
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
+        super.onPause();
+    }
+
+    private void setUpIfNeeded() {
+        if (checkPlayServices()) {
+            String regId = PropertyManager.getInstance().getRegistrationId();
+            Log.i("SplashActivity","setUpIfNeeded regId : " + regId);
+            if (!regId.equals("")) {
+                Log.i("SplashActivity","setUpIfNeeded doRealStart");
+                doRealStart();
+            } else {
+                Log.i("SplashActivity","setUpIfNeeded startService");
+                Intent intent = new Intent(this, MyFirebaseInstanceIDService.class);
+                startService(intent);
+            }
+        }
+    }
+
+    private void doRealStart(){
         ProfileRequest profileRequest = new ProfileRequest(this);
         NetworkManager.getInstance().getNetworkData(profileRequest, new NetworkManager.OnResultListener<NetworkResult<User>>() {
             @Override
@@ -54,7 +114,28 @@ public class SplashActivity extends AppCompatActivity {
                 loginSharedPreference();
             }
         });
+    }
 
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                Dialog dialog = apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST);
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        finish();
+                    }
+                });
+                dialog.show();
+            } else {
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     private void moveMainActivity() {
@@ -90,13 +171,10 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loginSharedPreference() {
         if (isFacebookLogin()) {
-            Log.i("SplashActivity","isFacebookLogin");
             processFacebookLogin();
         } else if (isAutoLogin()) {
-            Log.i("SplashActivity","isAutoLogin, processAutoLogin");
             processAutoLogin();
         } else {
-            Log.i("SplashActivity","moveMain");
             moveMainActivity();
         }
     }
@@ -152,9 +230,6 @@ public class SplashActivity extends AppCompatActivity {
         moveMainActivity();
     }
 
-    LoginManager loginManager;
-    CallbackManager callbackManager;
-
     private void processFacebookLogin() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (!accessToken.getUserId().equals(PropertyManager.getInstance().getFacebookId())) {
@@ -187,6 +262,17 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PLAY_SERVICES_RESOLUTION_REQUEST &&
+                resultCode == Activity.RESULT_OK) {
+            setUpIfNeeded();
+            return;
+        }
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
     private boolean isFacebookLogin() {
         if (!TextUtils.isEmpty(PropertyManager.getInstance().getFacebookId())) {
             return true;
@@ -196,7 +282,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private boolean isAutoLogin() {
         String email = PropertyManager.getInstance().getEmail();
-        Log.i("SplashActivity", "email : " + email);
         return !TextUtils.isEmpty(email);
     }
 
