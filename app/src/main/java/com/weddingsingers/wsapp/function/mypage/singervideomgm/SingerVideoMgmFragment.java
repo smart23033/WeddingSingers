@@ -137,7 +137,6 @@ public class SingerVideoMgmFragment extends Fragment {
                 videoAddFragment.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        Toast.makeText(getActivity(), "dismissed", Toast.LENGTH_SHORT).show();
                         mAdapter.clear();
                         initData();
                     }
@@ -168,7 +167,7 @@ public class SingerVideoMgmFragment extends Fragment {
                         @Override
                         public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
 
-                            Toast.makeText(getActivity(), "success code : " + result.getCode() + " - " + result.getResult(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getActivity(), "success code : " + result.getCode() + " - " + result.getResult(), Toast.LENGTH_SHORT).show();
                             mAdapter.clear();
                             initData();
 

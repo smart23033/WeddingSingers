@@ -40,7 +40,7 @@ public class ReservationActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
         ReservationFragment reservationFragment = ReservationFragment.newInstance(singerId);
-        ft.add(R.id.act_reservation_fl_container,reservationFragment);
+        ft.replace(R.id.act_reservation_fl_container,reservationFragment);
         ft.commit();
     }
 

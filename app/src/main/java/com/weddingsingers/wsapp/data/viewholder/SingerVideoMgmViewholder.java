@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.VideoList;
@@ -25,7 +26,7 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
     Context context = MyApplication.getContext();
 
     @BindView(R.id.view_singer_video_mgm_iv_thumbnail)
-    ImageView thumbnailImageView;
+    public YouTubeThumbnailView thumbnailImageView;
 
     @BindView(R.id.view_singer_video_mgm_tv_title)
     TextView titleView;
@@ -67,12 +68,19 @@ public class SingerVideoMgmViewholder extends RecyclerView.ViewHolder {
     }
 
     VideoList videoList;
+    String url;
+
+    public String getUrl() {
+        return url;
+    }
 
     public void setSingerVideoMgm(VideoList videoList) {
         this.videoList = videoList;
 
+        url = videoList.getThumbnail().substring(videoList.getThumbnail().indexOf('=') + 1);
+
         Glide.with(context)
-                .load(videoList.getThumbnail())
+                .load(url)
                 .centerCrop()
                 .crossFade()
                 .error(ContextCompat.getDrawable(context, R.drawable.video_img_default_thumbnail))

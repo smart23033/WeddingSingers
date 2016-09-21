@@ -12,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.SingerVideoMgm;
 import com.weddingsingers.wsapp.data.VideoList;
@@ -26,6 +29,8 @@ import java.util.List;
  */
 public class SingerVideoMgmAdapter extends RecyclerView.Adapter<SingerVideoMgmViewholder>
         implements SingerVideoMgmViewholder.OnVideoItemClickListener {
+
+    private static final String DEVELOPER_KEY = "AIzaSyBE7cGgtf2Dts693vD_JKXM0c_WDVtwg1M";
 
     List<VideoList> items = new ArrayList<>();
     SparseBooleanArray itemSelected = new SparseBooleanArray();
@@ -53,6 +58,31 @@ public class SingerVideoMgmAdapter extends RecyclerView.Adapter<SingerVideoMgmVi
     public void onBindViewHolder(final SingerVideoMgmViewholder holder, final int position) {
         holder.setSingerVideoMgm(items.get(position));
 
+        final YouTubeThumbnailLoader.OnThumbnailLoadedListener onThumbnailLoadedListener = new YouTubeThumbnailLoader.OnThumbnailLoadedListener() {
+            @Override
+            public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
+                youTubeThumbnailView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
+
+            }
+        };
+
+        holder.thumbnailImageView.initialize(DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
+                youTubeThumbnailLoader.setVideo(holder.getUrl());
+                youTubeThumbnailLoader.setOnThumbnailLoadedListener(onThumbnailLoadedListener);
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
+
+            }
+        });
+
         holder.checkBox.setChecked(items.get(position).isSelected());
         holder.checkBox.setTag(items.get(position));
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +93,7 @@ public class SingerVideoMgmAdapter extends RecyclerView.Adapter<SingerVideoMgmVi
                 videoList.setSelected(cb.isChecked());
                 items.get(position).setSelected(cb.isChecked());
 
-                Toast.makeText(view.getContext(), "Clicked on Checkbox: " + videoList.getVideoId() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
+//                Toast.makeText(view.getContext(), "Clicked on Checkbox: " + videoList.getVideoId() + " is " + cb.isChecked(), Toast.LENGTH_LONG).show();
             }
         });
 

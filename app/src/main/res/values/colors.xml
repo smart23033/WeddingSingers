@@ -59,5 +59,7 @@
     <!--fragment_video.xml-->
     <color name="video_divider_color">#F8AFA2</color>
     <color name="video_tv_text_color">#FF6666</color>
+    <color name="video_btn_text_color">#FFFFFF</color>
+    <color name="video_tv_price_text_color">#FF6666</color>
 
 </resources>

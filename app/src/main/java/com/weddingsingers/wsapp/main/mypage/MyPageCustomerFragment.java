@@ -124,7 +124,7 @@ public class MyPageCustomerFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), "ok : " + resultCode, Toast.LENGTH_SHORT).show();
             initData();
         }
     }

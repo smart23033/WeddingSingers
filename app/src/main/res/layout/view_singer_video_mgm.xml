@@ -12,7 +12,7 @@
         android:layout_marginRight="@dimen/view_horizontal_margin"
         android:layout_marginTop="@dimen/view_vertical_margin">
 
-        <ImageView
+        <com.google.android.youtube.player.YouTubeThumbnailView
             android:id="@+id/view_singer_video_mgm_iv_thumbnail"
             android:layout_width="@dimen/view_singer_video_mgm_iv_thumbnail_width"
             android:layout_height="@dimen/view_singer_video_mgm_iv_thumbnail_height"
