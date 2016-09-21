@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 public class SingerReviewViewHolder extends RecyclerView.ViewHolder {
 
     Context context = MyApplication.getContext();
+
     public static final int TYPE_SINGER = 1;
     public static final int TYPE_CUSTOMER = 2;
     int type = 0;

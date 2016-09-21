@@ -29,7 +29,17 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.SplashActivity;
+import com.weddingsingers.wsapp.data.Alarm;
+import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.main.MainActivity;
+import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
+import com.weddingsingers.wsapp.manager.DBManager;
+import com.weddingsingers.wsapp.manager.NetworkManager;
+import com.weddingsingers.wsapp.manager.NetworkRequest;
+import com.weddingsingers.wsapp.request.AlarmListRequest;
+
+import java.util.Date;
+import java.util.List;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -48,18 +58,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
     // [START receive_message]
+
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // [START_EXCLUDE]
-        // There are two types of messages data messages and notification messages. Data messages are handled
-        // here in onMessageReceived whether the app is in the foreground or background. Data messages are the type
-        // traditionally used with GCM. Notification messages are only received here in onMessageReceived when the app
-        // is in the foreground. When the app is in the background an automatically generated notification is displayed.
-        // When the user taps on the notification they are returned to the app. Messages containing both notification
-        // and data payloads are treated as notification messages. The Firebase console always sends notification
-        // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
-        // [END_EXCLUDE]
-
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.i(TAG, "From: " + remoteMessage.getFrom());
@@ -76,35 +77,51 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.i(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
-//
-//        switch (remoteMessage.getData().get("type")){
-//            case TYPE_RESERVE : {
-//
-//                break;
-//            }
-//            case TYPE_ACCEPT : {
-//
-//                break;
-//            }
-//            case TYPE_REJECT : {
-//
-//                break;
-//            }
-//            case TYPE_CANCEL : {
-//
-//                break;
-//            }
-//            case TYPE_PAY : {
-//
-//                break;
-//            }
-//            case TYPE_CANCEL_SCHEDULE : {
-//
-//                break;
-//            }
-//        }
+//        서버로부터 내가 받지 못한 푸시메시지 요청
+        AlarmListRequest alarmListRequest = new AlarmListRequest(this);
+        NetworkManager.getInstance().getNetworkData(alarmListRequest, new NetworkManager.OnResultListener<NetworkResult<List<Alarm>>>() {
+            @Override
+            public void onSuccess(NetworkRequest<NetworkResult<List<Alarm>>> request, NetworkResult<List<Alarm>> result) {
+                    List<Alarm> list = result.getResult();
+
+                for(Alarm a : list){
+//                    TYPE에 따라 다른 액티비티로 보내는 인텐트 생성
+                    String type = String.valueOf(a.getType());
+                    switch (type){
+                        case TYPE_RESERVE : {
+
+                            break;
+                        }
+                        case TYPE_REJECT : {
+
+                            break;
+                        }
+                        case TYPE_ACCEPT : {
+
+                            break;
+                        }
+                        case TYPE_CANCEL : {
+
+                            break;
+                        }
+                        case TYPE_PAY : {
+
+                            break;
+                        }
+                        case TYPE_CANCEL_SCHEDULE : {
+
+                            break;
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFail(NetworkRequest<NetworkResult<List<Alarm>>> request, int errorCode, String errorMessage, Throwable e) {
+
+            }
+        });
 
     }
     // [END receive_message]

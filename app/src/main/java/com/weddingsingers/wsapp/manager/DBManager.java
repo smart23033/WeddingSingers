@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.weddingsingers.wsapp.MyApplication;
+import com.weddingsingers.wsapp.data.Alarm;
 import com.weddingsingers.wsapp.data.ChatContract;
 import com.weddingsingers.wsapp.data.User;
 
@@ -50,6 +51,7 @@ public class DBManager extends SQLiteOpenHelper {
                 ChatContract.ChatMessage.COLUMN_MESSAGE + " TEXT," +
                 ChatContract.ChatMessage.COLUMN_CREATED + " INTEGER);";
         db.execSQL(sql);
+
     }
 
     @Override
@@ -94,6 +96,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     ContentValues values = new ContentValues();
+
     public int addUser(User user) {
         if (getUserId(user.getId()) == -1) {
             SQLiteDatabase db = getWritableDatabase();

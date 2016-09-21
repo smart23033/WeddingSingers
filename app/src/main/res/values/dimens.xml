@@ -477,6 +477,13 @@
     <dimen name="view_singer_review_tv_data_margin_left">15dp</dimen>
     <dimen name="view_singer_review_tv_review_margin_top">5dp</dimen>
 
+    <!--view_alarm.xml-->
+    <dimen name="view_alarm_riv_picture_size">55dp</dimen>
+    <dimen name="view_alarm_riv_picture_margin">8dp</dimen>
+    <dimen name="view_alarm_tv_margin_top">12dp</dimen>
+    <dimen name="view_alarm_riv_picture_padding">0dp</dimen>
+    <dimen name="view_alarm_tv_data_margin_left">15dp</dimen>
+    <dimen name="view_alarm_tv_review_margin_top">5dp</dimen>
 
     <!--fragment_singer_info.xml-->
     <dimen name="singer_info_pv_profile_margin_left">10dp</dimen>

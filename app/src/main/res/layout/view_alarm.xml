@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_page_customer_rl_profile"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/view_vertical_margin"
+    android:layout_marginLeft="@dimen/view_profile_margin_left"
+    android:layout_marginRight="@dimen/view_profile_margin_right"
+    android:layout_marginTop="@dimen/view_vertical_margin">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/view_alarm_riv_picture"
+        android:layout_width="@dimen/view_alarm_riv_picture_size"
+        android:layout_height="@dimen/view_alarm_riv_picture_size"
+        android:layout_margin="@dimen/view_alarm_riv_picture_margin"
+        android:padding="@dimen/view_alarm_riv_picture_padding"
+        android:scaleType="fitCenter"
+        android:src="@drawable/view_profile_ic_person"
+        app:riv_corner_radius="@dimen/view_profile_riv_profile_corner_radius"
+        app:riv_tile_mode="clamp" />
+
+    <TextView
+        android:id="@+id/view_alarm_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/view_alarm_tv_margin_top"
+        android:layout_toRightOf="@id/view_alarm_riv_picture"
+        android:text="user name" />
+
+    <TextView
+        android:id="@+id/view_alarm_tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_alarm_tv_name"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/view_alarm_riv_picture"
+        android:text="message"
+        android:maxLines="3"
+        android:maxWidth="250dp"
+        android:longClickable="false" />
+
+
+</RelativeLayout>
+
