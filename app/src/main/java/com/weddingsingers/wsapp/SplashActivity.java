@@ -39,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    public static final String EXTRA_FRAGNAME = "fragName";
 
     LoginManager loginManager;
     CallbackManager callbackManager;
@@ -149,18 +150,28 @@ public class SplashActivity extends AppCompatActivity {
         }, 500);
     }
 
-
+    String fragName;
     private void moveMainActivity(final int id, final String email, final String name, final int type) {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Intent intent;
+                if(getIntent() != null){
+                    intent = getIntent();
+                    fragName = intent.getStringExtra(EXTRA_FRAGNAME);
+                }
+                Log.i("SplashActivity","fragName : " + fragName);
 
+                intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.putExtra(MainActivity.EXTRA_USER_ID, id);
                 intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
                 intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
                 intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
-                intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                if(!TextUtils.isEmpty(fragName)) {
+                    intent.putExtra(MainActivity.FRAG_NAME, fragName);
+                }else{
+                    intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);
+                }
                 startActivity(intent);
                 finish();
             }

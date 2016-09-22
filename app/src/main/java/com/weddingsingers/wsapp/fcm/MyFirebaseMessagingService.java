@@ -21,7 +21,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
-import android.net.ParseException;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
@@ -34,13 +33,10 @@ import com.weddingsingers.wsapp.SplashActivity;
 import com.weddingsingers.wsapp.data.Alarm;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.main.MainActivity;
-import com.weddingsingers.wsapp.main.reservationmgm.ReservedCustomerFragment;
-import com.weddingsingers.wsapp.manager.DBManager;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.AlarmListRequest;
 
-import java.util.Date;
 import java.util.List;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -56,7 +52,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TYPE_FAVORITE = "50";
     private static final String TYPE_REVIEW = "60";
 
-    public static final String ACTION_RESERVATION_MGM = "com.weddingsingers.wsapp.action.reservationmgm";
+    public static final String ACTION_RESERVATION_LIST = "com.weddingsingers.wsapp.action.reservationmgm";
     public static final String ACTION_RESERVED_CUSTOMER = "com.weddingsingers.wsapp.action.reservedcustomer";
     public static final String ACTION_SCHEDULE_MGM = "com.weddingsingers.wsapp.action.schedulemgm";
     public static final String ACTION_VIDEO = "com.weddingsingers.wsapp.action.video";
@@ -118,13 +114,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                         case TYPE_REJECT : {
 
-                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_LIST);
 
                             break;
                         }
                         case TYPE_ACCEPT : {
 
-                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_LIST);
                             break;
                         }
                         case TYPE_CANCEL : {
@@ -140,7 +136,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                         case TYPE_CANCEL_SCHEDULE : {
 
-                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_LIST);
 
                             break;
                         }
@@ -175,9 +171,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String messageBody,String action) {
         Intent intent = new Intent(this, SplashActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        switch (action){
+            case ACTION_RESERVATION_LIST : {
+                intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_RESERVATION_MGM);
+                break;
+            }
+            case ACTION_RESERVED_CUSTOMER : {
+                intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_RESERVED_CUSTOMER);
+                break;
+            }
+            case ACTION_SCHEDULE_MGM : {
+                intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_SCHEDULE_MGM);
+                break;
+            }
+            case ACTION_VIDEO : {
+                intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_VIDEO);
+                break;
+            }
+        }
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -200,7 +216,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             mLBM.sendBroadcastSync(intent);
             boolean processed = intent.getBooleanExtra(EXTRA_RESULT, false);
             if (!processed) {
-                sendNotification(alarm.getMessage());
+                sendNotification(alarm.getMessage(), action);
             }
     }
 }

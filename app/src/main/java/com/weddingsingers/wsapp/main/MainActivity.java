@@ -62,17 +62,17 @@ public class MainActivity extends AppCompatActivity
 
     public static final String FRAG_NAME = "fragmentName";
 
-    public static final int RC_FRAG = 1000;
-
     public static final int FRAG_MAIN = 100;
     public static final int FRAG_MY_PAGE = 200;
     public static final int FRAG_RESERVATION_MGM = 300;
+    public static final int FRAG_RESERVED_CUSTOMER = 310;
     public static final int FRAG_SCHEDULE_MGM = 400;
     public static final int FRAG_REVIEW = 500;
     public static final int FRAG_CHATTING = 600;
     public static final int FRAG_COMMUNITY = 700;
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
+    public static final int FRAG_VIDEO = 1000;
 
     public static Boolean IS_PICTURE_CHANGED = false;
 
@@ -153,6 +153,11 @@ public class MainActivity extends AppCompatActivity
                     titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
                     break;
                 }
+                case FRAG_RESERVED_CUSTOMER: {
+                    changeFragment(new ReservedCustomerFragment());
+                    titleTextView.setText(getResources().getString(R.string.nav_reservation_mgm));
+                    break;
+                }
                 case FRAG_MY_PAGE: {
                     if(userType == TYPE_SINGER) {
                         changeFragment(new MyPageSingerFragment());
@@ -170,6 +175,11 @@ public class MainActivity extends AppCompatActivity
                 case FRAG_MAIN : {
                     changeFragment(new MainFragment());
                     titleTextView.setText(getResources().getString(R.string.nav_home));
+                    break;
+                }
+                case FRAG_VIDEO : {
+//                    아직
+                    break;
                 }
                 default:
                     break;

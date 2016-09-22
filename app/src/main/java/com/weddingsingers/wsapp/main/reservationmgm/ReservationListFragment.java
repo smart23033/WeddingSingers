@@ -26,7 +26,6 @@ import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.fcm.MyFirebaseMessagingService;
-import com.weddingsingers.wsapp.fcm.MyGcmListenerService;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -81,7 +80,7 @@ public class ReservationListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mLBM.registerReceiver(mReceiver, new IntentFilter(MyFirebaseMessagingService.ACTION_RESERVATION_MGM));
+        mLBM.registerReceiver(mReceiver, new IntentFilter(MyFirebaseMessagingService.ACTION_RESERVATION_LIST));
     }
 
     @Override
