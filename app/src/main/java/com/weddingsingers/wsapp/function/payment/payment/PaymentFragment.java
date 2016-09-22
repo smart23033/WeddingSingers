@@ -104,20 +104,25 @@ public class PaymentFragment extends Fragment {
         return view;
     }
 
+    int userId;
+
     void init() {
         EstimateRequest estimateRequest = new EstimateRequest(getContext(), estimateId);
         NetworkManager.getInstance().getNetworkData(estimateRequest, new NetworkManager.OnResultListener<NetworkResult<Estimate>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
-//               이미지 나중에
                 Log.i("PaymentFragment","fragName : " + fragmentName);
                 if(fragmentName.equals(FRAG_RESERVED_CUSTOMER)) {
+                    userId = result.getResult().getCustomerId();
                     estimateView.setUserImage(result.getResult().getCustomerImage());
                     estimateView.setUserName(result.getResult().getCustomerName());
                 } else if(fragmentName.equals(FRAG_RESERVED_ONE)) {
+                    userId = result.getResult().getSingerId();
                     estimateView.setUserImage(result.getResult().getSingerImage());
                     estimateView.setUserName(result.getResult().getSingerName());
                 }
+
+                Log.i("PaymentFragment","userId : " + userId);
 
                 estimateView.setLocation(result.getResult().getLocation());
                 estimateView.setDate(result.getResult().getDate());
@@ -195,7 +200,7 @@ public class PaymentFragment extends Fragment {
     }
 
     private void makePayment(int type) {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, userId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
@@ -213,7 +218,7 @@ public class PaymentFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<String>> request, int errorCode, String errorMessage, Throwable e) {
-                Toast.makeText(getContext(), "Payment Request Fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Payment Request Fail : " + errorMessage, Toast.LENGTH_SHORT).show();
                 getActivity().finish();
             }
         });

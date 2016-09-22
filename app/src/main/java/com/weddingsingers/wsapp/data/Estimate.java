@@ -19,6 +19,12 @@ public class Estimate implements Serializable {
     @SerializedName("user_id")
     private int userId;
 
+    @SerializedName("customer_id")
+    private int customerId;
+
+    @SerializedName("singer_id")
+    private int singerId;
+
     @SerializedName("singer_photoURL")
     private String singerImage;
 
@@ -51,6 +57,22 @@ public class Estimate implements Serializable {
     private String userName;
 
     private String userImage;
+
+    public int getSingerId() {
+        return singerId;
+    }
+
+    public void setSingerId(int singerId) {
+        this.singerId = singerId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
     public String getUserName() {
         if(singerName != null){

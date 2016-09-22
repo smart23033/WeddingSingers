@@ -19,13 +19,14 @@ import okhttp3.RequestBody;
 public class PaymentRequest extends AbstractRequest<NetworkResult<String>>{
     Request request;
 
-    public PaymentRequest(Context context, int id, int type) {
+    public PaymentRequest(Context context, int estimateId, int userId, int type) {
         HttpUrl.Builder builder = getBaseUrlBuilder();
         builder.addPathSegment("reservations")
-                .addPathSegment(String.valueOf(id));
+                .addPathSegment(String.valueOf(estimateId));
 
         RequestBody body = new FormBody.Builder()
                 .add("type", String.valueOf(type))
+                .add("user_id", String.valueOf(userId))
                 .build();
 
         request = new Request.Builder()
