@@ -65,15 +65,22 @@ public class ReservedOneFragment extends Fragment {
         mAdapter.setOnAdapterChatBtnClickListener(new ReservedOneAdapter.OnAdapterChatBtnClickListener() {
             @Override
             public void onAdapterChatBtnClick(View view, Estimate profile, int position) {
-                Cursor cursor = (Cursor)mAdapter.items.get(position);
+                Intent intent = new Intent(getContext(), ChattingActivity.class);
                 User user = new User();
-                //user.setUserId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+                user.setId(profile.getSingerId());
+                user.setName(profile.getSingerName());
+                user.setEmail(profile.getSingerName());
+                intent.putExtra(ChattingActivity.EXTRA_USER, user);
+                startActivity(intent);
+                /*Cursor cursor = (Cursor)mAdapter.items.get(position);
+                User user = new User();
+                user.setId(cursor.getInt(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
                 user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
                 Intent intent = new Intent(getContext(),ChattingActivity.class);
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);
-                getActivity().finish();
+                getActivity().finish();*/
             }
         });
 
@@ -103,8 +110,10 @@ public class ReservedOneFragment extends Fragment {
 
                 for(Estimate e : result.getResult()){
                     Estimate estimate = new Estimate();
+                    estimate.setSingerId(e.getSingerId());
                     estimate.setSingerImage(e.getSingerImage());
                     estimate.setSingerName(e.getSingerName());
+                    estimate.setCustomerId(e.getCustomerId());
                     estimate.setDate(e.getDate());
                     estimate.setLocation(e.getLocation());
                     estimate.setSongs(e.getSongs());

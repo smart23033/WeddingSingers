@@ -23,7 +23,7 @@ public class MessageListRequest extends AbstractRequest<NetworkResult<List<ChatM
     public MessageListRequest(Context context, Date date) {
         String dateString = Utils.convertTimeToString(date);
         HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("messagelist")
+                .addPathSegment("chatting")
                 .addQueryParameter("lastDate",dateString)
                 .build();
         mRequest = new Request.Builder()

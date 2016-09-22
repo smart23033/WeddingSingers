@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.request;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.gson.reflect.TypeToken;
 import com.weddingsingers.wsapp.data.NetworkResult;
@@ -21,10 +22,11 @@ public class MessageSendRequest  extends AbstractRequest<NetworkResult<String>> 
 
     public MessageSendRequest(Context context, User user, String message) {
         HttpUrl url = getBaseUrlBuilder()
-                .addPathSegment("sendmessage")
+                .addPathSegment("chatting")
                 .build();
+
         RequestBody body = new FormBody.Builder()
-                .add("receiver", "" + user.getId())
+                .add("receiver_id", "" + user.getId())
                 .add("message", message)
                 .build();
 

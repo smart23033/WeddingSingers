@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.weddingsingers.wsapp.MyApplication;
 import com.weddingsingers.wsapp.data.Alarm;
@@ -35,12 +36,12 @@ public class DBManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String sql = "CREATE TABLE " + ChatContract.ChatUser.TABLE + "(" +
                 ChatContract.ChatUser._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 ChatContract.ChatUser.COLUMN_SERVER_ID + " INTEGER," +
                 ChatContract.ChatUser.COLUMN_NAME + " TEXT," +
                 ChatContract.ChatUser.COLUMN_EMAIL + " TEXT NOT NULL," +
-                ChatContract.ChatUser.COLUMN_DATE + " TEXT NOT NULL," +
                 ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " INTEGER);";
         db.execSQL(sql);
 
@@ -59,7 +60,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     }
 
-    public int getUserId(int serverId) {
+    public Integer getUserId(Integer serverId) {
         String selection = ChatContract.ChatUser.COLUMN_SERVER_ID + " = ?";
         String[] args = {""+serverId};
         String[] columns = {ChatContract.ChatUser._ID};
@@ -67,7 +68,7 @@ public class DBManager extends SQLiteOpenHelper {
         Cursor c = db.query(ChatContract.ChatUser.TABLE, columns, selection, args, null, null, null);
         try {
             if (c.moveToNext()) {
-                int id = c.getInt(c.getColumnIndex(ChatContract.ChatUser._ID));
+                Integer id = c.getInt(c.getColumnIndex(ChatContract.ChatUser._ID));
                 return id;
             }
         } finally {
@@ -110,30 +111,33 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     Map<Integer, Integer> resolveUserId = new HashMap<>();
-    public int addMessage(User user, int type, String message) {
+    public long addMessage(User user, int type, String message) {
         return addMessage(user, type, message, new Date());
     }
-    public int addMessage(User user, int type, String message, Date date) {
-        int uid = resolveUserId.get(user.getId());
-        if (uid == 0) {
-            int id = getUserId(user.getId());
+    public long addMessage(User user, int type, String message, Date date) {
+        Integer uid = resolveUserId.get(user.getId());
+        Log.i("DBMANAGER_ADDMESSAGE", "uid : " + uid);
+        if (uid == null) {
+            Integer id = getUserId(user.getId());
             if (id == -1) {
                 id = addUser(user);
+                Log.i("DBMANAGER_ADDMESSAGE", "id : " + id);
             }
             resolveUserId.put(user.getId(), id);
             uid = id;
+            Log.i("DBMANAGER_ADDMESSAGE", "uid2 : " + uid);
         }
 
         SQLiteDatabase db = getWritableDatabase();
         values.clear();
-        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (int)uid);
+        values.put(ChatContract.ChatMessage.COLUMN_USER_ID, (long)uid);
         values.put(ChatContract.ChatMessage.COLUMN_TYPE, type);
         values.put(ChatContract.ChatMessage.COLUMN_MESSAGE, message);
         long current = date.getTime();
         values.put(ChatContract.ChatMessage.COLUMN_CREATED, current);
         try {
             db.beginTransaction();
-            int mid = (int) db.insert(ChatContract.ChatMessage.TABLE, null, values);
+            long mid = db.insert(ChatContract.ChatMessage.TABLE, null, values);
 
             values.clear();
             values.put(ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID, mid);
@@ -141,6 +145,7 @@ public class DBManager extends SQLiteOpenHelper {
             String[] args = {"" + uid};
             db.update(ChatContract.ChatUser.TABLE, values, selection, args);
             db.setTransactionSuccessful();
+            Log.i("DBMANAGER_ADDMESSAGE", "mid : " + mid);
             return mid;
         } finally {
             db.endTransaction();
@@ -154,7 +159,7 @@ public class DBManager extends SQLiteOpenHelper {
                 ChatContract.ChatMessage.TABLE + "." + ChatContract.ChatMessage._ID;
         String[] columns = {ChatContract.ChatUser.TABLE + "." + ChatContract.ChatUser._ID,
                 ChatContract.ChatUser.COLUMN_SERVER_ID,
-                ChatContract.ChatUser.COLUMN_DATE,
+                ChatContract.ChatUser.COLUMN_EMAIL,
                 ChatContract.ChatUser.COLUMN_NAME,
                 ChatContract.ChatMessage.COLUMN_MESSAGE};
         String sort = ChatContract.ChatUser.COLUMN_NAME + " COLLATE LOCALIZED ASC";
@@ -163,10 +168,10 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     public Cursor getChatMessage(User user) {
-        int userid = -1;
-        int uid = resolveUserId.get(user.getId());
-        if (uid == 0) {
-            int id = getUserId(user.getId());
+        long userid = -1;
+        Integer uid = resolveUserId.get(user.getId());
+        if (uid == null) {
+            Integer id = getUserId(user.getId());
             if (id != -1) {
                 resolveUserId.put(user.getId(), id);
                 userid = id;

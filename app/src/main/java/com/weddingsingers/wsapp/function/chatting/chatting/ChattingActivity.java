@@ -4,8 +4,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
+import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.function.video.video.VideoFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +18,8 @@ public class ChattingActivity extends AppCompatActivity {
     @BindView(R.id.chatting_toolbar)
     Toolbar toolbar;
 
+    User user;
+
     public static final String EXTRA_USER = "user";
 
     @Override
@@ -23,6 +28,8 @@ public class ChattingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chatting);
 
         ButterKnife.bind(this);
+
+        user = (User) getIntent().getSerializableExtra(EXTRA_USER);
 
         setSupportActionBar(toolbar);
 
@@ -34,10 +41,17 @@ public class ChattingActivity extends AppCompatActivity {
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();
+        ChattingFragment chattingFragment = ChattingFragment.newInstance(user);
+        chattingFragment.setArguments(bundle);
+        ft.replace(R.id.act_chatting_fl_container, chattingFragment);
+        ft.commit();
+
+        /*FragmentTransaction ft = getSupportFragmentManager()
+                .beginTransaction();
         ChattingFragment chattingFragment = new ChattingFragment();
         chattingFragment.setArguments(bundle);
-        ft.add(R.id.act_chatting_fl_container, chattingFragment);
-        ft.commit();
+        ft.replace(R.id.act_chatting_fl_container, chattingFragment);
+        ft.commit();*/
     }
 
 }

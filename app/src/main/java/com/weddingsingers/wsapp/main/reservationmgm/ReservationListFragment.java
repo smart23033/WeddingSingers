@@ -113,15 +113,13 @@ public class ReservationListFragment extends Fragment {
         mAdapter.setOnAdapterChatBtnClickListener(new ReservationListAdapter.OnAdapterChatBtnClickListener() {
             @Override
             public void onAdapterChatBtnClick(View view, Estimate estimate, int position) {
-                Cursor cursor = (Cursor)mAdapter.items.get(position);
+                Intent intent = new Intent(getContext(), ChattingActivity.class);
                 User user = new User();
-                //user.setUserId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
-                user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
-                user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
-                Intent intent = new Intent(getContext(),ChattingActivity.class);
+                user.setId(estimate.getSingerId());
+                user.setName(estimate.getSingerName());
+                user.setEmail(estimate.getSingerName());
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -196,6 +194,7 @@ public class ReservationListFragment extends Fragment {
                             Log.i("ReservationListFragment","e.getSingerImage() : " + e.getSingerImage());
                             Estimate estimate = new Estimate();
                             estimate.setId(e.getId());
+                            estimate.setSingerId(e.getSingerId());
                             estimate.setSingerName(e.getSingerName());
                             estimate.setSingerImage(e.getSingerImage());
                             estimate.setDate(e.getDate());

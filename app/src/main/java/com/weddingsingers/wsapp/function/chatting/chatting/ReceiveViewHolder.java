@@ -13,8 +13,10 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-09-05.
  */
 public class ReceiveViewHolder extends RecyclerView.ViewHolder {
+
     @BindView(R.id.view_chat_receive_tv_msg)
     TextView messageView;
+
     public ReceiveViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);

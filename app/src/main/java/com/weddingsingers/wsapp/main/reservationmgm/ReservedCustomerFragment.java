@@ -106,7 +106,14 @@ public class ReservedCustomerFragment extends Fragment {
         mAdapter.setOnAdapterChatBtnClickListener(new ReservedCustomerListAdapter.OnAdapterChatBtnClickListener() {
             @Override
             public void onAdapterChatBtnClick(View view, Estimate estimate, int position) {
-                Cursor cursor = (Cursor)mAdapter.items.get(position);
+                Intent intent = new Intent(getContext(), ChattingActivity.class);
+                User user = new User();
+                user.setId(estimate.getCustomerId());
+                user.setName(estimate.getCustomerName());
+                user.setEmail(estimate.getCustomerImage());
+                intent.putExtra(ChattingActivity.EXTRA_USER, user);
+                startActivity(intent);
+                /*Cursor cursor = (Cursor)mAdapter.items.get(position);
                 User user = new User();
                 //user.setUserId(cursor.getLong(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
                 user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
@@ -114,7 +121,7 @@ public class ReservedCustomerFragment extends Fragment {
                 Intent intent = new Intent(getContext(),ChattingActivity.class);
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);
-                getActivity().finish();
+                getActivity().finish();*/
             }
         });
 

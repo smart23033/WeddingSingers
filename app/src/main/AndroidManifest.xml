@@ -50,7 +50,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".function.video.video.VideoActivity" />
         <activity android:name=".function.video.singerinfo.SingerInfoActivity" />
-        <activity android:name=".function.chatting.chatting.ChattingActivity" />
+        <activity android:name=".function.chatting.chatting.ChattingActivity" android:exported="true"/>
         <activity android:name=".function.search.search.SearchActivity" />
         <activity android:name=".login.FacebookLoginActivity" />
         <activity android:name=".function.video.reservation.ReservationActivity" />

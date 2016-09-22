@@ -13,6 +13,7 @@ import butterknife.ButterKnife;
  * Created by Tacademy on 2016-09-05.
  */
 public class SendViewHolder  extends RecyclerView.ViewHolder {
+
     @BindView(R.id.view_chat_send_tv_msg)
     TextView messageView;
 
