@@ -105,6 +105,7 @@ public class ReservationListFragment extends Fragment {
             public void onAdapterPayBtnClick(View view, Estimate estimate, int position) {
 
                 estimateId = estimate.getId();
+
                 ((ReservationMgmFragment) getParentFragment()).startPaymentActivity(estimateId);
             }
         });
@@ -132,6 +133,7 @@ public class ReservationListFragment extends Fragment {
 //                intent.putExtra(CancelReservationActivity.EXTRA_ESTIMATE_ID, estimateId);
 //                startActivity(intent);
                 estimateId = estimate.getId();
+                userId = estimate.getSingerId();
 
                 AlertDialog dialog;
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -167,7 +169,7 @@ public class ReservationListFragment extends Fragment {
 
 
     private void cancelReservation() {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, TYPE_CANCEL_RESERVATION);
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, userId, TYPE_CANCEL_RESERVATION);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
@@ -182,6 +184,7 @@ public class ReservationListFragment extends Fragment {
         });
     }
 
+    int userId;
     private void init() {
         mAdapter.clear();
         EstimateListRequest estimateListRequest = new EstimateListRequest(getContext(), TAB_RESERVATION_LIST);
@@ -199,6 +202,7 @@ public class ReservationListFragment extends Fragment {
                             estimate.setLocation(e.getLocation());
                             estimate.setSongs(e.getSongs());
                             estimate.setStatus(e.getStatus());
+                            estimate.setSingerId(e.getSingerId());
                             mAdapter.add(estimate);
                         }
                     }

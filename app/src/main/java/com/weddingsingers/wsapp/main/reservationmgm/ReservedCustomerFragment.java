@@ -91,6 +91,7 @@ public class ReservedCustomerFragment extends Fragment {
     }
 
     private int estimateId;
+    private int userId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -123,7 +124,7 @@ public class ReservedCustomerFragment extends Fragment {
 
 //                다이얼로그!!
                 estimateId = estimate.getId();
-
+                userId = estimate.getCustomerId();
 
                 AlertDialog dialog;
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -160,7 +161,7 @@ public class ReservedCustomerFragment extends Fragment {
     }
 
     private void rejectReservation(int type) {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, userId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
@@ -192,6 +193,7 @@ public class ReservedCustomerFragment extends Fragment {
                             estimate.setSongs(e.getSongs());
                             estimate.setSpecial(e.getSpecial());
                             estimate.setStatus(e.getStatus());
+                            estimate.setCustomerId(e.getCustomerId());
                             mAdapter.add(estimate);
 
                         }

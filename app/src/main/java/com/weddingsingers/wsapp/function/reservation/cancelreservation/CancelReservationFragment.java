@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,12 +75,14 @@ public class CancelReservationFragment extends Fragment {
         return view;
     }
 
+    int userId;
     void init(){
         EstimateRequest estimateRequest = new EstimateRequest(getContext(), estimateId);
         NetworkManager.getInstance().getNetworkData(estimateRequest, new NetworkManager.OnResultListener<NetworkResult<Estimate>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
-//               이미지 나중에
+
+                userId = result.getResult().getSingerId();
                 estimateView.setUserImage(result.getResult().getSingerImage());
                 estimateView.setUserName(result.getResult().getSingerName());
                 estimateView.setLocation(result.getResult().getLocation());
@@ -87,6 +90,7 @@ public class CancelReservationFragment extends Fragment {
                 estimateView.setSong(result.getResult().getSongs());
                 estimateView.setSpecial(result.getResult().getSpecial());
 
+                Log.i("CancelReservationFragment", "userId : " + userId);
             }
 
             @Override
@@ -113,7 +117,7 @@ public class CancelReservationFragment extends Fragment {
     }
 
     private void cancelReservation() {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, TYPE_CANCEL_RESERVATION);
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, userId, TYPE_CANCEL_RESERVATION);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {

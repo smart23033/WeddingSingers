@@ -90,17 +90,22 @@ public class CancelScheduleFragment extends Fragment {
     ScheduleListAdapter scheduleListAdapter;
     ReservedCustomerListAdapter reservedCustomerListAdapter;
 
+    int userId;
     void init() {
         EstimateRequest estimateRequest = new EstimateRequest(getContext(), estimateId);
         NetworkManager.getInstance().getNetworkData(estimateRequest, new NetworkManager.OnResultListener<NetworkResult<Estimate>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<Estimate>> request, NetworkResult<Estimate> result) {
+
+                userId = result.getResult().getCustomerId();
                 estimateView.setUserImage(result.getResult().getCustomerImage());
                 estimateView.setUserName(result.getResult().getCustomerName());
                 estimateView.setLocation(result.getResult().getLocation());
                 estimateView.setDate(result.getResult().getDate());
                 estimateView.setSong(result.getResult().getSongs());
                 estimateView.setSpecial(result.getResult().getSpecial());
+
+                Log.i("CancelScheduleFragment","userId : " + userId);
             }
 
             @Override
@@ -135,7 +140,7 @@ public class CancelScheduleFragment extends Fragment {
     }
 
     private void cancelSchedule(int type) {
-        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, type);
+        PaymentRequest paymentRequest = new PaymentRequest(getContext(), estimateId, userId, type);
         NetworkManager.getInstance().getNetworkData(paymentRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
