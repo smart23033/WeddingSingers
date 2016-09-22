@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     public static final String EXTRA_FRAGNAME = "fragName";
+    public static final int DEFAULT_VALUE = 0;
 
     LoginManager loginManager;
     CallbackManager callbackManager;
@@ -143,6 +144,7 @@ public class SplashActivity extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.i("SplashActivity","moveMainActivity not login");
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -150,7 +152,8 @@ public class SplashActivity extends AppCompatActivity {
         }, 500);
     }
 
-    String fragName;
+    int fragName;
+    String test;
     private void moveMainActivity(final int id, final String email, final String name, final int type) {
         mHandler.postDelayed(new Runnable() {
             @Override
@@ -159,16 +162,16 @@ public class SplashActivity extends AppCompatActivity {
                 if(getIntent() != null){
                     Log.i("SplashActivity","getIntent() : " + getIntent());
                     intent = getIntent();
-                    fragName = intent.getStringExtra(EXTRA_FRAGNAME);
+                    fragName = intent.getIntExtra(EXTRA_FRAGNAME, DEFAULT_VALUE);
+                    Log.i("SplashActivity","fragName : " + fragName);
                 }
-                Log.i("SplashActivity","fragName : " + fragName);
 
                 intent = new Intent(SplashActivity.this, MainActivity.class);
                 intent.putExtra(MainActivity.EXTRA_USER_ID, id);
                 intent.putExtra(MainActivity.EXTRA_USER_TYPE, type);
                 intent.putExtra(MainActivity.EXTRA_USER_NAME, name);
                 intent.putExtra(MainActivity.EXTRA_USER_EMAIL, email);
-                if(!TextUtils.isEmpty(fragName)) {
+                if(fragName != DEFAULT_VALUE) {
                     intent.putExtra(MainActivity.FRAG_NAME, fragName);
                 }else{
                     intent.putExtra(MainActivity.FRAG_NAME, MainActivity.FRAG_MAIN);

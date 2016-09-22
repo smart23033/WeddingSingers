@@ -135,6 +135,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(FRAG_NAME)) {
+            int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
+            Log.i("MainActivity", "fragName : " + fragmentName);
+
+            changeFragmentFromAnotherActivity(fragmentName);
+        }
+    }
+
+    @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
