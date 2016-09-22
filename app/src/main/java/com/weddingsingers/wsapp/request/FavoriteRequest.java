@@ -19,7 +19,7 @@ import okhttp3.RequestBody;
 public class FavoriteRequest extends AbstractRequest<NetworkResult<String>> {
     Request request;
 
-    public FavoriteRequest(Context context, int videoId) {
+    public FavoriteRequest(Context context, int videoId, int singerId) {
         Log.i("FavoriteRequest","videoId : " + videoId);
 
         HttpUrl.Builder builder = getBaseUrlBuilder();
@@ -27,6 +27,7 @@ public class FavoriteRequest extends AbstractRequest<NetworkResult<String>> {
 
         RequestBody body = new FormBody.Builder()
                 .add("vid", String.valueOf(videoId))
+                .add("sid", String.valueOf(singerId))
                 .build();
 
         request = new Request.Builder()

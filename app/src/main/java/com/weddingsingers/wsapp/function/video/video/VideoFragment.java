@@ -251,7 +251,7 @@ public class VideoFragment extends Fragment {
             }
             case R.id.video_menu_favorite: {
                 if (!item.isChecked()) {
-                    FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(), videoId);
+                    FavoriteRequest favoriteRequest = new FavoriteRequest(getContext(), videoId, singerId);
                     NetworkManager.getInstance().getNetworkData(favoriteRequest, new NetworkManager.OnResultListener<NetworkResult<String>>() {
                         @Override
                         public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
