@@ -31,6 +31,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
     private final static int TYPE_ACCEPT = 20;
     private final static int TYPE_REJECT = 11;
     private final static int TYPE_CANCEL = 21;
+    private final static int TYPE_CANCEL_SCHEDULE = 31;
 
     Context context = MyApplication.getContext();
 
@@ -175,6 +176,7 @@ public class SingerListViewHolder extends RecyclerView.ViewHolder {
             }
             case TYPE_REJECT:
             case TYPE_CANCEL:
+            case TYPE_CANCEL_SCHEDULE:
             {
                 statusView.setBackgroundColor(context.getResources().getColor(R.color.colorReject));
 

@@ -133,7 +133,7 @@ public class PaymentFragment extends Fragment {
 
             @Override
             public void onFail(NetworkRequest<NetworkResult<Estimate>> request, int errorCode, String errorMessage, Throwable e) {
-
+                Log.i("PaymentFragment","EstimateRequest fail : " + errorMessage);
             }
         });
     }

@@ -157,6 +157,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent;
                 if(getIntent() != null){
+                    Log.i("SplashActivity","getIntent() : " + getIntent());
                     intent = getIntent();
                     fragName = intent.getStringExtra(EXTRA_FRAGNAME);
                 }
