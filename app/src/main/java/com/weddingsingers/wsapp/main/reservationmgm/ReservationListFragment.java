@@ -2,12 +2,16 @@ package com.weddingsingers.wsapp.main.reservationmgm;
 
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -21,6 +25,8 @@ import com.weddingsingers.wsapp.data.ChatContract;
 import com.weddingsingers.wsapp.data.Estimate;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.fcm.MyFirebaseMessagingService;
+import com.weddingsingers.wsapp.fcm.MyGcmListenerService;
 import com.weddingsingers.wsapp.function.chatting.chatting.ChattingActivity;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -50,16 +56,38 @@ public class ReservationListFragment extends Fragment {
 
     ReservationListAdapter mAdapter;
 
+    LocalBroadcastManager mLBM;
+
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            intent.putExtra(MyFirebaseMessagingService.EXTRA_RESULT, true);
+        }
+    };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAdapter = new ReservationListAdapter();
+        mLBM = LocalBroadcastManager.getInstance(getContext());
     }
 
     @Override
     public void onResume() {
         super.onResume();
         init();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mLBM.registerReceiver(mReceiver, new IntentFilter(MyFirebaseMessagingService.ACTION_RESERVATION_MGM));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mLBM.unregisterReceiver(mReceiver);
     }
 
     int estimateId;

@@ -1,6 +1,7 @@
 package com.weddingsingers.wsapp.data.viewholder;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -38,6 +39,7 @@ public class AlarmListViewHolder extends RecyclerView.ViewHolder {
 
         userImageView.mutateBackground(true);
         userImageView.setOval(true);
+        userImageView.setBackgroundColor(Color.LTGRAY);
 
     }
 

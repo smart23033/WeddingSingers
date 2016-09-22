@@ -21,8 +21,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.net.ParseException;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -54,6 +56,13 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TYPE_FAVORITE = "50";
     private static final String TYPE_REVIEW = "60";
 
+    public static final String ACTION_RESERVATION_MGM = "com.weddingsingers.wsapp.action.reservationmgm";
+    public static final String ACTION_RESERVED_CUSTOMER = "com.weddingsingers.wsapp.action.reservedcustomer";
+    public static final String ACTION_SCHEDULE_MGM = "com.weddingsingers.wsapp.action.schedulemgm";
+    public static final String ACTION_VIDEO = "com.weddingsingers.wsapp.action.video";
+
+
+    public static final String EXTRA_RESULT = "result";
 
     /**
      * Called when message is received.
@@ -61,6 +70,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
      */
     // [START receive_message]
+
+    LocalBroadcastManager mLBM;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mLBM = LocalBroadcastManager.getInstance(this);
+    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -87,39 +104,55 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             public void onSuccess(NetworkRequest<NetworkResult<List<Alarm>>> request, NetworkResult<List<Alarm>> result) {
                     List<Alarm> list = result.getResult();
 
-                for(Alarm a : list){
+                for(Alarm alarm : list){
 //                    TYPE에 따라 다른 액티비티로 보내는 인텐트 생성
-                    String type = String.valueOf(a.getType());
+
+                    String type = String.valueOf(alarm.getType());
+
                     switch (type){
                         case TYPE_RESERVE : {
+
+                            makeAndSendIntent(alarm, ACTION_RESERVED_CUSTOMER);
 
                             break;
                         }
                         case TYPE_REJECT : {
 
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
+
                             break;
                         }
                         case TYPE_ACCEPT : {
 
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
                             break;
                         }
                         case TYPE_CANCEL : {
 
+                            makeAndSendIntent(alarm, ACTION_RESERVED_CUSTOMER);
                             break;
                         }
                         case TYPE_PAY : {
+
+                            makeAndSendIntent(alarm, ACTION_SCHEDULE_MGM);
 
                             break;
                         }
                         case TYPE_CANCEL_SCHEDULE : {
 
+                            makeAndSendIntent(alarm, ACTION_RESERVATION_MGM);
+
                             break;
                         }
                         case TYPE_FAVORITE : {
 
+                            makeAndSendIntent(alarm, ACTION_VIDEO);
+
                             break;
                         }
                         case TYPE_REVIEW : {
+
+                            makeAndSendIntent(alarm, ACTION_VIDEO);
 
                             break;
                         }
@@ -144,7 +177,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendNotification(String messageBody) {
         Intent intent = new Intent(this, SplashActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -160,5 +193,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
+
+    private void makeAndSendIntent(Alarm alarm, String action){
+            Intent intent = new Intent(action);
+            mLBM.sendBroadcastSync(intent);
+            boolean processed = intent.getBooleanExtra(EXTRA_RESULT, false);
+            if (!processed) {
+                sendNotification(alarm.getMessage());
+            }
     }
 }

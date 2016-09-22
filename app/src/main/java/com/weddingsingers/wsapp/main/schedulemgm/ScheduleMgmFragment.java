@@ -1,10 +1,14 @@
 package com.weddingsingers.wsapp.main.schedulemgm;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.CalendarList;
+import com.weddingsingers.wsapp.fcm.MyFirebaseMessagingService;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DayOffActivity;
 import com.weddingsingers.wsapp.function.schedulemgm.schedulemgm.DetailScheduleActivity;
 
@@ -37,7 +42,27 @@ public class ScheduleMgmFragment extends Fragment {
 
     CalendarListAdapter mAdapter;
 
+    LocalBroadcastManager mLBM;
 
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            intent.putExtra(MyFirebaseMessagingService.EXTRA_RESULT, true);
+        }
+    };
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mLBM.registerReceiver(mReceiver, new IntentFilter(MyFirebaseMessagingService.ACTION_SCHEDULE_MGM));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mLBM.unregisterReceiver(mReceiver);
+    }
 
     public static ScheduleMgmFragment newInstance(int singerId){
         ScheduleMgmFragment fragment = new ScheduleMgmFragment();
@@ -56,6 +81,10 @@ public class ScheduleMgmFragment extends Fragment {
         if (getArguments() != null) {
            singerId = getArguments().getInt(KEY_SINGER_ID);
         }
+
+        mAdapter = new CalendarListAdapter();
+
+        mLBM = LocalBroadcastManager.getInstance(getContext());
     }
 
     public ScheduleMgmFragment() {
@@ -69,8 +98,6 @@ public class ScheduleMgmFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_schedule_mgm, container, false);
 
         ButterKnife.bind(this,view);
-
-        mAdapter = new CalendarListAdapter();
 
         mAdapter.setOnAdapterItemClickListener(new CalendarListAdapter.OnAdapterItemClickListener() {
             @Override
