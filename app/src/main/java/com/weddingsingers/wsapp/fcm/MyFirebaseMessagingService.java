@@ -56,7 +56,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     public static final String ACTION_RESERVED_CUSTOMER = "com.weddingsingers.wsapp.action.reservedcustomer";
     public static final String ACTION_SCHEDULE_MGM = "com.weddingsingers.wsapp.action.schedulemgm";
     public static final String ACTION_VIDEO = "com.weddingsingers.wsapp.action.video";
-
+    public static final String ACTION_SINGER_REVIEW = "com.weddingsingers.wsapp.action.singerreview";
 
     public static final String EXTRA_RESULT = "result";
 
@@ -148,7 +148,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         }
                         case TYPE_REVIEW : {
 
-                            makeAndSendIntent(alarm, ACTION_VIDEO);
+                            makeAndSendIntent(alarm, ACTION_SINGER_REVIEW);
 
                             break;
                         }
@@ -190,6 +190,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
             case ACTION_VIDEO : {
                 intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_VIDEO);
+                intent.putExtra(SplashActivity.EXTRA_DATA_ID, dataId);
+                Log.i(TAG, "dataId : " + dataId);
+                break;
+            }
+            case ACTION_SINGER_REVIEW : {
+                intent.putExtra(SplashActivity.EXTRA_FRAGNAME, MainActivity.FRAG_SINGER_REVIEW);
+                intent.putExtra(SplashActivity.EXTRA_DATA_ID, dataId);
+                Log.i(TAG, "dataId : " + dataId);
                 break;
             }
         }
@@ -211,6 +219,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
 
+    int dataId;
 
     private void makeAndSendIntent(Alarm alarm, String action){
             Intent intent = new Intent(action);
@@ -218,6 +227,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             boolean processed = intent.getBooleanExtra(EXTRA_RESULT, false);
             if (!processed) {
                 sendNotification(alarm.getMessage(), action);
+            }
+            if(action.equals(ACTION_VIDEO) || action.equals(ACTION_SINGER_REVIEW)){
+                dataId = alarm.getDataId();
+                Log.i(TAG, "action.equals(ACTION_VIDEO) dataId : " + dataId);
             }
     }
 }

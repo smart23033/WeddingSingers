@@ -21,6 +21,7 @@ import com.weddingsingers.wsapp.data.Rating;
 import com.weddingsingers.wsapp.data.Review;
 import com.weddingsingers.wsapp.data.Singer;
 import com.weddingsingers.wsapp.data.view.ProfileView;
+import com.weddingsingers.wsapp.function.video.video.VideoFragment;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
 import com.weddingsingers.wsapp.request.RatingRequest;
@@ -44,6 +45,8 @@ public class SingerReviewFragment extends Fragment {
     public static final int TYPE_SINGER = 1;
     public static final int TYPE_CUSTOMER = 2;
 
+    private static final String KEY_SINGER_ID = "singerId";
+
     @BindView(R.id.singer_review_pv_profile)
     ProfileView singerProfileView;
 
@@ -61,6 +64,14 @@ public class SingerReviewFragment extends Fragment {
 
     SingerReviewAdapter mAdapter;
 
+    public static SingerReviewFragment newInstance(int singerId) {
+        SingerReviewFragment fragment = new SingerReviewFragment();
+        Bundle b = new Bundle();
+        b.putInt(KEY_SINGER_ID, singerId);
+        fragment.setArguments(b);
+        return fragment;
+    }
+
     public SingerReviewFragment() {
         // Required empty public constructor
     }
@@ -69,6 +80,9 @@ public class SingerReviewFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if (getArguments() != null) {
+            singerId = getArguments().getInt(KEY_SINGER_ID);
+        }
     }
 
     @Override

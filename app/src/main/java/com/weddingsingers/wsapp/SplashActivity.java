@@ -40,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     public static final String EXTRA_FRAGNAME = "fragName";
+    public static final String EXTRA_DATA_ID = "videoId";
     public static final int DEFAULT_VALUE = 0;
 
     LoginManager loginManager;
@@ -153,17 +154,18 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     int fragName;
-    String test;
+    int dataId;
+
     private void moveMainActivity(final int id, final String email, final String name, final int type) {
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent intent;
                 if(getIntent() != null){
-                    Log.i("SplashActivity","getIntent() : " + getIntent());
                     intent = getIntent();
                     fragName = intent.getIntExtra(EXTRA_FRAGNAME, DEFAULT_VALUE);
-                    Log.i("SplashActivity","fragName : " + fragName);
+                    dataId = intent.getIntExtra(EXTRA_DATA_ID, DEFAULT_VALUE);
+                    Log.i("SplashActivity", "dataId : " + dataId);
                 }
 
                 intent = new Intent(SplashActivity.this, MainActivity.class);

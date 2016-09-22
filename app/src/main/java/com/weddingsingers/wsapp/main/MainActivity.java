@@ -25,6 +25,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.weddingsingers.wsapp.R;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
+import com.weddingsingers.wsapp.function.video.singerreview.SingerReviewActivity;
+import com.weddingsingers.wsapp.function.video.video.VideoActivity;
 import com.weddingsingers.wsapp.login.LoginActivity;
 import com.weddingsingers.wsapp.main.alarm.AlarmFragment;
 import com.weddingsingers.wsapp.main.chatting.ChattingListFragment;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity
     public static final int TYPE_CUSTOMER = 2;
 
     public static final String FRAG_NAME = "fragmentName";
+    public static final String DATA_ID = "dataId";
 
     public static final int FRAG_MAIN = 100;
     public static final int FRAG_MY_PAGE = 200;
@@ -72,7 +75,9 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAG_COMMUNITY = 700;
     public static final int FRAG_QNA = 800;
     public static final int FRAG_ALARM = 900;
+
     public static final int FRAG_VIDEO = 1000;
+    public static final int FRAG_SINGER_REVIEW = 1100;
 
     public static Boolean IS_PICTURE_CHANGED = false;
 
@@ -141,9 +146,10 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         if(intent.hasExtra(FRAG_NAME)) {
             int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
+            int dataId = intent.getIntExtra(DATA_ID, DEFAULT_VALUE);
             Log.i("MainActivity", "fragName : " + fragmentName);
-
-            changeFragmentFromAnotherActivity(fragmentName);
+            Log.i("MainActivity", "dataId : " + dataId);
+            changeFragmentFromAnotherActivity(fragmentName, dataId);
         }
     }
 
@@ -152,13 +158,14 @@ public class MainActivity extends AppCompatActivity
         super.onNewIntent(intent);
 
         int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
+        int dataId = intent.getIntExtra(DATA_ID, DEFAULT_VALUE);
         Log.i("MainActivity", "fragName : " + fragmentName);
-
-        changeFragmentFromAnotherActivity(fragmentName);
+        Log.i("MainActivity", "dataId : " + dataId);
+        changeFragmentFromAnotherActivity(fragmentName, dataId);
     }
 
     //다른 액티비티안의 프레그먼트에서 메인액티비티의 프레그먼트를 변경하도록 요청할 때
-    private void changeFragmentFromAnotherActivity(int fragmentName) {
+    private void changeFragmentFromAnotherActivity(int fragmentName,int dataId) {
         if (fragmentName != DEFAULT_VALUE) {
             switch (fragmentName) {
                 case FRAG_RESERVATION_MGM: {
@@ -191,7 +198,18 @@ public class MainActivity extends AppCompatActivity
                     break;
                 }
                 case FRAG_VIDEO : {
-//                    아직
+                    Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+                    intent.putExtra(VideoActivity.EXTRA_VIDEO_ID, dataId);
+                    intent.putExtra(VideoActivity.EXTRA_SINGER_ID, userId);
+                    Log.i("MainActivity","dataId : " + dataId);
+                    startActivity(intent);
+                    break;
+                }
+                case FRAG_SINGER_REVIEW : {
+                    Intent intent = new Intent(MainActivity.this, SingerReviewActivity.class);
+                    intent.putExtra(SingerReviewActivity.EXTRA_SINGER_ID, dataId);
+                    Log.i("MainActivity","dataId : " + dataId);
+                    startActivity(intent);
                     break;
                 }
                 default:
