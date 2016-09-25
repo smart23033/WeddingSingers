@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
 
     public static Boolean IS_PICTURE_CHANGED = false;
 
-    int userId;
+    public static int userId;
     int userType;
     String userName;
     String userEmail;
@@ -143,14 +143,14 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
 
-        Intent intent = getIntent();
-        if(intent.hasExtra(FRAG_NAME)) {
-            int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
-            int dataId = intent.getIntExtra(DATA_ID, DEFAULT_VALUE);
-            Log.i("MainActivity", "fragName : " + fragmentName);
-            Log.i("MainActivity", "dataId : " + dataId);
-            changeFragmentFromAnotherActivity(fragmentName, dataId);
-        }
+//        Intent intent = getIntent();
+//        if(intent.hasExtra(FRAG_NAME)) {
+//            int fragmentName = intent.getIntExtra(FRAG_NAME, DEFAULT_VALUE);
+//            int dataId = intent.getIntExtra(DATA_ID, DEFAULT_VALUE);
+//            Log.i("MainActivity", "fragName : " + fragmentName);
+//            Log.i("MainActivity", "dataId : " + dataId);
+//            changeFragmentFromAnotherActivity(fragmentName, dataId);
+//        }
     }
 
     @Override

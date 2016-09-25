@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +25,7 @@ import com.weddingsingers.wsapp.data.ChatContract;
 import com.weddingsingers.wsapp.data.NetworkResult;
 import com.weddingsingers.wsapp.data.User;
 import com.weddingsingers.wsapp.fcm.MyFirebaseMessagingService;
-import com.weddingsingers.wsapp.fcm.MyGcmListenerService;
-import com.weddingsingers.wsapp.function.video.video.VideoFragment;
+import com.weddingsingers.wsapp.main.MainActivity;
 import com.weddingsingers.wsapp.manager.DBManager;
 import com.weddingsingers.wsapp.manager.NetworkManager;
 import com.weddingsingers.wsapp.manager.NetworkRequest;
@@ -35,7 +35,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static android.view.View.SCROLL_INDICATOR_BOTTOM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +61,7 @@ public class ChattingFragment extends Fragment {
     public static ChattingFragment newInstance(User user) {
         ChattingFragment fragment = new ChattingFragment();
         ChattingFragment.user = user;
+        Log.i("CHATTING FRAGMENT - ", "" + user.getId());
         return fragment;
     }
 
@@ -95,7 +95,7 @@ public class ChattingFragment extends Fragment {
             @Override
             public void onSuccess(NetworkRequest<NetworkResult<String>> request, NetworkResult<String> result) {
                 Toast.makeText(getActivity(), "SUCCESS" + result.getResult(), Toast.LENGTH_SHORT).show();
-                DBManager.getInstance().addMessage(user, ChatContract.ChatMessage.TYPE_SEND, message);
+                DBManager.getInstance().addMessage(MainActivity.userId, user, ChatContract.ChatMessage.TYPE_SEND, message);
                 updateMessage();
             }
 
@@ -104,6 +104,7 @@ public class ChattingFragment extends Fragment {
                 Toast.makeText(getActivity(), "FAIL" + errorCode + "-" + errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
+        inputView.setText("");
     }
 
     private void updateMessage() {

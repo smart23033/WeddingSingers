@@ -11,6 +11,7 @@ public class ChatContract {
         public static final String COLUMN_SERVER_ID = "sid";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_EMAIL = "email";
+        public static final String COLUMN_IMAGE = "imageurl";
         public static final String COLUMN_LAST_MESSAGE_ID = "lastid";
     }
 

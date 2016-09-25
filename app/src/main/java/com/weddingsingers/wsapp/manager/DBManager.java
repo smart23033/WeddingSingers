@@ -42,6 +42,7 @@ public class DBManager extends SQLiteOpenHelper {
                 ChatContract.ChatUser.COLUMN_SERVER_ID + " INTEGER," +
                 ChatContract.ChatUser.COLUMN_NAME + " TEXT," +
                 ChatContract.ChatUser.COLUMN_EMAIL + " TEXT NOT NULL," +
+                ChatContract.ChatUser.COLUMN_IMAGE + " TEXT NOT NULL," +
                 ChatContract.ChatUser.COLUMN_LAST_MESSAGE_ID + " INTEGER);";
         db.execSQL(sql);
 
@@ -105,27 +106,25 @@ public class DBManager extends SQLiteOpenHelper {
             values.put(ChatContract.ChatUser.COLUMN_SERVER_ID, user.getId());
             values.put(ChatContract.ChatUser.COLUMN_NAME, user.getName());
             values.put(ChatContract.ChatUser.COLUMN_EMAIL, user.getEmail());
+            values.put(ChatContract.ChatUser.COLUMN_IMAGE, user.getPhotoURL());
             return (int) db.insert(ChatContract.ChatUser.TABLE, null, values);
         }
         throw new IllegalArgumentException("aleady user added");
     }
 
     Map<Integer, Integer> resolveUserId = new HashMap<>();
-    public long addMessage(User user, int type, String message) {
-        return addMessage(user, type, message, new Date());
+    public long addMessage(int myId, User user, int type, String message) {
+        return addMessage(myId, user, type, message, new Date());
     }
-    public long addMessage(User user, int type, String message, Date date) {
+    public long addMessage(int myId, User user, int type, String message, Date date) {
         Integer uid = resolveUserId.get(user.getId());
-        Log.i("DBMANAGER_ADDMESSAGE", "uid : " + uid);
         if (uid == null) {
             Integer id = getUserId(user.getId());
             if (id == -1) {
                 id = addUser(user);
-                Log.i("DBMANAGER_ADDMESSAGE", "id : " + id);
             }
             resolveUserId.put(user.getId(), id);
             uid = id;
-            Log.i("DBMANAGER_ADDMESSAGE", "uid2 : " + uid);
         }
 
         SQLiteDatabase db = getWritableDatabase();
@@ -161,8 +160,21 @@ public class DBManager extends SQLiteOpenHelper {
                 ChatContract.ChatUser.COLUMN_SERVER_ID,
                 ChatContract.ChatUser.COLUMN_EMAIL,
                 ChatContract.ChatUser.COLUMN_NAME,
+                ChatContract.ChatUser.COLUMN_IMAGE,
+                ChatContract.ChatMessage.COLUMN_CREATED,
+                ChatContract.ChatMessage.COLUMN_TYPE,
+                ChatContract.ChatMessage.COLUMN_USER_ID,
                 ChatContract.ChatMessage.COLUMN_MESSAGE};
         String sort = ChatContract.ChatUser.COLUMN_NAME + " COLLATE LOCALIZED ASC";
+
+        Log.i("DBMANAGER", table);
+        Log.i("DBMANAGER", "-------------");
+        for(int i = 0; i < columns.length; i++) {
+            Log.i("DBMANAGER", columns[i]);
+        }
+        Log.i("DBMANAGER", "-------------");
+        Log.i("DBMANAGER", sort);
+
         SQLiteDatabase db = getReadableDatabase();
         return db.query(table, columns, null, null, null, null, sort);
     }

@@ -284,7 +284,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             List<ChatMessage> list = result.getResult();
             for (ChatMessage m : list) {
 
-                DBManager.getInstance().addMessage(m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(), new Date());
+                DBManager.getInstance().addMessage(MainActivity.userId, m.getSender(), ChatContract.ChatMessage.TYPE_RECEIVE, m.getMessage(), new Date());
 
                 Intent i = new Intent(ACTION_CHAT_MESSAGE);
                 i.putExtra(EXTRA_CHAT_USER, m.getSender());

@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weddingsingers.wsapp.R;
@@ -17,6 +18,9 @@ public class ChattingActivity extends AppCompatActivity {
 
     @BindView(R.id.chatting_toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.chatting_toolbar_tv_title)
+    TextView titleView;
 
     User user;
 
@@ -38,6 +42,8 @@ public class ChattingActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putString("EXTRA_USER", EXTRA_USER);
+
+        titleView.setText(user.getName());
 
         FragmentTransaction ft = getSupportFragmentManager()
                 .beginTransaction();

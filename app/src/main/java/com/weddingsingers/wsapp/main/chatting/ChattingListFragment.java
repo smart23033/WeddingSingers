@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +44,8 @@ public class ChattingListFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String[] from = {ChatContract.ChatUser.COLUMN_NAME, ChatContract.ChatUser.COLUMN_EMAIL, ChatContract.ChatMessage.COLUMN_MESSAGE};
-        int[] to = {R.id.text_name, R.id.text_email, R.id.text_last_message};
+        String[] from = {ChatContract.ChatUser.COLUMN_NAME, ChatContract.ChatMessage.COLUMN_MESSAGE};
+        int[] to = {R.id.view_chat_user_tv_name, R.id.view_chat_user_tv_last_message};
         mAdapter = new SimpleCursorAdapter(getContext(), R.layout.view_chat_user, null, from, to, 0);
     }
 
@@ -64,7 +64,7 @@ public class ChattingListFragment extends Fragment {
 //        LinearLayoutManager manager = new LinearLayoutManager(getContext());
 //        recyclerView.setLayoutManager(manager);
 //
-//        initData();
+        initData();
 
         return view;
     }
@@ -75,6 +75,7 @@ public class ChattingListFragment extends Fragment {
         User user = new User();
         user.setId(cursor.getInt(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
         user.setEmail(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
+        user.setPhotoURL(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_IMAGE)));
         user.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
         Intent intent = new Intent(getContext(), ChattingActivity.class);
         intent.putExtra(ChattingActivity.EXTRA_USER, user);
@@ -104,10 +105,17 @@ public class ChattingListFragment extends Fragment {
 
             while (cursor.moveToNext()) {
                 data = new ChattingList();
-                data.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
-                data.setMsg(cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_MESSAGE)));
-                data.setdTime(cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_CREATED)));
-                list.add(data);
+                Log.i("CHATTIG_LIST - COLUMN_NAME - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+                Log.i("CHATTIG_LIST - COLUMN_SERVER_ID - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_SERVER_ID)));
+                Log.i("CHATTIG_LIST - COLUMN_EMAIL - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_EMAIL)));
+                Log.i("CHATTIG_LIST - COLUMN_MESSAGE - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_MESSAGE)));
+                Log.i("CHATTIG_LIST - COLUMN_CREATED - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_CREATED)));
+                Log.i("CHATTIG_LIST - COLUMN_TYPE - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_TYPE)));
+                Log.i("CHATTIG_LIST - COLUMN_USER_ID - ", cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_USER_ID)));
+//                data.setName(cursor.getString(cursor.getColumnIndex(ChatContract.ChatUser.COLUMN_NAME)));
+//                data.setMsg(cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_MESSAGE)));
+//                data.setdTime(cursor.getString(cursor.getColumnIndex(ChatContract.ChatMessage.COLUMN_CREATED)));
+//                list.add(data);
             }
 
             int count = 0;
@@ -117,7 +125,7 @@ public class ChattingListFragment extends Fragment {
                 list.add(data);
                 count++;
             }
-            cAdapter.setData(list);
+            //cAdapter.setData(list);
         }
 
     }

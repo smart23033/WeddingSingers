@@ -121,9 +121,9 @@ public class SingerProfileFragment extends Fragment {
                 // 가격에 , 찍기
                 NumberFormat nf = NumberFormat.getInstance();
 
-                String[] locationItems = getResources().getStringArray(R.array.location);
-                String[] compositionItems = getResources().getStringArray(R.array.composition);
-                String[] themeItems = getResources().getStringArray(R.array.theme);
+                String[] locationItems = getActivity().getResources().getStringArray(R.array.location);
+                String[] compositionItems = getActivity().getResources().getStringArray(R.array.composition);
+                String[] themeItems = getActivity().getResources().getStringArray(R.array.theme);
 
                 nameView.setText(singer.getSingerName());
                 commentView.setText(singer.getComment());

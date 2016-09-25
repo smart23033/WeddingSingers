@@ -8,17 +8,18 @@
         android:id="@+id/view_chat_send_tv_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="15dp"
-        android:minWidth="150dp"
-        android:maxWidth="250dp"
-        android:layout_marginTop="15dp"
-        android:padding="4dp"
-        android:text="Medium Text"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/talk_02"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        />
+        android:gravity="center_vertical"
+        android:maxWidth="220dp"
+        android:minWidth="100dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

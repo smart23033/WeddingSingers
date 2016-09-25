@@ -10,6 +10,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
     <permission
         android:name="com.weddingsingers.wsapp.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
@@ -23,79 +24,134 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBarFullScreen" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBarFullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".login.LoginActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".function.video.video.VideoActivity" />
-        <activity android:name=".function.video.singerinfo.SingerInfoActivity" />
-        <activity android:name=".function.chatting.chatting.ChattingActivity" android:exported="true"/>
-        <activity android:name=".function.search.search.SearchActivity" />
-        <activity android:name=".login.FacebookLoginActivity" />
-        <activity android:name=".function.video.reservation.ReservationActivity" />
-        <activity android:name=".function.video.singerreview.SingerReviewActivity" />
-        <activity android:name=".function.mypage.myinquiry.MyInquiryActivity" />
-        <activity android:name=".function.mypage.favoritevideo.FavoriteVideoActivity" />
-        <activity android:name=".function.mypage.pointstore.PointStoreActivity" />
-        <activity android:name=".function.mypage.accountmgm.AccountMgmActivity" />
-        <activity android:name=".function.mypage.singervideomgm.SingerVideoMgmActivity" />
-        <activity android:name=".function.mypage.statistic.StatisticActivity" />
-        <activity android:name=".function.reservation.cancelreservation.CancelReservationActivity" />
-        <activity android:name=".function.inquiry.writeinquiry.WriteInquiryActivity" />
-        <activity android:name=".function.community.writepost.WritePostActivity" />
-        <activity android:name=".function.payment.payment.PaymentActivity" />
-        <activity android:name=".function.event.event.EventActivity" />
-        <activity android:name=".function.mypage.mypage.UserInfoActivity" />
-        <activity android:name=".function.mypage.mypage.SingerProfileModifyActivity" android:screenOrientation="portrait"
-             android:exported="true"/>
-        <activity android:name=".function.mypage.mypoint.MyPointActivity" />
-        <activity android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity" />
-        <activity android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity" />
-        <activity android:name=".function.schedulemgm.schedulemgm.DayOffActivity" />
-        <activity android:name=".function.video.othervideo.OtherVideoActivity" />
-        <activity android:name=".function.review.writereview.WriteReviewActivity"
-            android:exported="true"></activity>
+        <activity
+            android:name=".function.video.video.VideoActivity" />
+        <activity
+            android:name=".function.video.singerinfo.SingerInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.chatting.chatting.ChattingActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.search.search.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.FacebookLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.video.reservation.ReservationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.video.singerreview.SingerReviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.myinquiry.MyInquiryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.favoritevideo.FavoriteVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.pointstore.PointStoreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.accountmgm.AccountMgmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.singervideomgm.SingerVideoMgmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.statistic.StatisticActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.reservation.cancelreservation.CancelReservationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.inquiry.writeinquiry.WriteInquiryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.community.writepost.WritePostActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.payment.payment.PaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.event.event.EventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.mypage.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.mypage.SingerProfileModifyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.mypage.mypoint.MyPointActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.schedulemgm.schedulemgm.DetailScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.schedulemgm.schedulemgm.CancelScheduleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.schedulemgm.schedulemgm.DayOffActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.video.othervideo.OtherVideoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".function.review.writereview.WriteReviewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
 
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <category android:name="com.dgmong.miniproject" />
             </intent-filter>
         </receiver>
-        <service
-            android:name=".fcm.MyFirebaseMessagingService">
+
+        <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".fcm.MyFirebaseInstanceIDService">
+        <service android:name=".fcm.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
     </application>

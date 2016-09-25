@@ -110,6 +110,7 @@ public class ReservedCustomerFragment extends Fragment {
                 User user = new User();
                 user.setId(estimate.getCustomerId());
                 user.setName(estimate.getCustomerName());
+                user.setPhotoURL(estimate.getCustomerImage());
                 user.setEmail(estimate.getCustomerImage());
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);

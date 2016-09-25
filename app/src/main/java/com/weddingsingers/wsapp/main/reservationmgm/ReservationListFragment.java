@@ -117,6 +117,7 @@ public class ReservationListFragment extends Fragment {
                 User user = new User();
                 user.setId(estimate.getSingerId());
                 user.setName(estimate.getSingerName());
+                user.setPhotoURL(estimate.getSingerImage());
                 user.setEmail(estimate.getSingerName());
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);

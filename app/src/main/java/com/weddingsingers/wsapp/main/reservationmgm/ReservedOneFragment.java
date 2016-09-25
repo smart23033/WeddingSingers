@@ -69,6 +69,7 @@ public class ReservedOneFragment extends Fragment {
                 User user = new User();
                 user.setId(profile.getSingerId());
                 user.setName(profile.getSingerName());
+                user.setPhotoURL(profile.getSingerImage());
                 user.setEmail(profile.getSingerName());
                 intent.putExtra(ChattingActivity.EXTRA_USER, user);
                 startActivity(intent);
