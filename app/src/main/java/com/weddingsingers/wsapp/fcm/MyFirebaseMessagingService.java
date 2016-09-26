@@ -275,7 +275,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void chatSend() {
-        Log.i(TAG, "----- chatSend -----");
         long lastTime = DBManager.getInstance().getLastReceiveDate();
         Date date = new Date(lastTime);
         MessageListRequest request = new MessageListRequest(this, date);
