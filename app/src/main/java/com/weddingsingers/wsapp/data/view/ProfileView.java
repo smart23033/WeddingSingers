@@ -71,7 +71,7 @@ public class ProfileView extends FrameLayout {
         singerNameView.setText(singerName);
     }
 
-    //추가 요망
+        //추가 요망
     public void setSingerImage(String singerImage) {
         this.singerImage = singerImage;
         Glide.with(getContext())

@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Tacademy on 2016-08-25.
  */
-public class SearchResultViewHolder extends RecyclerView.ViewHolder{
+public class SearchResultViewHolder extends RecyclerView.ViewHolder {
 
 
     Context context = MyApplication.getContext();
@@ -44,24 +44,25 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
     TextView favoriteView;
 
 
-    public interface OnSearchResultItemClickListener{
+    public interface OnSearchResultItemClickListener {
         public void onSearchResultItemClick(View view, SearchResult searchResult, int position);
     }
 
     OnSearchResultItemClickListener listener;
-    public void setOnSearchResultItemClickListener(OnSearchResultItemClickListener listener){
+
+    public void setOnSearchResultItemClickListener(OnSearchResultItemClickListener listener) {
         this.listener = listener;
     }
 
     public SearchResultViewHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this,itemView);
+        ButterKnife.bind(this, itemView);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(listener != null){
-                    listener.onSearchResultItemClick(view,searchResult,getAdapterPosition());
+                if (listener != null) {
+                    listener.onSearchResultItemClick(view, searchResult, getAdapterPosition());
                 }
             }
         });
@@ -74,7 +75,7 @@ public class SearchResultViewHolder extends RecyclerView.ViewHolder{
         return url;
     }
 
-    public void setSearchResult(SearchResult searchResult){
+    public void setSearchResult(SearchResult searchResult) {
         this.searchResult = searchResult;
 
         url = searchResult.getThumbnail().substring(searchResult.getThumbnail().indexOf('=') + 1);

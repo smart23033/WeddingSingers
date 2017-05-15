@@ -107,7 +107,6 @@ public class LoginFragment extends Fragment {
         getActivity().finish();
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);

@@ -3,6 +3,7 @@
     package="com.weddingsingers.wsapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -31,8 +32,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:label="@string/app_name" />
 
         <activity
             android:name=".main.MainActivity"
@@ -52,16 +52,15 @@
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".function.video.video.VideoActivity" />
+        <activity android:name=".function.video.video.VideoActivity" />
         <activity
             android:name=".function.video.singerinfo.SingerInfoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".function.chatting.chatting.ChattingActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".function.search.search.SearchActivity"
             android:screenOrientation="portrait" />

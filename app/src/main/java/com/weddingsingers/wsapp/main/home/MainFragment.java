@@ -2,6 +2,7 @@ package com.weddingsingers.wsapp.main.home;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -63,7 +64,7 @@ public class MainFragment extends Fragment {
     VideoListAdapter videoListAdapter;
     EventListAdapter eventListAdapter;
 
-    int[] bannerImages = {R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner};
+    int[] bannerImages = {R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner, R.drawable.main_banner};
 
     public MainFragment() {
         // Required empty public constructor
@@ -213,8 +214,11 @@ public class MainFragment extends Fragment {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
             imageView.setImageResource(bannerImages[position]);
+            //imageView.setImageURI(Uri.parse(bannerImages[position]));
         }
     };
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -35,11 +35,13 @@ import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Dispatcher;
 import okhttp3.OkHttpClient;
+
 /**
  * Created by Tacademy on 2016-08-23.
  */
 public class NetworkManager {
     private static NetworkManager instance;
+
     public static NetworkManager getInstance() {
         if (instance == null) {
             instance = new NetworkManager();
@@ -68,7 +70,7 @@ public class NetworkManager {
         builder.connectTimeout(30, TimeUnit.SECONDS);
         builder.readTimeout(10, TimeUnit.SECONDS);
         builder.writeTimeout(10, TimeUnit.SECONDS);
-        disableCertificateValidation(context,builder);
+        disableCertificateValidation(context, builder);
         client = builder.build();
     }
 
@@ -140,38 +142,38 @@ public class NetworkManager {
         }
     }
 
-    static  void disableCertificateValidation(Context context, OkHttpClient.Builder builder){
+    static void disableCertificateValidation(Context context, OkHttpClient.Builder builder) {
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput  = context.getResources().openRawResource(R.raw.site);
+            InputStream caInput = context.getResources().openRawResource(R.raw.site);
             Certificate ca;
             try {
                 ca = cf.generateCertificate(caInput);
                 System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-            }finally {
+            } finally {
 
                 caInput.close();
 
             }
-            String keyStoreType  = KeyStore.getDefaultType();
+            String keyStoreType = KeyStore.getDefaultType();
             KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-            keyStore.load(null,null);
-            keyStore.setCertificateEntry("ca",ca);
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("ca", ca);
             String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
             TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
             tmf.init(keyStore);
 
             SSLContext sc = SSLContext.getInstance("TLS");
-            sc.init(null,tmf.getTrustManagers(),null);
+            sc.init(null, tmf.getTrustManagers(), null);
             HostnameVerifier hv = new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession sslSession) {
                     return true;
                 }
             };
-            sc.init(null,tmf.getTrustManagers(),null);
+            sc.init(null, tmf.getTrustManagers(), null);
 //            builder.sslSocketFactory(sc.getSocketFactory(), (X509TrustManager) ca);
-            builder.sslSocketFactory(sc.getSocketFactory()) ;
+            builder.sslSocketFactory(sc.getSocketFactory());
             builder.hostnameVerifier(hv);
 
         } catch (CertificateException e) {

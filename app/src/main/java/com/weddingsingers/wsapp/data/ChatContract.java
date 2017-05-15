@@ -8,6 +8,7 @@ import android.provider.BaseColumns;
 public class ChatContract {
     public interface ChatUser extends BaseColumns {
         public static final String TABLE = "chatuser";
+        public static final String COLUMN_CREATED = "createtd";
         public static final String COLUMN_SERVER_ID = "sid";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_EMAIL = "email";
@@ -27,3 +28,4 @@ public class ChatContract {
         public static final String COLUMN_CREATED = "created";
     }
 }
+
